@@ -1,0 +1,2891 @@
+{
+  "@@locale": "zh",
+  "appTitle": "LM Mini",
+  "splashTagline": "本地AI聊天",
+  "homeTitle": "LM Mini",
+  "homeSearchHint": "搜索对话...",
+  "allConversations": "所有对话",
+  "noFoldersTitle": "还没有文件夹",
+  "noFoldersSubtitle": "创建文件夹来组织您的聊天记录",
+  "noConversationsTitle": "还没有对话",
+  "noConversationsSubtitle": "开始新的聊天",
+  "newChat": "新聊天",
+  "conversationCount": "{count} 对话",
+  "@conversationCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "noModelsAvailable": "无可用型号。请检查您的 LM Studio 连接。",
+  "noVisionModelAvailable": "没有可用的视觉模型。请在 LM Studio 中加载视觉模型。",
+  "deleteConversationTitle": "删除对话",
+  "deleteConversationMessage": "您确定要删除此对话吗？此操作无法撤消。",
+  "renameConversationTitle": "重命名对话",
+  "conversationTitleLabel": "对话标题",
+  "deleteFolderTitle": "删除文件夹",
+  "deleteFolderMessage": "这不会删除此文件夹中的对话。",
+  "moveToFolderTitle": "移至文件夹",
+  "noFolder": "无文件夹",
+  "cancel": "取消",
+  "delete": "删除",
+  "save": "节省",
+  "close": "关闭",
+  "ok": "OK",
+  "add": "添加",
+  "edit": "编辑",
+  "reset": "重置",
+  "retry": "重试",
+  "search": "搜索",
+  "copy": "复制",
+  "copied": "复制了！",
+  "copiedToClipboard": "已复制到剪贴板",
+  "dismiss": "解雇",
+  "configure": "配置",
+  "rename": "重命名",
+  "duplicate": "复制",
+  "enabled": "启用",
+  "disabled": "残疾人",
+  "active": "积极的",
+  "none": "没有任何",
+  "auto": "汽车",
+  "custom": "风俗",
+  "change": "改变",
+  "chatDefaultTitle": "聊天",
+  "searchMessagesTooltip": "搜索消息",
+  "chatSettingsMenuItem": "聊天设置",
+  "appearanceMenuItem": "外貌",
+  "exportAsPdf": "导出为 PDF",
+  "exportAsTxt": "导出为 TXT",
+  "exportAsMarkdown": "导出为 Markdown",
+  "exportAsJson": "导出为 JSON",
+  "exportAsObsidian": "出口黑曜石",
+  "copyToClipboard": "复制到剪贴板",
+  "exportAndShare": "导出和分享",
+  "freeFormats": "标准",
+  "premiumFormats": "专业格式",
+  "chatExported": "聊天导出",
+  "noModelSelectedTitle": "未选择型号",
+  "noModelSelectedSubtitle": "请在设置中选择模型开始聊天",
+  "openSettings": "打开设置",
+  "connectionError": "连接错误：{error}",
+  "@connectionError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "startConversation": "问候！今天我可以为您提供什么帮助吗？",
+  "typeMessageToBegin": "选择下面的建议，或输入消息以开始",
+  "searchMessagesTitle": "搜索消息",
+  "searchQueryHint": "输入搜索查询...",
+  "semanticSearchInfo": "语义搜索使用人工智能根据含义（而不仅仅是关键字）查找相关消息。",
+  "noMessagesToSearch": "没有可搜索的消息",
+  "searchResults": "搜索结果",
+  "searchResultsFor": "{count} 匹配“{query}”",
+  "@searchResultsFor": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "query": {
+        "type": "String"
+      }
+    }
+  },
+  "noMessagesFound": "没有找到消息",
+  "tryDifferentSearch": "尝试不同的搜索查询",
+  "chatCustomizationSaved": "聊天自定义已保存",
+  "noMessagesToExport": "没有要导出的消息",
+  "exportingChat": "正在导出聊天记录...",
+  "chatExportedAsPdf": "聊天导出为 PDF",
+  "chatExportedAsTxt": "聊天导出为 TXT",
+  "exportFailed": "导出失败：{error}",
+  "@exportFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "chatSettingsUpdated": "聊天设置已更新（覆盖全局设置）",
+  "chatSettingsReset": "聊天设置重置为全局默认值",
+  "you": "你",
+  "assistant": "助手",
+  "yesterday": "昨天",
+  "showDetails": "显示详情",
+  "hideDetails": "隐藏详细信息",
+  "settingsTitle": "设置",
+  "settingsAdvancedMode": "先进的",
+  "settingsAdvancedModeTooltip": "为高级用户显示技术选项",
+  "serverSection": "服务器",
+  "serverUrlLabel": "服务器地址",
+  "serverUrlHint": "http://本地主机:1234",
+  "testConnectionRequired": "测试连接（必填）",
+  "testConnection": "测试连接",
+  "modelsSection": "型号",
+  "modelSelection": "选型",
+  "noModelSelected": "未选择型号",
+  "modelParameters": "型号参数",
+  "modelParametersSubtitle": "温度、代币、惩罚",
+  "modelParametersHelpTooltip": "这些设置的含义",
+  "modelParametersHelpTitle": "快速指南",
+  "modelParametersHelpIntro": "每个设置的简单提示。如果您不确定，请保留默认值 - 您以后可以随时更改它们。某些选项仅针对您当前的 AI 提供商显示。",
+  "topKHelp": "AI 考虑了多少个单词选择。更低=更安全、更可预测； 0 = 无限制。",
+  "reasoningHelp": "打开或关闭推理模型的思考模式。关闭 = 更快回复且无思考过程；开启（或某一级别）会让模型逐步思考。并非所有推理模型都支持关闭思考。",
+  "reasoningHelpShort": "打开或关闭思考。并非所有模型都支持关闭。",
+  "systemPrompts": "角色和系统提示",
+  "defaultPrompt": "默认提示",
+  "appearanceSection": "外貌",
+  "appearance": "外貌",
+  "appearanceSubtitle": "主题、背景、头像",
+  "supportSection": "支持",
+  "rateApp": "评价 LM 迷你",
+  "rateAppSubtitle": "喜欢这个应用程序吗？在 App Store 上发表评论 ⭐",
+  "hfBrowseTitle": "从抱脸下载",
+  "hfBrowseSubtitle": "浏览 GGUF 模型 — 无需 API 密钥",
+  "hfBrowseTab": "浏览",
+  "hfPasteTab": "粘贴链接",
+  "hfSearchHint": "搜索 GGUF 型号...",
+  "hfLoadingModels": "搜索拥抱脸...",
+  "hfNoModelsFound": "没有找到型号",
+  "hfNoModelsHint": "尝试不同的搜索词或关闭 LM Studio 过滤器。",
+  "hfLmStudioFilter": "兼容 LM Studio",
+  "hfLmStudioFilterHint": "仅 Hugging Face 列出的模型可与 LM Studio 配合使用",
+  "hfChatModelsFilter": "聊天模特",
+  "hfChatBadge": "聊天",
+  "hfLmStudioBadge": "LM工作室",
+  "hfPasteUrlHint": "https://huggingface.co/owner/repo",
+  "hfModelInfo": "型号信息",
+  "hfDownloadsCount": "{count} 下载量",
+  "@hfDownloadsCount": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "hfLikesCount": "{count} 赞",
+  "@hfLikesCount": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "hfPipelineTag": "任务：{tag}",
+  "@hfPipelineTag": {
+    "placeholders": {
+      "tag": {
+        "type": "String"
+      }
+    }
+  },
+  "hfBaseModel": "基础型号：{model}",
+  "@hfBaseModel": {
+    "placeholders": {
+      "model": {
+        "type": "String"
+      }
+    }
+  },
+  "hfLicense": "许可证：{license}",
+  "@hfLicense": {
+    "placeholders": {
+      "license": {
+        "type": "String"
+      }
+    }
+  },
+  "hfTagsSection": "标签",
+  "hfQuantPickerHint": "较低的数量=较小的文件。 Q4_K_M 对于大多数设备来说是一个很好的平衡。",
+  "hfBackToModels": "返回型号",
+  "hfGgufFilesCount": "{count} GGUF 文件可用",
+  "@hfGgufFilesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "hfDownloadInBackground": "下载已开始 — 使用浮动按钮跟踪进度。您可以继续浏览或关闭此面板。",
+  "hfQuantPickerHintLmStudio": "LM Studio 服务器列出的量化。选择一个下载到服务器。",
+  "hfDownloadDefaultQuant": "下载",
+  "hfDownloadFailed": "无法开始下载：{error}",
+  "@hfDownloadFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "hfPasteInstructions": "粘贴 Hugging Face 存储库 URL 或输入所有者/存储库。接下来您将选择一个量化。",
+  "hfPasteInstructionsLmStudio": "粘贴 Hugging Face URL、所有者/存储库或 LM Studio 模型 ID。",
+  "hfPasteLabel": "存储库",
+  "hfInvalidRepo": "输入有效的 Hugging Face URL 或所有者/存储库。",
+  "hfRecommended": "受到推崇的",
+  "reviewPromptTitle": "喜欢 LM Mini 吗？",
+  "reviewPromptMessage": "你们进行了几次愉快的交谈！您介意在 Play 商店上留下快速评价吗？",
+  "reviewPromptRate": "立即评分",
+  "reviewPromptLater": "也许稍后",
+  "buyMeACoffee": "请我喝杯咖啡",
+  "buyMeACoffeeSubtitle": "帮助人工智能保持咖啡因！ 🤖",
+  "featureRequests": "支持/功能请求",
+  "featureRequestsSubtitle": "对功能进行投票或提交您的想法",
+  "dataSection": "数据",
+  "exportAllChats": "导出所有聊天记录",
+  "exportAllChatsSubtitle": "将所有对话下载为 ZIP 文件",
+  "importChats": "导入聊天记录",
+  "importChatsSubtitle": "导入 LM Studio 聊天导出（.md 或 .zip）",
+  "importSuccess": "{count, plural, =1{成功导入 1 个聊天} other{成功导入 {count} 个聊天}}",
+  "@importSuccess": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "importFailed": "导入失败",
+  "importPartial": "{imported} 已导入，{skipped} 已跳过",
+  "@importPartial": {
+    "placeholders": {
+      "imported": {
+        "type": "int"
+      },
+      "skipped": {
+        "type": "int"
+      }
+    }
+  },
+  "importing": "输入...",
+  "advancedSection": "高级功能",
+  "showRuntimeInfo": "显示运行时信息",
+  "showRuntimeInfoSubtitle": "显示模型架构和运行时",
+  "embeddingModel": "嵌入模型",
+  "enableSemanticSearch": "启用语义搜索",
+  "enableSemanticSearchSubtitle": "使用嵌入查找相关消息",
+  "toolCalling": "工具调用",
+  "toolCallingEnabled": "启用工具调用",
+  "toolCallingDisabled": "工具调用已禁用",
+  "legalSection": "合法的",
+  "privacyPolicy": "隐私政策",
+  "privacyPolicySubtitle": "对话保存在您的设备上",
+  "termsOfService": "服务条款",
+  "termsOfServiceSubtitle": "条款和条件",
+  "appName": "LM Mini",
+  "appTagline": "适用于 LM Studio、Ollama 和 oMLX 的 Pocket A.I 和配套应用程序",
+  "couldNotOpenLink": "无法打开链接",
+  "apiToken": "API 令牌和 USB",
+  "tokenConfigured": "令牌已配置",
+  "optionalAuthentication": "可选身份验证",
+  "apiTokenLabel": "API令牌",
+  "apiTokenHint": "输入您的 LM Studio API 令牌",
+  "apiTokenHelp": "如果您的 LM Studio 服务器需要身份验证，请在此处输入您的 API 令牌。这是可选的，仅当您在 LM Studio 设置中启用了身份验证时才需要。",
+  "apiTokenInfo": "LM Studio 0.4.0+支持API身份验证。在 LM Studio > 设置 > 安全中启用它。",
+  "actionRequired": "- 需要采取行动",
+  "idleTtl": "空闲TTL",
+  "idleTtlDefault": "使用 LM Studio 默认设置（60 分钟）",
+  "idleTtlMinutes": "空闲{value}分钟后自动卸载",
+  "@idleTtlMinutes": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "idleTtlHoursMinutes": "闲置 {hours} 小时 {mins} 分钟后自动卸载",
+  "@idleTtlHoursMinutes": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      },
+      "mins": {
+        "type": "int"
+      }
+    }
+  },
+  "lmStudioDefault": "LM Studio 默认",
+  "fiveMinutes": "5分钟",
+  "fifteenMinutes": "15分钟",
+  "thirtyMinutes": "30分钟",
+  "oneHour": "1小时",
+  "twoHours": "2小时",
+  "connectionSuccess": "已连接！已加载{count}个模型",
+  "@connectionSuccess": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "connectionFailed": "连接失败",
+  "troubleshootingSteps": "故障排除步骤：",
+  "troubleshootStep1": "确保 LM Studio 正在运行",
+  "troubleshootStep2": "在 LM Studio 中，打开“开发人员”选项卡（⚙️ 图标）",
+  "troubleshootStep3": "启用“在本地网络上提供服务”切换",
+  "troubleshootStep4": "验证服务器端口匹配（默认：1234）",
+  "troubleshootStep5": "对于本地连接，请使用您的 IP，例如{ip}",
+  "@troubleshootStep5": {
+    "placeholders": {
+      "ip": {
+        "type": "String"
+      }
+    }
+  },
+  "lmStudioSettings": "LM工作室设置",
+  "serveOnLocalNetworkHelp": "应在 LM Studio Developer 选项卡中启用“在本地网络上提供服务”开关（以橙色/绿色显示）。",
+  "networkConnections": "网络连接：",
+  "networkConnectionsTips": "• 将“localhost”替换为您计算机的IP 地址\n• 确保两台设备位于同一网络上\n• 检查端口 1234 的防火墙设置",
+  "noConversationsToExport": "没有要导出的对话",
+  "exportingConversations": "正在导出 {count} 对话...",
+  "@exportingConversations": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "exportSuccess": "{count} 对话导出成功",
+  "@exportSuccess": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "languageSection": "语言",
+  "language": "语言",
+  "languageSubtitle": "选择您的首选语言",
+  "systemDefault": "系统默认值",
+  "english": "English",
+  "spanish": "Español",
+  "german": "Deutsch",
+  "french": "Français",
+  "russian": "Русский",
+  "chinese": "中文",
+  "toolsCallingTitle": "工具调用",
+  "toolCallingSection": "工具调用",
+  "enableToolCallingAndMcps": "启用工具调用和 MCP",
+  "enableToolCallingSubtitle": "允许 AI 搜索网络并呼叫 MCP",
+  "builtInToolsSection": "内置工具",
+  "builtInToolsInfo": "当 AI 请求时，应用程序在本地执行的工具",
+  "webSearch": "网页搜索",
+  "webSearchUsingSearxng": "使用SearXNG",
+  "webSearchDisabled": "已禁用（配置 SearXNG 或升级到 Pro）",
+  "integratedMcpsSection": "集成 MCP",
+  "integratedMcpsInfo": "使用您已在 LM Studio 中设置的 MCP。只需在此处添加 mcp.json 中的他们的名字即可。",
+  "integratedMcpsAuthRequired": "集成 MCP 需要在 LM Studio 中启用身份验证，并在设置 → API 令牌中设置 API 令牌。",
+  "requiresApiToken": "需要 API 令牌",
+  "setApiTokenTooltip": "在“设置”中设置 API 令牌以启用",
+  "noIntegratedMcps": "未配置集成 MCP",
+  "addManually": "手动添加",
+  "importMcpJson": "导入 mcp.json",
+  "ephemeralMcpsSection": "短暂的 MCP",
+  "ephemeralMcpsInfo": "HTTP MCP 服务器按请求发送。需要在 LM Studio 中“允许每个请求 MCP”。",
+  "requiresPerRequestMcps": "需要：开发人员 → 服务器设置 → 允许每个请求 MCP",
+  "noEphemeralMcps": "未配置临时 MCP",
+  "addHttpMcpServer": "添加 HTTP MCP 服务器",
+  "browseExampleMcps": "浏览示例 MCP 服务器",
+  "addIntegratedMcpTitle": "添加MCP",
+  "editIntegratedMcpTitle": "编辑MCP",
+  "addIntegratedMcpInfo": "从 LM Studio 的 mcp.json 复制名称并将其粘贴到此处。例如，如果您看到名为 playwright 的键，请键入 playwright。",
+  "mcpNameLabel": "mcp.json 中的名称",
+  "mcpNameHint": "剧作家",
+  "mcpNameHelper": "仅限字母、数字和连字符 — 使用网络搜索，而不是 web_search。",
+  "exampleMcpJsonEntry": "💡 mcp.json 条目示例：",
+  "nameIsRequired": "姓名为必填项",
+  "mcpNameInvalidChars": "使用连字符而不是下划线（LM Studio 不接受像 web_search 这样的名称）。",
+  "mcpNameAlreadyExists": "该 MCP 已添加",
+  "addedMcp": "添加{name}",
+  "@addedMcp": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "updatedMcp": "已更新{name}",
+  "@updatedMcp": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "editMcpTooltip": "编辑姓名",
+  "unlimitedToolCalls": "无限次工具调用",
+  "unlimitedToolCallsSubtitle": "取消集成和临时 MCP 的 10 次调用限制（不影响专业搜索）",
+  "unlimitedToolCallsOn": "MCP 工具调用迭代没有限制",
+  "unlimitedToolCallsOff": "限制为 10 次工具调用迭代",
+  "structuredOutput": "结构化输出",
+  "structuredOutputSubtitle": "强制 JSON 响应格式",
+  "reasoningMode": "推理模式",
+  "reasoningOff": "离开",
+  "reasoningLow": "低的",
+  "reasoningMedium": "中等的",
+  "reasoningHigh": "高的",
+  "reasoningOn": "在",
+  "reasoningDescOff": "没有推理痕迹",
+  "reasoningDescLow": "最少的推理",
+  "reasoningDescMedium": "平衡推理",
+  "reasoningDescHigh": "详细推理",
+  "reasoningDescOn": "完整的推理痕迹",
+  "helpSection": "帮助",
+  "toolCallingGuide": "工具调用指南",
+  "toolCallingGuideSubtitle": "了解工具如何工作",
+  "searxngSetupGuide": "SearXNG 设置指南",
+  "searxngSetupGuideSubtitle": "设置您自己的搜索服务器",
+  "webSearchConfig": "网页搜索配置",
+  "howWebSearchWorks": "💡 网络搜索的工作原理",
+  "howWebSearchWorksSteps": "1. AI 决定需要当前信息\n2. 使用 Premium Search 或 SearXNG 进行应用程序搜索\n3.结果发送回AI\n4. AI 综合答案",
+  "searchResultsLabel": "搜索结果：",
+  "webSearchDisabledWarning": "网络搜索已禁用。配置 SearXNG 或升级到 Pro。",
+  "searxngUrlOptional": "SearXNG URL（可选）",
+  "searxngUrlLabel": "搜索XNG URL",
+  "searxngUrlHint": "http://本地主机:8888",
+  "quickSetupDocker": "🐳 使用 Docker 快速设置：",
+  "dockerCommand": "docker run -d -p 8888:8080 searxng/searxng",
+  "mcpBadge": "MCP",
+  "mcpResultBadge": "MCP 结果",
+  "webSearchSourcesTitle": "来源",
+  "toolBadge": "工具",
+  "resultBadge": "结果",
+  "failedToLoadImage": "加载图像失败",
+  "thinking": "思维",
+  "think": "思考",
+  "thoughtFor": "为{duration}思考",
+  "@thoughtFor": {
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "performanceStats": "表现统计",
+  "regenerate": "再生",
+  "editMessage": "编辑留言",
+  "editMessageHint": "编辑您的消息...",
+  "saveAndRegenerate": "保存并重新生成",
+  "deleteMessage": "删除留言",
+  "deleteMessageConfirm": "您确定要删除此消息吗？",
+  "mcpCallTitle": "MCP 呼叫",
+  "mcpResultTitle": "MCP 结果",
+  "toolCallTitle": "工具调用",
+  "toolResultTitle": "工具结果",
+  "attachFile": "附加文件",
+  "photoLibrary": "照片库",
+  "attachImagesForVision": "附加图像以进行视觉分析",
+  "requiresVisionModel": "需要具有视觉能力的模型",
+  "takePhoto": "拍照",
+  "captureImageWithCamera": "用相机捕捉图像",
+  "imageFromFiles": "文件中的图像",
+  "pickImageFromFilesApp": "从“文件”应用程序中选择图像",
+  "attachDocuments": "文件",
+  "attachDocumentsSubtitle": "PDF、Markdown、Excel (.xlsx)、CSV、文本、代码等",
+  "textFileTxt": "文本文件 (.txt)",
+  "attachPlainText": "附上纯文本文档",
+  "csvFileCsv": "CSV 文件 (.csv)",
+  "attachSpreadsheetData": "附加电子表格数据",
+  "pdfDocumentPdf": "PDF 文档 (.pdf)",
+  "attachPdfDocuments": "附上 PDF 文档",
+  "mcpLabel": "MCP：",
+  "typeMessageHint": "输入消息...",
+  "attachFilesTooltip": "附加文件",
+  "customizeChat": "自定义聊天",
+  "overrideGlobalAppearance": "覆盖此聊天的全局外观设置",
+  "background": "背景",
+  "userAvatar": "用户头像",
+  "assistantAvatar": "助理头像",
+  "colorsSection": "颜色",
+  "userBubble": "用户泡沫",
+  "userText": "用户文本",
+  "assistantBubble": "助理泡泡",
+  "assistantText": "助理文字",
+  "darkOverlay": "昏暗的壁纸",
+  "darkOverlayDescription": "聊天背景的壁纸应该设置多暗",
+  "usingGlobal": "使用全局",
+  "useGlobal": "使用全局",
+  "setCustom": "设置自定义",
+  "customColor": "定制颜色",
+  "defaultThemeColor": "默认主题颜色",
+  "resetToDefault": "重置为默认值",
+  "pickAColor": "选择一种颜色",
+  "chatSettingsTitle": "聊天设置",
+  "overrideGlobalSettings": "仅覆盖此聊天的全局设置",
+  "resetAll": "全部重置",
+  "modelOverride": "模型",
+  "noneSelected": "未选择",
+  "systemPromptOverride": "人格面具",
+  "saved": "已保存",
+  "noSavedPromptsInfo": "没有保存的人物角色。转到“设置”→“角色”来创建一些角色。",
+  "selectSavedPromptHint": "选择一个人物...",
+  "enterCustomPromptHint": "输入自定义角色提示...",
+  "personaShareMemoriesLabel": "分享回忆",
+  "personaShareMemoriesSubtitle": "关闭后，此角色不会在聊天中接收或学习记忆",
+  "webSearchOffForThisChat": "仅此聊天关闭",
+  "reasoningOffForThisChat": "仅此聊天关闭",
+  "temperatureOverride": "温度",
+  "maxTokensOverride": "最大代币数",
+  "topPOverride": "顶P",
+  "topKOverride": "前K",
+  "minPOverride": "最小P",
+  "repeatPenaltyOverride": "重复处罚",
+  "contextLengthOverride": "上下文长度",
+  "systemPromptsTitle": "角色和系统提示",
+  "addSystemPromptTooltip": "添加提示或角色",
+  "systemPromptsInfoText": "创建和管理系统提示。将它们绑定到特定模型或全局使用它们。选择一项以使其处于活动状态。",
+  "savedPromptsSection": "保存的提示",
+  "addSystemPrompt": "添加系统提示",
+  "newPrompt": "新提示或角色",
+  "noPromptSet": "没有设置提示",
+  "editSystemPrompt": "编辑系统提示",
+  "newSystemPrompt": "新提示或角色",
+  "promptNameLabel": "提示名称",
+  "promptNameHint": "例如，代码助理、创意作家……",
+  "systemPromptLabel": "系统提示",
+  "systemPromptEditorHint": "你是一个有用的助手，...",
+  "bindToModels": "绑定到特定模型",
+  "bindToModelsSubtitle": "将此提示限制为某些型号。解除绑定后，它适用于所有型号。",
+  "noModelsLoaded": "没有加载模型。连接到 LM Studio 并加载模型以绑定此提示。",
+  "templatesSection": "模板",
+  "pleaseEnterPromptName": "请输入此提示的名称",
+  "pleaseEnterPromptContent": "请输入提示内容",
+  "deleteSystemPromptTitle": "删除系统提示？",
+  "deleteSystemPromptMessage": "您确定要删除“{name}”吗？此操作无法撤消。",
+  "@deleteSystemPromptMessage": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "templateCodeAssistant": "代码助手",
+  "templateCreativeWriter": "创意作家",
+  "templateConciseExpert": "简洁专家",
+  "templateResearcher": "研究员",
+  "templateTutor": "导师",
+  "templateTechnicalWriter": "技术撰稿人",
+  "downloadProgress": "下载进度",
+  "progressLabel": "进步",
+  "speedLabel": "速度",
+  "etaLabel": "预计到达时间",
+  "statusLabel": "地位",
+  "notAvailable": "不适用",
+  "calculating": "正在计算...",
+  "moveToFolderPopup": "移至文件夹",
+  "contextInfo": "上下文：{used} / {total}",
+  "@contextInfo": {
+    "placeholders": {
+      "used": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "hideAvatars": "隐藏头像",
+  "hideAvatarsSubtitle": "从聊天消息中删除头像图标",
+  "autoScroll": "自动滚动",
+  "autoScrollSubtitle": "当新消息到达时滚动到底部",
+  "editMcpServer": "编辑 MCP 服务器",
+  "addMcpServer": "添加 MCP 服务器",
+  "serverLabelRequired": "服务器标签 *",
+  "serverLabelHint": "例如，huggingface、tiktoken",
+  "serverLabelHelper": "识别该服务器的名称",
+  "serverUrlRequired": "服务器网址 *",
+  "serverUrlMcpHint": "https://huggingface.co/mcp",
+  "serverUrlHelper": "MCP 服务器的 HTTP/HTTPS URL",
+  "authorizationOptional": "API 密钥（可选）",
+  "authorizationHint": "hf_xxxxxxxx 或 Bearer hf_xxxxxxxx",
+  "authorizationHelper": "作为 Authorization 标头发送到此 MCP。可粘贴原始令牌（会自动加 Bearer）或完整标头值。",
+  "additionalHeaders": "附加标头",
+  "additionalHeadersHint": "X-自定义标头：值",
+  "additionalHeadersHelper": "每行一个标题（名称：值）。\n上面设置了授权。",
+  "labelAndUrlRequired": "标签和 URL 为必填项",
+  "urlMustStartWithHttp": "URL 必须以 http:// 或 https:// 开头",
+  "mcpServerUpdated": "MCP服务器已更新",
+  "mcpServerAdded": "添加 MCP 服务器",
+  "importMcpJsonTitle": "导入 mcp.json",
+  "pasteMcpJsonContent": "粘贴您的 mcp.json 内容",
+  "mcpJsonLocation": "位于：~/.lmstudio/config/mcp.json\n或者在 LM Studio 中：开发人员 → MCP 设置 → 打开配置",
+  "mcpJsonContentLabel": "mcp.json 内容",
+  "mcpJsonContentHelper": "粘贴整个 mcp.json 文件内容",
+  "parseJson": "解析 JSON",
+  "foundMcpServers": "找到 {count} MCP 服务器：",
+  "@foundMcpServers": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "hasAuthHeaders": "具有身份验证标头",
+  "importSelected": "导入{count}所选",
+  "@importSelected": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "pleasePasteMcpJson": "请粘贴您的 mcp.json 内容",
+  "noMcpServersFound": "JSON 中未找到 mcpServer",
+  "exampleMcpServers": "MCP 服务器示例",
+  "gitMcpInfo": "这些使用 GitMCP 提供来自 GitHub 存储库的文档",
+  "browseMoreGitMcp": "在 gitmcp.io 浏览更多内容",
+  "fileNotFound": "找不到文件",
+  "openWithExternalApp": "使用外部应用程序打开",
+  "previewNotAvailable": "预览不可用",
+  "voiceMode": "语音模式",
+  "voiceSettings": "语音设置",
+  "voiceSettingsSubtitle": "文本转语音、语音输入和语音模式",
+  "voiceSection": "嗓音",
+  "voiceStatus": "地位",
+  "voiceTtsEngine": "文本转语音引擎",
+  "voiceSttEngine": "语音识别引擎",
+  "voiceAvailable": "可用的",
+  "voiceUnavailable": "无法使用",
+  "voiceTtsSettings": "文字转语音",
+  "voiceSttSettings": "语音转文本",
+  "voiceSttProvider": "语音识别提供商",
+  "voiceSttProviderSystem": "系统讲话",
+  "voiceSttProviderSystemSubtitle": "iOS 上的 Apple Speech，Android 上的 Google Speech",
+  "voiceSttProviderWhisper": "设备上的耳语",
+  "voiceSttProviderWhisperSubtitle": "离线 sherpa-onnx Whisper — 更准确，在所有平台上的工作方式相同",
+  "voiceWhisperModelNotDownloaded": "耳语模型未下载",
+  "voiceWhisperModelReady": "耳语模型准备就绪",
+  "voiceWhisperModelSize": "选择尺寸 - 较大的型号转录更准确",
+  "voiceWhisperDownloadButton": "下载",
+  "voiceWhisperDownloading": "正在下载 Whisper 模型...",
+  "voiceWhisperDownloadStarting": "开始下载...",
+  "voiceWhisperDownloadFailed": "下载失败",
+  "voiceWhisperDeleteModel": "删除选定的 Whisper 模型",
+  "voiceWhisperDeleteTitle": "删除耳语模型？",
+  "voiceWhisperDeleteMessage": "这会将所选模型从设备存储中释放。设备上的语音识别将回退到系统语音，直到您再次下载 Whisper 模型。",
+  "voiceWhisperDeleteConfirm": "删除",
+  "voiceWhisperFallback": "如果未下载模型，则返回系统语音",
+  "voiceWhisperBiggerBetterTitle": "为什么要选择更大的型号？",
+  "voiceWhisperBiggerBetterBody": "较大的 Whisper 模型通常会生成更准确的文字记录，尤其是对于口音、安静的音频、背景噪音和不常见的单词。它们还需要更多存储空间，并且在您的设备上运行速度较慢。\n\nTiny 适合简短、清晰的演讲。 Base 或 Small 更适合较长的文件。 Large v3 Turbo 是大型模型中最快/最小的（经过修剪的 Large v3）。 Full Large v3 是最准确的，但也是最重的。",
+  "voiceWhisperUseModel": "使用",
+  "voiceWhisperSelected": "已选择",
+  "voiceWhisperDownloaded": "已下载",
+  "audioSetupTitle": "设置语音和音频",
+  "audioSetupMessage": "语音聊天需要文本转语音才能让人工智能回复。选择设备上的 Kokoro 神经语音以获得最佳质量，或使用设备的内置语音 - 无需下载。",
+  "audioSetupWhisperStatus": "耳语语音识别",
+  "audioSetupKokoroStatus": "Kokoro 神经语音",
+  "audioSetupStatusReady": "准备好",
+  "audioSetupStatusMissing": "未下载",
+  "audioSetupOnDeviceButton": "下载Kokoro语音",
+  "audioSetupOnDeviceSubtitle": "Kokoro 神经 TTS · 约 300 MB · 离线工作",
+  "audioSetupSystemButton": "使用系统语音",
+  "audioSetupSystemSubtitle": "内置 STT 和 TTS — 无需下载",
+  "audioSetupConfigureButton": "语音设置",
+  "audioSetupNotNow": "现在不要",
+  "audioSetupDownloadingWhisper": "正在下载耳语...",
+  "audioSetupDownloadingKokoro": "正在下载心...",
+  "audioSetupDownloadComplete": "模型准备好了",
+  "audioSetupContinueButton": "继续",
+  "voiceModeSettings": "语音模式",
+  "voiceAutoRead": "自动读取回复",
+  "voiceAutoReadSubtitle": "自动朗读新的助理消息",
+  "voiceSpeechRate": "语速",
+  "voicePitch": "沥青",
+  "voiceLanguage": "语音语言",
+  "voiceLanguageSubtitle": "口头回复的语言（文本转语音）",
+  "voiceSttLanguage": "识别语言",
+  "voiceSttLanguageSubtitle": "用于文本麦克风和语音通话。可能与口头回复语言不同。",
+  "voiceSelection": "语音选择",
+  "voiceDefault": "默认",
+  "voiceTestVoice": "测试语音",
+  "voiceTestVoiceSubtitle": "播放样本以听听当前的语音设置",
+  "voiceTestPhrase": "你好！这就是我现在的声音。",
+  "voiceTestProgressInitializing": "启动 TTS 引擎...",
+  "voiceTestProgressGenerating": "生成语音...",
+  "voiceTestProgressPreparing": "正在准备播放...",
+  "voiceTestProgressPlaying": "播放样本...",
+  "voiceTestProgressConnecting": "正在连接远程语音...",
+  "voiceTestProgressComplete": "完毕",
+  "voiceKokoroEngineReady": "发动机准备就绪——测试应该很快开始",
+  "voiceKokoroEngineWarming": "正在预热设备上的引擎...",
+  "voiceAutoSend": "发言后自动发送",
+  "voiceAutoSendSubtitle": "语音识别结束时自动发送消息",
+  "voiceSttPauseFor": "发送前保持沉默",
+  "voiceSttPauseForSubtitle": "在您停止讲话后，在发送消息之前静默几秒钟。这与 iOS 麦克风会话限制（约 15 秒块，自动处理）是分开的。",
+  "voiceSttListenFor": "最长收听时间",
+  "voiceSttListenForSubtitle": "在应用程序重新打开麦克风之前，每个麦克风会话的硬上限。在 iOS 上，Apple 还在长演讲期间大约每 15 秒轮换一次会话。",
+  "voiceSttSeconds": "{seconds}秒",
+  "@voiceSttSeconds": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "voiceContinuousConversation": "持续对话",
+  "voiceContinuousConversationSubtitle": "朗读响应后自动开始收听",
+  "voiceTapToSpeak": "点击即可说话",
+  "voiceListening": "正在听……",
+  "voiceThinking": "一会儿……",
+  "voiceResponding": "正在回复…",
+  "voiceSpeaking": "请讲…",
+  "voiceConvoHintIdle": "点击圆圈开始说话",
+  "voiceConvoHintListening": "我在听——慢慢来",
+  "voiceConvoHintStarting": "正在准备麦克风…",
+  "voiceConvoHintProcessing": "思维…",
+  "voiceConvoHintSpeaking": "",
+  "voiceNotAvailable": "此设备不支持语音识别",
+  "voiceStartRecording": "开始语音输入",
+  "voiceStopRecording": "停止录音",
+  "voiceDiscardRecording": "丢弃",
+  "voiceSelectLanguage": "选择语言",
+  "voiceSelectVoice": "选择语音",
+  "voiceNoVoicesAvailable": "该语言没有可用的语音",
+  "voiceAboutTitle": "关于语音模式",
+  "voiceAboutDescription": "语音模式使用设备的本机语音引擎或设备上的 Kokoro 神经 TTS。文本转语音可以使用 iOS 上的 Apple AVSpeechSynthesizer、Android 上的 Google TTS 或设备上下载的 Kokoro-82M 神经模型。语音识别在 iOS 上使用 Apple Speech Framework，在 Android 上使用 Google Speech。所有处理都在设备上进行——没有数据发送到外部服务器。",
+  "voiceExitMode": "切换到键盘",
+  "voiceTtsProvider": "TTS 提供商",
+  "voiceTtsProviderNative": "设备（本机）",
+  "voiceTtsProviderNativeSubtitle": "使用内置系统声音 — 离线工作",
+  "voiceTtsProviderKokoro": "已下载的语音",
+  "voiceTtsProviderKokoroSubtitle": "在此设备上运行的自然语音",
+  "voiceTtsProviderKokoroRemote": "心 (PC)",
+  "voiceTtsProviderKokoroRemoteSubtitle": "在您的 PC 上运行 Kokoro 以获得更快、更高质量的语音",
+  "voiceTtsProviderElevenLabs": "ElevenLabs",
+  "voiceTtsProviderElevenLabsSubtitle": "Pro · 你的 API 密钥 · 云端语音",
+  "voiceTtsElevenLabs": "ElevenLabs",
+  "voiceTtsElevenLabsHint": "你的密钥 · 来自 ElevenLabs 语音库",
+  "voiceElevenLabsApiKey": "ElevenLabs API 密钥",
+  "voiceElevenLabsApiKeyHint": "粘贴 elevenlabs.io 上的 xi-api-key",
+  "voiceElevenLabsTestKey": "检查密钥",
+  "voiceElevenLabsKeyInvalid": "该密钥未被接受。请在 elevenlabs.io 核对。",
+  "voiceElevenLabsKeyNetwork": "无法连接 ElevenLabs。请检查网络。",
+  "voiceElevenLabsKeyQuota": "此密钥额度已用完。",
+  "voiceElevenLabsKeyUnknown": "无法验证此密钥。请重试。",
+  "voiceElevenLabsPrivacy": "回复文本会随你的密钥发送到 ElevenLabs。LM Mini 仅在本机保存密钥。",
+  "voiceElevenLabsModel": "ElevenLabs 模型",
+  "voiceElevenLabsVoice": "ElevenLabs 语音",
+  "voiceElevenLabsNoVoices": "此账户没有语音。请先在 ElevenLabs 语音库中添加。",
+  "voiceElevenLabsChangeKey": "更换密钥",
+  "voiceElevenLabsRemoveKey": "移除密钥",
+  "voiceElevenLabsReady": "已连接 ElevenLabs",
+  "voiceElevenLabsNoKey": "添加 ElevenLabs API 密钥",
+  "personaElevenLabsVoiceLabel": "ElevenLabs 语音",
+  "personaElevenLabsVoiceGlobal": "使用全局 ElevenLabs 语音",
+  "personaElevenLabsVoicePickerTitle": "ElevenLabs 语音",
+  "personaElevenLabsVoiceAddKey": "在语音设置中添加 API 密钥后即可选择 ElevenLabs 语音",
+  "premiumElevenLabsTts": "ElevenLabs 语音",
+  "premiumElevenLabsTtsTagline": "自带密钥的神经 TTS",
+  "premiumElevenLabsTtsDescription": "使用你的 ElevenLabs API 密钥，并为角色指定工作室级语音。语音聊天、自动朗读和气泡朗读使用同一引擎。",
+  "voiceTtsProviderGrok": "Grok",
+  "voiceTtsProviderGrokSubtitle": "Pro · 你的 xAI API 密钥 · 云端语音",
+  "voiceTtsGrok": "Grok",
+  "voiceTtsGrokHint": "你的密钥 · 来自 xAI 的 Grok 语音",
+  "voiceGrokApiKey": "xAI API 密钥",
+  "voiceGrokApiKeyHint": "粘贴 console.x.ai 上的 API 密钥",
+  "voiceGrokTestKey": "检查密钥",
+  "voiceGrokKeyInvalid": "该密钥未被接受。请在 console.x.ai 核对。",
+  "voiceGrokKeyNetwork": "无法连接 xAI。请检查网络。",
+  "voiceGrokKeyQuota": "此密钥额度已用完。",
+  "voiceGrokKeyUnknown": "无法验证此密钥。请重试。",
+  "voiceGrokPrivacy": "回复文本会随你的密钥发送到 xAI。LM Mini 仅在本机保存密钥。",
+  "voiceGrokVoice": "Grok 语音",
+  "voiceGrokNoVoices": "没有可用的 Grok 语音。请检查密钥后重试。",
+  "voiceGrokChangeKey": "更换密钥",
+  "voiceGrokRemoveKey": "移除密钥",
+  "voiceGrokReady": "已连接 Grok",
+  "voiceGrokNoKey": "添加 xAI API 密钥",
+  "personaGrokVoiceLabel": "Grok 语音",
+  "personaGrokVoiceGlobal": "使用全局 Grok 语音",
+  "personaGrokVoicePickerTitle": "Grok 语音",
+  "personaGrokVoiceAddKey": "在语音设置中添加 API 密钥后即可选择 Grok 语音",
+  "personaVoiceSection": "语音",
+  "personaVoiceProviderLabel": "提供方",
+  "personaVoiceProviderKokoro": "Kokoro",
+  "personaVoiceProviderGlobal": "使用全局语音设置",
+  "personaVoiceConfigureInSettings": "请在 设置 → 语音 中配置",
+  "premiumGrokTts": "Grok 语音",
+  "premiumGrokTtsTagline": "自带密钥的神经 TTS",
+  "premiumGrokTtsDescription": "使用你的 xAI API 密钥，并为角色指定 Grok 语音。语音聊天、自动朗读和气泡朗读使用同一引擎。",
+  "voiceRemoteKokoroConnected": "连接至 PC 上的 Kokoro",
+  "voiceRemoteKokoroNotFound": "在 PC 上找不到 Kokoro TTS",
+  "voiceRemoteKokoroRequiresConnect": "需要在 Mac 上开启“与手机共享”，或在 Windows/Linux 上运行 LM Mini Connect",
+  "voiceKokoroVoice": "心的声音",
+  "voiceKokoroSpeed": "语速",
+  "voiceKokoroModelReady": "Kokoro模型准备好了",
+  "voiceKokoroModelReadySubtitle": "已下载的语音已就绪",
+  "voiceKokoroModelNotDownloaded": "Kokoro模型未下载",
+  "voiceKokoroModelSize": "需要下载（~400 MB 共享包）",
+  "voiceKokoroDownloading": "正在下载 Kokoro 模型...",
+  "voiceKokoroDownloadStarting": "开始下载...",
+  "voiceKokoroDownloadButton": "下载",
+  "voiceKokoroDownloadFailed": "下载失败。点击重试。",
+  "voiceKokoroFallback": "如果未下载 Kokoro 模型，将回退为原生语音",
+  "voiceKokoroDeleteModel": "删除心模型",
+  "voiceKokoroDeleteTitle": "删除Kokoro模型？",
+  "voiceKokoroDeleteMessage": "这将删除所有已下载的 TTS 语言包。您可以稍后重新下载。",
+  "voiceKokoroDeleteConfirm": "删除",
+  "voiceTtsLanguagePacksHint": "英语、西班牙语、法语和中文共用一次下载（约 400 MB）。德语和俄语更小（各约 34 MB）。",
+  "voiceTtsLanguagePacks": "语音包",
+  "voiceTtsLanguagePacksSubtitleNone": "下载一种语言即可在本机朗读",
+  "voiceTtsLanguagePacksSubtitleReady": "{ready} / {total} 种语言已就绪",
+  "voiceTtsLanguagePacksSubtitleDownloading": "正在下载 {name}…",
+  "voiceTtsSharedPackSize": "共享下载 · ~{size} MB",
+  "@voiceTtsSharedPackSize": {
+    "placeholders": {
+      "size": {
+        "type": "int"
+      }
+    }
+  },
+  "voiceTtsPiperPackSize": "较小下载 · ~{size} MB",
+  "@voiceTtsPiperPackSize": {
+    "placeholders": {
+      "size": {
+        "type": "int"
+      }
+    }
+  },
+  "voiceTtsSharedPackDeleteMessage": "这将移除英语、西班牙语、法语和中文共用的下载。您可以稍后重新下载。",
+  "connecting": "正在连接...",
+  "saveAndTestConnection": "保存并测试连接",
+  "connectedTo": "✅ 连接到 {provider}",
+  "@connectedTo": {
+    "placeholders": {
+      "provider": {
+        "type": "String"
+      }
+    }
+  },
+  "connectionToFailed": "❌ 连接到 {provider} 失败 — 检查您的 API 密钥",
+  "@connectionToFailed": {
+    "placeholders": {
+      "provider": {
+        "type": "String"
+      }
+    }
+  },
+  "errorGeneric": "❌错误：{error}",
+  "@errorGeneric": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "provider": "提供者",
+  "cloudApiKeyLabel": "{provider} API 密钥",
+  "@cloudApiKeyLabel": {
+    "placeholders": {
+      "provider": {
+        "type": "String"
+      }
+    }
+  },
+  "enterApiKeyHint": "输入您的 API 密钥...",
+  "getApiKey": "获取 {provider} API 密钥",
+  "@getApiKey": {
+    "placeholders": {
+      "provider": {
+        "type": "String"
+      }
+    }
+  },
+  "baseUrl": "基本网址",
+  "customBaseUrlOptional": "自定义基本 URL（可选）",
+  "accountSection": "帐户",
+  "signIn": "登入",
+  "signInSubtitle": "登录以启用云备份",
+  "cloudServicesUnavailable": "云服务不可用",
+  "signedInVia": "通过{method}登录",
+  "@signedInVia": {
+    "placeholders": {
+      "method": {
+        "type": "String"
+      }
+    }
+  },
+  "lmMiniProSection": "LM迷你PRO",
+  "proActive": "积极主动的",
+  "allPremiumUnlocked": "所有高级功能已解锁",
+  "upgradeToPro": "升级到专业版",
+  "unlockPremiumFeatures": "解锁以下所有高级功能",
+  "proBadge": "专业版",
+  "proFeatureTag": "专业功能",
+  "betaBadge": "测试版",
+  "imageGeneration": "图像生成",
+  "generatedImagesLibrary": "已生成的图片",
+  "generatedImagesGallery": "图库",
+  "generatedImagesShowInChat": "在对话中显示",
+  "generatedImagesLibrarySubtitle": "查看、在对话中打开或删除",
+  "generatedImagesLibraryEmpty": "还没有生成的图片",
+  "generatedImagesLibraryEmptyHint": "你在对话里生成的图片会保存在这里。",
+  "generatedImagesSelect": "选择",
+  "generatedImagesCancelSelect": "完成",
+  "generatedImagesDeleteN": "删除 {count} 张",
+  "@generatedImagesDeleteN": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "generatedImagesDeleteConfirmTitle": "删除图片？",
+  "generatedImagesDeleteConfirmBody": "将从此设备删除 {count} 张图片。聊天消息会保留。",
+  "@generatedImagesDeleteConfirmBody": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "generatedImagesOpenChat": "在对话中打开",
+  "generatedImagesMissingFile": "文件缺失",
+  "generatedImagesOrphan": "未关联对话",
+  "generatedImagesPrompt": "提示词",
+  "generatedImagesNegativePrompt": "负面提示词",
+  "generatedImagesDetails": "生成详情",
+  "generatedImagesNoPrompt": "未保存提示词",
+  "generatedImagesChatUnavailable": "该对话已不存在",
+  "generatedImagesVideo": "视频",
+  "imageGenEnabled": "已启用 — {url}",
+  "@imageGenEnabled": {
+    "placeholders": {
+      "url": {
+        "type": "String"
+      }
+    }
+  },
+  "imageGenNotConfigured": "已启用 — 未配置",
+  "cloudBackup": "云备份",
+  "encryptedBackupRestore": "加密备份和恢复",
+  "e2eBanner": "端到端加密 - 您的密码永远不会离开此设备",
+  "analytics": "分析",
+  "analyticsSubtitle": "使用统计、代币和模型见解",
+  "memory": "回忆",
+  "memoryItemCount": "{count} 项目 • 在聊天中持续存在",
+  "@memoryItemCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "premiumWebSearch": "高级网络搜索",
+  "premiumWebSearchSubtitle": "即时搜索 — 无需 SearXNG",
+  "urlReader": "网址阅读器",
+  "urlReaderSubtitle": "阅读并总结任何网页",
+  "conversationBranching": "对话分支",
+  "conversationBranchingSubtitle": "从任何消息中分叉对话",
+  "cloudBackupPro": "云备份",
+  "cloudBackupProSubtitle": "加密备份和恢复到云端",
+  "analyticsDashboard": "分析仪表板",
+  "analyticsDashboardSubtitle": "使用统计、代币和模型见解",
+  "cloudApiProviders": "云API提供商",
+  "cloudApiProvidersSubtitle": "Mistral、DeepSeek 等",
+  "addProviderLabel": "添加提供商",
+  "noCloudProvidersTitle": "没有云提供商",
+  "noCloudProvidersSubtitle": "点击 + 添加云 API 提供商。\n使用您自己的 Groq、DeepSeek 等 API 密钥。",
+  "editProviderTitle": "编辑提供商",
+  "addCloudProviderTitle": "添加云提供商",
+  "providerLabel": "提供者",
+  "apiKeyLabel": "API密钥",
+  "pasteLabel": "粘贴",
+  "baseUrlRequiredLabel": "基本 URL（必填）",
+  "customBaseUrlOptionalLabel": "自定义基本 URL（可选）",
+  "advancedLabel": "先进的",
+  "fetchingLabel": "正在获取...",
+  "fetchAvailableModelsLabel": "获取可用型号",
+  "availableModelsLabel": "可用型号：",
+  "suggestedModelsLabel": "推荐型号：",
+  "modelIdLabel": "型号编号",
+  "disableCloudProviderSubtitle": "禁用保留配置但不使用它",
+  "setAsActiveProviderLabel": "设置为主动提供者",
+  "deactivateLabel": "停用",
+  "switchedBackToLocalLmStudio": "切换回本地LM Studio",
+  "saveChangesLabel": "保存更改",
+  "enterDisplayNameError": "请输入显示名称",
+  "enterApiKeyError": "请输入 API 密钥",
+  "enterBaseUrlError": "请输入自定义提供商的基本 URL",
+  "enterApiKeyFirst": "首先输入 API 密钥",
+  "failedToFetchModels": "获取模型失败：{error}",
+  "@failedToFetchModels": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "deleteProviderTitle": "删除提供商？",
+  "deleteProviderMessage": "删除“{name}”及其 API 密钥？",
+  "@deleteProviderMessage": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "deleteFirstPartyOpenAiServerMessage": "要从这台设备移除“{name}”吗？\n\n之后无法再从列表中添加此服务器。若要重新连接，请添加 A.I Compatible API，并将基础 URL 设为 https://api.openai.com。",
+  "activeProviderSet": "{name} 设置为活动提供者",
+  "@activeProviderSet": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "memoryPro": "回忆",
+  "memoryProSubtitle": "对话中的持久记忆",
+  "richExportShare": "丰富的导出和分享",
+  "richExportShareSubtitle": "导出到 Obsidian、Notes、Notion 等",
+  "autoUnloadAfter": "{value}后自动卸载",
+  "@autoUnloadAfter": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "subscriptionRestore": "恢复",
+  "subscriptionTerms": "条款",
+  "subscriptionPrivacy": "隐私",
+  "secureYourAccount": "保护您的帐户",
+  "signInWithApple": "使用 Apple 登录",
+  "signInWithGoogle": "使用 Google 登录",
+  "subscriptionSecured": "您的订阅已受到保护",
+  "packagesNotAvailable": "套餐尚未提供。",
+  "welcomeToPro": "🎉 欢迎来到 LM Mini Pro！",
+  "subscriptionRestored": "✅ 订阅已恢复！",
+  "noActiveSubscription": "未找到有效订阅。",
+  "accountLinked": "✅ 帐户已关联！",
+  "account": "帐户",
+  "createAccount": "创建账户",
+  "emailLabel": "电子邮件",
+  "passwordLabel": "密码",
+  "forgotPassword": "忘记密码？",
+  "forgotPasswordNeedEmail": "请先输入电子邮件，再点「忘记密码？」。",
+  "forgotPasswordSent": "如果该邮箱已有账户，我们已发送重置链接。请查看收件箱。",
+  "forgotPasswordFailed": "无法发送重置邮件，请再试一次。",
+  "verificationEmailSent": "验证邮件已发送！",
+  "failedToSend": "发送失败：{error}",
+  "@failedToSend": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "cloudBackupEnabled": "已启用 — 您的帐户支持加密备份",
+  "endToEndEncryption": "端到端加密",
+  "e2eSubtitle": "使用您的密码加密的备份 - 我们无法读取它们",
+  "upgradeForCloudBackup": "升级到专业版以启用加密云备份",
+  "signOut": "登出",
+  "signOutConfirm": "登出？",
+  "signedOut": "已退出。",
+  "goToAccount": "前往账户",
+  "firebaseNotConfigured": "Firebase 未配置。",
+  "refresh": "刷新",
+  "createBackup": "创建备份",
+  "encryptBackupSubtitle": "加密并备份所有对话",
+  "backUpNow": "立即备份",
+  "yourBackups": "您的备份",
+  "e2eBackupBanner": "端到端加密。",
+  "e2eBackupDetail": "在离开此设备之前，您的备份将使用您的密码进行加密。我们无法读取您的数据。",
+  "exportingData": "正在导出数据...",
+  "preparing": "正在准备...",
+  "encrypting": "正在加密...",
+  "uploading": "正在上传...",
+  "savingMetadata": "正在保存元数据...",
+  "done": "完毕！",
+  "noBackupsYet": "还没有备份",
+  "createFirstBackup": "在上面创建您的第一个加密备份",
+  "encrypted": "加密的",
+  "restore": "恢复",
+  "encryptionPassphraseLabel": "加密密码",
+  "enterStrongPassphrase": "输入强密码",
+  "confirmPassphraseLabel": "确认密码",
+  "passphraseRememberWarning": "记住这个密码！如果丢失，您的备份将无法恢复。我们不会将其存储在任何地方。",
+  "passphraseRestoreHint": "输入您在创建此备份时使用的相同密码。",
+  "minCharsRequired": "至少需要 4 个字符。",
+  "passphrasesDoNotMatch": "密码不匹配。",
+  "encryptAndBackUp": "加密和备份",
+  "decryptAndRestore": "解密与恢复",
+  "encryptionPassphrase": "加密密码",
+  "savedPassphrasePrompt": "您有以前备份中保存的密码。您想使用相同的密码还是设置新的密码？",
+  "newPassphrase": "新密码",
+  "useSame": "使用相同",
+  "setEncryptionPassphrase": "设置加密密码",
+  "choosePassphraseBackup": "选择一个密码来加密该备份。您需要它才能在任何设备上进行恢复。",
+  "choosePassphraseDetail": "选择一个密码来加密您的备份。该密码保留在您的设备上 - 我们永远不会看到它。你需要它来恢复。",
+  "backupFailed": "备份失败：{error}",
+  "@backupFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "restoreBackupConfirm": "恢复备份？",
+  "restoreWarning": "这将使用此备份中的数据替换您当前的所有对话、消息和文件夹。\n\n此操作无法撤消。",
+  "continueAction": "继续",
+  "enterPassphrase": "输入密码",
+  "passphraseDecryptHint": "该备份是端到端加密的。输入您在创建时使用的密码。",
+  "wrongPassphrase": "密码错误或备份损坏。",
+  "restoreFailed": "恢复失败：{error}",
+  "@restoreFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "deleteBackupConfirm": "删除备份？",
+  "deleteBackupWarning": "这将永久删除此加密的云备份。此操作无法撤消。",
+  "backupDeleted": "备份已删除。",
+  "deleteFailed": "删除失败：{error}",
+  "@deleteFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "overview": "概述",
+  "messages": "留言",
+  "conversations": "对话",
+  "totalTokens": "代币总数",
+  "avgResponse": "平均响应",
+  "modelUsage": "型号使用",
+  "noModelUsageData": "尚无模型使用数据。\n在这里开始聊天以查看统计数据。",
+  "analyticsSync": "分析会同步到您的帐户，并在您退出时重置。",
+  "clearAllMemories": "清除所有记忆",
+  "memoryOn": "在",
+  "memoryOff": "离开",
+  "memoryInfoText": "记忆被注入系统提示中，以便法学硕士在对话中记住您。",
+  "noMemoriesYet": "还没有记忆",
+  "noMemoriesInCategory": "没有{category}记忆",
+  "@noMemoriesInCategory": {
+    "placeholders": {
+      "category": {
+        "type": "String"
+      }
+    }
+  },
+  "memoryTapToAdd": "点击 + 添加新内存或选择不同的类别。",
+  "memoryAddHint": "添加您希望人工智能在所有对话中记住的有关您自己的事实。",
+  "addMemory": "添加内存",
+  "category": "类别",
+  "editMemory": "编辑内存",
+  "deleteMemory": "删除内存",
+  "removeMemoryConfirm": "删除这段记忆？\n\n“{content}”",
+  "@removeMemoryConfirm": {
+    "placeholders": {
+      "content": {
+        "type": "String"
+      }
+    }
+  },
+  "clearAllMemoriesTitle": "清除所有记忆",
+  "clearAllMemoriesConfirm": "这将永久删除所有 {count} 记忆。此操作无法撤消。",
+  "@clearAllMemoriesConfirm": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "clearAll": "全部清除",
+  "justNow": "现在",
+  "categoryPersonal": "个人的",
+  "categoryPreferences": "偏好设置",
+  "categoryTechnical": "技术的",
+  "categoryWork": "工作",
+  "categoryGeneral": "一般的",
+  "categoryAll": "全部",
+  "modelManagement": "模型管理",
+  "downloadNewModel": "下载新模型",
+  "refreshModels": "刷新模型",
+  "tapToSelect": "点击选择",
+  "modelSelected": "已选择: {name}",
+  "@modelSelected": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "unloadModelTooltip": "从内存中卸载模型",
+  "modelInfoTooltip": "型号信息",
+  "loadedBadge": "已加载",
+  "visionBadge": "想象",
+  "toolsBadge": "工具",
+  "selectedModel": "选定型号",
+  "unloading": "正在卸载...",
+  "unload": "卸下",
+  "loaded": "已加载",
+  "loadModel": "负载模型",
+  "enterModelIdOrUrl": "输入模型 ID 或 HuggingFace URL：",
+  "modelIdHint": "微软/phi-4",
+  "modelIdHelper": "型号 ID 或 https://huggingface.co/...",
+  "huggingFaceDetected": "检测到 HuggingFace URL - 您将选择量化",
+  "starting": "开始...",
+  "download": "下载",
+  "selectQuantization": "选择量化",
+  "loadingQuantizations": "正在加载量化...",
+  "error": "错误",
+  "fetchQuantizationsFailed": "无法获取量化：{error}",
+  "checkLmStudioRunning": "请确认 LM Studio 正在运行",
+  "couldNotReachLmStudio": "LM Mini 无法连接到你的服务器。",
+  "couldNotLoadQuantizations": "无法加载量化。",
+  "couldNotStartDownload": "无法开始下载。",
+  "@fetchQuantizationsFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "noQuantizations": "无量化",
+  "noGgufFiles": "在此存储库中找不到 GGUF 文件",
+  "foundQuantizations": "找到 {count} GGUF 量化",
+  "@foundQuantizations": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "unknown": "未知",
+  "downloadingModel": "正在下载 {quantization} 量化模型...",
+  "@downloadingModel": {
+    "placeholders": {
+      "quantization": {
+        "type": "String"
+      }
+    }
+  },
+  "modelAlreadyDownloaded": "模型已下载",
+  "downloadFailed": "下载失败：{error}",
+  "@downloadFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "enterModelIdentifier": "请输入型号标识符或 URL",
+  "modelAlreadyLoaded": "模型已加载",
+  "currentlyLoaded": "目前已加载：",
+  "loadAlongsideWarning": "与现有模型一起加载“{name}”将使用额外的内存。",
+  "@loadAlongsideWarning": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "unloadAllAndLoad": "全部卸载并加载",
+  "swap": "交换",
+  "loadAlongside": "并排装载",
+  "loadParamsConflictTitle": "负载设置不同",
+  "loadParamsConflictBody": "“{name}”已加载到 LM Studio 中，其设置与 LM Mini 的模型加载配置不同。重新加载可能需要一分钟时间并使用额外的内存。",
+  "@loadParamsConflictBody": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "loadParamsConflictTableHeader": "参数不同：",
+  "loadParamsLmStudio": "LM工作室",
+  "loadParamsLmMini": "LM Mini",
+  "loadParamsConflictHint": "使用 LM Studio 的加载设置可以避免重新加载。卸载和重新加载应用您的 LM Mini 设置。并行加载将两个实例保留在内存中。",
+  "loadParamsUseExisting": "使用 LM Studio 设置",
+  "loadParamsReloadWithMini": "使用 LM Mini 设置卸载和加载",
+  "loadParamsLoadParallel": "使用 LM Mini 设置加载（并行）",
+  "reloadModelForContextTitle": "重新加载模型？",
+  "reloadModelForContextBody": "上下文长度在加载模型时生效。“{name}”当前为 {loaded}。要用 {desired} 重新加载吗？",
+  "@reloadModelForContextBody": {
+    "placeholders": {
+      "name": { "type": "String" },
+      "loaded": { "type": "String" },
+      "desired": { "type": "String" }
+    }
+  },
+  "reloadModelForContextNow": "重新加载",
+  "reloadModelForContextLater": "稍后",
+  "loadModelConfirm": "将“{name}”加载到内存中？",
+  "@loadModelConfirm": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "unloadModelTip": "您可以使用弹出按钮或加载后从此屏幕卸载模型。",
+  "modelLoadedSuccess": "模型加载成功",
+  "failedToLoadModel": "加载模型失败",
+  "modelInfo": "型号信息",
+  "infoName": "姓名",
+  "infoType": "类型",
+  "infoArchitecture": "建筑学",
+  "infoPublisher": "出版商",
+  "infoQuantization": "量化",
+  "infoParameters": "参数",
+  "infoSize": "尺寸",
+  "infoMaxContext": "最大上下文",
+  "infoLoadedContext": "加载上下文",
+  "infoStatus": "地位",
+  "available": "可用的",
+  "capabilities": "能力",
+  "standardTextGeneration": "标准文本生成",
+  "unloadModelTitle": "卸载模型",
+  "unloadModelConfirm": "从内存中卸载“{name}”？",
+  "@unloadModelConfirm": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "freeResourcesTip": "这将释放 GPU/RAM 资源。",
+  "modelUnloadedSuccess": "模型卸载成功",
+  "failedToUnloadModel": "卸载模型失败",
+  "enableImageGeneration": "启用图像生成",
+  "showImageButtons": "在聊天消息上显示图像按钮",
+  "serverConnection": "服务器连接",
+  "serverUrl": "服务器地址",
+  "test": "测试",
+  "connected": "已连接",
+  "model": "模型",
+  "checkpoint": "检查站",
+  "generationParameters": "发电参数",
+  "negativePrompt": "否定提示",
+  "steps": "步骤",
+  "cfgScale": "CFG规模",
+  "width": "宽度",
+  "height": "高度",
+  "sampler": "采样器",
+  "scheduler": "调度程序",
+  "automatic": "自动的",
+  "seedLabel": "种子（-1 = 随机）",
+  "batchSize": "批量大小",
+  "options": "选项",
+  "restoreFaces": "恢复面孔",
+  "restoreFacesSubtitle": "修复生成图像中的人脸",
+  "tiling": "平铺",
+  "tilingSubtitle": "生成无缝的可平铺纹理",
+  "promptOptions": "提示选项",
+  "reviewPromptBeforeSending": "发送前查看提示",
+  "reviewPromptSubtitle": "生成前编辑图片提示",
+  "autoGenerateImage": "自动生成图像",
+  "autoGenerateSubtitle": "当AI提示时自动生成图像",
+  "resetToDefaults": "重置为默认值",
+  "featureRequestsTitle": "功能请求",
+  "featureRequestsUnavailable": "功能请求不可用",
+  "featureRequestsUnavailableDetail": "此功能需要互联网连接。请检查您的连接并稍后重试。",
+  "tryAgain": "再试一次",
+  "votesLeft": "左边",
+  "popular": "受欢迎的",
+  "myRequests": "我的要求",
+  "completed": "完全的",
+  "submitIdea": "提交想法",
+  "noFeatureRequests": "尚无功能请求",
+  "beFirstToSubmit": "成为第一个提交想法的人！",
+  "noRequestsSubmitted": "没有提交任何请求",
+  "tapToSubmitFirst": "点击下面的按钮提交您的第一个想法！",
+  "noCompletedRequests": "没有已完成的请求",
+  "completedRequestsAppear": "已完成和已拒绝的请求将显示在此处。",
+  "adminReplied": "管理员回复",
+  "submitFeatureRequest": "提交功能请求",
+  "titleRequired": "标题 *",
+  "titleHint": "简要概述您的想法",
+  "descriptionRequired": "描述 *",
+  "descriptionHint": "详细描述您的功能请求",
+  "yourNameOptional": "你的名字（可选）",
+  "leaveBlankAnonymous": "留空以匿名提交",
+  "fillTitleAndDescription": "请填写标题和描述",
+  "featureRequestSubmitted": "已提交功能请求！",
+  "submit": "提交",
+  "featureRequest": "功能请求",
+  "votedTooltip": "已投票",
+  "voteForThis": "对此投票",
+  "adminControls": "管理控制",
+  "changeStatus": "更改状态",
+  "officialReply": "官方回复",
+  "deleteRequest": "删除请求",
+  "unableToLoadComments": "无法加载评论",
+  "commentsCount": "评论 ({count})",
+  "@commentsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "readMore": "阅读更多",
+  "showLess": "显示较少",
+  "deleteYourRequest": "删除您的请求",
+  "anonymous": "匿名的",
+  "officialResponse": "官方回应",
+  "noCommentsYet": "还没有评论",
+  "beFirstToComment": "成为第一个分享您想法的人！",
+  "adminBadge": "行政",
+  "moderatorBadge": "模组",
+  "experiencedUserBadge": "经验值",
+  "adminManageSubmitter": "管理提交者",
+  "adminManageUserTitle": "管理用户",
+  "adminUserUpdated": "用户更新",
+  "adminCommunityRoles": "社区角色",
+  "adminModeratorRole": "主持人",
+  "adminModeratorRoleSubtitle": "可以绕过垃圾评论限制并显示 Mod 徽章",
+  "adminExperiencedUserRole": "有经验的用户",
+  "adminExperiencedUserRoleSubtitle": "在功能请求评论中显示经验丰富的徽章",
+  "adminGrantPremiumTitle": "授予免费 Pro",
+  "adminGrantPremiumSubtitle": "限时免费赠送该用户 LM Mini Pro",
+  "adminGrantPremiumAmountLabel": "期间",
+  "adminGrantPremiumAmountHint": "输入金额",
+  "adminGrantPremiumUnitDays": "天",
+  "adminGrantPremiumUnitWeeks": "周数",
+  "adminGrantPremiumUnitMonths": "几个月",
+  "adminGrantPremiumGrantButton": "格兰特·普罗",
+  "adminGrantPremiumInvalidAmount": "输入正数",
+  "adminGrantPremiumReasonLabel": "原因",
+  "adminGrantPremiumReasonHint": "可选 — 向用户显示（例如，抱歉给您带来麻烦）",
+  "adminGrantPremiumDurationDays": "{count, plural, =1{1 天} other{{count} 天}}",
+  "@adminGrantPremiumDurationDays": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "adminGrantPremiumDurationWeeks": "{count, plural, =1{1 周} other{{count} 周}}",
+  "@adminGrantPremiumDurationWeeks": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "adminGrantPremiumDurationMonths": "{count, plural, =1{1 个月} other{{count} 个月}}",
+  "@adminGrantPremiumDurationMonths": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "adminRevokePremiumTitle": "撤销免费 Pro",
+  "adminRevokePremiumMessage": "删除该用户的活动管理员授予的 Pro 访问权限？",
+  "adminRevokePremiumConfirm": "撤销",
+  "premiumGrantBannerTitle": "您收到了免费的 Pro",
+  "premiumGrantBannerBody": "{duration} 免费 LM Mini Pro。尽享高级功能。",
+  "@premiumGrantBannerBody": {
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "premiumGrantBannerReason": "原因：{reason}",
+  "@premiumGrantBannerReason": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "premiumGrantDialogTitle": "免费解锁专业版",
+  "premiumGrantDialogBody": "管理员以 {duration} 的价格免费授予您 LM Mini Pro。云备份、内存、分析等现已可用。",
+  "@premiumGrantDialogBody": {
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "premiumGrantDialogReason": "原因：{reason}",
+  "@premiumGrantDialogReason": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "premiumGrantDialogButton": "惊人的",
+  "youBadge": "你",
+  "deleteComment": "您确定要删除此评论吗？",
+  "maxCommentsReached": "您已连续发表{max}条评论。等待其他用户回复。",
+  "@maxCommentsReached": {
+    "placeholders": {
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "addYourName": "添加您的名字",
+  "replyAsAdmin": "以管理员身份回复...",
+  "writeComment": "写评论...",
+  "errorTryAgain": "错误：请重试。",
+  "statusUpdated": "状态更新为{status}",
+  "@statusUpdated": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "addOfficialResponse": "添加官方回复...",
+  "replySaved": "回复已保存",
+  "deleteRequestConfirm": "您确定要删除此功能请求吗？此操作无法撤消。",
+  "requestDeleted": "请求已删除",
+  "deleteCommentTitle": "删除评论",
+  "deleteCommentConfirm": "您确定要删除此评论吗？",
+  "commentDeleted": "评论已删除",
+  "generationParametersSection": "发电参数",
+  "temperature": "温度",
+  "temperatureSubtitle": "回复的创意与针对性如何。更低=更小心；更高=更多样。",
+  "topP": "顶P",
+  "topPSubtitle": "允许的单词选择范围有多大。更低=更有针对性的回复。",
+  "minP": "最小P",
+  "minPSubtitle": "忽略极不可能的单词选择。更高=更安全、更可预测的文本。",
+  "repeatPenalty": "重复处罚",
+  "repeatPenaltySubtitle": "阻止人工智能重复相同的短语。 1.0 = 关闭。",
+  "frequencyPenalty": "频率惩罚",
+  "frequencyPenaltySubtitle": "减少人工智能经常使用的单词。",
+  "presencePenalty": "出席处罚",
+  "presencePenaltySubtitle": "推动人工智能提出新主题，而不是重复使用旧主题。",
+  "tokenLimits": "代币限制",
+  "maxOutputTokens": "最大输出代币",
+  "maxOutputTokensSubtitle": "单个回复可以多长时间。更高=更长的答案（以及更多的等待）。",
+  "contextWindow": "上下文窗口",
+  "contextWindowSubtitle": "人工智能一次可以记住多少聊天内容。更高使用更多内存。",
+  "modelLoadingConfig": "模型加载配置",
+  "loadContextLength": "上下文长度",
+  "loadContextSubtitle": "模型在聊天和在 LM Studio 中加载时可使用的上下文大小。更高会占用更多内存 / 显存。",
+  "evalBatchSize": "评估批量大小",
+  "evalBatchSubtitle": "加载时一次处理多少文本。更高可以更快，但使用更多内存。",
+  "numExperts": "专家人数",
+  "numExpertsSubtitle": "仅适用于“专家混合”模型。保留空白，除非您知道需要它。",
+  "flashAttention": "闪光注意",
+  "flashAttentionSubtitle": "加快模型速度并可以使用更少的内存。继续下去，除非有什么东西坏了。",
+  "offloadKvCache": "将 KV 缓存卸载到 GPU",
+  "offloadKvCacheSubtitle": "使用 GPU 更有效地记住聊天内容。如果您有 GPU，请继续。",
+  "chainOfThoughtSubtitle": "如果可用的话，展示人工智能的逐步思维。",
+  "reasoningUnsupportedToast": "该模型不支持 LM Studio 中的推理。推理已被禁用。",
+  "reasoningNotExposedChatHint": "LM Studio 不支持关闭此模型的推理。请换一个模型。",
+  "premiumSearchActive": "高级搜索活跃",
+  "premiumSearchPlusSearxng": "+ 西尔XNG",
+  "webSearchDisabledAll": "对所有聊天禁用网络搜索",
+  "configureSearch": "配置搜索",
+  "advancedFeaturesSection": "高级功能",
+  "howToolCallingWorks": "工具调用如何工作",
+  "stepAskQuestion": "你问一个问题",
+  "stepAskExample": "例如，“东京的天气怎么样？”",
+  "stepAiRequestsTool": "AI需要一个工具",
+  "stepAiRequestsExample": "模型决定需要网络搜索",
+  "stepAppExecutes": "应用程序执行该工具",
+  "stepAppExecutesExample": "使用高级搜索或 SearXNG 进行搜索",
+  "stepResultsSent": "结果发送至 AI",
+  "stepResultsExample": "搜索结果已添加到对话中",
+  "stepAiAnswers": "AI生成答案",
+  "stepAiAnswersExample": "模型综合了有用的响应",
+  "toolCallingModelNote": "例如 Qwen、Llama 3.1+ 或 Mistral。",
+  "searxngSetup": "SearXNG 设置",
+  "searxngDescription": "SearXNG 是一个免费、尊重隐私的元搜索引擎，您可以自行托管。",
+  "dockerRecommended": "选项 1：Docker（推荐）",
+  "publicInstance": "选项 2：使用公共实例",
+  "findPublicInstances": "查找公共实例：",
+  "selfHostRecommended": "为了可靠性，建议使用自托管。",
+  "clipboardEmpty": "剪贴板是空的。首先复制您的 mcp.json 内容。",
+  "clipboardAccessFailed": "无法访问剪贴板。请手动粘贴到下面的字段中。",
+  "pasteFromClipboard": "从剪贴板粘贴",
+  "httpServersImportNote": "HTTP 服务器 → 临时 MCP（根据请求发送到 LM Studio）",
+  "localMcpsImportNote": "本地 MCP → 集成 MCP（使用“mcp/名称”格式）",
+  "noValidMcpServers": "未找到有效的 MCP 服务器",
+  "serverAlreadyAdded": "该服务器已添加",
+  "themeSection": "主题",
+  "themeLabel": "主题",
+  "glassEffectsLabel": "玻璃效果",
+  "glassEffectsSubtitle": "标题和菜单的磨砂模糊。关闭后更凉快、更省电。",
+  "lowBatteryModeLabel": "低电量模式",
+  "lowBatteryModeSubtitle": "关闭玻璃效果，流式回复时只用纯文本，并在整条消息完成后再同步 Home/iCloud。回复结束前屏幕保持唤醒，以免连接被切断。",
+  "backgroundSection": "背景",
+  "chatBackground": "墙纸",
+  "chatBackgroundSubtitle": "每次聊天背后的照片",
+  "avatarsSection": "图片",
+  "chatHeaderAvatarLabel": "脸在上面",
+  "chatHeaderAvatarSubtitle": "在聊天标题中显示小图片",
+  "avatarAboveMessageLabel": "消息上方图片",
+  "avatarAboveMessageSubtitle": "将脸部放在气泡顶部",
+  "fullWidthAssistantLabel": "回复铺满宽度",
+  "fullWidthAssistantSubtitle": "你的消息仍在气泡里。助手文字占满整行",
+  "tryFullWidthTitle": "试试新的全宽视图",
+  "tryFullWidthBody": "助手回复铺满整行，文字后面没有气泡。你可以随时在外观设置里改回去。",
+  "tryFullWidthOpenAppearance": "打开外观",
+  "tryFullWidthNotNow": "以后再说",
+  "streamingPhaseLoadingModel": "正在加载模型",
+  "streamingPhaseProcessingPrompt": "正在处理提示",
+  "streamingPhaseThinking": "思考中",
+  "streamingPhaseWriting": "正在写回复",
+  "streamingPhaseSearching": "正在搜索",
+  "streamingPhaseUsingTools": "正在使用工具",
+  "previewUserMessage": "这块主板是什么接口？",
+  "bubbleAvatarSizeLabel": "图片尺寸",
+  "bubbleAvatarRadiusValue": "尺寸{value}",
+  "@bubbleAvatarRadiusValue": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "userAvatarLabel": "你",
+  "yourProfilePicture": "你在聊天中的样子",
+  "assistantAvatarLabel": "人工智能",
+  "aiAssistantPicture": "AI 的默认外观",
+  "chatBehaviorSection": "聊天文字",
+  "fontSizeLabel": "文字大小",
+  "iconSizeLabel": "纽扣尺寸",
+  "pointsValue": "{value}",
+  "@pointsValue": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "previewLabel": "预览",
+  "previewAssistantMessage": "你好！我是你的人工智能助手。今天我能为您提供什么帮助？这是一个**粗体**单词和一些“内联代码”。",
+  "readAloud": "大声朗读",
+  "appearanceActionTapped": "{label} 点击",
+  "@appearanceActionTapped": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
+  "autoScrollStreaming": "关注新回复",
+  "autoScrollStreamingSubtitle": "保持聊天内容为最新出现的单词",
+  "showChatStarters": "新的聊天建议",
+  "showChatStartersSubtitle": "在空聊天中显示滚动提示药丸",
+  "useLegacyComposer": "经典消息输入框",
+  "useLegacyComposerSubtitle": "使用经典紧凑输入框，而不是新的光泽输入框",
+  "hideAvatarsLabel": "隐藏图片",
+  "moreSpaceForContent": "给消息更多的空间",
+  "enterKeyBehaviorLabel": "输入键",
+  "enterKeyAutoDescription": "在电脑键盘上发送，在电话上换行",
+  "enterKeySendDescription": "Enter 发送 · Shift+Enter 换行",
+  "enterKeyNewlineDescription": "Enter 总是开始新行",
+  "sendLabel": "发送",
+  "newLineLabel": "新线",
+  "themeSystem": "系统",
+  "themeLight": "光",
+  "themeDark": "黑暗的",
+  "backLabel": "后退",
+  "nextLabel": "下一个",
+  "getStartedLabel": "开始使用",
+  "connectionSuccessful": "连接成功！",
+  "connectionFailedMessage": "连接失败",
+  "lmStudioServerFoundNeedsKey": "服务器已找到！在上面添加您的 API 密钥，然后点击“测试连接”。",
+  "lmStudioScanServerNeedsKey": "找到 — 添加 API 密钥以进行连接",
+  "lmStudioUsingServerNeedsKey": "使用{url}。在下面添加您的 API 密钥，然后测试连接。",
+  "@lmStudioUsingServerNeedsKey": {
+    "placeholders": {
+      "url": {
+        "type": "String"
+      }
+    }
+  },
+  "lmStudioAuthDialogTitle": "找到服务器",
+  "lmStudioAuthDialogMessage": "该服务器需要 API 密钥。将您的 LM Studio 令牌粘贴到下面以进行连接。",
+  "lmStudioAuthHelpHint": "在 LM Studio 中，打开开发人员模式 → 服务器设置 → 管理令牌以创建或复制您的 API 密钥。",
+  "welcomeWizardTitle": "欢迎来到LM迷你",
+  "welcomeWizardSubtitle": "通过 LM Studio 与本地网络上运行的 AI 模型聊天。让我们通过几个快速步骤即可完成设置。",
+  "welcomeWizardThemeTitle": "选择您的主题",
+  "welcomeWizardThemeSystemSubtitle": "匹配您的设备设置",
+  "welcomeWizardThemeLightSubtitle": "干净明亮",
+  "welcomeWizardThemeDarkSubtitle": "轻松护眼",
+  "welcomeWizardAppearanceTitle": "自定义外观",
+  "welcomeWizardAppearancePreviewMessage": "你好！这就是您的聊天消息的外观。",
+  "welcomeWizardServerTitle": "连接到 LM Studio",
+  "welcomeWizardServerSubtitle": "输入本地网络上运行 LM Studio 的计算机的 IP 地址。",
+  "welcomeWizardLocalNetworkNote": "当您测试连接时，iOS 会请求本地网络权限。请允许。",
+  "apiTokenOptionalLabel": "API 令牌（可选）",
+  "welcomeWizardChangeLater": "您稍后可以随时在“设置”中更改此设置。",
+  "welcomeWizardFindModelTitle": "找到适合的型号",
+  "welcomeWizardFindModelSubtitle": "比较两个选项，看看哪个在您的设置上更快。大约需要一分钟——如果您已经知道自己想要什么，则可以跳过。",
+  "welcomeWizardFindModelHelp": "帮我选一下",
+  "welcomeWizardFindModelSkip": "跳过——我自己选择",
+  "welcomeWizardExperienceTitle": "你如何使用人工智能？",
+  "welcomeWizardExperienceSubtitle": "我们将量身定制建议。您可以稍后更改一切。",
+  "welcomeWizardBeginnerTitle": "初学者",
+  "welcomeWizardBeginnerSubtitle": "保持简单 - 更清晰的设置，我们将为您的手机推荐可靠的型号。",
+  "welcomeWizardPowerTitle": "高级用户",
+  "welcomeWizardPowerSubtitle": "完整设置以及选项 - 设备上模型和桌面服务器（例如 LM Studio）。",
+  "welcomeWizardSetupTitleBeginner": "选择模型",
+  "welcomeWizardSetupTitlePower": "选择您的设置",
+  "welcomeWizardSetupSubtitleBeginner": "点选模型即可下载。也可以通过 Wi‑Fi 连接电脑。",
+  "welcomeWizardSetupSubtitlePower": "选择型号或连接桌面服务器。",
+  "welcomeWizardOnDeviceSection": "在此设备上",
+  "welcomeWizardComputerSection": "在您的计算机上",
+  "welcomeWizardScanningWifi": "正在查看 Wi-Fi...",
+  "welcomeWizardFoundCount": "找到{count}",
+  "@welcomeWizardFoundCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "welcomeWizardModelFasterBlurb": "快速回复。非常适合日常聊天。",
+  "welcomeWizardModelBalancedBlurb": "速度和质量的良好平衡。",
+  "welcomeWizardModelBestBlurb": "适合您设备的最强品质。",
+  "welcomeWizardNameTitle": "AI 应该怎么称呼你？",
+  "welcomeWizardNameSubtitle": "名字或昵称是完美的。你可以跳过这个。",
+  "welcomeWizardNameHint": "例如亚历克斯",
+  "welcomeWizardFinish": "结束",
+  "welcomeWizardContinue": "继续",
+  "welcomeWizardSkip": "跳过",
+  "welcomeWizardConnectLmStudio": "连接LM工作室",
+  "welcomeWizardConnectOllama": "连接奥拉马",
+  "welcomeWizardConnectOmlx": "连接oMLX",
+  "pickColor": "选择颜色",
+  "hueLabel": "色调",
+  "saturationLabel": "饱和",
+  "lightnessLabel": "亮度",
+  "alphaLabel": "阿尔法",
+  "hexLabel": "十六进制",
+  "personaModeLabel": "角色模式",
+  "personaModeSubtitle": "添加头像、强调色、声音和群聊首选模型",
+  "avatarLabel": "阿凡达",
+  "customAvatarSet": "自定义头像集",
+  "noAvatar": "无头像",
+  "accentColorLabel": "强调色",
+  "defaultLabel": "默认",
+  "preferredModelLabel": "首选型号",
+  "preferredModelAny": "无（使用任何）",
+  "personaChooseProviderTitle": "选择提供方",
+  "personaChooseProviderSubtitle": "已配置的提供方。可在设置中添加更多。",
+  "personaCloudProvidersSection": "云提供方",
+  "personaKokoroVoiceLabel": "心的声音",
+  "personaKokoroVoiceSubtitle": "该角色说话时使用的语音（语音聊天/朗读）",
+  "personaKokoroVoiceGlobal": "使用全局语音设置",
+  "personaKokoroVoicePickerTitle": "角色声音",
+  "personaKokoroSpeedLabel": "语速",
+  "personaKokoroSpeedGlobal": "使用全球速度",
+  "personaKokoroSpeedValue": "{speed}x",
+  "@personaKokoroSpeedValue": {
+    "placeholders": {
+      "speed": {
+        "type": "String"
+      }
+    }
+  },
+  "voiceWhisperModelLabel": "耳语模型",
+  "voiceWhisperModelTapToChoose": "点击选择尺寸并下载",
+  "imageGenSeedLabel": "图像生成种子",
+  "imageGenSeedFixed": "固定种子：{seed}",
+  "@imageGenSeedFixed": {
+    "placeholders": {
+      "seed": {
+        "type": "int"
+      }
+    }
+  },
+  "imageGenSeedRandomGlobal": "随机（使用全局设置）",
+  "personaComfyWorkflowLabel": "ComfyUI 工作流程",
+  "personaComfyWorkflowUseGlobal": "使用全局设置",
+  "personaComfyWorkflowUnavailable": "{path}（目前不可用）",
+  "@personaComfyWorkflowUnavailable": {
+    "placeholders": {
+      "path": {
+        "type": "String"
+      }
+    }
+  },
+  "personaComfyWorkflowHelper": "当图像生成提供程序是 ComfyUI 时使用。保留为全局以使用“设置”→“图像生成”。",
+  "personaComfyWorkflowNotComfy": "仅当 ComfyUI 是活动图像提供程序时，此分配才适用。",
+  "personaComfyWorkflowRefresh": "刷新工作流程",
+  "personaComfyWorkflowJsonLabel": "自定义工作流 JSON（可选）",
+  "personaComfyWorkflowJsonHint": "留空则使用全局 / 内置工作流",
+  "personaComfyWorkflowJsonHelper": "粘贴 API 格式工作流。支持 %PROMPT%、%LORA%、%LORA_WEIGHT% 等占位符。",
+  "personaComfyWorkflowJsonIgnored": "已选择已保存工作流时忽略",
+  "personaComfyWorkflowJsonActive": "使用自定义工作流（{count} 字符）",
+  "@personaComfyWorkflowJsonActive": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "personaComfyWorkflowJsonClear": "清除（使用全局 / 默认）",
+  "comfyUiDetails": "ComfyUI 详情",
+  "comfyUiDetailsTitle": "ComfyUI 请求",
+  "comfyUiDetailsCopy": "复制 JSON",
+  "comfyUiDetailsCopied": "已复制到剪贴板",
+  "resetToGlobal": "重置为全局",
+  "setSeed": "设定种子",
+  "pickAccentColor": "选择强调色",
+  "imageGenSeedDialogDescription": "设置固定种子，以便该角色始终生成一致的图像。留空为随机。",
+  "seedValueLabel": "种子价值",
+  "seedValueHint": "例如42（空白=随机）",
+  "setLabel": "放",
+  "selectPreferredModelTitle": "选择首选型号",
+  "branchCreated": "🔀 分支已创建",
+  "yamlFrontmatter": "YAML 前沿问题",
+  "markdownFormat": "降价",
+  "localNetworkBlocked": "本地网络访问可能被阻止",
+  "localNetworkFix": "进入设置 → LM Mini → 本地网络并启用它。",
+  "openAppSettings": "打开应用程序设置",
+  "memorySaved": "内存已保存",
+  "proSearch": "专业搜索",
+  "webSearchLabel": "网页搜索",
+  "readUrl": "读取网址",
+  "code": "代码",
+  "couldNotOpenFile": "无法打开文件：{error}",
+  "@couldNotOpenFile": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "tapOpenExternal": "点击“使用外部应用程序打开”即可查看该文件",
+  "proSearchEnabled": "专业搜索已启用",
+  "proSearchDisabled": "专业搜索已禁用",
+  "thinkingEnabled": "此聊天已开启思维",
+  "thinkingDisabled": "此聊天已关闭思维",
+  "codeSandbox": "代码沙箱",
+  "codeSandboxSubtitle": "在安全沙箱中运行 Python 或 JavaScript",
+  "codeSandboxEnabled": "代码沙盒已启用",
+  "codeSandboxDisabled": "代码沙盒已禁用",
+  "searxngNotConfigured": "添加 SearXNG URL 以启用",
+  "searxngConfiguredOff": "已配置 — 点击即可使用而不是 Pro Search",
+  "searxngConfigureFirst": "启用前配置 SearXNG URL",
+  "editSearxng": "编辑 SearXNG",
+  "toolCallingLabel": "工具调用",
+  "on": "在",
+  "off": "离开",
+  "aiCanUseTools": "AI可以在这次聊天中使用工具",
+  "toolsDisabledChat": "此聊天已禁用工具",
+  "webSearchChat": "网页搜索",
+  "aiCanSearchWeb": "AI可以在这个聊天中搜索网络",
+  "webSearchDisabledChat": "此聊天已禁用网络搜索",
+  "disableMemory": "禁用记忆",
+  "memoryItemsActive": "{count} 记忆活跃",
+  "@memoryItemsActive": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "memoryDisabledChat": "此聊天的记忆被禁用。 AI 不会看到您保存的项目。",
+  "lmStudioLocal": "LM Studio（本地）",
+  "modelNoLongerAvailable": "之前选择的型号不再可用。请选择新型号。",
+  "noModelsForProvider": "没有找到该提供商的型号。检查 API 密钥。",
+  "noModelsCheckConnection": "没有找到型号。检查 LM Studio 连接。",
+  "selectModel": "选择型号",
+  "goToModels": "前往型号",
+  "reviewImagePrompt": "查看图像提示",
+  "editImagePromptHint": "编辑图像提示...",
+  "generate": "产生",
+  "imageNotFound": "找不到图片",
+  "cameraPermissionNeeded": "需要相机许可",
+  "cameraPermissionExplain": "请允许相机访问以拍摄照片以进行视觉分析。",
+  "photosPermissionNeeded": "需要照片许可",
+  "photosPermissionExplain": "请允许访问您的图像以进行视觉分析。",
+  "couldNotOpenFilePicker": "无法打开文件选择器：{error}",
+  "@couldNotOpenFilePicker": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "filePickerCouldNotCopy": "无法复制该文件。请先保存到本机（不要用网盘或最近项目），然后再选一次。",
+  "signInToUseCloudBackup": "登录使用云备份",
+  "cloudBackupRequiresAccount": "云备份需要一个帐户，以便您的加密备份以您的身份安全地存储。",
+  "arguments": "论点",
+  "selectLanguage": "选择语言",
+  "connectionPopupTitle": "选择提供商",
+  "connectionPopupBody": "连接 LM Studio、选择设备上模型或在“设置”中登录云提供商。",
+  "connectionPopupDismiss": "之后",
+  "connectionPopupGoToSettings": "前往“设置”",
+  "remoteAccess": "远程访问",
+  "scanQrCode": "扫描二维码",
+  "connectedViaLmConnect": "通过 LM Connect 连接",
+  "disconnectRemoteToChangeSettings": "远程 LM Studio 通过 LM Connect 配对",
+  "disconnect": "断开",
+  "unpair": "取消配对",
+  "useRemoteConnection": "用这台 Mac 聊天",
+  "connectedViaLmStudio": "通过 LM Studio 连接",
+  "usingLocalServer": "使用本地服务器",
+  "testing": "测试...",
+  "connectedLatency": "已连接 — {ms}ms",
+  "@connectedLatency": {
+    "placeholders": {
+      "ms": {
+        "type": "int"
+      }
+    }
+  },
+  "notConnected": "未连接",
+  "scanQrDescription": "从 Mac 上的 LM Mini（与手机共享）或旧版 LM Mini Connect 扫描二维码，即可从任何地方访问您的桌面模型。",
+  "remotePaired": "远程配对",
+  "lastConnected": "最后连接：{time}",
+  "@lastConnected": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "reScanQrCode": "重新扫描二维码",
+  "qrRequiresPro": "二维码扫描需要LM Mini Pro",
+  "enterUrlManually": "手动输入网址",
+  "enterUrlManuallySubtitle": "无法使用相机时，粘贴配对链接",
+  "relayUrlHint": "https://relay.lmmini.com/s/…",
+  "connectWithUrl": "使用网址连接",
+  "invalidRelayUrl": "这不是有效的 LM Mini 配对链接。请从 Mac 上的“与手机共享”复制。",
+  "invalidQrCode": "二维码无效。在 Mac 上的 LM Mini（或旧版 Connect）中打开与手机共享以生成一个。",
+  "pointCameraAtQr": "将相机对准 Mac 上 LM Mini 中显示的二维码（与手机共享）",
+  "connectedToRemoteLmStudio": "已连接到远程 LM Studio！",
+  "failedToConnect": "连接失败。确保 Mac 上的 LM Mini 已启用与手机共享（或旧版 Connect 正在运行）。",
+  "unpairRemote": "取消遥控器配对",
+  "unpairRemoteDescription": "这将删除已保存的远程连接。您可以通过扫描新的二维码重新配对。",
+  "setupGuide": "设置指南",
+  "downloadLmMiniConnect": "获取 LM Mini Home",
+  "availableForPlatforms": "Mac 直接下载 · Windows 和 Linux 使用 Connect",
+  "setupStep1Title": "下载 LM Mini Home",
+  "setupStep1Desc": "从 lmmini.com 下载 Mac 版 LM Mini Home。Windows 和 Linux 仍可使用 LM Mini Connect。",
+  "setupStep2Title": "与手机分享",
+  "setupStep2Desc": "在 Mac 上的 LM Mini Home 中打开“与手机共享”并开启。它会立即连接到中继。",
+  "setupStep3Title": "扫描二维码",
+  "setupStep3Desc": "扫描 Mac 上显示的二维码。就是这样！",
+  "minutesAgo": "{count}m 前",
+  "@minutesAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "hoursAgo": "{count}小时前",
+  "@hoursAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "daysAgo": "{count}天前",
+  "@daysAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "selectAll": "选择全部",
+  "moveToFolder": "移至文件夹",
+  "select": "选择",
+  "dismissAction": "解雇",
+  "createNewFolder": "创建新文件夹",
+  "deleteConversations": "删除 {count} 个对话？此操作无法撤消。",
+  "@deleteConversations": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "averages": "平均值",
+  "tokensPerChat": "代币/聊天",
+  "msgsPerChat": "消息/聊天",
+  "tokensPerMsg": "代币/消息",
+  "topModel": "顶级模特",
+  "liveActivityTitle": "现场活动",
+  "liveActivityTitleAndroid": "背景生成",
+  "liveActivityDescription": "处理你的人工智能即使您退出应用程序或锁定应用程序也可以请求",
+  "liveActivityDescriptionAndroid": "当您离开应用程序时继续生成 - 设备上模型、LM Studio 和云提供商。显示带有进度的静默持续通知，并使 HTTP 流在 Android 上保持活动状态。",
+  "liveActivityAndroidOnDeviceOnly": "切换到设备上的 GGUF 或 MLX 模型以在 Android 上使用后台生成。",
+  "liveActivityNotificationDenied": "Android 上的后台生成需要通知权限。",
+  "premiumRemoteAccess": "远程访问",
+  "premiumRemoteAccessTagline": "随时随地的 LM Studio",
+  "premiumRemoteAccessDescription": "从任何地方访问您的 Mac 或 PC 模型。在 Mac 上，使用 LM Mini → 与手机共享。无端口转发或 VPN — 扫描二维码以获取加密中继。",
+  "premiumLiveActivity": "现场活动",
+  "premiumLiveActivityTagline": "人工智能。在后台运行",
+  "premiumLiveActivityDescription": "处理你的人工智能即使您退出应用程序或锁定手机时也会发出请求。在锁定屏幕和动态岛上查看实时生成进度 - 无需切换即可查看代币计数和生成速度。",
+  "premiumWebSearchTagline": "无需服务器设置",
+  "premiumWebSearchDescription": "在对话期间立即搜索网络。由云搜索 API 提供支持 — 无需自行托管 SearXNG 或配置任何内容。只需询问，您的模型就会从互联网上获取新鲜的实时信息。",
+  "premiumCloudBackup": "加密云备份",
+  "premiumCloudBackupTagline": "AES-256-GCM 加密",
+  "premiumCloudBackupDescription": "使用军用级加密将所有对话备份到云端。您的密码永远不会离开您的设备 - 即使我们也无法读取您的数据。一键在任何设备上恢复。",
+  "premiumUrlReader": "网址阅读器",
+  "premiumUrlReaderTagline": "分析任何网页",
+  "premiumUrlReaderDescription": "粘贴任何 URL，您的模型就会读取整个页面内容。总结文章、分析文档、从表格中提取数据——所有这些都无需离开对话。",
+  "premiumBranching": "对话分支",
+  "premiumBranchingTagline": "探索替代路径",
+  "premiumBranchingDescription": "从任何消息中分叉任何对话，以探索“假设”场景。比较不同的提示，尝试不同的方法，并保留最好的线索 - 所有这些都不会丢失原始线索。",
+  "premiumMemory": "回忆",
+  "premiumMemoryTagline": "在聊天中记住你",
+  "premiumMemoryDescription": "保存所有对话中持续存在的事实、偏好和背景。每次你开始新的聊天时，你的模型都会知道你的名字、编码风格、首选语言以及你教给它的任何其他内容。",
+  "premiumAnalytics": "分析仪表板",
+  "premiumAnalyticsTagline": "了解您的使用情况",
+  "premiumAnalyticsDescription": "跟踪使用的令牌、发送的消息、模型使用细分和平均响应时间。了解您的 AI 使用模式并通过精美的图表优化您的工作流程。",
+  "premiumCloudApi": "云API提供商",
+  "premiumCloudApiTagline": "Mistral、Anthropic 等",
+  "premiumCloudApiDescription": "连接到云 LLM 提供商以及您的本地模型。当您需要尖端性能时，请使用 Claude、Gemini 和 Mistral — 在本地和云之间无缝切换。",
+  "premiumExport": "丰富的导出和分享",
+  "premiumExportTagline": "黑曜石、笔记、概念等",
+  "premiumExportDescription": "将对话导出为格式精美的 Markdown、PDF 或纯文本。直接分享到 Obsidian、Apple Notes、Notion 或任何应用程序。非常适合保存研究和见解。",
+  "premiumOnDeviceLlm": "设备上专业版",
+  "premiumOnDeviceLlmTagline": "更大的目录型号和高频进口",
+  "premiumOnDeviceLlmDescription": "通过精选的入门模型，可以免费进行设备上聊天。 Pro 解锁超过 2B 参数的目录下载，并从 Hugging Face 导入您自己的 GGUF 或 MLX 模型 - 浏览、选择量化并完全离线运行。",
+  "premiumHfBrowse": "拥抱脸部导入",
+  "premiumHfBrowseTagline": "将任何 GGUF 模型带上车",
+  "premiumHfBrowseDescription": "搜索 Hugging Face，将 GGUF 模型下载到您的设备或 LM Studio 服务器，并在 LM Mini 中运行它们。过滤兼容性、跟踪后台下载并扩展到免费目录之外 - 无需 API 密钥。",
+  "onDeviceProviderLabel": "设备上",
+  "onDeviceManageModels": "管理设备上模型",
+  "onDeviceGeneratingHint": "在设备上生成...",
+  "onDeviceEngineUnavailable": "设备上的引擎不可用",
+  "onDeviceOpenBrowser": "打开设备上的模型",
+  "onDeviceManagedHere": "设备上的模型在专用浏览器中进行管理，您可以在其中下载、删除和激活它们。",
+  "onDeviceRemoteImageOnly": "选择设备上的 AI — 远程访问仅支持图像生成和 Kokoro 语音（如果已配置）。聊天保留在此设备上。",
+  "onDeviceProOnly": "仅限专业版",
+  "onDeviceInstalled": "已安装",
+  "onDeviceUseModel": "使用",
+  "onDeviceRemoveModel": "消除",
+  "onDeviceDownloadAnyway": "无论如何下载",
+  "onDeviceNowUsing": "现在在设备上使用 {name}",
+  "@onDeviceNowUsing": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "onDeviceEngineFllamaLabel": "羊驼 (GGUF)",
+  "onDeviceEngineSwitched": "切换到{engine}。以前的模型被卸载了。",
+  "@onDeviceEngineSwitched": {
+    "placeholders": {
+      "engine": {
+        "type": "String"
+      }
+    }
+  },
+  "onDeviceEngineSwitchedCleared": "切换到{engine}。您之前的型号与此引擎不兼容，已被取消选择 - 在设备上型号中选择一个。",
+  "@onDeviceEngineSwitchedCleared": {
+    "placeholders": {
+      "engine": {
+        "type": "String"
+      }
+    }
+  },
+  "onDeviceImportedLabel": "进口",
+  "onDeviceFreeLabel": "自由的",
+  "onDeviceProLabel": "专业版",
+  "onDeviceMayCrashLabel": "可能会崩溃",
+  "onDeviceModelMayCrashTitle": "该模型可能会崩溃",
+  "onDeviceModelMayCrashMessage": "运行时{name}大约需要{runtimeGb}GB内存。您的设备大约有 {deviceRamGb} GB 可用于应用程序。无论如何加载可能会冻结或崩溃应用程序。",
+  "@onDeviceModelMayCrashMessage": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "runtimeGb": {
+        "type": "String"
+      },
+      "deviceRamGb": {
+        "type": "String"
+      }
+    }
+  },
+  "onDeviceContinueLoading": "继续加载",
+  "yearly": "每年",
+  "monthly": "每月",
+  "lifetime": "寿命",
+  "subscriptionLifetimeBadge": "支付一次",
+  "subscriptionLifetimeDisclaimer": "一次性购买。在提供和维护 LM Mini 的同时，您的帐户上还可以使用 Pro 功能。不包括第三方 API 费用，并可能不包括单独托管的服务 - 请参阅条款。",
+  "subscriptionLifetimeUpgradeDisclaimer": "终身是单独的一次性购买。您当前的订阅不会自动取消，我们也无法退还过去的订阅费用。购买后，在{store}取消订阅。",
+  "@subscriptionLifetimeUpgradeDisclaimer": {
+    "placeholders": {
+      "store": {
+        "type": "String"
+      }
+    }
+  },
+  "subscriptionUpgradeToLifetime": "升级至终身",
+  "subscriptionUpgradeToLifetimeSubtitle": "支付一次 — {price}",
+  "@subscriptionUpgradeToLifetimeSubtitle": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "duplicateSubscriptionDialogTitle": "取消您的订阅",
+  "duplicateSubscriptionDialogBody": "您拥有 Lifetime Pro 和有效的订阅。终身不会自动替换您的订阅，并且我们无法退还订阅费用。请在{store}取消订阅，以避免进一步计费。",
+  "@duplicateSubscriptionDialogBody": {
+    "placeholders": {
+      "store": {
+        "type": "String"
+      }
+    }
+  },
+  "duplicateSubscriptionDialogManage": "打开{store}",
+  "@duplicateSubscriptionDialogManage": {
+    "placeholders": {
+      "store": {
+        "type": "String"
+      }
+    }
+  },
+  "duplicateSubscriptionDialogDismiss": "知道了",
+  "duplicateSubscriptionNoManageUrl": "打开您的设备订阅设置以取消。",
+  "supportLifetime": "永久解锁 — {price}",
+  "@supportLifetime": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "encryptionKey": "加密密钥",
+  "encryptionEnabled": "加密：开启",
+  "encryptionDisabled": "加密：关闭",
+  "encryptionKeyDescription": "用于远程访问的端到端加密密钥。必须与 LM Mini Connect 中的密钥匹配。",
+  "editEncryptionKey": "编辑加密密钥",
+  "enterEncryptionKey": "输入加密密钥",
+  "encryptionKeyUpdated": "加密密钥已更新",
+  "keepLmMiniAlive": "保留 LM 迷你\n活着",
+  "supportTheApp": "支持该应用程序并获得额外福利",
+  "mostFeaturesFree": "大多数功能都是免费的 - Pro 有助于支付服务器成本",
+  "thankYouSupport": "感谢您的支持！",
+  "helpingKeepAlive": "你正在帮助 LM Mini 生存",
+  "linkSignInMethod": "链接登录方法以在您切换设备时保留您的订阅。",
+  "paywallLinkAccountBody": "您使用的是匿名帐户。在购买前链接 Apple 或 Google，以便 Pro 可以跨设备同步并在重新安装后继续存在。",
+  "continueAnonymously": "匿名继续",
+  "signedInViaMethod": "通过{method}登录",
+  "@signedInViaMethod": {
+    "placeholders": {
+      "method": {
+        "type": "String"
+      }
+    }
+  },
+  "yourSubscriptionSecured": "您的订阅已受到保护",
+  "subscriptionManagedThrough": "订阅通过{store}管理。",
+  "@subscriptionManagedThrough": {
+    "placeholders": {
+      "store": {
+        "type": "String"
+      }
+    }
+  },
+  "subscriptionsComingSoon": "订阅即将推出",
+  "premiumPreview": "高级功能正在最终确定中。\n您可以启用下面的开发者模式来预览它们。",
+  "enableDeveloperPremium": "启用开发者高级版",
+  "disableDeveloperPremium": "禁用开发者高级版",
+  "premiumEnabled": "启用高级版（开发覆盖）",
+  "premiumDisabled": "高级版已禁用",
+  "supportYearly": "支持 — {price}/年",
+  "@supportYearly": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "supportMonthly": "支持 — {price}/月",
+  "@supportMonthly": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "welcomeToLmMiniPro": "欢迎来到LM Mini Pro！",
+  "connectedRemotely": "远程连接",
+  "pairedNotActive": "已配对 — 未激活",
+  "accessLmStudioAnywhere": "从任何地方访问 LM Studio",
+  "appStore": "应用商店",
+  "googlePlayStore": "谷歌应用商店",
+  "starterAttach": "附",
+  "starterImages": "图片",
+  "starterMode": "模式",
+  "newGroupChat": "新群聊",
+  "groupChat": "群聊",
+  "groupChatMultipleModels": "与多个模特聊天",
+  "groupChatParticipants": "参加者",
+  "groupChatTurnMode": "转弯模式",
+  "groupChatRoundRobin": "循环赛",
+  "groupChatManual": "手动的",
+  "groupChatParallelStreaming": "并行流",
+  "groupChatAutoLoadUnload": "自动加载/卸载",
+  "groupChatStreamAllSimultaneously": "同时直播所有参与者",
+  "groupChatAutoLoadModels": "需要时自动加载模型",
+  "groupChatAsk": "问：",
+  "groupChatTapToReplyNudge": "点选要回复的人",
+  "groupChatTrialBannerTitle": "群聊 — 7 天免费！",
+  "groupChatTrialBannerBody": "免费试用最多 2 个 AI 角色的群聊 7 天。升级到 LM Mini Pro 即可获得无限制的参与者和永久访问权限。",
+  "groupChatTrialDaysLeft": "试用期还剩 {days} 天",
+  "@groupChatTrialDaysLeft": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "groupChatTrialExpired": "您的 7 天群聊试用期已结束。升级到专业版以继续。",
+  "groupChatTrialGetPro": "获取专业版",
+  "groupChatTrialDismiss": "知道了",
+  "groupChatBetaTitle": "群聊",
+  "groupChatBetaSubtitle": "一次谈话。多个人工智能头脑。",
+  "groupChatBetaPremiumNote": "群聊目前处于测试阶段，所有人都可以免费预览",
+  "groupChatBetaBugReport": "发现错误？转到“设置”→“功能请求和支持”来报告问题并获得优先帮助。",
+  "groupChatBetaFreeNote": "您可以免费访问最多 2 个角色 7 天。升级到专业版以获得无限的角色和永久访问权限。",
+  "groupChatBetaFeaturePersona": "每个角色都有自己的模型",
+  "groupChatBetaFeatureSystem": "每个系统提示都有独特的个性",
+  "groupChatBetaFeatureConvo": "多合一共享对话",
+  "groupChatBetaStartFree": "开始免费试用",
+  "groupChatBetaStartPremium": "尝试群聊",
+  "groupChatBetaLearnMore": "获取专业版",
+  "premiumGroupChat": "群聊",
+  "premiumGroupChatTagline": "多人对话",
+  "premiumGroupChatDescription": "在一个线程中与多个人工智能角色聊天——每个角色都有自己的模型、头像和个性。自由设置；发送消息需要LM Mini Pro。",
+  "groupChatProRequiredTitle": "群聊需要专业版",
+  "groupChatProRequiredBody": "您可以免费设置群聊。升级到 LM Mini Pro 即可使用多个 AI 角色开始聊天和发送消息。",
+  "groupChatProRequiredUpgrade": "升级到专业版",
+  "groupChatLockedBanner": "群聊在没有 Pro 的情况下是只读的。升级以发送新消息。",
+  "premiumArena": "竞技场",
+  "premiumArenaTagline": "并排比较模型",
+  "premiumArenaDescription": "寻找您的模型是免费的。 Pro 可以解锁自定义提示比赛、竞技场中的云模型以及带有图表的私人比赛历史记录。",
+  "startLabel": "开始",
+  "groupChatInviteUpTo": "邀请最多{count}位AI模特一起聊天。每个人都可以有自己的角色、头像和系统提示。",
+  "@groupChatInviteUpTo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "groupChatPremiumParticipantsNote": "Premium 允许每个群聊最多 5 名参与者。",
+  "groupChatUserNameHint": "AI 将如何称呼您（例如 Alex）",
+  "groupChatScenarioLabel": "场景/关于你自己（可选）",
+  "groupChatScenarioHint": "例如“我们是一家科技初创公司的同事。我是一名产品经理，向团队寻求建议。”",
+  "groupChatTurnModeRoundRobinDescription": "循环法——所有模型按顺序响应",
+  "groupChatTurnModeManualDescription": "手动 — 输入 @Name 以选择回复者",
+  "groupChatReplyToUserOnlyLabel": "只回复你一个",
+  "groupChatReplyToUserOnlySubtitle": "每个人工智能都会忽略其他人工智能——最适合较小的模型",
+  "groupChatWhosInChat": "谁在聊天？",
+  "groupChatTapToInvite": "点按下面的人员即可邀请他们",
+  "groupChatAddPeople": "添加人员",
+  "groupChatInTheRoom": "在房间里",
+  "groupChatNeedTwo": "至少添加 2 个以开始",
+  "groupChatTakeTurnsTitle": "轮流",
+  "groupChatTakeTurnsSubtitle": "大家按顺序依次回答",
+  "groupChatTalkMentionedTitle": "提及时说话",
+  "groupChatTalkMentionedSubtitle": "如果一个人工智能命名另一个人工智能，那个人就可以加入",
+  "groupChatIChooseTitle": "我选择谁发言",
+  "groupChatIChooseSubtitle": "只有您@提及的人回复",
+  "groupChatHowTheyTalk": "他们如何说话",
+  "groupChatAboutYou": "关于你",
+  "groupChatSceneLabel": "场景（可选）",
+  "groupChatSceneHint": "例如我们是同事集思广益的产品创意",
+  "groupChatAutoLoadTitle": "节省本地模型的内存",
+  "groupChatAutoLoadSubtitle": "在加载下一个模型之前卸载一个模型 - 当人们使用不同的 LM Studio、Ollama 或设备上模型时很有帮助",
+  "groupChatMoreOptions": "更多选择",
+  "groupChatHelpTooltip": "群聊的工作原理",
+  "groupChatHelpTitle": "群聊的工作原理",
+  "groupChatHelpIntro": "邀请至少两名 AI 人员参与一场对话。每个人都可以使用不同的模型和个性。",
+  "groupChatHelpTakeTurns": "轮流：每个人工智能按顺序回答你的消息。",
+  "groupChatHelpMentioned": "提及时说话：有人回复后，如果被点名，另一个人工智能可以继续。",
+  "groupChatHelpManual": "我选择谁发言：使用@Name，这样只有那个人回复。",
+  "groupChatHelpMemory": "节省内存：对于本地模型，请先卸载前一个模型，然后再加载下一个模型，这样 RAM 较少的手机和 PC 仍然可以运行组。",
+  "groupChatHelpProvider": "点击房间中的某个人即可随时更改其提供商和型号。",
+  "groupChatStartProGate": "需要专业版才能启动",
+  "groupChatFixBeforeStart": "在开始之前修复突出显示的人物。",
+  "groupChatEditPerson": "编辑人物",
+  "groupChatProviderAndModel": "供应商和型号",
+  "groupChatChooseProviderModel": "选择提供商和型号",
+  "groupChatParallelEasy": "同时回复",
+  "groupChatParallelEasySubtitle": "当多个人工智能需要回答时，将它们集中在一起",
+  "noModelsAvailableConnectLmStudio": "无可用型号。首先连接到 LM Studio。",
+  "addModelLabel": "添加型号",
+  "modelNumber": "型号{number}",
+  "@modelNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "groupChatParticipantInfo": "{name}\n型号：{model}",
+  "@groupChatParticipantInfo": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "model": {
+        "type": "String"
+      }
+    }
+  },
+  "customPromptSet": "自定义提示设置",
+  "removeLabel": "消除",
+  "displayNameLabel": "显示名称",
+  "displayNameHint": "例如教授、程序员、艺术家",
+  "customRequestHeaders": "自定义请求标头",
+  "customRequestHeadersSubtitle": "添加到每个 LM Studio 请求的可选标头",
+  "customRequestHeadersHelp": "将此用于需要额外标头的反向代理或身份验证网关（例如 Cloudflare Access 服务令牌、自定义标头名称下的内部令牌等）。每个请求的标头都会发送到 LM Studio 服务器。",
+  "cloudflareAccessSection": "Cloudflare 访问（服务令牌）",
+  "cloudflareAccessHelp": "如果您的 LM Studio 采用 Cloudflare 访问策略，请将服务令牌客户端 ID 和密钥粘贴到此处。它们在每次请求时作为 CF-Access-Client-Id 和 CF-Access-Client-Secret 发送，因此应用程序无需交互式浏览器 SSO 登录即可进行身份验证。",
+  "cfAccessClientIdLabel": "CF-Access-客户端 ID",
+  "cfAccessClientSecretLabel": "CF-访问-客户端秘密",
+  "addHeader": "添加标题",
+  "removeHeader": "删除标题",
+  "headerNameLabel": "标头名称",
+  "headerValueLabel": "标头值",
+  "headersConfigured": "{count, plural, =1{已配置 1 个请求头} other{已配置 {count} 个请求头}}",
+  "@headersConfigured": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "noCustomHeaders": "没有自定义标头",
+  "comfyUiUseNegativePromptTitle": "使用否定提示",
+  "comfyUiUseNegativePromptSubtitle": "ComfyUI 默认关闭。关闭时，不会向工作流程发送否定提示。",
+  "documentationTitle": "文档",
+  "documentationSubtitle": "群聊、ComfyUI、键盘行为等设置指南",
+  "changelogTitle": "变更日志",
+  "changelogSubtitle": "版本历史及更新",
+  "enableCustomHeaders": "启用自定义标头",
+  "enableCustomHeadersSubtitle": "为每个 LM Studio 请求附加额外的 HTTP 标头",
+  "deleteMemoriesCount": "删除{count}条记忆？",
+  "@deleteMemoriesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "deleteMemoriesConfirm": "这些记忆将被永久删除。",
+  "moveToCategory": "移至类别",
+  "nSelected": "{count} 已选择",
+  "@nSelected": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "movedToCategory": "移至{category}",
+  "@movedToCategory": {
+    "placeholders": {
+      "category": {
+        "type": "String"
+      }
+    }
+  },
+  "moveCategoryTooltip": "移动类别",
+  "memoryScreenSubtitle": "人工智能会在聊天过程中记住有关您的事实。",
+  "rememberMe": "记住账号",
+  "rememberMeSubtitle": "在以后的对话中使用保存的笔记",
+  "memoryPerPersona": "每个角色",
+  "memoryPerPersonaSubtitle": "仅共享活跃角色（和全局角色）的注释",
+  "memoryBrowseSection": "浏览",
+  "memoryMultiSelectTip": "提示：长按一个音符可以选择多个。",
+  "memoryEmptyFilteredHint": "添加注释，或选择其他类别。",
+  "memoryEmptyHint": "保存一些关于你自己的信息——姓名、偏好、项目——这样聊天就会感觉很私人。",
+  "memoryShareWith": "分享给",
+  "memoryEveryone": "每个人",
+  "memoryEveryoneSubtitle": "在每个聊天中都可用",
+  "memoryNoPersonasHint": "还没有人物角色。在“设置”→“角色”中创建一个。",
+  "memoryNewNote": "新笔记",
+  "memoryNoteHint": "例如我更喜欢简短的答案并且住在柏林",
+  "memoryEditNote": "编辑备注",
+  "monthsAgo": "{count}前",
+  "@monthsAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "moreTooltip": "更多的",
+  "closeSearch": "关闭搜索",
+  "moveTooltip": "移动",
+  "chatsTab": "聊天记录",
+  "groupsTab": "团体",
+  "foldersTooltip": "文件夹",
+  "newFolder": "新建文件夹",
+  "tapToReturnToCall": "点击即可返回通话",
+  "selectConversation": "选择一个对话",
+  "selectConversationHint": "从列表中选择一个，或开始新的聊天。",
+  "noGroupChatsYet": "还没有群聊",
+  "noGroupChatsSubtitle": "启动多人对话，与多个 AI 一起聊天。",
+  "newPersonaShort": "新的",
+  "downloadOnDeviceModelTitle": "下载设备上的模型",
+  "downloadOnDeviceModelBody": "下载模型无需 PC 即可聊天，或连接 LM Studio / Ollama。",
+  "browseModels": "浏览型号",
+  "waitingForMac": "等待Mac",
+  "waitingForMacBody": "使用 USB 线将 iPhone 连接到 Mac，然后在 Mac 上打开 LM Mini 并启用与手机共享（USB 桥接器）。",
+  "arenaMode": "竞技场模式",
+  "voiceWhisperSizeInfoTitle": "型号越大听得越好",
+  "voiceWhisperSizeInfoBody": "较大的聆听模型通常更准确，尤其是对于口音和背景噪音。它们还使用更多存储空间，并且加载速度可能会慢一些。",
+  "voiceRemoveListeningModelTitle": "删除监听模型？",
+  "voiceRemoveListeningModelBody": "这可以释放存储空间。在离线收听之前，语音通话和麦克风将再次需要该模型。",
+  "voiceTtsOnDeviceNeural": "已下载的语音",
+  "voiceTtsPcVoice": "电脑语音",
+  "voiceTtsSystemVoice": "系统声音",
+  "voiceTtsOnDeviceHint": "需要下载的自然语音。无需联网也能用。",
+  "voiceTtsPcHint": "通过“与手机共享”在计算机上使用语音模型",
+  "voiceTtsSystemHint": "手机自带语音 — 立即可用",
+  "voiceSttOnDevice": "在此设备上",
+  "voiceSttWhisperHint": "离线模型——通常更准确",
+  "voiceSttSystemHint": "内置识别——快速、简单",
+  "voiceSttSystemUnavailableOnMac": "需要下载",
+  "voiceSttMacosRequiresWhisper": "App Store 版本使用设备端 Whisper 进行听写。请下载模型以启用。",
+  "voiceSttMacosSystemOptionSubtitle": "下载 Whisper 以启用听写",
+  "voiceSttMacosDownloadWhisper": "下载 Whisper 以启用听写",
+  "voiceSettingsIntro": "如何回复，以及如何理解您的声音。",
+  "voiceSectionReady": "准备好",
+  "voiceSectionSpeaking": "请讲",
+  "voiceSectionListening": "听力",
+  "voiceSectionConversation": "对话",
+  "voiceStatusSpeaking": "请讲",
+  "voiceStatusListening": "听力",
+  "voiceHowISpeak": "我如何说话",
+  "voiceImportPack": "导入语音包",
+  "voiceImportPackSubtitle": "将 GitHub URL 粘贴到语音包",
+  "voiceHowIHearYou": "我怎么听到你的声音",
+  "voiceHowIHearYouSubtitle": "选择如何将您的语音转换为文本。",
+  "voiceListeningModel": "听力模型",
+  "voiceAboutModelSizes": "关于型号尺寸",
+  "voicePauseBeforeSend": "发送前暂停",
+  "voicePauseBeforeSendSubtitle": "停止说话后要等多久",
+  "voiceListeningLimit": "听力限制",
+  "voiceListeningLimitSubtitle": "麦克风重新启动前最长的一段时间",
+  "voiceQuickTip": "快速提示",
+  "voiceQuickTipBody": "想要更自然的声音，请在语音包里下载一种语言。系统语音可以马上使用。",
+  "voiceTestSampleHint": "聆听您当前设置的简短样本",
+  "voiceTestNoPackReady": "请先在语音包中下载一种语言，然后再试 Test Voice。",
+  "voiceChooseListeningModel": "点击选择聆听模式",
+  "voiceModelReady": "准备好",
+  "voiceNeedsDownload": "需要下载",
+  "voiceDownloaded": "已下载",
+  "voiceDownloadFailed": "下载失败",
+  "voiceFinishingSetup": "正在完成设置...",
+  "voiceDownloadingListeningModel": "正在下载听力模型...",
+  "voiceDownloadingVoice": "正在下载语音...",
+  "voiceStartingDownload": "开始下载...",
+  "voiceReady": "语音就绪",
+  "voiceWarmingUp": "正在热身……",
+  "voiceReadyToSpeak": "准备发言",
+  "voiceDownloadOnDevice": "下载设备上的语音",
+  "voiceDownloadFailedRetry": "下载失败 — 点击重试",
+  "voiceSpokenReplyLanguage": "口头回复语言",
+  "voiceSpokenReplyLanguageSubtitle": "助理大声朗读消息时使用的语言。",
+  "voiceRecognitionLanguage": "识别语言",
+  "voiceRecognitionLanguageSubtitle": "用于文本麦克风和语音通话 — 可能与口头回复不同。",
+  "voiceEngineTitle": "说话的声音",
+  "voiceEngineSubtitle": "选择语音从哪里来。",
+  "voiceChooseAVoice": "选择声音",
+  "voiceChooseAVoiceSubtitle": "设备上语音的预览友好名称。",
+  "voiceUseSystemDefault": "使用系统默认语音",
+  "welcomeWizardTitleGetStarted": "开始使用",
+  "welcomeWizardTitleYourSetup": "你的设置",
+  "welcomeWizardTitleLookAndFeel": "外观和感觉",
+  "welcomeWizardTitleAlmostDone": "快完成了",
+  "welcomeWizardTitleSetup": "设置",
+  "welcomeWizardLmStudioSubtitle": "在 Mac 或 PC 上运行模型",
+  "welcomeWizardOllamaSubtitle": "流行的本地服务器",
+  "welcomeWizardOmlxSubtitle": "Apple Silicon 桌面服务器",
+  "welcomeWizardJanSubtitle": "来自 JAN AI 应用的本地模型",
+  "welcomeWizardUnslothSubtitle": "电脑上的 Unsloth Desktop",
+  "welcomeWizardThemeSubtitle": "选择您喜欢的外观。您可以随时更改此设置。",
+  "welcomeWizardModelReady": "准备好",
+  "welcomeWizardConnected": "已连接",
+  "welcomeWizardServerFound": "已找到服务器",
+  "welcomeWizardRequiresApiKey": "需要 API 密钥",
+  "welcomeWizardScanHomeQr": "扫描 LM Mini Home 二维码",
+  "welcomeWizardScanHomeQrSubtitle": "通过“与手机共享”与 Mac 配对",
+  "welcomeWizardModelsFound": "{count} 个模型",
+  "welcomeWizardLocalNetworkTitle": "允许网络访问",
+  "welcomeWizardLocalNetworkBody": "接下来系统会请求访问本地网络。请允许，以便 LM Mini 查找电脑上运行的 LM Mini Home、LM Studio 或 Ollama。",
+  "welcomeWizardLocalNetworkAllow": "允许",
+  "welcomeWizardDownloadKeepsGoing": "你可以离开此页面，下载会继续，即使退出应用也不会中断。",
+  "welcomeWizardDownloadFailed": "下载失败。点按即可重试。",
+  "welcomeWizardAiDownloadingTitle": "正在下载 AI",
+  "welcomeWizardAiDownloadingBody": "等适合你手机的 AI 下载完成后即可聊天。只需下载一次。",
+  "onDeviceModels": "设备上模型",
+  "transcription": "转录",
+  "widgetSettings": "小部件设置",
+  "widgetSettingsSubtitle": "配置主屏幕小部件",
+  "setUpShortcuts": "设置快捷方式",
+  "shareArenaSpeedResults": "分享 Arena 速度结果",
+  "browseOnDeviceModels": "浏览设备上的型号",
+  "homeDownloadModel": "下载模型",
+  "usbMode": "USB模式",
+  "usbModeHowItWorks": "USB 模式的工作原理",
+  "switchToUsbTitle": "从远程切换到 USB？",
+  "switchLabel": "转变",
+  "usbModeStartFailed": "无法启动 USB 模式：{error}",
+  "@usbModeStartFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "usbModeHowToUse": "使用方法：",
+  "openLmminiCom": "打开 lmmini.com",
+  "tapToUseServer": "点击即可使用该服务器",
+  "memoryPersonaFallback": "人格面具",
+  "voicePickSystemVoiceSubtitle": "选择内置语音进行语音回复。",
+  "chooseFromGallery": "从画廊中选择",
+  "galleryLimitsSubtitle": "照片最大 10 MB · 视频最大 200 MB",
+  "recordVideo": "录制视频",
+  "attachmentsCount": "附件 ({count}/{max})",
+  "@attachmentsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "viewProfile": "查看个人资料",
+  "personaAndModel": "人物与模型",
+  "chatOptions": "聊天选项",
+  "chatTab": "聊天",
+  "voiceTab": "嗓音",
+  "craftingPersona": "塑造人物形象……",
+  "randomPersona": "随机角色",
+  "savePersona": "保存角色",
+  "downloadFinished": "下载完毕。",
+  "downloadCancelled": "已取消下载。",
+  "downloadCancelFailed": "无法在 LM Studio 中取消。请在 LM Studio 的下载列表里停止。",
+  "newsBriefing": "新闻发布会",
+  "refreshNow": "立即刷新",
+  "noBriefingYet": "还没有简报",
+  "newsSetPromptFirst": "首先在小部件设置中设置新闻小部件提示。",
+  "newsRefreshed": "新闻刷新了。",
+  "newsRefreshFailed": "刷新失败：{error}",
+  "@newsRefreshFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "themesTitle": "主题",
+  "createLabel": "创造",
+  "browseLabel": "浏览",
+  "signInToUploadThemes": "请登录才能上传主题",
+  "deleteThemeTitle": "删除主题？",
+  "deleteThemeConfirm": "从下载的主题中删除“{name}”？",
+  "@deleteThemeConfirm": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "uploadToCommunity": "上传至社区",
+  "installedLabel": "已安装",
+  "getLabel": "得到",
+  "bestForYou": "最适合你的",
+  "loadingLabel": "加载中",
+  "loadedLabel": "已加载",
+  "notLoadedLabel": "未加载",
+  "reasoningLabel": "推理",
+  "imagesLabel": "图片",
+  "detailsTooltip": "细节",
+  "transcribeAudio": "转录音频",
+  "transcribeAudioSubtitle": "上传音频并向 AI 询问文字记录",
+  "trimSection": "修剪部分",
+  "includeTimestamps": "包括时间戳",
+  "phrasesLabel": "短语",
+  "wordsLabel": "字",
+  "transcriptionLanguage": "转录语言",
+  "searchLanguages": "搜索语言...",
+  "transcribe": "录制",
+  "shareTranscript": "分享成绩单",
+  "transcriptionContextLargeToast": "这些转录本对于模型的上下文来说可能太大。如果答案不完整，则从较早的消息中分支。",
+  "transcriptionSubtitlesOn": "字幕开启",
+  "transcriptionSubtitlesOff": "字幕关闭",
+  "transcriptionFullClip": "完整剪辑",
+  "transcriptionJobRunning": "正在抄写…",
+  "transcriptionJobDone": "转录",
+  "transcriptionJobFailed": "转录失败",
+  "branchFromHere": "分支从这里开始",
+  "memoryUpdates": "内存更新",
+  "promptWriteEmail": "写一封电子邮件",
+  "promptWriteEmailBody": "帮我写一封清晰、友好的电子邮件至",
+  "promptGiveIdeas": "给我想法",
+  "promptGiveIdeasBody": "与我一起集思广益创意想法",
+  "promptExplainSimply": "简单解释一下",
+  "promptExplainSimplyBody": "用简单的话解释一下：",
+  "promptFixWriting": "修正我的写作",
+  "promptFixWritingBody": "改进这篇文章的清晰度和语气：",
+  "promptHelpStudy": "帮我学习",
+  "promptHelpStudyBody": "帮我研究一下这个话题：",
+  "promptPlanTrip": "计划一次旅行",
+  "promptPlanTripBody": "帮我计划一次旅行",
+  "promptSummarize": "总结一下这个",
+  "promptSummarizeBody": "总结清楚：",
+  "promptChecklist": "制定清单",
+  "promptChecklistBody": "制定一份实用的清单",
+  "promptFunFact": "告诉我一个有趣的事实",
+  "promptFunFactBody": "告诉我一个有趣的事实",
+  "promptQuizMe": "测验我",
+  "promptQuizMeBody": "测验我",
+  "promptRoleplay": "和我一起角色扮演",
+  "promptRoleplayBody": "我们来角色扮演吧。你是",
+  "promptCodeHelp": "代码帮助",
+  "promptCodeHelpBody": "帮我解决这个代码问题：",
+  "promptDraftReply": "起草回复",
+  "promptDraftReplyBody": "对此起草一份礼貌的答复：",
+  "promptPracticeInterview": "练习面试",
+  "promptPracticeInterviewBody": "练习面试问题",
+  "promptMealIdeas": "膳食创意",
+  "promptMealIdeasBody": "使用建议膳食想法",
+  "promptWorkoutPlan": "锻炼计划",
+  "promptWorkoutPlanBody": "制定一个简单的锻炼计划",
+  "promptTranslateCasually": "随便翻译一下",
+  "promptTranslateCasuallyBody": "随便翻译一下：",
+  "promptNameIdeas": "命名创意",
+  "promptNameIdeasBody": "集思广益的名字想法",
+  "promptProsCons": "优点和缺点",
+  "promptProsConsBody": "列出优点和缺点",
+  "promptRewriteShorter": "重写更短",
+  "promptRewriteShorterBody": "重写这个更短更清晰的：",
+  "promptTeachVocab": "教我生字",
+  "promptTeachVocabBody": "教我一些有用的词汇",
+  "promptStoryTime": "故事时间",
+  "promptStoryTimeBody": "讲一个关于",
+  "promptDebugWithMe": "和我一起调试",
+  "promptDebugWithMeBody": "帮我调试一下：",
+  "promptDailyMotivation": "每日动力",
+  "promptDailyMotivationBody": "给我一个简短的激励推动",
+  "promptPlayDnd": "玩免打扰",
+  "promptPlayDndBody": "让我们来玩一段简短的 D&D 冒险吧。我是",
+  "promptWordChain": "字链",
+  "promptWordChainBody": "我们来玩单词链吧。从以下开始：",
+  "promptRiddleDuel": "谜语决斗",
+  "promptRiddleDuelBody": "给我一个谜语来解答。",
+  "promptWouldYouRather": "你会宁愿",
+  "promptWouldYouRatherBody": "问我一个有趣的问题。",
+  "promptEscapeRoom": "密室逃脱",
+  "promptEscapeRoomBody": "为我开始一个简短的文字密室逃脱游戏。",
+  "promptTriviaBattle": "问答大战",
+  "promptTriviaBattleBody": "用一些琐事来测验我",
+  "promptStoryRpg": "故事角色扮演游戏",
+  "promptStoryRpgBody": "开始一个短篇故事角色扮演游戏。我的性格是",
+  "promptGuessNumber": "猜数字",
+  "promptGuessNumberBody": "我们来玩猜数字吧。想一个 1 到 100 之间的数字。",
+  "promptTwoTruths": "两个真理一个谎言",
+  "promptTwoTruthsBody": "让我们玩两个真理和一个谎言。你先走吧。",
+  "promptReadMyFile": "阅读我的文件",
+  "promptWhatIsImage": "这是什么图像",
+  "promptTakePhoto": "拍张照片",
+  "promptTranscribeAudio": "转录音频",
+  "promptPersonaGenerator": "角色生成器",
+  "personaShareMemoryCategoriesLabel": "分享类别",
+  "personaShareMemoryCategoriesSubtitle": "选择该角色可以在聊天中使用哪些类型的记忆。",
+  "chooseFaceForBubbles": "选择气泡的面",
+  "moveMemories": "移动记忆",
+  "deletePersonaAndMemories": "删除角色+记忆",
+  "moveMemoriesTo": "将记忆移至...",
+  "globalSharedMemories": "全局（与所有角色共享）",
+  "personaMemoriesAssignedHint": "{count} 内存项被分配给“{name}”。\n选择他们应该发生什么：",
+  "@personaMemoriesAssignedHint": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "homeSyncTitle": "保持聊天同步？",
+  "homeSyncBodyBoth": "这台手机有 {phoneChats} 个聊天，LM Mini Home 有 {macChats} 个。开启同步可合并对话和文件夹，方便在任一设备上继续。使用现有的加密中继。",
+  "homeSyncBodyPhoneOnly": "把这台手机上的聊天和文件夹复制到 LM Mini Home，之后通过加密中继保持同步。",
+  "homeSyncBodyMacOnly": "把 LM Mini Home 上的聊天和文件夹带到这台手机，之后通过加密中继保持同步。",
+  "homeSyncBodyGeneric": "合并这台手机和 LM Mini Home 上的对话与文件夹，方便在任一设备上继续。使用现有的加密中继。",
+  "homeSyncEnable": "开启同步",
+  "homeSyncNotNow": "暂不",
+  "homeSyncSettingsTitle": "与 Home 同步聊天",
+  "homeSyncSettingsSubtitle": "通过加密中继合并对话和文件夹",
+  "homeSyncMergedToast": "聊天和文件夹已同步",
+  "useRemoteConnectionOffSubtitle": "关闭 — 手机使用自己的模型。打开后使用 LM Mini Home 上的模型。",
+  "homeSyncFailedToast": "无法同步。请在 Mac 上打开 Share with phone 后再试。",
+  "homeSyncPersonasTitle": "同步角色",
+  "homeSyncPersonasSubtitle": "复制你勾选的角色，包括照片和记忆",
+  "homeSyncPersonasPickTitle": "选择角色",
+  "homeSyncPersonasPickSubtitle": "勾选的角色会在这台设备和 Home 之间复制，包括照片和记忆。",
+  "homeSyncPersonasSave": "保存并同步",
+  "homeSyncPersonasSavedToast": "角色已同步",
+  "homeSyncPersonasEmpty": "还没有可复制的角色。",
+  "homeSyncPersonasUnreachable": "无法连接 Home。请在 Mac 上打开 Share with phone，然后再试。",
+  "homeSyncPersonasOnBoth": "两台设备都有",
+  "homeSyncPersonasOnHome": "LM Mini Home",
+  "homeSyncPersonasOnPhone": "你的手机",
+  "homeSyncPersonasThisPhone": "这台手机",
+  "homeSyncPersonasOnDevice": "在{device}",
+  "@homeSyncPersonasOnDevice": {
+    "placeholders": {
+      "device": {
+        "type": "String"
+      }
+    }
+  },
+  "homeSyncPersonasMemoryCount": "{count} 条记忆",
+  "@homeSyncPersonasMemoryCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeSyncPersonasNoMemories": "还没有记忆",
+  "reportToSupport": "发送给支持",
+  "localhostConnectionHelp": "无法连接到 localhost。在手机上，localhost 指的是这台设备，不是电脑。请在设置中填写电脑的 IP 地址（例如 http://192.168.1.10:1234），并保持同一 Wi‑Fi。",
+  "lmStudioPcNotAllowingTitle": "电脑未允许连接",
+  "lmStudioPcNotAllowingBody": "在电脑上的 LM Studio 打开 Developer → Server Settings，打开 Serve on Local Network。",
+  "lmStudioHostDownTitle": "无法连到电脑",
+  "lmStudioHostDownStep1": "请确认电脑已开机，没有休眠或关机。",
+  "lmStudioHostDownStep2": "在 LM Studio 打开 Developer → Server Settings，打开 Serve on Local Network。",
+  "cantReachMacTitle": "无法连到 Mac",
+  "cantReachMacStep1": "在 Mac 上打开 LM Mini Home 的 Share with phone。",
+  "cantReachMacStep2": "等到显示 Connected 后再试。",
+  "lmStudioServerSettingsImageLabel": "LM Studio Developer → Server Settings。Serve on Local Network 需要打开。",
+  "modelMissingTitle": "电脑上没有这个模型",
+  "modelMissingBody": "所选模型不可用。请到模型选择里换一个。",
+  "modelMissingBodyNamed": "电脑上没有 “{model}”。请到模型选择里换一个。",
+  "outputTokensExhaustedTitle": "模型输出 token 已用尽",
+  "outputTokensExhaustedBody": "工具已跑完，但没有剩余 token 写回复。请提高最大 token 后再试。",
+  "adjustMaxTokens": "调整最大 token",
+  "ggmlSchedulerCrashBody": "模型服务器崩溃了（llama.cpp 调度器）。这不是 Mini 的问题。请调低上下文长度和最大 token——过大的值（例如 128k 上下文）经常导致这种情况。",
+  "generationTerminatedBody": "LM Studio 已在你的电脑上停止生成（进程被终止）。",
+  "generationTerminatedHugeImageBody": "LM Studio 已在你的电脑上停止生成。你附加的图片可能太大（{size}）——请压缩后重新发送。",
+  "@generationTerminatedHugeImageBody": {
+    "placeholders": {
+      "size": { "type": "String" }
+    }
+  },
+  "compressAndResendImages": "压缩图片并重新发送",
+  "imageCompressFailed": "无法缩小附加的图片。请换一张更小的照片。",
+  "droppedChatBodyHelp": "Mini 已发出这条聊天，但从未到达 LM Studio。如果 LM Studio 前面有代理、隧道或额外网址，请先去掉它们——或让 Mini 直连 LM Studio（电脑 IP、USB 或 Connect）。",
+  "comfyUiNoCheckpointsTitle": "ComfyUI 没有图像模型",
+  "comfyUiNoCheckpointsBody": "ComfyUI 没有可加载的 checkpoint。请把 .safetensors 文件放到 ComfyUI 的 models/checkpoints 文件夹，然后在图像生成设置里选择它。",
+  "comfyUiNoCheckpointSelectedBody": "还没有选择图像模型。请打开图像生成设置并选择一个 checkpoint。",
+  "comfyUiUnknownCheckpointBody": "ComfyUI 没有 checkpoint “{name}”。请在图像生成设置里换一个。",
+  "@comfyUiUnknownCheckpointBody": {
+    "placeholders": {
+      "name": { "type": "String" }
+    }
+  },
+  "comfyUiWorkflowRejectedBody": "ComfyUI 拒绝了该工作流。请检查图像生成设置。",
+  "comfyUiDiffusionOnlyTitle": "这个工作流需要你的 ComfyUI 图",
+  "comfyUiDiffusionOnlyBody": "Mini 内置工作流加载的是经典 SD checkpoint。你的 Comfy Desktop 图用的是 diffusion/UNET，再加上 CLIP 和 VAE。请导出为 API Format（Workflow → Export），然后在图像生成设置里选择该文件。",
+  "openImageSettings": "图像设置",
+  "supportTicketTitle": "反馈问题",
+  "supportTicketPrefillDescription": "已附上包含错误详情的日志文件。如有补充请写在下面：",
+  "supportTicketSubmitted": "谢谢，报告已发送。",
+  "supportTicketAlreadyOpen": "你已经为这个错误提交过未关闭的反馈。",
+  "supportTicketViewExisting": "查看反馈",
+  "supportTicketAlreadySending": "正在提交同一错误的反馈。",
+  "supportUnavailable": "目前无法联系支持。请在联网后再试。",
+  "somethingWentWrong": "出了点问题",
+  "uncaughtErrorSnack": "出了点问题。",
+  "errorLogLabel": "LOG",
+  "appLock": "应用锁",
+  "appLockSubtitleOff": "关闭应用后需要输入 PIN",
+  "appLockSubtitleOn": "{duration}后再次要求验证",
+  "appLockUnlockTitle": "LM Mini 已锁定",
+  "appLockDescription": "用数字 PIN 和可选的面容 ID 保护此设备上的聊天。PIN 只保存在本机，不会同步。",
+  "appLockEnable": "使用 PIN 锁定",
+  "appLockEnableSubtitle": "返回时要求输入 PIN",
+  "appLockPinLength4": "4 位",
+  "appLockPinLength6": "6 位",
+  "appLockRequireAfter": "再次询问的间隔",
+  "appLockTimeoutImmediate": "立即",
+  "appLockTimeout15s": "15 秒",
+  "appLockTimeout1m": "1 分钟",
+  "appLockTimeout5m": "5 分钟",
+  "appLockTimeout15m": "15 分钟",
+  "appLockTimeout1h": "1 小时",
+  "appLockChangePin": "更改 PIN",
+  "appLockEnterCurrentPin": "输入当前 PIN",
+  "appLockChooseNewPin": "设置 PIN",
+  "appLockConfirmPin": "确认 PIN",
+  "appLockPinsDontMatch": "两次 PIN 不一致，请重试。",
+  "appLockWrongPin": "PIN 错误，请重试。",
+  "appLockTooManyAttempts": "尝试次数过多，请 {seconds} 秒后再试。",
+  "appLockForgotHint": "如果忘记 PIN，可以通过发送到已登录账户的验证邮件重置。请在丢失 PIN 之前登录，否则将无法找回。",
+  "appLockProRequired": "应用锁是 Pro 功能",
+  "appLockEnabledToast": "已开启应用锁",
+  "appLockDisabledToast": "已关闭应用锁",
+  "appLockChangedToast": "PIN 已更新",
+  "appLockBiometricsToggle": "使用{method}解锁",
+  "appLockBiometricsSubtitle": "用面容 ID、触控 ID 或指纹代替输入 PIN。",
+  "appLockBiometricFaceId": "面容 ID",
+  "appLockBiometricFace": "面容解锁",
+  "appLockBiometricTouchId": "触控 ID",
+  "appLockBiometricFingerprint": "指纹",
+  "appLockBiometricGeneric": "生物识别",
+  "appLockUnlockWithBiometrics": "使用{method}解锁",
+  "appLockBiometricsFailed": "无法使用{method}解锁，请改用 PIN。",
+  "appLockSignInToRecover": "请登录，否则丢失此 PIN 后将无法找回应用锁。",
+  "appLockSignInToRecoverBound": "请以 {email} 登录，否则丢失此 PIN 后将无法找回应用锁。",
+  "appLockNotSignedInNoRecovery": "你尚未登录。如果丢失此 PIN，将无法找回。",
+  "appLockForgotPin": "忘记 PIN？",
+  "appLockSendRecoveryEmail": "发送验证邮件",
+  "appLockRecoveryEmailSent": "我们已向 {email} 发送验证邮件。请打开邮件后再回来。",
+  "appLockRecoveryIVerified": "我已验证 — 继续",
+  "appLockRecoveryResend": "重新发送邮件",
+  "appLockRecoveryReauth": "再次登录以重置 PIN",
+  "appLockRecoveryWrongAccount": "此 PIN 绑定到 {email}。请用该账户登录以找回。",
+  "appLockRecoveryUnavailable": "尚未设置 PIN 找回。你需要记住此 PIN，或重新安装 LM Mini。",
+  "appLockRecoveryFailed": "无法验证账户，请重试。",
+  "appLockRecoveryNoEmail": "此账户没有可用于发送验证链接的邮箱。",
+  "appLockRecoveryTooMany": "发送次数过多，请稍等一分钟再试。",
+  "appLockRecoverySetPin": "设置新 PIN",
+  "appLockContinueWithEmail": "使用邮箱继续",
+  "appLockSignedInRecoverHint": "如果忘记此 PIN，我们可以向 {email} 发送验证链接。",
+  "appLockRecoveryAccount": "PIN 找回",
+  "appLockRecoveryAccountOn": "验证邮件将发送到 {email}",
+  "appLockRecoveryAccountOff": "登录后才能找回丢失的 PIN",
+  "appLockRecoveryAccountOffSubtitle": "如果没有登录账户，丢失的 PIN 只能通过重新安装应用清除。",
+  "appLockBackToPin": "使用 PIN",
+  "premiumAppLock": "应用锁",
+  "premiumAppLockTagline": "用 PIN 保护应用",
+  "premiumAppLockDescription": "设置 4 或 6 位数字 PIN，可用面容 ID 解锁，并通过验证邮件找回丢失的 PIN。PIN 只保存在本机。",
+  "imageGenUnreachableTitle": "无法连接 {name}",
+  "imageGenUnreachableBody": "{url} 没有响应。请在电脑上启动 {name}，并保持同一 Wi‑Fi。",
+  "imageGenUnreachableNoUrlBody": "尚未设置图像生成服务器。请在图像生成设置中添加 ComfyUI 或 AUTOMATIC1111。",
+  "sharedHostUpdateImageTitle": "也更新图像生成地址？",
+  "sharedHostUpdateChatTitle": "也更新 {name}？",
+  "sharedHostUpdateBody": "{changedName} 和 {peerName} 之前都在 {oldHost}。要将 {peerName} 改为 {newUrl} 吗？",
+  "sharedHostUpdateConfirm": "更新并测试",
+  "sharedHostUpdateSkip": "保持当前",
+  "sharedHostTesting": "正在测试 {name}…",
+  "sharedHostTestSuccessTitle": "已连接",
+  "sharedHostTestSuccessBody": "已连接到 {name}（{url}）。",
+  "sharedHostTestFailTitle": "无法连接",
+  "sharedHostTestFailBody": "已将 {name} 更新为 {url}，但 Mini 连不上。{error}"
+}

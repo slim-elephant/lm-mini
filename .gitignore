@@ -1,0 +1,79 @@
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.build/
+.buildlog/
+.history
+.svn/
+.swiftpm/
+migrate_working_dir/
+__pycache__/
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# The .vscode folder contains launch configuration and tasks you configure in
+# VS Code which you may wish to be included in version control, so this line
+# is commented out by default.
+#.vscode/
+
+# Flutter/Dart/Pub related
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+/build/
+**/build/
+
+# Symbolication related
+app.*.symbols
+
+# Obfuscation related
+app.*.map.json
+
+# Android Studio will place build artifacts here
+/android/app/debug
+/android/app/profile
+/android/app/release
+
+# Local pubspec override
+pubspec_overrides.yaml
+
+# Firebase config: copy the *.example files into place, or use your own
+# project's files (see README.md). Never commit real ones.
+**/google-services.json
+**/GoogleService-Info.plist
+**/firebase_options.dart
+**/firebase_options.xml
+firebase-debug.log
+.firebaserc
+
+# Design sources and backups
+*.psd
+*.bak
+
+# Desktop build outputs
+dist/
+
+# Vendored Mac desktop inference binary (run macos/scripts/vendor_llama_server.sh before Archive)
+macos/Runner/Resources/runtime/llama-server
+macos/Runner/Resources/runtime/LICENSE.llama.cpp
+
+# Vendored Windows Home llama-server (run windows/scripts/vendor_llama_server.py)
+windows/runner/resources/runtime/*.exe
+windows/runner/resources/runtime/*.dll
+windows/runner/resources/runtime/LICENSE.llama.cpp
+
+# BigMoeOnEdge clone + generated iOS link flags (ios/scripts/fetch_and_build_bmoe.sh)
+third_party/bigmoe/
+ios/Flutter/bmoe.xcconfig

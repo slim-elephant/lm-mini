@@ -1,0 +1,131 @@
+name: lm_mini
+description: "A companion app for LM Studio, Ollama and oMLX that lets you chat with local language models from your mobile device."
+
+publish_to: 'none'
+
+version: 1.10.0+140
+
+environment:
+  sdk: '>=3.6.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  intl: any
+  cupertino_icons: ^1.0.8
+  http: ^1.1.0
+  shared_preferences: ^2.2.2
+  sqflite: ^2.3.0
+  path: ^1.8.3
+  json_annotation: ^4.8.1
+  provider: ^6.1.1
+  flutter_slidable: ^3.0.1
+  image_picker: ^1.1.2
+  image_picker_android: ^0.8.12
+  image_picker_platform_interface: ^2.10.0
+  image: ^4.3.0
+  file_picker: ^8.0.0+1
+  permission_handler: ^11.3.1
+  path_provider: ^2.1.1
+  url_launcher: ^6.2.2
+  # Firebase packages
+  firebase_core: ^3.8.1
+  firebase_auth: ^5.3.4
+  cloud_firestore: ^5.6.0
+  firebase_storage: ^12.3.6
+  google_sign_in: ^6.2.1
+  # Premium features package (stub for open-source, override locally for real premium)
+  lm_mini_premium:
+    path: packages/premium_stub
+  flutter_markdown: ^0.7.4+3
+  flutter_highlight: ^0.7.0
+  flutter_math_fork: ^0.7.2
+  google_fonts: ^6.2.1
+  markdown: ^7.2.2
+  open_file: ^3.3.2
+  syncfusion_flutter_pdf: ^32.1.21
+  spreadsheet_decoder: ^2.3.0
+  archive: ^3.4.10
+  share_plus: ^10.1.4
+  gal: ^2.3.2
+  desktop_drop: ^0.5.0
+  wakelock_plus: ^1.4.0
+  flutter_tts: ^4.2.0
+  speech_to_text: ^7.0.0
+  record: ^6.0.0
+  sherpa_onnx: ^1.12.28
+  just_audio: ^0.9.43
+  in_app_review: ^2.0.9
+  package_info_plus: ^9.0.0
+  cryptography: ^2.9.0
+  mobile_scanner: ^6.0.2
+  qr_flutter: ^4.1.0
+  uuid: ^4.5.1
+  home_widget: ^0.9.1
+  cloud_kit:
+    path: packages/cloud_kit
+  firebase_analytics: ^11.6.0
+  flutter_local_notifications: ^19.0.0
+  # Keep as a regular dependency so Android plugin registration resolves
+  # during release CLI builds (GeneratedPluginRegistrant references it).
+  flutter_native_splash: ^2.3.6
+  # On-device LLM foundation (Phase 1): hardware fingerprint for the per-iPhone
+  # capability/fit table.
+  device_info_plus: ^11.2.0
+  # On-device LLM (Phase 2): free-disk space probing before downloads.
+  disk_space_plus: ^0.2.6
+  # fllama: llama.cpp wrapper for cross-platform on-device inference.
+  # Source repo: https://github.com/Telosnex/fllama
+  fllama:
+    git:
+      url: https://github.com/Telosnex/fllama.git
+      ref: main
+  video_player: ^2.11.1
+  local_auth: ^2.3.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+  json_serializable: ^6.7.1
+  build_runner: ^2.4.7
+  flutter_launcher_icons: ^0.13.1
+
+flutter:
+  generate: true
+  uses-material-design: true
+  
+  assets:
+    - assets/icons/app_icon.png
+    - assets/icons/splash_icon.png
+    - assets/images/
+    - assets/images/persona_pack/
+    - google_fonts/
+
+# App Icon Configuration
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icons/app_icon.png"
+  remove_alpha_ios: true
+  web:
+    generate: true
+    image_path: "assets/icons/app_icon.png"
+  windows:
+    generate: true
+    image_path: "assets/icons/app_icon.png"
+  macos:
+    generate: true
+    image_path: "assets/icons/app_icon.png"
+
+# Splash Screen Configuration  
+flutter_native_splash:
+  color: "#4F46E5"
+  image: assets/icons/splash_icon.png
+  android_12:
+    color: "#4F46E5"
+    image: assets/icons/splash_icon.png
+  ios: true
+  web: false

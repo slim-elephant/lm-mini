@@ -1,0 +1,3111 @@
+{
+  "@@locale": "en",
+  "appTitle": "LM Mini",
+  "splashTagline": "local AI chat",
+  "homeTitle": "LM Mini",
+  "homeSearchHint": "Search conversations...",
+  "allConversations": "All Conversations",
+  "noFoldersTitle": "No folders yet",
+  "noFoldersSubtitle": "Create folders to organize your chats",
+  "noConversationsTitle": "No conversations yet",
+  "noConversationsSubtitle": "Start a new chat to get started",
+  "newChat": "New Chat",
+  "conversationCount": "{count} conversation(s)",
+  "@conversationCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "noModelsAvailable": "No models available. Please check your LM Studio connection.",
+  "noVisionModelAvailable": "No vision-capable model available. Please load a vision model in LM Studio.",
+  "deleteConversationTitle": "Delete Conversation",
+  "deleteConversationMessage": "Are you sure you want to delete this conversation? This action cannot be undone.",
+  "renameConversationTitle": "Rename Conversation",
+  "conversationTitleLabel": "Conversation Title",
+  "deleteFolderTitle": "Delete Folder",
+  "deleteFolderMessage": "This will not delete the conversations in this folder.",
+  "moveToFolderTitle": "Move to Folder",
+  "noFolder": "No Folder",
+  "cancel": "Cancel",
+  "delete": "Delete",
+  "save": "Save",
+  "close": "Close",
+  "ok": "OK",
+  "add": "Add",
+  "edit": "Edit",
+  "reset": "Reset",
+  "retry": "Retry",
+  "search": "Search",
+  "copy": "Copy",
+  "copied": "Copied!",
+  "copiedToClipboard": "Copied to clipboard",
+  "dismiss": "Dismiss",
+  "configure": "Configure",
+  "rename": "Rename",
+  "duplicate": "Duplicate",
+  "enabled": "Enabled",
+  "disabled": "Disabled",
+  "active": "Active",
+  "none": "None",
+  "auto": "Auto",
+  "custom": "Custom",
+  "change": "Change",
+  "chatDefaultTitle": "Chat",
+  "searchMessagesTooltip": "Search messages",
+  "chatSettingsMenuItem": "Chat Settings",
+  "appearanceMenuItem": "Appearance",
+  "exportAsPdf": "Export as PDF",
+  "exportAsTxt": "Export as TXT",
+  "exportAsMarkdown": "Export as Markdown",
+  "exportAsJson": "Export as JSON",
+  "exportAsObsidian": "Export for Obsidian",
+  "copyToClipboard": "Copy to Clipboard",
+  "exportAndShare": "Export & Share",
+  "freeFormats": "Standard",
+  "premiumFormats": "Pro Formats",
+  "chatExported": "Chat exported",
+  "noModelSelectedTitle": "No Model Selected",
+  "noModelSelectedSubtitle": "Please select a model in settings to start chatting",
+  "openSettings": "Open Settings",
+  "connectionError": "Connection Error: {error}",
+  "@connectionError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "startConversation": "Greetings! How may I assist you today?",
+  "typeMessageToBegin": "Pick a suggestion below, or type a message to begin",
+  "searchMessagesTitle": "Search Messages",
+  "searchQueryHint": "Enter search query...",
+  "semanticSearchInfo": "Semantic search uses AI to find relevant messages based on meaning, not just keywords.",
+  "noMessagesToSearch": "No messages to search",
+  "searchResults": "Search Results",
+  "searchResultsFor": "{count} match(es) for \"{query}\"",
+  "@searchResultsFor": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "query": {
+        "type": "String"
+      }
+    }
+  },
+  "noMessagesFound": "No messages found",
+  "tryDifferentSearch": "Try a different search query",
+  "chatCustomizationSaved": "Chat customization saved",
+  "noMessagesToExport": "No messages to export",
+  "exportingChat": "Exporting chat...",
+  "chatExportedAsPdf": "Chat exported as PDF",
+  "chatExportedAsTxt": "Chat exported as TXT",
+  "exportFailed": "Export failed: {error}",
+  "@exportFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "chatSettingsUpdated": "Chat settings updated (overriding global settings)",
+  "chatSettingsReset": "Chat settings reset to global defaults",
+  "you": "You",
+  "assistant": "Assistant",
+  "yesterday": "Yesterday",
+  "showDetails": "Show details",
+  "hideDetails": "Hide details",
+  "settingsTitle": "Settings",
+  "settingsAdvancedMode": "Advanced",
+  "settingsAdvancedModeTooltip": "Show technical options for power users",
+  "serverSection": "SERVER",
+  "serverUrlLabel": "Server URL",
+  "serverUrlHint": "http://localhost:1234",
+  "testConnectionRequired": "Test Connection (Required)",
+  "testConnection": "Test Connection",
+  "modelsSection": "MODELS",
+  "modelSelection": "Model Selection",
+  "noModelSelected": "No model selected",
+  "modelParameters": "Model Parameters",
+  "modelParametersSubtitle": "Temperature, tokens, penalties",
+  "modelParametersHelpTooltip": "What these settings mean",
+  "modelParametersHelpTitle": "Quick guide",
+  "modelParametersHelpIntro": "Simple tips for each setting. Leave defaults if you’re unsure — you can always change them later. Some options only show for your current AI provider.",
+  "topKHelp": "How many word choices the AI considers. Lower = safer and more predictable; 0 = no limit.",
+  "reasoningHelp": "Turns thinking mode on or off for reasoning models. Off = faster replies without a thinking trace; On (or a level) asks the model to think step by step. Not all reasoning models support turning thinking off.",
+  "reasoningHelpShort": "Turns thinking on or off. Not all models support Off.",
+  "systemPrompts": "Personas and System Prompts",
+  "defaultPrompt": "Default Prompt",
+  "appearanceSection": "APPEARANCE",
+  "appearance": "Appearance",
+  "appearanceSubtitle": "Theme, backgrounds, avatars",
+  "supportSection": "SUPPORT",
+  "rateApp": "Rate LM Mini",
+  "rateAppSubtitle": "Love the app? Leave a review on the App Store ⭐",
+  "hfBrowseTitle": "Download from Hugging Face",
+  "hfBrowseSubtitle": "Browse GGUF models — no API key needed",
+  "hfBrowseTab": "Browse",
+  "hfPasteTab": "Paste link",
+  "hfSearchHint": "Search GGUF models…",
+  "hfLoadingModels": "Searching Hugging Face…",
+  "hfNoModelsFound": "No models found",
+  "hfNoModelsHint": "Try a different search term or turn off the LM Studio filter.",
+  "hfLmStudioFilter": "LM Studio compatible",
+  "hfLmStudioFilterHint": "Only models Hugging Face lists as working with LM Studio",
+  "hfChatModelsFilter": "Chat models",
+  "hfChatBadge": "Chat",
+  "hfLmStudioBadge": "LM Studio",
+  "hfPasteUrlHint": "https://huggingface.co/owner/repo",
+  "hfModelInfo": "Model info",
+  "hfDownloadsCount": "{count} downloads",
+  "@hfDownloadsCount": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "hfLikesCount": "{count} likes",
+  "@hfLikesCount": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "hfPipelineTag": "Task: {tag}",
+  "@hfPipelineTag": {
+    "placeholders": {
+      "tag": {
+        "type": "String"
+      }
+    }
+  },
+  "hfBaseModel": "Base model: {model}",
+  "@hfBaseModel": {
+    "placeholders": {
+      "model": {
+        "type": "String"
+      }
+    }
+  },
+  "hfLicense": "License: {license}",
+  "@hfLicense": {
+    "placeholders": {
+      "license": {
+        "type": "String"
+      }
+    }
+  },
+  "hfTagsSection": "Tags",
+  "hfQuantPickerHint": "Lower quant = smaller file. Q4_K_M is a good balance for most devices.",
+  "hfBackToModels": "Back to models",
+  "hfGgufFilesCount": "{count} GGUF file(s) available",
+  "@hfGgufFilesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "hfDownloadInBackground": "Download started — track progress with the floating button. You can keep browsing or close this panel.",
+  "hfQuantPickerHintLmStudio": "Quantizations listed by your LM Studio server. Pick one to download to the server.",
+  "hfDownloadDefaultQuant": "Download",
+  "hfDownloadFailed": "Could not start download: {error}",
+  "@hfDownloadFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "hfPasteInstructions": "Paste a Hugging Face repo URL or type owner/repo. You'll pick a quantization next.",
+  "hfPasteInstructionsLmStudio": "Paste a Hugging Face URL, owner/repo, or an LM Studio model ID.",
+  "hfPasteLabel": "Repository",
+  "hfInvalidRepo": "Enter a valid Hugging Face URL or owner/repo.",
+  "hfRecommended": "Recommended",
+  "reviewPromptTitle": "Enjoying LM Mini?",
+  "reviewPromptMessage": "You've had a few great chats! Would you mind leaving a quick rating on the Play Store?",
+  "reviewPromptRate": "Rate now",
+  "reviewPromptLater": "Maybe later",
+  "buyMeACoffee": "Buy Me a Coffee",
+  "buyMeACoffeeSubtitle": "Help keep the AI caffeinated! 🤖",
+  "featureRequests": "Support / Feature Requests",
+  "featureRequestsSubtitle": "Vote on features or submit your ideas",
+  "dataSection": "DATA",
+  "exportAllChats": "Export All Chats",
+  "exportAllChatsSubtitle": "Download all conversations as a ZIP file",
+  "importChats": "Import Chats",
+  "importChatsSubtitle": "Import LM Studio chat exports (.md or .zip)",
+  "importSuccess": "{count, plural, =1{1 chat imported successfully} other{{count} chats imported successfully}}",
+  "@importSuccess": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "importFailed": "Import failed",
+  "importPartial": "{imported} imported, {skipped} skipped",
+  "@importPartial": {
+    "placeholders": {
+      "imported": {
+        "type": "int"
+      },
+      "skipped": {
+        "type": "int"
+      }
+    }
+  },
+  "importing": "Importing...",
+  "advancedSection": "ADVANCED FEATURES",
+  "showRuntimeInfo": "Show Runtime Info",
+  "showRuntimeInfoSubtitle": "Display model architecture and runtime",
+  "embeddingModel": "Embedding Model",
+  "enableSemanticSearch": "Enable Semantic Search",
+  "enableSemanticSearchSubtitle": "Find relevant messages using embeddings",
+  "toolCalling": "Tool Calling",
+  "toolCallingEnabled": "Tool calling enabled",
+  "toolCallingDisabled": "Tool calling disabled",
+  "legalSection": "LEGAL",
+  "privacyPolicy": "Privacy Policy",
+  "privacyPolicySubtitle": "Chats stay on your devices",
+  "termsOfService": "Terms of Service",
+  "termsOfServiceSubtitle": "Terms and conditions",
+  "appName": "LM Mini",
+  "appTagline": "A Pocket A.I and companion app for LM Studio, Ollama and oMLX",
+  "couldNotOpenLink": "Could not open link",
+  "apiToken": "API Token and USB",
+  "tokenConfigured": "Token configured",
+  "optionalAuthentication": "Optional authentication",
+  "apiTokenLabel": "API Token",
+  "apiTokenHint": "Enter your LM Studio API token",
+  "apiTokenHelp": "If your LM Studio server requires authentication, enter your API token here. This is optional and only needed if you've enabled authentication in LM Studio settings.",
+  "apiTokenInfo": "LM Studio 0.4.0+ supports API authentication. Enable it in LM Studio > Settings > Security.",
+  "actionRequired": "- Action Required",
+  "idleTtl": "Idle TTL",
+  "idleTtlDefault": "Using LM Studio default (60 min)",
+  "idleTtlMinutes": "Auto-unload after {value} minutes idle",
+  "@idleTtlMinutes": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "idleTtlHoursMinutes": "Auto-unload after {hours} hr {mins} min idle",
+  "@idleTtlHoursMinutes": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      },
+      "mins": {
+        "type": "int"
+      }
+    }
+  },
+  "lmStudioDefault": "LM Studio Default",
+  "fiveMinutes": "5 minutes",
+  "fifteenMinutes": "15 minutes",
+  "thirtyMinutes": "30 minutes",
+  "oneHour": "1 hour",
+  "twoHours": "2 hours",
+  "connectionSuccess": "Connected! Loaded {count} models",
+  "@connectionSuccess": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "connectionFailed": "Connection failed",
+  "troubleshootingSteps": "Troubleshooting Steps:",
+  "troubleshootStep1": "Make sure LM Studio is running",
+  "troubleshootStep2": "In LM Studio, open the Developer tab (⚙️ icon)",
+  "troubleshootStep3": "Enable \"Serve on Local Network\" toggle",
+  "troubleshootStep4": "Verify Server Port matches (default: 1234)",
+  "troubleshootStep5": "For local connection use your IP, e.g. {ip}",
+  "@troubleshootStep5": {
+    "placeholders": {
+      "ip": {
+        "type": "String"
+      }
+    }
+  },
+  "lmStudioSettings": "LM Studio Settings",
+  "serveOnLocalNetworkHelp": "The \"Serve on Local Network\" toggle should be enabled (shown in orange/green) in the LM Studio Developer tab.",
+  "networkConnections": "Network Connections:",
+  "networkConnectionsTips": "• Replace \"localhost\" with your computer's IP address\n• Ensure both devices are on the same network\n• Check firewall settings for port 1234",
+  "noConversationsToExport": "No conversations to export",
+  "exportingConversations": "Exporting {count} conversation(s)...",
+  "@exportingConversations": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "exportSuccess": "{count} conversation(s) exported successfully",
+  "@exportSuccess": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "languageSection": "LANGUAGE",
+  "language": "Language",
+  "languageSubtitle": "Choose your preferred language",
+  "systemDefault": "System Default",
+  "english": "English",
+  "spanish": "Español",
+  "german": "Deutsch",
+  "french": "Français",
+  "russian": "Русский",
+  "chinese": "中文",
+  "toolsCallingTitle": "Tools Calling",
+  "toolCallingSection": "TOOL CALLING",
+  "enableToolCallingAndMcps": "Enable Tool Calling & MCPs",
+  "enableToolCallingSubtitle": "Allow AI to search web and call MCPs",
+  "builtInToolsSection": "BUILT-IN TOOLS",
+  "builtInToolsInfo": "Tools executed locally by the app when AI requests them",
+  "webSearch": "Web Search",
+  "webSearchUsingSearxng": "Using SearXNG",
+  "webSearchDisabled": "Disabled (configure SearXNG or upgrade to Pro)",
+  "integratedMcpsSection": "INTEGRATED MCPs",
+  "integratedMcpsInfo": "Use MCPs you already set up in LM Studio. Just add their names from your mcp.json here.",
+  "integratedMcpsAuthRequired": "Integrated MCPs require Authentication enabled in LM Studio and an API token set in Settings → API Token.",
+  "requiresApiToken": "Requires API token",
+  "setApiTokenTooltip": "Set an API token in Settings to enable",
+  "noIntegratedMcps": "No integrated MCPs configured",
+  "addManually": "Add Manually",
+  "importMcpJson": "Import mcp.json",
+  "ephemeralMcpsSection": "EPHEMERAL MCPs",
+  "ephemeralMcpsInfo": "HTTP MCP servers sent per-request. Requires \"Allow per-request MCPs\" in LM Studio.",
+  "requiresPerRequestMcps": "Requires: Developer → Server Settings → Allow per-request MCPs",
+  "noEphemeralMcps": "No ephemeral MCPs configured",
+  "addHttpMcpServer": "Add HTTP MCP Server",
+  "browseExampleMcps": "Browse Example MCP Servers",
+  "addIntegratedMcpTitle": "Add MCP",
+  "editIntegratedMcpTitle": "Edit MCP",
+  "addIntegratedMcpInfo": "Copy the name from LM Studio's mcp.json and paste it here. For example, if you see a key named playwright, type playwright.",
+  "mcpNameLabel": "Name from mcp.json",
+  "mcpNameHint": "playwright",
+  "mcpNameHelper": "Letters, numbers, and hyphens only — use web-search, not web_search.",
+  "exampleMcpJsonEntry": "💡 Example mcp.json entry:",
+  "nameIsRequired": "Name is required",
+  "mcpNameInvalidChars": "Use hyphens instead of underscores (LM Studio won't accept names like web_search).",
+  "mcpNameAlreadyExists": "That MCP is already added",
+  "addedMcp": "Added {name}",
+  "@addedMcp": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "updatedMcp": "Updated {name}",
+  "@updatedMcp": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "editMcpTooltip": "Edit name",
+  "unlimitedToolCalls": "Unlimited Tool Calls",
+  "unlimitedToolCallsSubtitle": "Remove the 10-call limit for Integrated & Ephemeral MCPs (does not affect Pro Search)",
+  "unlimitedToolCallsOn": "No limit on MCP tool call iterations",
+  "unlimitedToolCallsOff": "Limited to 10 tool call iterations",
+  "structuredOutput": "Structured Output",
+  "structuredOutputSubtitle": "Force JSON response format",
+  "reasoningMode": "Reasoning Mode",
+  "reasoningOff": "Off",
+  "reasoningLow": "Low",
+  "reasoningMedium": "Medium",
+  "reasoningHigh": "High",
+  "reasoningOn": "On",
+  "reasoningDescOff": "No reasoning traces",
+  "reasoningDescLow": "Minimal reasoning",
+  "reasoningDescMedium": "Balanced reasoning",
+  "reasoningDescHigh": "Detailed reasoning",
+  "reasoningDescOn": "Full reasoning traces",
+  "helpSection": "HELP",
+  "toolCallingGuide": "Tool Calling Guide",
+  "toolCallingGuideSubtitle": "Learn how tools work",
+  "searxngSetupGuide": "SearXNG Setup Guide",
+  "searxngSetupGuideSubtitle": "Set up your own search server",
+  "webSearchConfig": "Web Search Configuration",
+  "howWebSearchWorks": "💡 How Web Search Works",
+  "howWebSearchWorksSteps": "1. AI decides it needs current info\n2. App searches using Premium Search or SearXNG\n3. Results are sent back to AI\n4. AI synthesizes an answer",
+  "searchResultsLabel": "Search Results: ",
+  "webSearchDisabledWarning": "Web search disabled. Configure SearXNG or upgrade to Pro.",
+  "searxngUrlOptional": "SearXNG URL (Optional)",
+  "searxngUrlLabel": "SearXNG URL",
+  "searxngUrlHint": "http://localhost:8888",
+  "quickSetupDocker": "🐳 Quick Setup with Docker:",
+  "dockerCommand": "docker run -d -p 8888:8080 searxng/searxng",
+  "mcpBadge": "MCP",
+  "mcpResultBadge": "MCP Result",
+  "webSearchSourcesTitle": "Sources",
+  "toolBadge": "Tool",
+  "resultBadge": "Result",
+  "failedToLoadImage": "Failed to load image",
+  "thinking": "Thinking",
+  "think": "Think",
+  "thoughtFor": "Thought for {duration}",
+  "@thoughtFor": {
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "performanceStats": "Performance Stats",
+  "regenerate": "Regenerate",
+  "editMessage": "Edit Message",
+  "editMessageHint": "Edit your message...",
+  "saveAndRegenerate": "Save & Regenerate",
+  "deleteMessage": "Delete Message",
+  "deleteMessageConfirm": "Are you sure you want to delete this message?",
+  "mcpCallTitle": "MCP Call",
+  "mcpResultTitle": "MCP Result",
+  "toolCallTitle": "Tool Call",
+  "toolResultTitle": "Tool Result",
+  "attachFile": "Attach File",
+  "photoLibrary": "Photo Library",
+  "attachImagesForVision": "Attach images for vision analysis",
+  "requiresVisionModel": "Requires a vision-capable model",
+  "takePhoto": "Take Photo",
+  "captureImageWithCamera": "Capture image with camera",
+  "imageFromFiles": "Image from Files",
+  "pickImageFromFilesApp": "Pick an image from the Files app",
+  "attachDocuments": "Documents",
+  "attachDocumentsSubtitle": "PDF, Markdown, Excel (.xlsx), CSV, text, code, and more",
+  "textFileTxt": "Text File (.txt)",
+  "attachPlainText": "Attach plain text documents",
+  "csvFileCsv": "CSV File (.csv)",
+  "attachSpreadsheetData": "Attach spreadsheet data",
+  "pdfDocumentPdf": "PDF Document (.pdf)",
+  "attachPdfDocuments": "Attach PDF documents",
+  "mcpLabel": "MCP:",
+  "typeMessageHint": "Type a message...",
+  "attachFilesTooltip": "Attach files",
+  "customizeChat": "Customize Chat",
+  "overrideGlobalAppearance": "Override global appearance settings for this chat",
+  "background": "Background",
+  "userAvatar": "User Avatar",
+  "assistantAvatar": "Assistant Avatar",
+  "colorsSection": "Colors",
+  "userBubble": "User Bubble",
+  "userText": "User Text",
+  "assistantBubble": "Assistant Bubble",
+  "assistantText": "Assistant Text",
+  "darkOverlay": "Dim wallpaper",
+  "darkOverlayDescription": "How dark to make the wallpaper behind your chat",
+  "usingGlobal": "Using global",
+  "useGlobal": "Use Global",
+  "setCustom": "Set Custom",
+  "customColor": "Custom color",
+  "defaultThemeColor": "Default theme color",
+  "resetToDefault": "Reset to default",
+  "pickAColor": "Pick a color",
+  "chatSettingsTitle": "Chat Settings",
+  "overrideGlobalSettings": "Override global settings for this chat only",
+  "resetAll": "Reset All",
+  "modelOverride": "Model",
+  "noneSelected": "None selected",
+  "systemPromptOverride": "Persona",
+  "saved": "Saved",
+  "noSavedPromptsInfo": "No saved personas. Go to Settings → Personas to create some.",
+  "selectSavedPromptHint": "Select a persona...",
+  "enterCustomPromptHint": "Enter custom persona prompt...",
+  "personaShareMemoriesLabel": "Share memories",
+  "personaShareMemoriesSubtitle": "When off, this persona won't receive or learn memories in chats",
+  "webSearchOffForThisChat": "Off for this chat only",
+  "reasoningOffForThisChat": "Off for this chat only",
+  "temperatureOverride": "Temperature",
+  "maxTokensOverride": "Max Tokens",
+  "topPOverride": "Top P",
+  "topKOverride": "Top K",
+  "minPOverride": "Min P",
+  "repeatPenaltyOverride": "Repeat Penalty",
+  "contextLengthOverride": "Context Length",
+  "systemPromptsTitle": "Personas and System Prompts",
+  "addSystemPromptTooltip": "Add prompt or persona",
+  "systemPromptsInfoText": "Create and manage system prompts. Bind them to specific models or use them globally. Select one to make it active.",
+  "savedPromptsSection": "SAVED PROMPTS",
+  "addSystemPrompt": "Add System Prompt",
+  "newPrompt": "New Prompt or Persona",
+  "noPromptSet": "No prompt set",
+  "editSystemPrompt": "Edit System Prompt",
+  "newSystemPrompt": "New Prompt or Persona",
+  "promptNameLabel": "Prompt Name",
+  "promptNameHint": "e.g., Code Assistant, Creative Writer...",
+  "systemPromptLabel": "System Prompt",
+  "systemPromptEditorHint": "You are a helpful assistant that...",
+  "bindToModels": "Bind to Specific Models",
+  "bindToModelsSubtitle": "Restrict this prompt to certain models. When unbound, it's available for all models.",
+  "noModelsLoaded": "No models loaded. Connect to LM Studio and load models to bind this prompt.",
+  "templatesSection": "TEMPLATES",
+  "pleaseEnterPromptName": "Please enter a name for this prompt",
+  "pleaseEnterPromptContent": "Please enter the prompt content",
+  "deleteSystemPromptTitle": "Delete System Prompt?",
+  "deleteSystemPromptMessage": "Are you sure you want to delete \"{name}\"? This cannot be undone.",
+  "@deleteSystemPromptMessage": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "templateCodeAssistant": "Code Assistant",
+  "templateCreativeWriter": "Creative Writer",
+  "templateConciseExpert": "Concise Expert",
+  "templateResearcher": "Researcher",
+  "templateTutor": "Tutor",
+  "templateTechnicalWriter": "Technical Writer",
+  "downloadProgress": "Download Progress",
+  "progressLabel": "Progress",
+  "speedLabel": "Speed",
+  "etaLabel": "ETA",
+  "statusLabel": "Status",
+  "notAvailable": "N/A",
+  "calculating": "Calculating...",
+  "moveToFolderPopup": "Move to Folder",
+  "contextInfo": "Context: {used} / {total}",
+  "@contextInfo": {
+    "placeholders": {
+      "used": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "hideAvatars": "Hide Avatars",
+  "hideAvatarsSubtitle": "Remove avatar icons from chat messages",
+  "autoScroll": "Auto-scroll",
+  "autoScrollSubtitle": "Scroll to bottom when new messages arrive",
+  "editMcpServer": "Edit MCP Server",
+  "addMcpServer": "Add MCP Server",
+  "serverLabelRequired": "Server Label *",
+  "serverLabelHint": "e.g., huggingface, tiktoken",
+  "serverLabelHelper": "A name to identify this server",
+  "serverUrlRequired": "Server URL *",
+  "serverUrlMcpHint": "https://huggingface.co/mcp",
+  "serverUrlHelper": "HTTP/HTTPS URL of the MCP server",
+  "authorizationOptional": "API Key (Optional)",
+  "authorizationHint": "hf_xxxxxxxx or Bearer hf_xxxxxxxx",
+  "authorizationHelper": "Sent as the Authorization header to this MCP. Paste a raw token (Bearer is added) or a full header value.",
+  "additionalHeaders": "Additional Headers",
+  "additionalHeadersHint": "X-Custom-Header: value",
+  "additionalHeadersHelper": "One header per line (name: value).\nAPI key / Authorization is set above.",
+  "labelAndUrlRequired": "Label and URL are required",
+  "urlMustStartWithHttp": "URL must start with http:// or https://",
+  "mcpServerUpdated": "MCP server updated",
+  "mcpServerAdded": "MCP server added",
+  "importMcpJsonTitle": "Import mcp.json",
+  "pasteMcpJsonContent": "Paste your mcp.json content",
+  "mcpJsonLocation": "Find it at: ~/.lmstudio/config/mcp.json\nOr in LM Studio: Developer → MCP Settings → Open config",
+  "mcpJsonContentLabel": "mcp.json content",
+  "mcpJsonContentHelper": "Paste the entire mcp.json file content",
+  "parseJson": "Parse JSON",
+  "foundMcpServers": "Found {count} MCP server(s):",
+  "@foundMcpServers": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "hasAuthHeaders": "Has authentication headers",
+  "importSelected": "Import {count} Selected",
+  "@importSelected": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "pleasePasteMcpJson": "Please paste your mcp.json content",
+  "noMcpServersFound": "No mcpServers found in JSON",
+  "exampleMcpServers": "Example MCP Servers",
+  "gitMcpInfo": "These use GitMCP to provide docs from GitHub repos",
+  "browseMoreGitMcp": "Browse more at gitmcp.io",
+  "fileNotFound": "File not found",
+  "openWithExternalApp": "Open with external app",
+  "previewNotAvailable": "Preview not available",
+  "voiceMode": "Voice Mode",
+  "voiceSettings": "Voice Settings",
+  "voiceSettingsSubtitle": "Text-to-speech, voice input, and voice mode",
+  "voiceSection": "Voice",
+  "voiceStatus": "Status",
+  "voiceTtsEngine": "Text-to-Speech Engine",
+  "voiceSttEngine": "Speech Recognition Engine",
+  "voiceAvailable": "Available",
+  "voiceUnavailable": "Not available",
+  "voiceTtsSettings": "Text-to-Speech",
+  "voiceSttSettings": "Speech-to-Text",
+  "voiceSttProvider": "Speech Recognition Provider",
+  "voiceSttProviderSystem": "System speech",
+  "voiceSttProviderSystemSubtitle": "Apple Speech on iOS, Google Speech on Android",
+  "voiceSttProviderWhisper": "On-device Whisper",
+  "voiceSttProviderWhisperSubtitle": "Offline sherpa-onnx Whisper — more accurate, works the same on all platforms",
+  "voiceWhisperModelNotDownloaded": "Whisper model not downloaded",
+  "voiceWhisperModelReady": "Whisper model ready",
+  "voiceWhisperModelSize": "Choose a size — larger models transcribe more accurately",
+  "voiceWhisperDownloadButton": "Download",
+  "voiceWhisperDownloading": "Downloading Whisper model…",
+  "voiceWhisperDownloadStarting": "Starting download…",
+  "voiceWhisperDownloadFailed": "Download failed",
+  "voiceWhisperDeleteModel": "Delete selected Whisper model",
+  "voiceWhisperDeleteTitle": "Delete Whisper model?",
+  "voiceWhisperDeleteMessage": "This frees the selected model from device storage. On-device speech recognition will fall back to system speech until you download a Whisper model again.",
+  "voiceWhisperDeleteConfirm": "Delete",
+  "voiceWhisperFallback": "Falls back to system speech if the model is not downloaded",
+  "voiceWhisperBiggerBetterTitle": "Why bigger models?",
+  "voiceWhisperBiggerBetterBody": "Larger Whisper models usually produce more accurate transcripts — especially with accents, quiet audio, background noise, and uncommon words. They also need more storage and run slower on your device.\n\nTiny is fine for short, clear speech. Base or Small is a better fit for longer files. Large v3 Turbo is the fastest/smallest of the big models (pruned Large v3). Full Large v3 is the most accurate, but also the heaviest.",
+  "voiceWhisperUseModel": "Use",
+  "voiceWhisperSelected": "Selected",
+  "voiceWhisperDownloaded": "Downloaded",
+  "audioSetupTitle": "Set up voice & audio",
+  "audioSetupMessage": "Voice chat needs the assistant to speak aloud. Download a voice for the most natural sound, or use your phone's built-in voices — no download needed.",
+  "audioSetupWhisperStatus": "Whisper speech recognition",
+  "audioSetupKokoroStatus": "Kokoro neural voice",
+  "audioSetupStatusReady": "Ready",
+  "audioSetupStatusMissing": "Not downloaded",
+  "audioSetupOnDeviceButton": "Download Kokoro voice",
+  "audioSetupOnDeviceSubtitle": "Kokoro neural TTS · about 300 MB · works offline",
+  "audioSetupSystemButton": "Use system speech",
+  "audioSetupSystemSubtitle": "Built-in STT and TTS — no download required",
+  "audioSetupConfigureButton": "Voice settings",
+  "audioSetupNotNow": "Not now",
+  "audioSetupDownloadingWhisper": "Downloading Whisper…",
+  "audioSetupDownloadingKokoro": "Downloading Kokoro…",
+  "audioSetupDownloadComplete": "Models ready",
+  "audioSetupContinueButton": "Continue",
+  "voiceModeSettings": "Voice Mode",
+  "voiceAutoRead": "Auto-read responses",
+  "voiceAutoReadSubtitle": "Automatically read new assistant messages aloud",
+  "voiceSpeechRate": "Speech Rate",
+  "voicePitch": "Pitch",
+  "voiceLanguage": "Voice Language",
+  "voiceLanguageSubtitle": "Language for spoken replies (text-to-speech)",
+  "voiceSttLanguage": "Recognition language",
+  "voiceSttLanguageSubtitle": "Used for the text mic and Voice Call. Can differ from spoken reply language.",
+  "voiceSelection": "Voice Selection",
+  "voiceDefault": "Default",
+  "voiceTestVoice": "Test Voice",
+  "voiceTestVoiceSubtitle": "Play a sample to hear the current voice settings",
+  "voiceTestPhrase": "Hello! This is how I sound now.",
+  "voiceTestProgressInitializing": "Starting TTS engine…",
+  "voiceTestProgressGenerating": "Generating speech…",
+  "voiceTestProgressPreparing": "Preparing playback…",
+  "voiceTestProgressPlaying": "Playing sample…",
+  "voiceTestProgressConnecting": "Connecting to remote voice…",
+  "voiceTestProgressComplete": "Done",
+  "voiceKokoroEngineReady": "Engine ready — test should start quickly",
+  "voiceKokoroEngineWarming": "Warming up on-device engine…",
+  "voiceAutoSend": "Auto-send after speech",
+  "voiceAutoSendSubtitle": "Automatically send message when speech recognition ends",
+  "voiceSttPauseFor": "Silence before send",
+  "voiceSttPauseForSubtitle": "Seconds of silence after you stop speaking before your message is sent. This is separate from iOS mic session limits (~15s chunks, handled automatically).",
+  "voiceSttListenFor": "Maximum listening time",
+  "voiceSttListenForSubtitle": "Hard cap per mic session before the app reopens the mic. On iOS, Apple also rotates sessions about every 15 seconds during long speech.",
+  "voiceSttSeconds": "{seconds} s",
+  "@voiceSttSeconds": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "voiceContinuousConversation": "Continuous conversation",
+  "voiceContinuousConversationSubtitle": "Automatically start listening after response is read aloud",
+  "voiceTapToSpeak": "Tap to talk",
+  "voiceListening": "Listening…",
+  "voiceThinking": "One moment…",
+  "voiceResponding": "Replying…",
+  "voiceSpeaking": "Speaking…",
+  "voiceConvoHintIdle": "Tap the circle to start talking",
+  "voiceConvoHintListening": "I'm listening — take your time",
+  "voiceConvoHintStarting": "Getting the microphone ready…",
+  "voiceConvoHintProcessing": "Thinking…",
+  "voiceConvoHintSpeaking": "",
+  "voiceNotAvailable": "Speech recognition is not available on this device",
+  "voiceStartRecording": "Start voice input",
+  "voiceStopRecording": "Stop recording",
+  "voiceDiscardRecording": "Discard",
+  "voiceSelectLanguage": "Select Language",
+  "voiceSelectVoice": "Select Voice",
+  "voiceNoVoicesAvailable": "No voices available for this language",
+  "voiceAboutTitle": "About Voice Mode",
+  "voiceAboutDescription": "Voice mode can use your phone's built-in voices, or a downloaded voice on this device. Listening can use built-in recognition or an offline model you download. Speech stays on this device — nothing is sent to outside servers.",
+  "voiceExitMode": "Switch to keyboard",
+  "voiceTtsProvider": "TTS Provider",
+  "voiceTtsProviderNative": "Device (Native)",
+  "voiceTtsProviderNativeSubtitle": "Uses built-in system voices — works offline",
+  "voiceTtsProviderKokoro": "Downloaded voice",
+  "voiceTtsProviderKokoroSubtitle": "Natural voices that run on this device",
+  "voiceTtsProviderKokoroRemote": "Kokoro (PC)",
+  "voiceTtsProviderKokoroRemoteSubtitle": "Run Kokoro on your PC for faster, higher-quality speech",
+  "voiceTtsProviderElevenLabs": "ElevenLabs",
+  "voiceTtsProviderElevenLabsSubtitle": "Pro · your API key · cloud voices",
+  "voiceTtsElevenLabs": "ElevenLabs",
+  "voiceTtsElevenLabsHint": "Your key · voices from your ElevenLabs library",
+  "voiceElevenLabsApiKey": "ElevenLabs API key",
+  "voiceElevenLabsApiKeyHint": "Paste your xi-api-key from elevenlabs.io",
+  "voiceElevenLabsTestKey": "Check key",
+  "voiceElevenLabsKeyInvalid": "That key was not accepted. Check it on elevenlabs.io.",
+  "voiceElevenLabsKeyNetwork": "Could not reach ElevenLabs. Check your connection.",
+  "voiceElevenLabsKeyQuota": "This key is out of quota.",
+  "voiceElevenLabsKeyUnknown": "Could not verify this key. Try again.",
+  "voiceElevenLabsPrivacy": "Reply text is sent to ElevenLabs with your key. LM Mini stores the key on this device only.",
+  "voiceElevenLabsModel": "ElevenLabs model",
+  "voiceElevenLabsVoice": "ElevenLabs voice",
+  "voiceElevenLabsNoVoices": "No voices in this account. Add voices in the ElevenLabs library first.",
+  "voiceElevenLabsChangeKey": "Change key",
+  "voiceElevenLabsRemoveKey": "Remove key",
+  "voiceElevenLabsReady": "Connected to ElevenLabs",
+  "voiceElevenLabsNoKey": "Add your ElevenLabs API key",
+  "personaElevenLabsVoiceLabel": "ElevenLabs voice",
+  "personaElevenLabsVoiceGlobal": "Use global ElevenLabs voice",
+  "personaElevenLabsVoicePickerTitle": "ElevenLabs voice",
+  "personaElevenLabsVoiceAddKey": "Add an API key in Voice Settings to pick an ElevenLabs voice",
+  "premiumElevenLabsTts": "ElevenLabs voices",
+  "premiumElevenLabsTtsTagline": "BYOK neural TTS",
+  "premiumElevenLabsTtsDescription": "Bring your ElevenLabs API key and assign studio voices to personas. Voice chat, auto-read, and read-aloud use the same engine.",
+  "voiceTtsProviderGrok": "Grok",
+  "voiceTtsProviderGrokSubtitle": "Pro · your xAI API key · cloud voices",
+  "voiceTtsGrok": "Grok",
+  "voiceTtsGrokHint": "Your key · Grok voices from xAI",
+  "voiceGrokApiKey": "xAI API key",
+  "voiceGrokApiKeyHint": "Paste your API key from console.x.ai",
+  "voiceGrokTestKey": "Check key",
+  "voiceGrokKeyInvalid": "That key was not accepted. Check it on console.x.ai.",
+  "voiceGrokKeyNetwork": "Could not reach xAI. Check your connection.",
+  "voiceGrokKeyQuota": "This key is out of quota.",
+  "voiceGrokKeyUnknown": "Could not verify this key. Try again.",
+  "voiceGrokPrivacy": "Reply text is sent to xAI with your key. LM Mini stores the key on this device only.",
+  "voiceGrokVoice": "Grok voice",
+  "voiceGrokNoVoices": "No Grok voices available. Try again after checking your key.",
+  "voiceGrokChangeKey": "Change key",
+  "voiceGrokRemoveKey": "Remove key",
+  "voiceGrokReady": "Connected to Grok",
+  "voiceGrokNoKey": "Add your xAI API key",
+  "personaGrokVoiceLabel": "Grok voice",
+  "personaGrokVoiceGlobal": "Use global Grok voice",
+  "personaGrokVoicePickerTitle": "Grok voice",
+  "personaGrokVoiceAddKey": "Add an API key in Voice Settings to pick a Grok voice",
+  "personaVoiceSection": "Voice",
+  "personaVoiceProviderLabel": "Provider",
+  "personaVoiceProviderKokoro": "Kokoro",
+  "personaVoiceProviderGlobal": "Use global voice settings",
+  "personaVoiceConfigureInSettings": "Configure under Settings → Voice",
+  "premiumGrokTts": "Grok voices",
+  "premiumGrokTtsTagline": "BYOK neural TTS",
+  "premiumGrokTtsDescription": "Bring your xAI API key and assign Grok voices to personas. Voice chat, auto-read, and read-aloud use the same engine.",
+  "voiceRemoteKokoroConnected": "Connected to Kokoro on PC",
+  "voiceRemoteKokoroNotFound": "Kokoro TTS not found on PC",
+  "voiceRemoteKokoroRequiresConnect": "Requires Share with phone on your Mac (or LM Mini Connect on Windows/Linux)",
+  "voiceKokoroVoice": "Kokoro Voice",
+  "voiceKokoroSpeed": "Speech Speed",
+  "voiceKokoroModelReady": "Kokoro model ready",
+  "voiceKokoroModelReadySubtitle": "Downloaded voice is ready",
+  "voiceKokoroModelNotDownloaded": "Kokoro model not downloaded",
+  "voiceKokoroModelSize": "Download required (~400 MB shared pack)",
+  "voiceKokoroDownloading": "Downloading Kokoro model…",
+  "voiceKokoroDownloadStarting": "Starting download…",
+  "voiceKokoroDownloadButton": "Download",
+  "voiceKokoroDownloadFailed": "Download failed. Tap to retry.",
+  "voiceKokoroFallback": "Will fall back to native voice if Kokoro model is not downloaded",
+  "voiceKokoroDeleteModel": "Delete Kokoro model",
+  "voiceKokoroDeleteTitle": "Delete Kokoro Model?",
+  "voiceKokoroDeleteMessage": "This will remove every downloaded TTS language pack. You can re-download them later.",
+  "voiceKokoroDeleteConfirm": "Delete",
+  "voiceTtsLanguagePacksHint": "English, Spanish, French, and Chinese share one download (~400 MB). German and Russian are smaller (~34 MB each).",
+  "voiceTtsLanguagePacks": "Voice packs",
+  "voiceTtsLanguagePacksSubtitleNone": "Download a language to speak on this device",
+  "voiceTtsLanguagePacksSubtitleReady": "{ready} of {total} languages ready",
+  "@voiceTtsLanguagePacksSubtitleReady": {
+    "placeholders": {
+      "ready": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  },
+  "voiceTtsLanguagePacksSubtitleDownloading": "Downloading {name}…",
+  "@voiceTtsLanguagePacksSubtitleDownloading": {
+    "placeholders": {
+      "name": { "type": "String" }
+    }
+  },
+  "voiceTtsSharedPackSize": "Shared download · ~{size} MB",
+  "@voiceTtsSharedPackSize": {
+    "placeholders": {
+      "size": {
+        "type": "int"
+      }
+    }
+  },
+  "voiceTtsPiperPackSize": "Smaller download · ~{size} MB",
+  "@voiceTtsPiperPackSize": {
+    "placeholders": {
+      "size": {
+        "type": "int"
+      }
+    }
+  },
+  "voiceTtsSharedPackDeleteMessage": "This removes the shared download used by English, Spanish, French, and Chinese. You can download it again later.",
+  "connecting": "Connecting...",
+  "saveAndTestConnection": "Save & Test Connection",
+  "connectedTo": "✅ Connected to {provider}",
+  "@connectedTo": {
+    "placeholders": {
+      "provider": {
+        "type": "String"
+      }
+    }
+  },
+  "connectionToFailed": "❌ Connection to {provider} failed — check your API key",
+  "@connectionToFailed": {
+    "placeholders": {
+      "provider": {
+        "type": "String"
+      }
+    }
+  },
+  "errorGeneric": "❌ Error: {error}",
+  "@errorGeneric": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "provider": "Provider",
+  "cloudApiKeyLabel": "{provider} API Key",
+  "@cloudApiKeyLabel": {
+    "placeholders": {
+      "provider": {
+        "type": "String"
+      }
+    }
+  },
+  "enterApiKeyHint": "Enter your API key…",
+  "getApiKey": "Get {provider} API Key",
+  "@getApiKey": {
+    "placeholders": {
+      "provider": {
+        "type": "String"
+      }
+    }
+  },
+  "baseUrl": "Base URL",
+  "customBaseUrlOptional": "Custom Base URL (optional)",
+  "accountSection": "ACCOUNT",
+  "signIn": "Sign In",
+  "signInSubtitle": "Sign in to enable Cloud Backup",
+  "cloudServicesUnavailable": "Cloud services unavailable",
+  "signedInVia": "Signed in via {method}",
+  "@signedInVia": {
+    "placeholders": {
+      "method": {
+        "type": "String"
+      }
+    }
+  },
+  "lmMiniProSection": "LM MINI PRO",
+  "proActive": "Pro Active",
+  "allPremiumUnlocked": "All premium features unlocked",
+  "upgradeToPro": "Upgrade to Pro",
+  "unlockPremiumFeatures": "Unlock all premium features below",
+  "proBadge": "PRO",
+  "proFeatureTag": "Pro Feature",
+  "betaBadge": "BETA",
+  "imageGeneration": "Image Generation",
+  "generatedImagesLibrary": "Generated images",
+  "generatedImagesGallery": "Gallery",
+  "generatedImagesShowInChat": "Show in chat",
+  "generatedImagesLibrarySubtitle": "View, open in chat, or delete",
+  "generatedImagesLibraryEmpty": "No generated images yet",
+  "generatedImagesLibraryEmptyHint": "Images you generate in chat are saved here.",
+  "generatedImagesSelect": "Select",
+  "generatedImagesCancelSelect": "Done",
+  "generatedImagesDeleteN": "Delete {count}",
+  "@generatedImagesDeleteN": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "generatedImagesDeleteConfirmTitle": "Delete images?",
+  "generatedImagesDeleteConfirmBody": "{count} image(s) will be removed from this device. Chat messages stay.",
+  "@generatedImagesDeleteConfirmBody": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "generatedImagesOpenChat": "Open in chat",
+  "saveToPhotos": "Save to Photos",
+  "savedToPhotos": "Saved to Photos",
+  "couldNotSaveToPhotos": "Could not save this file.",
+  "share": "Share",
+  "generatedImagesMissingFile": "File missing",
+  "generatedImagesOrphan": "Not linked to a chat",
+  "generatedImagesPrompt": "Prompt",
+  "generatedImagesNegativePrompt": "Negative prompt",
+  "generatedImagesDetails": "Generation details",
+  "generatedImagesNoPrompt": "No prompt saved",
+  "generatedImagesChatUnavailable": "This chat is no longer available",
+  "generatedImagesVideo": "Video",
+  "imageGenEnabled": "Enabled — {url}",
+  "@imageGenEnabled": {
+    "placeholders": {
+      "url": {
+        "type": "String"
+      }
+    }
+  },
+  "imageGenNotConfigured": "Enabled — Not configured",
+  "cloudBackup": "Cloud Backup",
+  "encryptedBackupRestore": "Encrypted backup & restore",
+  "e2eBanner": "End-to-end encrypted — your passphrase never leaves this device",
+  "analytics": "Analytics",
+  "analyticsSubtitle": "Usage stats, tokens & model insights",
+  "memory": "Memories",
+  "memoryItemCount": "{count} items • Persistent across chats",
+  "@memoryItemCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "premiumWebSearch": "Premium Web Search",
+  "premiumWebSearchSubtitle": "Instant search — no SearXNG needed",
+  "urlReader": "URL Reader",
+  "urlReaderSubtitle": "Read & summarize any webpage",
+  "conversationBranching": "Conversation Branching",
+  "conversationBranchingSubtitle": "Fork conversations from any message",
+  "cloudBackupPro": "Cloud Backup",
+  "cloudBackupProSubtitle": "Encrypted backup & restore to the cloud",
+  "analyticsDashboard": "Analytics Dashboard",
+  "analyticsDashboardSubtitle": "Usage stats, tokens & model insights",
+  "cloudApiProviders": "Cloud API Providers",
+  "cloudApiProvidersSubtitle": "Mistral, DeepSeek & more",
+  "addProviderLabel": "Add Provider",
+  "noCloudProvidersTitle": "No Cloud Providers",
+  "noCloudProvidersSubtitle": "Tap + to add a cloud API provider.\nUse your own API keys for Groq, DeepSeek, and more.",
+  "editProviderTitle": "Edit Provider",
+  "addCloudProviderTitle": "Add Cloud Provider",
+  "providerLabel": "Provider",
+  "apiKeyLabel": "API Key",
+  "pasteLabel": "Paste",
+  "baseUrlRequiredLabel": "Base URL (required)",
+  "customBaseUrlOptionalLabel": "Custom Base URL (optional)",
+  "advancedLabel": "Advanced",
+  "fetchingLabel": "Fetching...",
+  "fetchAvailableModelsLabel": "Fetch Available Models",
+  "availableModelsLabel": "Available Models:",
+  "suggestedModelsLabel": "Suggested Models:",
+  "modelIdLabel": "Model ID",
+  "disableCloudProviderSubtitle": "Disable to keep config but not use it",
+  "setAsActiveProviderLabel": "Set as Active Provider",
+  "deactivateLabel": "Deactivate",
+  "switchedBackToLocalLmStudio": "Switched back to local LM Studio",
+  "saveChangesLabel": "Save Changes",
+  "enterDisplayNameError": "Please enter a display name",
+  "enterApiKeyError": "Please enter an API key",
+  "enterBaseUrlError": "Please enter a base URL for custom provider",
+  "enterApiKeyFirst": "Enter an API key first",
+  "failedToFetchModels": "Failed to fetch models: {error}",
+  "@failedToFetchModels": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "deleteProviderTitle": "Delete Provider?",
+  "deleteProviderMessage": "Remove \"{name}\" and its API key?",
+  "@deleteProviderMessage": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "deleteFirstPartyOpenAiServerMessage": "Remove \"{name}\" from this device?\n\nYou can’t add this server from the list anymore. To reconnect, add A.I Compatible API and set the base URL to https://api.openai.com.",
+  "@deleteFirstPartyOpenAiServerMessage": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "activeProviderSet": "{name} set as active provider",
+  "@activeProviderSet": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "memoryPro": "Memories",
+  "memoryProSubtitle": "Persistent memories across conversations",
+  "richExportShare": "Rich Export & Share",
+  "richExportShareSubtitle": "Export to Obsidian, Notes, Notion & more",
+  "autoUnloadAfter": "Auto-unload after {value}",
+  "@autoUnloadAfter": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "subscriptionRestore": "Restore",
+  "subscriptionTerms": "Terms",
+  "subscriptionPrivacy": "Privacy",
+  "secureYourAccount": "Secure Your Account",
+  "signInWithApple": "Sign in with Apple",
+  "signInWithGoogle": "Sign in with Google",
+  "subscriptionSecured": "Your subscription is secured",
+  "packagesNotAvailable": "Packages not available yet.",
+  "welcomeToPro": "🎉 Welcome to LM Mini Pro!",
+  "subscriptionRestored": "✅ Subscription restored!",
+  "noActiveSubscription": "No active subscription found.",
+  "accountLinked": "✅ Account linked!",
+  "account": "Account",
+  "createAccount": "Create Account",
+  "emailLabel": "Email",
+  "passwordLabel": "Password",
+  "forgotPassword": "Forgot password?",
+  "forgotPasswordNeedEmail": "Enter your email address first, then tap Forgot password.",
+  "forgotPasswordSent": "If an account exists for that email, we sent a reset link. Check your inbox.",
+  "forgotPasswordFailed": "Could not send a reset email. Please try again.",
+  "verificationEmailSent": "Verification email sent!",
+  "failedToSend": "Failed to send: {error}",
+  "@failedToSend": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "cloudBackupEnabled": "Enabled — your account supports encrypted backups",
+  "endToEndEncryption": "End-to-End Encryption",
+  "e2eSubtitle": "Backups encrypted with your passphrase — we can't read them",
+  "upgradeForCloudBackup": "Upgrade to Pro to enable encrypted cloud backups",
+  "signOut": "Sign Out",
+  "signOutConfirm": "Sign Out?",
+  "signedOut": "Signed out.",
+  "goToAccount": "Go to Account",
+  "firebaseNotConfigured": "Firebase is not configured.",
+  "refresh": "Refresh",
+  "createBackup": "Create Backup",
+  "encryptBackupSubtitle": "Encrypt & back up all conversations",
+  "backUpNow": "Back Up Now",
+  "yourBackups": "YOUR BACKUPS",
+  "e2eBackupBanner": "End-to-end encrypted. ",
+  "e2eBackupDetail": "Your backups are encrypted with your passphrase before leaving this device. We cannot read your data.",
+  "exportingData": "Exporting data...",
+  "preparing": "Preparing...",
+  "encrypting": "Encrypting...",
+  "uploading": "Uploading...",
+  "savingMetadata": "Saving metadata...",
+  "done": "Done!",
+  "noBackupsYet": "No backups yet",
+  "createFirstBackup": "Create your first encrypted backup above",
+  "encrypted": "Encrypted",
+  "restore": "Restore",
+  "encryptionPassphraseLabel": "Encryption Passphrase",
+  "enterStrongPassphrase": "Enter a strong passphrase",
+  "confirmPassphraseLabel": "Confirm Passphrase",
+  "passphraseRememberWarning": "Remember this passphrase! If you lose it, your backups cannot be recovered. We do not store it anywhere.",
+  "passphraseRestoreHint": "Enter the same passphrase you used when creating this backup.",
+  "minCharsRequired": "At least 4 characters required.",
+  "passphrasesDoNotMatch": "Passphrases do not match.",
+  "encryptAndBackUp": "Encrypt & Back Up",
+  "decryptAndRestore": "Decrypt & Restore",
+  "encryptionPassphrase": "Encryption Passphrase",
+  "savedPassphrasePrompt": "You have a saved passphrase from a previous backup. Would you like to use the same one or set a new passphrase?",
+  "newPassphrase": "New Passphrase",
+  "useSame": "Use Same",
+  "setEncryptionPassphrase": "Set Encryption Passphrase",
+  "choosePassphraseBackup": "Choose a passphrase to encrypt this backup. You'll need it to restore on any device.",
+  "choosePassphraseDetail": "Choose a passphrase to encrypt your backup. This passphrase stays on your device — we never see it. You'll need it to restore.",
+  "backupFailed": "Backup failed: {error}",
+  "@backupFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "restoreBackupConfirm": "Restore Backup?",
+  "restoreWarning": "This will REPLACE all your current conversations, messages, and folders with the data from this backup.\n\nThis cannot be undone.",
+  "continueAction": "Continue",
+  "enterPassphrase": "Enter Passphrase",
+  "passphraseDecryptHint": "This backup is end-to-end encrypted. Enter the passphrase you used when creating it.",
+  "wrongPassphrase": "Wrong passphrase or corrupted backup.",
+  "restoreFailed": "Restore failed: {error}",
+  "@restoreFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "deleteBackupConfirm": "Delete Backup?",
+  "deleteBackupWarning": "This will permanently delete this encrypted cloud backup. This cannot be undone.",
+  "backupDeleted": "Backup deleted.",
+  "deleteFailed": "Delete failed: {error}",
+  "@deleteFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "overview": "OVERVIEW",
+  "messages": "Messages",
+  "conversations": "Conversations",
+  "totalTokens": "Total Tokens",
+  "avgResponse": "Avg Response",
+  "modelUsage": "MODEL USAGE",
+  "noModelUsageData": "No model usage data yet.\nStart chatting to see stats here.",
+  "analyticsSync": "Analytics are synced to your account and reset if you sign out.",
+  "clearAllMemories": "Clear all memories",
+  "memoryOn": "On",
+  "memoryOff": "Off",
+  "memoryInfoText": "Memories are injected into the system prompt so the LLM remembers you across conversations.",
+  "noMemoriesYet": "No memories yet",
+  "noMemoriesInCategory": "No {category} memories",
+  "@noMemoriesInCategory": {
+    "placeholders": {
+      "category": {
+        "type": "String"
+      }
+    }
+  },
+  "memoryTapToAdd": "Tap + to add a new memory or choose a different category.",
+  "memoryAddHint": "Add facts about yourself that you want the AI to remember across all conversations.",
+  "addMemory": "Add Memory",
+  "category": "Category",
+  "editMemory": "Edit Memory",
+  "deleteMemory": "Delete Memory",
+  "removeMemoryConfirm": "Remove this memory?\n\n\"{content}\"",
+  "@removeMemoryConfirm": {
+    "placeholders": {
+      "content": {
+        "type": "String"
+      }
+    }
+  },
+  "clearAllMemoriesTitle": "Clear All Memories",
+  "clearAllMemoriesConfirm": "This will permanently delete all {count} memories. This cannot be undone.",
+  "@clearAllMemoriesConfirm": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "clearAll": "Clear All",
+  "justNow": "just now",
+  "categoryPersonal": "Personal",
+  "categoryPreferences": "Preferences",
+  "categoryLifestyle": "Lifestyle",
+  "categoryEmotional": "Emotional",
+  "categoryTechnical": "Technical",
+  "categoryWork": "Work",
+  "categoryGeneral": "General",
+  "categoryAll": "All",
+  "modelManagement": "Model Management",
+  "downloadNewModel": "Download New Model",
+  "refreshModels": "Refresh Models",
+  "tapToSelect": "Tap to select",
+  "modelSelected": "Selected: {name}",
+  "@modelSelected": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "unloadModelTooltip": "Unload Model from Memory",
+  "modelInfoTooltip": "Model Info",
+  "loadedBadge": "LOADED",
+  "visionBadge": "Vision",
+  "toolsBadge": "Tools",
+  "selectedModel": "Selected Model",
+  "unloading": "Unloading...",
+  "unload": "Unload",
+  "loaded": "Loaded",
+  "loadModel": "Load Model",
+  "enterModelIdOrUrl": "Enter a model ID or HuggingFace URL:",
+  "modelIdHint": "microsoft/phi-4",
+  "modelIdHelper": "Model ID or https://huggingface.co/...",
+  "huggingFaceDetected": "HuggingFace URL detected - you'll select a quantization",
+  "starting": "Starting...",
+  "download": "Download",
+  "selectQuantization": "Select Quantization",
+  "loadingQuantizations": "Loading quantizations...",
+  "error": "Error",
+  "fetchQuantizationsFailed": "Failed to fetch quantizations: {error}",
+  "@fetchQuantizationsFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "checkLmStudioRunning": "Check if LM Studio is running",
+  "couldNotReachLmStudio": "LM Mini couldn't reach your server.",
+  "couldNotLoadQuantizations": "Couldn't load quantizations.",
+  "couldNotStartDownload": "Could not start download.",
+  "noQuantizations": "No Quantizations",
+  "noGgufFiles": "No GGUF files found in this repository",
+  "foundQuantizations": "Found {count} GGUF quantization(s)",
+  "@foundQuantizations": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "unknown": "unknown",
+  "downloadingModel": "Downloading model with {quantization} quantization...",
+  "@downloadingModel": {
+    "placeholders": {
+      "quantization": {
+        "type": "String"
+      }
+    }
+  },
+  "modelAlreadyDownloaded": "Model already downloaded",
+  "downloadFailed": "Download failed: {error}",
+  "@downloadFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "enterModelIdentifier": "Please enter a model identifier or URL",
+  "modelAlreadyLoaded": "Model Already Loaded",
+  "currentlyLoaded": "Currently loaded:",
+  "loadAlongsideWarning": "Loading \"{name}\" alongside existing model(s) will use additional memory.",
+  "@loadAlongsideWarning": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "unloadAllAndLoad": "Unload All & Load",
+  "swap": "Swap",
+  "loadAlongside": "Load Alongside",
+  "loadParamsConflictTitle": "Load settings differ",
+  "loadParamsConflictBody": "\"{name}\" is already loaded in LM Studio with different settings than LM Mini's Model Loading Config. Reloading can take a minute and use extra memory.",
+  "@loadParamsConflictBody": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "loadParamsConflictTableHeader": "Differing parameters:",
+  "loadParamsLmStudio": "LM Studio",
+  "loadParamsLmMini": "LM Mini",
+  "loadParamsConflictHint": "Using LM Studio's loaded settings avoids a reload. Unload & reload applies your LM Mini settings. Load alongside keeps both instances in memory.",
+  "loadParamsUseExisting": "Use LM Studio settings",
+  "loadParamsReloadWithMini": "Unload & load with LM Mini settings",
+  "loadParamsLoadParallel": "Load with LM Mini settings (parallel)",
+  "reloadModelForContextTitle": "Reload model?",
+  "reloadModelForContextBody": "Context length is applied when the model loads. \"{name}\" is loaded at {loaded}. Reload it with {desired}?",
+  "@reloadModelForContextBody": {
+    "placeholders": {
+      "name": { "type": "String" },
+      "loaded": { "type": "String" },
+      "desired": { "type": "String" }
+    }
+  },
+  "reloadModelForContextNow": "Reload",
+  "reloadModelForContextLater": "Not now",
+  "loadModelConfirm": "Load \"{name}\" into memory?",
+  "@loadModelConfirm": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "unloadModelTip": "You can unload models using the eject button or from this screen after loading.",
+  "modelLoadedSuccess": "Model loaded successfully",
+  "failedToLoadModel": "Failed to load model",
+  "modelInfo": "Model Info",
+  "infoName": "Name",
+  "infoType": "Type",
+  "infoArchitecture": "Architecture",
+  "infoPublisher": "Publisher",
+  "infoQuantization": "Quantization",
+  "infoParameters": "Parameters",
+  "infoSize": "Size",
+  "infoMaxContext": "Max Context",
+  "infoLoadedContext": "Loaded Context",
+  "infoStatus": "Status",
+  "available": "Available",
+  "capabilities": "Capabilities",
+  "standardTextGeneration": "Standard text generation",
+  "unloadModelTitle": "Unload Model",
+  "unloadModelConfirm": "Unload \"{name}\" from memory?",
+  "@unloadModelConfirm": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "freeResourcesTip": "This will free up GPU/RAM resources.",
+  "modelUnloadedSuccess": "Model unloaded successfully",
+  "failedToUnloadModel": "Failed to unload model",
+  "enableImageGeneration": "Enable Image Generation",
+  "showImageButtons": "Show image buttons on chat messages",
+  "serverConnection": "Server Connection",
+  "serverUrl": "Server URL",
+  "test": "Test",
+  "connected": "Connected",
+  "model": "Model",
+  "checkpoint": "Checkpoint",
+  "generationParameters": "Generation Parameters",
+  "negativePrompt": "Negative Prompt",
+  "steps": "Steps",
+  "cfgScale": "CFG Scale",
+  "width": "Width",
+  "height": "Height",
+  "sampler": "Sampler",
+  "scheduler": "Scheduler",
+  "automatic": "Automatic",
+  "seedLabel": "Seed (-1 = random)",
+  "batchSize": "Batch Size",
+  "options": "Options",
+  "restoreFaces": "Restore Faces",
+  "restoreFacesSubtitle": "Fix faces in generated images",
+  "tiling": "Tiling",
+  "tilingSubtitle": "Generate seamless tileable textures",
+  "promptOptions": "Prompt Options",
+  "reviewPromptBeforeSending": "Review Prompt Before Sending",
+  "reviewPromptSubtitle": "Edit the image prompt before generating",
+  "autoGenerateImage": "Auto-Generate Image",
+  "autoGenerateSubtitle": "Automatically generate image when AI provides a prompt",
+  "resetToDefaults": "Reset to Defaults",
+  "featureRequestsTitle": "Feature Requests",
+  "featureRequestsUnavailable": "Feature Requests Unavailable",
+  "featureRequestsUnavailableDetail": "This feature requires an internet connection. Please check your connection and try again later.",
+  "tryAgain": "Try Again",
+  "votesLeft": "left",
+  "popular": "Popular",
+  "myRequests": "My Requests",
+  "completed": "Completed",
+  "submitIdea": "Submit Idea",
+  "noFeatureRequests": "No feature requests yet",
+  "beFirstToSubmit": "Be the first to submit an idea!",
+  "noRequestsSubmitted": "No requests submitted",
+  "tapToSubmitFirst": "Tap the button below to submit your first idea!",
+  "noCompletedRequests": "No completed requests",
+  "completedRequestsAppear": "Completed and declined requests will appear here.",
+  "adminReplied": "Admin replied",
+  "submitFeatureRequest": "Submit Feature Request",
+  "titleRequired": "Title *",
+  "titleHint": "Brief summary of your idea",
+  "descriptionRequired": "Description *",
+  "descriptionHint": "Describe your feature request in detail",
+  "yourNameOptional": "Your name (optional)",
+  "leaveBlankAnonymous": "Leave blank to submit anonymously",
+  "fillTitleAndDescription": "Please fill in title and description",
+  "featureRequestSubmitted": "Feature request submitted!",
+  "submit": "Submit",
+  "featureRequest": "Feature Request",
+  "votedTooltip": "Voted",
+  "voteForThis": "Vote for this",
+  "adminControls": "Admin Controls",
+  "changeStatus": "Change Status",
+  "officialReply": "Official Reply",
+  "deleteRequest": "Delete Request",
+  "unableToLoadComments": "Unable to load comments",
+  "commentsCount": "Comments ({count})",
+  "@commentsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "readMore": "Read more",
+  "showLess": "Show less",
+  "deleteYourRequest": "Delete your request",
+  "anonymous": "Anonymous",
+  "officialResponse": "Official Response",
+  "noCommentsYet": "No comments yet",
+  "beFirstToComment": "Be the first to share your thoughts!",
+  "adminBadge": "ADMIN",
+  "moderatorBadge": "MOD",
+  "experiencedUserBadge": "EXP",
+  "adminManageSubmitter": "Manage submitter",
+  "adminManageUserTitle": "Manage user",
+  "adminUserUpdated": "User updated",
+  "adminCommunityRoles": "Community roles",
+  "adminModeratorRole": "Moderator",
+  "adminModeratorRoleSubtitle": "Can bypass comment spam limits and shows a Mod badge",
+  "adminExperiencedUserRole": "Experienced user",
+  "adminExperiencedUserRoleSubtitle": "Shows an Experienced badge on feature request comments",
+  "adminGrantPremiumTitle": "Grant complimentary Pro",
+  "adminGrantPremiumSubtitle": "Give this user free LM Mini Pro for a limited time",
+  "adminGrantPremiumAmountLabel": "Duration",
+  "adminGrantPremiumAmountHint": "Enter amount",
+  "adminGrantPremiumUnitDays": "Days",
+  "adminGrantPremiumUnitWeeks": "Weeks",
+  "adminGrantPremiumUnitMonths": "Months",
+  "adminGrantPremiumGrantButton": "Grant Pro",
+  "adminGrantPremiumInvalidAmount": "Enter a positive number",
+  "adminGrantPremiumReasonLabel": "Reason",
+  "adminGrantPremiumReasonHint": "Optional — shown to the user (e.g. Sorry for the trouble)",
+  "adminGrantPremiumDurationDays": "{count, plural, =1{1 day} other{{count} days}}",
+  "@adminGrantPremiumDurationDays": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "adminGrantPremiumDurationWeeks": "{count, plural, =1{1 week} other{{count} weeks}}",
+  "@adminGrantPremiumDurationWeeks": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "adminGrantPremiumDurationMonths": "{count, plural, =1{1 month} other{{count} months}}",
+  "@adminGrantPremiumDurationMonths": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "adminRevokePremiumTitle": "Revoke complimentary Pro",
+  "adminRevokePremiumMessage": "Remove the active admin-granted Pro access for this user?",
+  "adminRevokePremiumConfirm": "Revoke",
+  "premiumGrantBannerTitle": "You received complimentary Pro",
+  "premiumGrantBannerBody": "Free LM Mini Pro for {duration}. Enjoy premium features while it lasts.",
+  "@premiumGrantBannerBody": {
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "premiumGrantBannerReason": "Reason: {reason}",
+  "@premiumGrantBannerReason": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "premiumGrantDialogTitle": "Complimentary Pro unlocked",
+  "premiumGrantDialogBody": "An admin granted you free LM Mini Pro for {duration}. Cloud backup, memory, analytics, and more are now available.",
+  "@premiumGrantDialogBody": {
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "premiumGrantDialogReason": "Reason: {reason}",
+  "@premiumGrantDialogReason": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "premiumGrantDialogButton": "Awesome",
+  "youBadge": "YOU",
+  "deleteComment": "Are you sure you want to delete this comment?",
+  "maxCommentsReached": "You've posted {max} comments in a row. Wait for another user to reply.",
+  "@maxCommentsReached": {
+    "placeholders": {
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "addYourName": "Add your name",
+  "replyAsAdmin": "Reply as Admin...",
+  "writeComment": "Write a comment...",
+  "errorTryAgain": "Error: please try again.",
+  "statusUpdated": "Status updated to {status}",
+  "@statusUpdated": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "addOfficialResponse": "Add an official response...",
+  "replySaved": "Reply saved",
+  "deleteRequestConfirm": "Are you sure you want to delete this feature request? This cannot be undone.",
+  "requestDeleted": "Request deleted",
+  "deleteCommentTitle": "Delete Comment",
+  "deleteCommentConfirm": "Are you sure you want to delete this comment?",
+  "commentDeleted": "Comment deleted",
+  "generationParametersSection": "GENERATION PARAMETERS",
+  "temperature": "Temperature",
+  "temperatureSubtitle": "How creative vs focused replies are. Lower = more careful; higher = more varied.",
+  "topP": "Top P",
+  "topPSubtitle": "How wide a range of word choices to allow. Lower = more focused replies.",
+  "minP": "Min P",
+  "minPSubtitle": "Ignores very unlikely word choices. Higher = safer, more predictable text.",
+  "repeatPenalty": "Repeat Penalty",
+  "repeatPenaltySubtitle": "Discourages the AI from repeating the same phrases. 1.0 = off.",
+  "frequencyPenalty": "Frequency Penalty",
+  "frequencyPenaltySubtitle": "Cuts down on words the AI uses too often.",
+  "presencePenalty": "Presence Penalty",
+  "presencePenaltySubtitle": "Pushes the AI to bring up new topics instead of reusing old ones.",
+  "tokenLimits": "TOKEN LIMITS",
+  "maxOutputTokens": "Max Output Tokens",
+  "maxOutputTokensSubtitle": "How long a single reply can be. Higher = longer answers (and more wait).",
+  "contextWindow": "Context Window",
+  "contextWindowSubtitle": "How much of the chat the AI can remember at once. Higher uses more memory.",
+  "modelLoadingConfig": "MODEL LOADING CONFIG",
+  "loadContextLength": "Context Length",
+  "loadContextSubtitle": "How much context the model can use for chat and when loaded in LM Studio. Higher uses more memory / VRAM.",
+  "contextFitTitle": "When context is full",
+  "contextFitSubtitle": "Keep chatting by fitting history into 90% of the loaded context. Compact writes a summary you can reuse if the server session is lost.",
+  "contextFitOff": "Stop",
+  "contextFitRoll": "Roll",
+  "contextFitCutMiddle": "Cut middle",
+  "contextFitOffHelp": "Show an error when the prompt is larger than the model context.",
+  "contextFitRollHelp": "Drop the oldest messages and keep the recent ones.",
+  "contextFitCutMiddleHelp": "Keep the start of the chat and the latest turns; drop the middle.",
+  "compactChat": "Compact",
+  "compactingChat": "Compacting…",
+  "compactChatHint": "Summarize older messages so you can keep chatting in this context window.",
+  "compactChatDone": "Chat compacted. The next send uses the summary plus new messages.",
+  "compactChatFailed": "Couldn’t compact this chat. Try again.",
+  "compactChatNeedModel": "Select a model before compacting.",
+  "evalBatchSize": "Eval Batch Size",
+  "evalBatchSubtitle": "How much text is processed at a time while loading. Higher can be faster but uses more memory.",
+  "numExperts": "Num Experts",
+  "numExpertsSubtitle": "Only for “mixture of experts” models. Leave blank unless you know you need it.",
+  "flashAttention": "Flash Attention",
+  "flashAttentionSubtitle": "Speeds up the model and can use less memory. Keep on unless something breaks.",
+  "offloadKvCache": "Offload KV Cache to GPU",
+  "offloadKvCacheSubtitle": "Uses the GPU to remember the chat more efficiently. Keep on if you have a GPU.",
+  "resizeImageForPhysicalBatch": "Resize images for physical batch",
+  "resizeImageForPhysicalBatchSubtitle": "Shrink a photo when it would use more tokens than the local server's physical batch, so the model doesn't crash.",
+  "resizeImageForPhysicalBatchHelp": "LM Studio, Ollama, Jan, Unsloth, oMLX, and on-device models keep a physical batch of 512 tokens. A full-size photo can take 560 or more vision tokens. The server then aborts and the model unloads. When this is on, Mini measures the photo and shrinks it so it stays under that batch. Turn it off to send the original image.",
+  "chainOfThoughtSubtitle": "Show the AI’s step-by-step thinking when available.",
+  "reasoningUnsupportedToast": "This model does not support Reasoning in LM Studio. Reasoning has been disabled.",
+  "reasoningNotExposedChatHint": "LM Studio doesn't support turning off reasoning for this model. Try a different model.",
+  "premiumSearchActive": "Premium Search active",
+  "premiumSearchPlusSearxng": " + SearXNG",
+  "webSearchDisabledAll": "Web search disabled for all chats",
+  "configureSearch": "Configure Search",
+  "advancedFeaturesSection": "ADVANCED FEATURES",
+  "howToolCallingWorks": "How Tool Calling Works",
+  "stepAskQuestion": "You ask a question",
+  "stepAskExample": "e.g., \"What's the weather in Tokyo?\"",
+  "stepAiRequestsTool": "AI requests a tool",
+  "stepAiRequestsExample": "Model decides it needs web search",
+  "stepAppExecutes": "App executes the tool",
+  "stepAppExecutesExample": "Searches using Premium Search or SearXNG",
+  "stepResultsSent": "Results sent to AI",
+  "stepResultsExample": "Search results added to conversation",
+  "stepAiAnswers": "AI generates answer",
+  "stepAiAnswersExample": "Model synthesizes a helpful response",
+  "toolCallingModelNote": "like Qwen, Llama 3.1+, or Mistral.",
+  "searxngSetup": "SearXNG Setup",
+  "searxngDescription": "SearXNG is a free, privacy-respecting metasearch engine that you can self-host.",
+  "dockerRecommended": "Option 1: Docker (Recommended)",
+  "publicInstance": "Option 2: Use a Public Instance",
+  "findPublicInstances": "Find public instances at:",
+  "selfHostRecommended": "Self-hosting is recommended for reliability.",
+  "clipboardEmpty": "Clipboard is empty. Copy your mcp.json content first.",
+  "clipboardAccessFailed": "Could not access clipboard. Please paste manually into the field below.",
+  "pasteFromClipboard": "Paste from Clipboard",
+  "httpServersImportNote": "HTTP servers → Ephemeral MCPs (sent to LM Studio per request)",
+  "localMcpsImportNote": "Local MCPs → Integrated MCPs (uses \"mcp/name\" format)",
+  "noValidMcpServers": "No valid MCP servers found",
+  "serverAlreadyAdded": "This server is already added",
+  "themeSection": "THEME",
+  "themeLabel": "Theme",
+  "glassEffectsLabel": "Glass effects",
+  "glassEffectsSubtitle": "Frosted blur on headers and menus. Turn off to run cooler and use less battery.",
+  "lowBatteryModeLabel": "Low battery mode",
+  "lowBatteryModeSubtitle": "Turns off glass, shows plain text while the reply streams, and syncs Home/iCloud only after the message finishes. The screen stays awake until the reply is done so the stream is not cut off.",
+  "backgroundSection": "BACKGROUND",
+  "chatBackground": "Wallpaper",
+  "chatBackgroundSubtitle": "Photo behind every chat",
+  "avatarsSection": "PICTURES",
+  "chatHeaderAvatarLabel": "Face at the top",
+  "chatHeaderAvatarSubtitle": "Show a small picture in the chat header",
+  "avatarAboveMessageLabel": "Picture above messages",
+  "avatarAboveMessageSubtitle": "Place the face on top of the bubble",
+  "fullWidthAssistantLabel": "Full-width replies",
+  "fullWidthAssistantSubtitle": "Your messages stay in a bubble. Assistant text uses the whole row",
+  "tryFullWidthTitle": "Try the new full-width view",
+  "tryFullWidthBody": "Assistant replies use the whole row, with no bubble behind the text. You can switch back anytime in Appearance.",
+  "tryFullWidthOpenAppearance": "Open Appearance",
+  "tryFullWidthNotNow": "Not now",
+  "streamingPhaseLoadingModel": "Loading model",
+  "streamingPhaseProcessingPrompt": "Processing prompt",
+  "streamingPhaseThinking": "Thinking",
+  "streamingPhaseWriting": "Writing response",
+  "streamingPhaseSearching": "Searching",
+  "streamingPhaseUsingTools": "Using tools",
+  "previewUserMessage": "What's the socket on this board?",
+  "bubbleAvatarSizeLabel": "Picture size",
+  "bubbleAvatarRadiusValue": "Size {value}",
+  "@bubbleAvatarRadiusValue": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "userAvatarLabel": "You",
+  "yourProfilePicture": "How you look in chats",
+  "assistantAvatarLabel": "AI",
+  "aiAssistantPicture": "Default look for the AI",
+  "chatBehaviorSection": "CHAT TEXT",
+  "fontSizeLabel": "Text size",
+  "iconSizeLabel": "Button size",
+  "pointsValue": "{value}",
+  "@pointsValue": {
+    "placeholders": {
+      "value": {
+        "type": "int"
+      }
+    }
+  },
+  "previewLabel": "Preview",
+  "previewAssistantMessage": "Hello! I'm your AI assistant. How can I help you today? Here's a **bold** word and some `inline code`.",
+  "readAloud": "Read aloud",
+  "appearanceActionTapped": "{label} tapped",
+  "@appearanceActionTapped": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      }
+    }
+  },
+  "autoScrollStreaming": "Follow new replies",
+  "autoScrollStreamingSubtitle": "Keep the chat at the latest words as they appear",
+  "showChatStarters": "New chat suggestions",
+  "showChatStartersSubtitle": "Show scrolling prompt pills on empty chats",
+  "useLegacyComposer": "Legacy message input",
+  "useLegacyComposerSubtitle": "Use the classic compact composer instead of the new shine input",
+  "hideAvatarsLabel": "Hide pictures",
+  "moreSpaceForContent": "Gives messages a bit more room",
+  "enterKeyBehaviorLabel": "Enter key",
+  "enterKeyAutoDescription": "Send on a computer keyboard, new line on phone",
+  "enterKeySendDescription": "Enter sends · Shift+Enter for a new line",
+  "enterKeyNewlineDescription": "Enter always starts a new line",
+  "sendLabel": "Send",
+  "newLineLabel": "New line",
+  "themeSystem": "System",
+  "themeLight": "Light",
+  "themeDark": "Dark",
+  "backLabel": "Back",
+  "nextLabel": "Next",
+  "getStartedLabel": "Get Started",
+  "connectionSuccessful": "Connected successfully!",
+  "connectionFailedMessage": "Connection failed",
+  "lmStudioServerFoundNeedsKey": "Server found! Add your API key above, then tap Test Connection.",
+  "lmStudioScanServerNeedsKey": "Found — add API key to connect",
+  "lmStudioUsingServerNeedsKey": "Using {url}. Add your API key below, then test the connection.",
+  "@lmStudioUsingServerNeedsKey": {
+    "placeholders": {
+      "url": {
+        "type": "String"
+      }
+    }
+  },
+  "lmStudioAuthDialogTitle": "Server found",
+  "lmStudioAuthDialogMessage": "This server requires an API key. Paste your LM Studio token below to connect.",
+  "lmStudioAuthHelpHint": "In LM Studio, open Developer mode → Server settings → Manage tokens to create or copy your API key.",
+  "welcomeWizardTitle": "Welcome to LM Mini",
+  "welcomeWizardSubtitle": "Chat with AI models running on your local network via LM Studio. Let's get you set up in a few quick steps.",
+  "welcomeWizardThemeTitle": "Choose Your Theme",
+  "welcomeWizardThemeSystemSubtitle": "Match your device settings",
+  "welcomeWizardThemeLightSubtitle": "Clean and bright",
+  "welcomeWizardThemeDarkSubtitle": "Easy on the eyes",
+  "welcomeWizardAppearanceTitle": "Customize Appearance",
+  "welcomeWizardAppearancePreviewMessage": "Hello! This is how your chat messages will look.",
+  "welcomeWizardServerTitle": "Connect to LM Studio",
+  "welcomeWizardServerSubtitle": "Enter the IP address of the computer running LM Studio on your local network.",
+  "welcomeWizardLocalNetworkNote": "iOS will ask for local network permission when you test the connection. Please allow it.",
+  "apiTokenOptionalLabel": "API Token (optional)",
+  "welcomeWizardChangeLater": "You can always change this later in Settings.",
+  "welcomeWizardFindModelTitle": "Find a model that fits",
+  "welcomeWizardFindModelSubtitle": "Race two options and see which is faster on your setup. Takes about a minute — or skip if you already know what you want.",
+  "welcomeWizardFindModelHelp": "Help me pick",
+  "welcomeWizardFindModelSkip": "Skip — I'll choose myself",
+  "welcomeWizardExperienceTitle": "How do you use AI?",
+  "welcomeWizardExperienceSubtitle": "We'll tailor recommendations. You can change everything later.",
+  "welcomeWizardBeginnerTitle": "Beginner",
+  "welcomeWizardBeginnerSubtitle": "Keep it simple — clearer Settings, and we'll suggest a solid model for your phone.",
+  "welcomeWizardPowerTitle": "Power user",
+  "welcomeWizardPowerSubtitle": "Full Settings plus choices — on-device models and desktop servers like LM Studio.",
+  "welcomeWizardSetupTitleBeginner": "Choose a model",
+  "welcomeWizardSetupTitlePower": "Choose your setup",
+  "welcomeWizardSetupSubtitleBeginner": "Tap a model to download. Or connect a computer on your Wi‑Fi.",
+  "welcomeWizardSetupSubtitlePower": "Pick a model or connect a desktop server.",
+  "welcomeWizardOnDeviceSection": "On this device",
+  "welcomeWizardComputerSection": "On your computer",
+  "welcomeWizardScanningWifi": "Looking on Wi‑Fi…",
+  "welcomeWizardFoundCount": "Found {count}",
+  "@welcomeWizardFoundCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "welcomeWizardModelFasterBlurb": "Quick replies. Great for everyday chat.",
+  "welcomeWizardModelBalancedBlurb": "Good balance of speed and quality.",
+  "welcomeWizardModelBestBlurb": "Strongest quality that fits your device.",
+  "welcomeWizardNameTitle": "What should AI call you?",
+  "welcomeWizardNameSubtitle": "A first name or nickname is perfect. You can skip this.",
+  "welcomeWizardNameHint": "e.g. Alex",
+  "welcomeWizardFinish": "Finish",
+  "welcomeWizardContinue": "Continue",
+  "welcomeWizardSkip": "Skip",
+  "welcomeWizardConnectLmStudio": "Connect LM Studio",
+  "welcomeWizardConnectOllama": "Connect Ollama",
+  "welcomeWizardConnectOmlx": "Connect oMLX",
+  "pickColor": "Pick Color",
+  "hueLabel": "Hue",
+  "saturationLabel": "Saturation",
+  "lightnessLabel": "Lightness",
+  "alphaLabel": "Alpha",
+  "hexLabel": "Hex",
+  "personaModeLabel": "Persona Mode",
+  "personaModeSubtitle": "Add avatar, accent color, voice, and preferred model for group chats",
+  "avatarLabel": "Avatar",
+  "customAvatarSet": "Custom avatar set",
+  "noAvatar": "No avatar",
+  "accentColorLabel": "Accent Color",
+  "defaultLabel": "Default",
+  "preferredModelLabel": "Preferred Model",
+  "preferredModelAny": "None (use any)",
+  "personaChooseProviderTitle": "Choose provider",
+  "personaChooseProviderSubtitle": "Your configured providers. Add more in Settings.",
+  "personaCloudProvidersSection": "Cloud providers",
+  "personaKokoroVoiceLabel": "Kokoro Voice",
+  "personaKokoroVoiceSubtitle": "Voice used when this persona speaks (voice chat / read aloud)",
+  "personaKokoroVoiceGlobal": "Use global voice setting",
+  "personaKokoroVoicePickerTitle": "Persona Voice",
+  "personaKokoroSpeedLabel": "Speech Speed",
+  "personaKokoroSpeedGlobal": "Use global speed",
+  "personaKokoroSpeedValue": "{speed}x",
+  "@personaKokoroSpeedValue": {
+    "placeholders": {
+      "speed": {
+        "type": "String"
+      }
+    }
+  },
+  "voiceWhisperModelLabel": "Whisper model",
+  "voiceWhisperModelTapToChoose": "Tap to choose size and download",
+  "imageGenSeedLabel": "Image Gen Seed",
+  "imageGenSeedFixed": "Fixed seed: {seed}",
+  "@imageGenSeedFixed": {
+    "placeholders": {
+      "seed": {
+        "type": "int"
+      }
+    }
+  },
+  "imageGenSeedRandomGlobal": "Random (use global setting)",
+  "personaComfyWorkflowLabel": "ComfyUI workflow",
+  "personaComfyWorkflowUseGlobal": "Use global setting",
+  "personaComfyWorkflowUnavailable": "{path} (currently unavailable)",
+  "@personaComfyWorkflowUnavailable": {
+    "placeholders": {
+      "path": {
+        "type": "String"
+      }
+    }
+  },
+  "personaComfyWorkflowHelper": "Used when Image Generation provider is ComfyUI. Leave as global to use Settings → Image Generation.",
+  "personaComfyWorkflowNotComfy": "This assignment applies only when ComfyUI is the active image provider.",
+  "personaComfyWorkflowRefresh": "Refresh workflows",
+  "personaComfyWorkflowJsonLabel": "Custom workflow JSON (optional)",
+  "personaComfyWorkflowJsonHint": "Leave empty to use the global / built-in workflow",
+  "personaComfyWorkflowJsonHelper": "Paste an API-format workflow. Supports %PROMPT%, %LORA%, %LORA_WEIGHT%, and other placeholders.",
+  "personaComfyWorkflowJsonIgnored": "Ignored while a saved workflow is selected",
+  "personaComfyWorkflowJsonActive": "Using custom workflow ({count} chars)",
+  "@personaComfyWorkflowJsonActive": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "personaComfyWorkflowJsonClear": "Clear (use global / default)",
+  "comfyUiDetails": "ComfyUI details",
+  "comfyUiDetailsTitle": "ComfyUI request",
+  "comfyUiDetailsCopy": "Copy JSON",
+  "comfyUiDetailsCopied": "Copied to clipboard",
+  "resetToGlobal": "Reset to global",
+  "setSeed": "Set seed",
+  "pickAccentColor": "Pick Accent Color",
+  "imageGenSeedDialogDescription": "Set a fixed seed so this persona always generates consistent images. Leave blank for random.",
+  "seedValueLabel": "Seed value",
+  "seedValueHint": "e.g. 42 (blank = random)",
+  "setLabel": "Set",
+  "selectPreferredModelTitle": "Select Preferred Model",
+  "branchCreated": "🔀 Branch created",
+  "yamlFrontmatter": "YAML frontmatter",
+  "markdownFormat": "Markdown",
+  "localNetworkBlocked": "Local Network access may be blocked",
+  "localNetworkFix": "Go to Settings → LM Mini → Local Network and enable it.",
+  "openAppSettings": "Open App Settings",
+  "memorySaved": "Memory saved",
+  "proSearch": "Pro Search",
+  "webSearchLabel": "Web search",
+  "readUrl": "Read URL",
+  "code": "code",
+  "couldNotOpenFile": "Could not open file: {error}",
+  "@couldNotOpenFile": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "tapOpenExternal": "Tap \"Open with external app\" to view this file",
+  "proSearchEnabled": "Pro Search enabled",
+  "proSearchDisabled": "Pro Search disabled",
+  "thinkingEnabled": "Thinking on for this chat",
+  "thinkingDisabled": "Thinking off for this chat",
+  "codeSandbox": "Code Sandbox",
+  "codeSandboxSubtitle": "Run Python or JavaScript in a secure sandbox",
+  "codeSandboxEnabled": "Code Sandbox enabled",
+  "codeSandboxDisabled": "Code Sandbox disabled",
+  "searxngNotConfigured": "Add a SearXNG URL to enable",
+  "searxngConfiguredOff": "Configured — tap to use instead of Pro Search",
+  "searxngConfigureFirst": "Configure a SearXNG URL before enabling",
+  "editSearxng": "Edit SearXNG",
+  "toolCallingLabel": "Tool Calling",
+  "on": "On",
+  "off": "Off",
+  "aiCanUseTools": "AI can use tools in this chat",
+  "toolsDisabledChat": "Tools disabled for this chat",
+  "webSearchChat": "Web Search",
+  "aiCanSearchWeb": "AI can search the web in this chat",
+  "webSearchDisabledChat": "Web search disabled for this chat",
+  "disableMemory": "Disable Memories",
+  "memoryItemsActive": "{count} memories active",
+  "@memoryItemsActive": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "memoryDisabledChat": "Memories are disabled for this chat. The AI won't see your saved items.",
+  "lmStudioLocal": "LM Studio (Local)",
+  "modelNoLongerAvailable": "Previously selected model is no longer available. Please select a new model.",
+  "noModelsForProvider": "No models found for this provider. Check API key.",
+  "noModelsCheckConnection": "No models found. Check LM Studio connection.",
+  "selectModel": "Select model",
+  "goToModels": "Go to models",
+  "reviewImagePrompt": "Review Image Prompt",
+  "editImagePromptHint": "Edit the image prompt...",
+  "generate": "Generate",
+  "imageNotFound": "Image not found",
+  "cameraPermissionNeeded": "Camera Permission Needed",
+  "cameraPermissionExplain": "Please allow camera access to take photos for vision analysis.",
+  "photosPermissionNeeded": "Photos Permission Needed",
+  "photosPermissionExplain": "Please allow access to your images for vision analysis.",
+  "couldNotOpenFilePicker": "Could not open file picker: {error}",
+  "@couldNotOpenFilePicker": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "filePickerCouldNotCopy": "Couldn't copy that file. Save it on this phone (not Drive or Recents) and pick it again.",
+  "signInToUseCloudBackup": "Sign in to use Cloud Backup",
+  "cloudBackupRequiresAccount": "Cloud Backup requires an account so your encrypted backups are stored securely under your identity.",
+  "arguments": "Arguments",
+  "selectLanguage": "Select Language",
+  "connectionPopupTitle": "Choose a provider",
+  "connectionPopupBody": "Connect LM Studio, pick an On-Device model, or sign in to a cloud provider in Settings.",
+  "connectionPopupDismiss": "Later",
+  "connectionPopupGoToSettings": "Go to Settings",
+  "remoteAccess": "Remote Access",
+  "scanQrCode": "Scan QR Code",
+  "connectedViaLmConnect": "Connected via LM Connect",
+  "disconnectRemoteToChangeSettings": "Remote LM Studio is paired via LM Connect",
+  "disconnect": "Disconnect",
+  "unpair": "Unpair",
+  "useRemoteConnection": "Chat with this Mac",
+  "useRemoteConnectionOffSubtitle": "Off — this phone uses its own models. Turn on to use models on LM Mini Home.",
+  "connectedViaLmStudio": "Connected via LM Studio",
+  "usingLocalServer": "Using local server",
+  "testing": "Testing...",
+  "connectedLatency": "Connected — {ms}ms",
+  "@connectedLatency": {
+    "placeholders": {
+      "ms": {
+        "type": "int"
+      }
+    }
+  },
+  "notConnected": "Not Connected",
+  "scanQrDescription": "Scan a QR code from LM Mini on Mac (Share with phone) — or legacy LM Mini Connect — to reach your desktop models from anywhere.",
+  "remotePaired": "Remote Paired",
+  "lastConnected": "Last connected: {time}",
+  "@lastConnected": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "reScanQrCode": "Re-scan QR Code",
+  "qrRequiresPro": "QR code scanning requires LM Mini Pro",
+  "enterUrlManually": "Enter URL manually",
+  "enterUrlManuallySubtitle": "Paste a pairing link if the camera is unavailable",
+  "relayUrlHint": "https://relay.lmmini.com/s/…",
+  "connectWithUrl": "Connect with URL",
+  "invalidRelayUrl": "That is not a valid LM Mini pairing link. Copy it from Share with phone on your Mac.",
+  "invalidQrCode": "Invalid QR code. Open Share with phone in LM Mini on Mac (or legacy Connect) to generate one.",
+  "pointCameraAtQr": "Point your camera at the QR code shown in LM Mini on Mac (Share with phone)",
+  "connectedToRemoteLmStudio": "Connected to remote LM Studio!",
+  "failedToConnect": "Failed to connect. Make sure LM Mini on Mac has Share with phone enabled (or legacy Connect is running).",
+  "unpairRemote": "Unpair Remote",
+  "unpairRemoteDescription": "This will remove the saved remote connection. You can re-pair by scanning a new QR code.",
+  "setupGuide": "Setup Guide",
+  "downloadLmMiniConnect": "Get LM Mini Home",
+  "availableForPlatforms": "Direct download for Mac · Connect for Windows and Linux",
+  "setupStep1Title": "Download LM Mini Home",
+  "setupStep1Desc": "Get LM Mini Home for Mac from lmmini.com. On Windows and Linux you can still use LM Mini Connect.",
+  "setupStep2Title": "Share with phone",
+  "setupStep2Desc": "In LM Mini Home on your Mac, open Share with phone and turn it on. It connects to the relay instantly.",
+  "setupStep3Title": "Scan QR Code",
+  "setupStep3Desc": "Scan the QR code shown on your Mac. That's it!",
+  "minutesAgo": "{count}m ago",
+  "@minutesAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "hoursAgo": "{count}h ago",
+  "@hoursAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "daysAgo": "{count}d ago",
+  "@daysAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "selectAll": "Select all",
+  "moveToFolder": "Move to folder",
+  "select": "Select",
+  "dismissAction": "Dismiss",
+  "createNewFolder": "Create new folder",
+  "deleteConversations": "Delete {count} conversation(s)? This cannot be undone.",
+  "@deleteConversations": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "averages": "AVERAGES",
+  "tokensPerChat": "Tokens / Chat",
+  "msgsPerChat": "Msgs / Chat",
+  "tokensPerMsg": "Tokens / Msg",
+  "topModel": "Top Model",
+  "liveActivityTitle": "Live Activity",
+  "liveActivityTitleAndroid": "Background generation",
+  "liveActivityDescription": "Process your A.I. request even when you exit the app or lock it",
+  "liveActivityDescriptionAndroid": "Keep generating when you leave the app — on-device models, LM Studio, and cloud providers. Shows a silent ongoing notification with progress and keeps the HTTP stream alive on Android.",
+  "liveActivityAndroidOnDeviceOnly": "Switch to an on-device GGUF or MLX model to use background generation on Android.",
+  "liveActivityNotificationDenied": "Notification permission is required for background generation on Android.",
+  "premiumRemoteAccess": "Remote Access",
+  "premiumRemoteAccessTagline": "LM Studio from anywhere",
+  "premiumRemoteAccessDescription": "Access your Mac or PC models from anywhere. On Mac, use LM Mini → Share with phone. No port forwarding or VPN — scan a QR code for an encrypted relay.",
+  "premiumLiveActivity": "Live Activity",
+  "premiumLiveActivityTagline": "A.I. works in the background",
+  "premiumLiveActivityDescription": "Process your A.I. request even when you exit the app or lock the phone. See real-time generation progress on your Lock Screen and Dynamic Island — watch tokens counting up and generation speed without switching back.",
+  "premiumWebSearchTagline": "No server setup required",
+  "premiumWebSearchDescription": "Instantly search the web during conversations. Powered by cloud search APIs — no need to self-host SearXNG or configure anything. Just ask and your model gets fresh, real-time information from the internet.",
+  "premiumCloudBackup": "Encrypted Cloud Backup",
+  "premiumCloudBackupTagline": "AES-256-GCM encryption",
+  "premiumCloudBackupDescription": "Back up all conversations to the cloud with military-grade encryption. Your passphrase never leaves your device — not even we can read your data. Restore on any device with one tap.",
+  "premiumUrlReader": "URL Reader",
+  "premiumUrlReaderTagline": "Analyze any webpage",
+  "premiumUrlReaderDescription": "Paste any URL and your model reads the full page content. Summarize articles, analyze documentation, extract data from tables — all without leaving the conversation.",
+  "premiumBranching": "Conversation Branching",
+  "premiumBranchingTagline": "Explore alternate paths",
+  "premiumBranchingDescription": "Fork any conversation from any message to explore \"what if\" scenarios. Compare different prompts, try various approaches, and keep your best threads — all without losing the original.",
+  "premiumMemory": "Memories",
+  "premiumMemoryTagline": "Remembers you across chats",
+  "premiumMemoryDescription": "Save facts, preferences, and context that persist across all conversations. Your model will know your name, coding style, preferred language, and anything else you teach it — every time you start a new chat.",
+  "premiumAnalytics": "Analytics Dashboard",
+  "premiumAnalyticsTagline": "Know your usage",
+  "premiumAnalyticsDescription": "Track tokens used, messages sent, model usage breakdown, and average response times. Understand your AI usage patterns and optimize your workflow with beautiful charts.",
+  "premiumCloudApi": "Cloud API Providers",
+  "premiumCloudApiTagline": "Mistral, Anthropic & more",
+  "premiumCloudApiDescription": "Connect to cloud LLM providers alongside your local models. Use Claude, Gemini, and Mistral when you need cutting-edge performance — seamlessly switch between local and cloud.",
+  "premiumExport": "Rich Export & Share",
+  "premiumExportTagline": "Obsidian, Notes, Notion & more",
+  "premiumExportDescription": "Export conversations as beautifully formatted Markdown, PDF, or plain text. Share directly to Obsidian, Apple Notes, Notion, or any app. Perfect for saving research and insights.",
+  "premiumCompactContext": "Compact context",
+  "premiumCompactContextTagline": "Keep chatting when the window is full",
+  "premiumCompactContextDescription": "Roll older messages, cut the middle, or compact a long chat into a summary on the same loaded model so a full context window doesn’t stop the conversation.",
+  "premiumParamPresets": "Param presets",
+  "premiumParamPresetsTagline": "Per-model and persona generation settings",
+  "premiumParamPresetsDescription": "Save sampler and load settings per model, and optional custom params on a persona. Free stays on the Global defaults that ship with the app.",
+  "paramPresetSetFor": "Set params for",
+  "paramPresetGlobalTab": "Global",
+  "paramPresetScopeHelpTitle": "How params apply",
+  "paramPresetScopeHelpIntro": "The most specific layer that is on wins. Chat-level overrides (if you set them in a conversation) still sit on top.",
+  "paramPresetScopeHelpGlobal": "Defaults for every model that does not have its own preset. This is what the app ships with.",
+  "paramPresetScopeHelpModel": "Changing knobs on the selected-model tab saves a preset for that model only. Use Global params removes it so the model follows Global again.",
+  "paramPresetScopeHelpPersonaTitle": "Persona",
+  "paramPresetScopeHelpPersona": "If a persona has a preferred model, turn on Use custom params to override that model’s preset (or Global) while the persona is active.",
+  "paramPresetSelectedModelTab": "Selected model",
+  "paramPresetNoModel": "Select a model to save a preset for it.",
+  "paramPresetUsingGlobal": "This model uses Global params.",
+  "paramPresetUsingCustom": "This model has a custom preset.",
+  "paramPresetUseGlobal": "Use Global params",
+  "paramPresetUseGlobalSubtitle": "Remove this model’s preset and fall back to Global.",
+  "paramPresetModelLocked": "Model presets are Pro. Global params still apply to every model.",
+  "personaUseCustomParams": "Use custom params",
+  "personaUseCustomParamsSubtitle": "Override this model’s params while the persona is active",
+  "personaAdjustParams": "Adjust params",
+  "personaAdjustParamsSubtitle": "Temperature, context, and other generation settings",
+  "premiumOnDeviceLlm": "On-Device Pro",
+  "premiumOnDeviceLlmTagline": "Bigger catalog models & HF imports",
+  "premiumOnDeviceLlmDescription": "On-device chat is free with curated starter models. Pro unlocks catalog downloads above 2B parameters and importing your own GGUF or MLX models from Hugging Face — browse, pick a quantization, and run fully offline.",
+  "premiumHfBrowse": "Hugging Face Import",
+  "premiumHfBrowseTagline": "Bring any GGUF model onboard",
+  "premiumHfBrowseDescription": "Search Hugging Face, download GGUF models to your device or LM Studio server, and run them in LM Mini. Filter for compatibility, track background downloads, and expand beyond the free catalog — no API key required.",
+  "onDeviceProviderLabel": "On-Device",
+  "onDeviceManageModels": "Manage On-Device Models",
+  "onDeviceGeneratingHint": "Generating on-device…",
+  "onDeviceEngineUnavailable": "On-device engine unavailable",
+  "onDeviceOpenBrowser": "Open On-Device Models",
+  "onDeviceManagedHere": "On-Device models are managed in a dedicated browser where you can download, remove and activate them.",
+  "onDeviceRemoteImageOnly": "On-Device AI is selected — remote access powers image generation and Kokoro voice (if configured) only. Chat stays on this device.",
+  "onDeviceProOnly": "Pro only",
+  "onDeviceInstalled": "Installed",
+  "onDeviceUseModel": "Use",
+  "onDeviceRemoveModel": "Remove",
+  "onDeviceDownloadAnyway": "Download anyway",
+  "onDeviceNowUsing": "Now using {name} on-device",
+  "@onDeviceNowUsing": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "onDeviceEngineFllamaLabel": "fllama (GGUF)",
+  "onDeviceEngineSwitched": "Switched to {engine}. The previous model was unloaded.",
+  "@onDeviceEngineSwitched": {
+    "placeholders": {
+      "engine": {
+        "type": "String"
+      }
+    }
+  },
+  "onDeviceEngineSwitchedCleared": "Switched to {engine}. Your previous model isn't compatible with this engine and was deselected — pick one in On-Device Models.",
+  "@onDeviceEngineSwitchedCleared": {
+    "placeholders": {
+      "engine": {
+        "type": "String"
+      }
+    }
+  },
+  "onDeviceImportedLabel": "Imported",
+  "onDeviceFreeLabel": "Free",
+  "onDeviceProLabel": "Pro",
+  "onDeviceMayCrashLabel": "May crash",
+  "onDeviceModelMayCrashTitle": "This model may crash",
+  "onDeviceModelMayCrashMessage": "{name} needs roughly {runtimeGb} GB of memory at runtime. Your device has about {deviceRamGb} GB available for apps. Loading anyway may freeze or crash the app.",
+  "@onDeviceModelMayCrashMessage": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "runtimeGb": {
+        "type": "String"
+      },
+      "deviceRamGb": {
+        "type": "String"
+      }
+    }
+  },
+  "onDeviceContinueLoading": "Continue loading",
+  "yearly": "Yearly",
+  "monthly": "Monthly",
+  "lifetime": "Lifetime",
+  "subscriptionLifetimeBadge": "Pay once",
+  "subscriptionLifetimeDisclaimer": "One-time purchase. Pro features on your account while LM Mini is offered and maintained. Excludes third-party API fees and may exclude separately hosted services — see Terms.",
+  "subscriptionLifetimeUpgradeDisclaimer": "Lifetime is a separate one-time purchase. Your current subscription will not be cancelled automatically, and we cannot refund past subscription charges. After purchasing, cancel your subscription in the {store}.",
+  "@subscriptionLifetimeUpgradeDisclaimer": {
+    "placeholders": {
+      "store": {
+        "type": "String"
+      }
+    }
+  },
+  "subscriptionUpgradeToLifetime": "Upgrade to Lifetime",
+  "subscriptionUpgradeToLifetimeSubtitle": "Pay once — {price}",
+  "@subscriptionUpgradeToLifetimeSubtitle": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "duplicateSubscriptionDialogTitle": "Cancel your subscription",
+  "duplicateSubscriptionDialogBody": "You have Lifetime Pro and an active subscription. Lifetime does not replace your subscription automatically, and we cannot refund subscription charges. Please cancel your subscription in the {store} to avoid further billing.",
+  "@duplicateSubscriptionDialogBody": {
+    "placeholders": {
+      "store": {
+        "type": "String"
+      }
+    }
+  },
+  "duplicateSubscriptionDialogManage": "Open {store}",
+  "@duplicateSubscriptionDialogManage": {
+    "placeholders": {
+      "store": {
+        "type": "String"
+      }
+    }
+  },
+  "duplicateSubscriptionDialogDismiss": "Got it",
+  "duplicateSubscriptionNoManageUrl": "Open your device subscription settings to cancel.",
+  "supportLifetime": "Unlock forever — {price}",
+  "@supportLifetime": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "encryptionKey": "Encryption Key",
+  "encryptionEnabled": "Encryption: On",
+  "encryptionDisabled": "Encryption: Off",
+  "encryptionKeyDescription": "End-to-end encryption key for remote access. Must match the key in LM Mini Home on your Mac.",
+  "editEncryptionKey": "Edit Encryption Key",
+  "enterEncryptionKey": "Enter encryption key",
+  "encryptionKeyUpdated": "Encryption key updated",
+  "keepLmMiniAlive": "Keep LM Mini\nAlive",
+  "supportTheApp": "Support the app & get premium perks",
+  "mostFeaturesFree": "Most features are free — Pro helps cover server costs",
+  "thankYouSupport": "Thank you for your support!",
+  "helpingKeepAlive": "You're helping keep LM Mini alive",
+  "linkSignInMethod": "Link a sign-in method to keep your subscription if you switch devices.",
+  "paywallLinkAccountBody": "You're on an anonymous account. Link Apple or Google before purchasing so Pro syncs across devices and survives reinstall.",
+  "continueAnonymously": "Continue anonymously",
+  "signedInViaMethod": "Signed in via {method}",
+  "@signedInViaMethod": {
+    "placeholders": {
+      "method": {
+        "type": "String"
+      }
+    }
+  },
+  "yourSubscriptionSecured": "Your subscription is secured",
+  "subscriptionManagedThrough": "Subscription managed through the {store}.",
+  "@subscriptionManagedThrough": {
+    "placeholders": {
+      "store": {
+        "type": "String"
+      }
+    }
+  },
+  "subscriptionsComingSoon": "Subscriptions Coming Soon",
+  "premiumPreview": "Premium features are being finalized.\nYou can enable developer mode below to preview them.",
+  "enableDeveloperPremium": "Enable Developer Premium",
+  "disableDeveloperPremium": "Disable Developer Premium",
+  "premiumEnabled": "Premium enabled (dev override)",
+  "premiumDisabled": "Premium disabled",
+  "supportYearly": "Support — {price}/year",
+  "@supportYearly": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "supportMonthly": "Support — {price}/month",
+  "@supportMonthly": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "welcomeToLmMiniPro": "Welcome to LM Mini Pro!",
+  "connectedRemotely": "Connected remotely",
+  "pairedNotActive": "Paired — not active",
+  "accessLmStudioAnywhere": "Access LM Studio from anywhere",
+  "appStore": "App Store",
+  "googlePlayStore": "Google Play Store",
+  "starterAttach": "Attach",
+  "starterImages": "Images",
+  "starterMode": "Mode",
+  "newGroupChat": "New Group Chat",
+  "groupChat": "Group Chat",
+  "groupChatMultipleModels": "Chat with multiple models",
+  "groupChatParticipants": "Participants",
+  "groupChatTurnMode": "Turn Mode",
+  "groupChatRoundRobin": "Round Robin",
+  "groupChatManual": "Manual",
+  "groupChatParallelStreaming": "Parallel Streaming",
+  "groupChatAutoLoadUnload": "Auto Load/Unload",
+  "groupChatStreamAllSimultaneously": "Stream all participants simultaneously",
+  "groupChatAutoLoadModels": "Automatically load models when needed",
+  "groupChatAsk": "Ask:",
+  "groupChatTapToReplyNudge": "Tap who should reply",
+  "groupChatTrialBannerTitle": "Group Chat — Free for 7 Days!",
+  "groupChatTrialBannerBody": "Try Group Chat free for 7 days with up to 2 AI personas. Upgrade to LM Mini Pro for unlimited participants and permanent access.",
+  "groupChatTrialDaysLeft": "{days} days left in your trial",
+  "@groupChatTrialDaysLeft": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "groupChatTrialExpired": "Your 7-day Group Chat trial has ended. Upgrade to Pro to continue.",
+  "groupChatTrialGetPro": "Get Pro",
+  "groupChatTrialDismiss": "Got it",
+  "groupChatBetaTitle": "Group Chat",
+  "groupChatBetaSubtitle": "One conversation. Multiple AI minds.",
+  "groupChatBetaPremiumNote": "Group Chat is currently in beta and it's available to everyone as a free preview",
+  "groupChatBetaBugReport": "Found a bug? Go to Settings → Feature Requests & Support to report it and get priority help.",
+  "groupChatBetaFreeNote": "You have 7 days of free access with up to 2 personas. Upgrade to Pro for unlimited personas and permanent access.",
+  "groupChatBetaFeaturePersona": "Each persona powered by its own model",
+  "groupChatBetaFeatureSystem": "Unique personality per system prompt",
+  "groupChatBetaFeatureConvo": "All in one shared conversation",
+  "groupChatBetaStartFree": "Start Free Trial",
+  "groupChatBetaStartPremium": "Try Group Chat",
+  "groupChatBetaLearnMore": "Get Pro",
+  "premiumGroupChat": "Group Chat",
+  "premiumGroupChatTagline": "Multi-persona conversations",
+  "premiumGroupChatDescription": "Chat with multiple AI personas in one thread — each with its own model, avatar, and personality. Set up freely; sending messages requires LM Mini Pro.",
+  "groupChatProRequiredTitle": "Group Chat requires Pro",
+  "groupChatProRequiredBody": "You can set up Group Chat for free. Upgrade to LM Mini Pro to start the chat and send messages with multiple AI personas.",
+  "groupChatProRequiredUpgrade": "Upgrade to Pro",
+  "groupChatLockedBanner": "Group Chat is read-only without Pro. Upgrade to send new messages.",
+  "premiumArena": "Arena",
+  "premiumArenaTagline": "Compare models side-by-side",
+  "premiumArenaDescription": "Finding your model is free. Pro unlocks custom prompt races, cloud models in Arena, and private race history with charts.",
+  "startLabel": "Start",
+  "groupChatInviteUpTo": "Invite up to {count} AI models to chat together. Each can have its own persona, avatar, and system prompt.",
+  "@groupChatInviteUpTo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "groupChatPremiumParticipantsNote": "Premium allows up to 5 participants per group chat.",
+  "groupChatUserNameHint": "How AIs will address you (e.g. Alex)",
+  "groupChatScenarioLabel": "Scenario / about yourself (optional)",
+  "groupChatScenarioHint": "e.g. \"We are colleagues at a tech startup. I am a product manager asking the team for advice.\"",
+  "groupChatTurnModeRoundRobinDescription": "Round Robin — all models respond in order",
+  "groupChatTurnModeManualDescription": "Manual — type @Name to choose who replies",
+  "groupChatReplyToUserOnlyLabel": "Reply to you only",
+  "groupChatReplyToUserOnlySubtitle": "Each AI ignores the other AIs — best for smaller models",
+  "groupChatWhosInChat": "Who's in the chat?",
+  "groupChatTapToInvite": "Tap people below to invite them",
+  "groupChatAddPeople": "Add people",
+  "groupChatInTheRoom": "In the room",
+  "groupChatNeedTwo": "Add at least 2 to start",
+  "groupChatTakeTurnsTitle": "Take turns",
+  "groupChatTakeTurnsSubtitle": "Everyone answers in order, one after another",
+  "groupChatTalkMentionedTitle": "Talk when mentioned",
+  "groupChatTalkMentionedSubtitle": "If one AI names another, that person can jump in",
+  "groupChatIChooseTitle": "I choose who speaks",
+  "groupChatIChooseSubtitle": "Only the person you @mention replies",
+  "groupChatHowTheyTalk": "How they talk",
+  "groupChatAboutYou": "About you",
+  "groupChatSceneLabel": "Scene (optional)",
+  "groupChatSceneHint": "e.g. We're coworkers brainstorming a product idea",
+  "groupChatAutoLoadTitle": "Save memory on local models",
+  "groupChatAutoLoadSubtitle": "Unload one model before loading the next — helpful when people use different LM Studio, Ollama, or on-device models",
+  "groupChatMoreOptions": "More options",
+  "groupChatHelpTooltip": "How Group Chat works",
+  "groupChatHelpTitle": "How Group Chat works",
+  "groupChatHelpIntro": "Invite at least two AI people into one conversation. Each can use a different model and personality.",
+  "groupChatHelpTakeTurns": "Take turns: every AI answers your message in order.",
+  "groupChatHelpMentioned": "Talk when mentioned: after someone replies, another AI can continue if they were named.",
+  "groupChatHelpManual": "I choose who speaks: use @Name so only that person replies.",
+  "groupChatHelpMemory": "Save memory: for local models, unload the previous model before loading the next so phones and PCs with less RAM can still run a group.",
+  "groupChatHelpProvider": "Tap a person in the room to change their provider and model anytime.",
+  "groupChatStartProGate": "Pro needed to start",
+  "groupChatFixBeforeStart": "Fix the highlighted people before starting.",
+  "groupChatEditPerson": "Edit person",
+  "groupChatProviderAndModel": "Provider & model",
+  "groupChatChooseProviderModel": "Choose provider & model",
+  "groupChatParallelEasy": "Reply at the same time",
+  "groupChatParallelEasySubtitle": "When more than one AI should answer, stream them together",
+  "noModelsAvailableConnectLmStudio": "No models available. Connect to LM Studio first.",
+  "addModelLabel": "Add Model",
+  "modelNumber": "Model {number}",
+  "@modelNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "groupChatParticipantInfo": "{name}\nModel: {model}",
+  "@groupChatParticipantInfo": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "model": {
+        "type": "String"
+      }
+    }
+  },
+  "customPromptSet": "Custom prompt set",
+  "removeLabel": "Remove",
+  "displayNameLabel": "Display Name",
+  "displayNameHint": "e.g. Professor, Coder, Artist",
+  "customRequestHeaders": "Custom request headers",
+  "customRequestHeadersSubtitle": "Optional headers added to every LM Studio request",
+  "customRequestHeadersHelp": "Use this for reverse proxies or auth gateways that require extra headers (e.g. Cloudflare Access service tokens, an internal token under a custom header name, etc.). Headers are sent on every request to your LM Studio server.",
+  "cloudflareAccessSection": "Cloudflare Access (service token)",
+  "cloudflareAccessHelp": "If your LM Studio is behind a Cloudflare Access policy, paste the service-token Client ID and Secret here. They are sent as CF-Access-Client-Id and CF-Access-Client-Secret on every request, so the app can authenticate without an interactive browser SSO login.",
+  "cfAccessClientIdLabel": "CF-Access-Client-Id",
+  "cfAccessClientSecretLabel": "CF-Access-Client-Secret",
+  "addHeader": "Add header",
+  "removeHeader": "Remove header",
+  "headerNameLabel": "Header name",
+  "headerValueLabel": "Header value",
+  "headersConfigured": "{count, plural, =1{1 header configured} other{{count} headers configured}}",
+  "@headersConfigured": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "noCustomHeaders": "No custom headers",
+  "comfyUiUseNegativePromptTitle": "Use negative prompt",
+  "comfyUiUseNegativePromptSubtitle": "Off by default for ComfyUI. When off, no negative prompt is sent to the workflow.",
+  "documentationTitle": "Documentation",
+  "documentationSubtitle": "Setup guides for Group Chat, ComfyUI, keyboard behavior, and more",
+  "changelogTitle": "Changelog",
+  "changelogSubtitle": "Version history & updates",
+  "enableCustomHeaders": "Enable custom headers",
+  "enableCustomHeadersSubtitle": "Attach extra HTTP headers to every LM Studio request",
+  "deleteMemoriesCount": "Delete {count} memories?",
+  "@deleteMemoriesCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "deleteMemoriesConfirm": "These memories will be removed for good.",
+  "moveToCategory": "Move to category",
+  "nSelected": "{count} selected",
+  "@nSelected": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "movedToCategory": "Moved to {category}",
+  "@movedToCategory": {
+    "placeholders": {
+      "category": {
+        "type": "String"
+      }
+    }
+  },
+  "moveCategoryTooltip": "Move category",
+  "memoryScreenSubtitle": "Facts the AI keeps in mind about you across chats.",
+  "rememberMe": "Remember me",
+  "rememberMeSubtitle": "Use saved notes in future conversations",
+  "memoryPerPersona": "Keep private notes separate",
+  "memoryPerPersonaSubtitle": "Notes marked private stay with their persona. Character notes are always kept separate.",
+  "memoryOnDeviceExtraction": "Learn memories on-device",
+  "memoryOnDeviceExtractionSubtitle": "Let the local model extract facts too. Uses extra battery.",
+  "memoryScopeGlobal": "Everyone",
+  "memoryScopeGlobalSubtitle": "Available in every chat",
+  "memoryScopePrivate": "Private to persona",
+  "memoryScopePrivateSubtitle": "A fact about you that only this persona sees",
+  "memoryScopeLore": "Character notes",
+  "memoryScopeLoreSubtitle": "Roleplay details for this character, never treated as facts about you",
+  "memoryVisibility": "Visibility",
+  "memoryChangeVisibility": "Change visibility",
+  "memoryScopeFilterAll": "All",
+  "memoryOrphaned": "Orphaned",
+  "memoryOrphanedHint": "These notes belong to a persona that no longer exists, so no chat can see them. Repair them to bring them back.",
+  "memoryMakeGlobal": "Make available to everyone",
+  "memorySearchHint": "Search notes",
+  "memoryNoSearchResults": "No notes match \"{query}\"",
+  "@memoryNoSearchResults": {
+    "placeholders": {
+      "query": {
+        "type": "String"
+      }
+    }
+  },
+  "memoryPickPersona": "Choose a persona",
+  "memoryMovedToScope": "Moved to {scope}",
+  "@memoryMovedToScope": {
+    "placeholders": {
+      "scope": {
+        "type": "String"
+      }
+    }
+  },
+  "memoryCountForPersona": "{count, plural, =0{No memories} =1{1 memory} other{{count} memories}}",
+  "@memoryCountForPersona": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "personaMemoryWriteScope": "Save new memories as",
+  "personaMemoryWriteScopeSubtitle": "Where facts learned in this persona's chats are filed",
+  "memoryBrowseSection": "Browse",
+  "memoryMultiSelectTip": "Tip: long-press a note to select several.",
+  "memoryEmptyFilteredHint": "Add a note, or pick another category.",
+  "memoryEmptyHint": "Save a few things about yourself — name, preferences, projects — so chats feel personal.",
+  "memoryShareWith": "Share with",
+  "memoryEveryone": "Everyone",
+  "memoryEveryoneSubtitle": "Available in every chat",
+  "memoryNoPersonasHint": "No personas yet. Create one in Settings → Personas.",
+  "memoryNewNote": "New note",
+  "memoryNoteHint": "e.g. I prefer short answers and live in Berlin",
+  "memoryEditNote": "Edit note",
+  "monthsAgo": "{count}mo ago",
+  "@monthsAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "moreTooltip": "More",
+  "closeSearch": "Close search",
+  "moveTooltip": "Move",
+  "chatsTab": "Chats",
+  "groupsTab": "Groups",
+  "foldersTooltip": "Folders",
+  "newFolder": "New folder",
+  "tapToReturnToCall": "Tap to return to call",
+  "selectConversation": "Select a conversation",
+  "selectConversationHint": "Pick one from the list, or start a new chat.",
+  "noGroupChatsYet": "No group chats yet",
+  "noGroupChatsSubtitle": "Start a multi-persona conversation to chat with several AIs together.",
+  "newPersonaShort": "New",
+  "downloadOnDeviceModelTitle": "Download an on-device model",
+  "downloadOnDeviceModelBody": "Download a model to chat without a PC, or connect LM Studio / Ollama.",
+  "browseModels": "Browse models",
+  "waitingForMac": "Waiting for Mac",
+  "waitingForMacBody": "Connect your iPhone to your Mac with a USB cable, then open LM Mini on Mac and enable Share with phone (USB bridge).",
+  "arenaMode": "Arena mode",
+  "voiceWhisperSizeInfoTitle": "Bigger models hear better",
+  "voiceWhisperSizeInfoBody": "Larger listening models are usually more accurate, especially with accents and background noise. They also use more storage and may load a bit slower.",
+  "voiceRemoveListeningModelTitle": "Remove listening model?",
+  "voiceRemoveListeningModelBody": "This frees storage. Voice Call and the mic will need the model again before offline listening works.",
+  "voiceTtsOnDeviceNeural": "Downloaded voice",
+  "voiceTtsPcVoice": "PC voice",
+  "voiceTtsSystemVoice": "System voice",
+  "voiceTtsOnDeviceHint": "Natural voices you download. Works without internet.",
+  "voiceTtsPcHint": "Use a voice model on your computer via Share with phone",
+  "voiceTtsSystemHint": "Your phone's voices — ready now",
+  "voiceSttOnDevice": "On this device",
+  "voiceSttWhisperHint": "Offline model — usually more accurate",
+  "voiceSttSystemHint": "Built-in recognition — quick and simple",
+  "voiceSttSystemUnavailableOnMac": "Needs download",
+  "voiceSttMacosRequiresWhisper": "App Store builds use on-device Whisper for listening. Download a model to enable it.",
+  "voiceSttMacosSystemOptionSubtitle": "Download Whisper to enable listening",
+  "voiceSttMacosDownloadWhisper": "Download Whisper to enable listening",
+  "voiceSettingsIntro": "How replies are spoken, and how your voice is understood.",
+  "voiceSectionReady": "Ready",
+  "voiceSectionSpeaking": "Speaking",
+  "voiceSectionListening": "Listening",
+  "voiceSectionConversation": "Conversation",
+  "voiceStatusSpeaking": "Speaking",
+  "voiceStatusListening": "Listening",
+  "voiceHowISpeak": "How I speak",
+  "voiceImportPack": "Import voice pack",
+  "voiceImportPackSubtitle": "Paste a GitHub URL to a voice pack",
+  "voiceHowIHearYou": "How I hear you",
+  "voiceHowIHearYouSubtitle": "Choose how your speech is turned into text.",
+  "voiceListeningModel": "Listening model",
+  "voiceAboutModelSizes": "About model sizes",
+  "voicePauseBeforeSend": "Pause before send",
+  "voicePauseBeforeSendSubtitle": "How long to wait after you stop talking",
+  "voiceListeningLimit": "Listening limit",
+  "voiceListeningLimitSubtitle": "Longest stretch before the mic restarts",
+  "voiceQuickTip": "Quick tip",
+  "voiceQuickTipBody": "For a more natural voice, download a language under Voice packs. System voice works right away.",
+  "voiceTestSampleHint": "Hear a short sample with your current settings",
+  "voiceTestNoPackReady": "Download a language under Voice packs, then try Test Voice.",
+  "voiceChooseListeningModel": "Tap to choose a listening model",
+  "voiceModelReady": "Ready",
+  "voiceNeedsDownload": "Needs download",
+  "voiceDownloaded": "Downloaded",
+  "voiceDownloadFailed": "Download failed",
+  "voiceFinishingSetup": "Finishing setup…",
+  "voiceDownloadingListeningModel": "Downloading listening model…",
+  "voiceDownloadingVoice": "Downloading voice…",
+  "voiceStartingDownload": "Starting download…",
+  "voiceReady": "Voice ready",
+  "voiceWarmingUp": "Warming up…",
+  "voiceReadyToSpeak": "Ready to speak",
+  "voiceDownloadOnDevice": "Download on-device voice",
+  "voiceDownloadFailedRetry": "Download failed — tap to try again",
+  "voiceSpokenReplyLanguage": "Spoken reply language",
+  "voiceSpokenReplyLanguageSubtitle": "Language used when the assistant reads messages aloud.",
+  "voiceRecognitionLanguage": "Recognition language",
+  "voiceRecognitionLanguageSubtitle": "Used for the text mic and Voice Call — can differ from spoken replies.",
+  "voiceEngineTitle": "Speaking voice",
+  "voiceEngineSubtitle": "Choose where the spoken voice comes from.",
+  "voiceChooseAVoice": "Choose a voice",
+  "voiceChooseAVoiceSubtitle": "Preview-friendly names for on-device speech.",
+  "voiceUseSystemDefault": "Use the system default voice",
+  "welcomeWizardTitleGetStarted": "Get started",
+  "welcomeWizardTitleYourSetup": "Your setup",
+  "welcomeWizardTitleLookAndFeel": "Look & feel",
+  "welcomeWizardTitleAlmostDone": "Almost done",
+  "welcomeWizardTitleSetup": "Setup",
+  "welcomeWizardLmStudioSubtitle": "Run models on your Mac or PC",
+  "welcomeWizardOllamaSubtitle": "Popular local server",
+  "welcomeWizardOmlxSubtitle": "Apple Silicon desktop server",
+  "welcomeWizardJanSubtitle": "Local models from the JAN AI app",
+  "welcomeWizardUnslothSubtitle": "Unsloth Desktop on your computer",
+  "welcomeWizardThemeSubtitle": "Pick a look you like. You can change this anytime.",
+  "welcomeWizardModelReady": "Ready",
+  "welcomeWizardConnected": "Connected",
+  "welcomeWizardServerFound": "Server found",
+  "welcomeWizardRequiresApiKey": "Requires API Key",
+  "welcomeWizardScanHomeQr": "Scan LM Mini Home QR",
+  "welcomeWizardScanHomeQrSubtitle": "Pair with your Mac from Share with phone",
+  "welcomeWizardModelsFound": "{count, plural, =1{1 model found} other{{count} models found}}",
+  "@welcomeWizardModelsFound": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "welcomeWizardLocalNetworkTitle": "Allow network access",
+  "welcomeWizardLocalNetworkBody": "You'll be asked to allow local network access. Please allow it so LM Mini can find LM Mini Home, LM Studio, or Ollama running on your computer.",
+  "welcomeWizardLocalNetworkAllow": "Allow",
+  "welcomeWizardDownloadKeepsGoing": "You can leave this screen — the download keeps going, even if you leave the app.",
+  "welcomeWizardDownloadFailed": "Download failed. Tap to retry.",
+  "welcomeWizardAiDownloadingTitle": "AI is downloading",
+  "welcomeWizardAiDownloadingBody": "You'll be able to chat as soon as the perfect AI for your phone is ready. This is a one-time download.",
+  "onDeviceModels": "On-Device Models",
+  "transcription": "Transcription",
+  "widgetSettings": "Widget Settings",
+  "widgetSettingsSubtitle": "Configure home screen widgets",
+  "setUpShortcuts": "Set up Shortcuts",
+  "shareArenaSpeedResults": "Share Arena speed results",
+  "browseOnDeviceModels": "Browse on-device models",
+  "homeDownloadModel": "Download model",
+  "usbMode": "USB Mode",
+  "usbModeHowItWorks": "How USB Mode works",
+  "switchToUsbTitle": "Switch from Remote to USB?",
+  "switchLabel": "Switch",
+  "usbModeStartFailed": "Could not start USB Mode: {error}",
+  "@usbModeStartFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "usbModeHowToUse": "How to use:",
+  "openLmminiCom": "Open lmmini.com",
+  "tapToUseServer": "Tap to use this server",
+  "memoryPersonaFallback": "Persona",
+  "voicePickSystemVoiceSubtitle": "Pick a built-in voice for spoken replies.",
+  "chooseFromGallery": "Choose from gallery",
+  "galleryLimitsSubtitle": "Photos up to 10 MB · Videos up to 200 MB",
+  "recordVideo": "Record a video",
+  "attachmentsCount": "Attachments ({count}/{max})",
+  "@attachmentsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "viewProfile": "View profile",
+  "personaAndModel": "Persona & model",
+  "chatOptions": "Chat options",
+  "chatTab": "Chat",
+  "voiceTab": "Voice",
+  "craftingPersona": "Crafting persona…",
+  "randomPersona": "Surprise me",
+  "savePersona": "Save persona",
+  "downloadFinished": "Download finished.",
+  "downloadCancelled": "Download cancelled.",
+  "downloadCancelFailed": "Couldn't cancel in LM Studio. Stop it in LM Studio's Downloads list.",
+  "newsBriefing": "News briefing",
+  "refreshNow": "Refresh now",
+  "noBriefingYet": "No briefing yet",
+  "newsSetPromptFirst": "Set a News widget prompt in Widget Settings first.",
+  "newsRefreshed": "News refreshed.",
+  "newsRefreshFailed": "Refresh failed: {error}",
+  "@newsRefreshFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "themesTitle": "Themes",
+  "createLabel": "Create",
+  "browseLabel": "Browse",
+  "signInToUploadThemes": "Please sign in to upload themes",
+  "deleteThemeTitle": "Delete theme?",
+  "deleteThemeConfirm": "Remove \"{name}\" from your downloaded themes?",
+  "@deleteThemeConfirm": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "uploadToCommunity": "Upload to community",
+  "installedLabel": "Installed",
+  "getLabel": "Get",
+  "bestForYou": "Best for you",
+  "loadingLabel": "Loading",
+  "loadedLabel": "Loaded",
+  "notLoadedLabel": "Not loaded",
+  "reasoningLabel": "Reasoning",
+  "imagesLabel": "Images",
+  "detailsTooltip": "Details",
+  "transcribeAudio": "Transcribe audio",
+  "transcribeAudioSubtitle": "Upload audio and ask AI about the transcript",
+  "trimSection": "Trim section",
+  "includeTimestamps": "Include timestamps",
+  "phrasesLabel": "Phrases",
+  "wordsLabel": "Words",
+  "transcriptionLanguage": "Transcription language",
+  "searchLanguages": "Search languages…",
+  "transcribe": "Transcribe",
+  "shareTranscript": "Share transcript",
+  "transcriptionContextLargeToast": "These transcripts may be too large for the model's context. Branch from an earlier message if answers get incomplete.",
+  "transcriptionSubtitlesOn": "Subtitles on",
+  "transcriptionSubtitlesOff": "Subtitles off",
+  "transcriptionFullClip": "Full clip",
+  "transcriptionJobRunning": "Transcribing…",
+  "transcriptionJobDone": "Transcribed",
+  "transcriptionJobFailed": "Transcription failed",
+  "branchFromHere": "Branch from here",
+  "memoryUpdates": "Memory Updates",
+  "promptWriteEmail": "Write an email",
+  "promptWriteEmailBody": "Help me write a clear, friendly email to ",
+  "promptGiveIdeas": "Give me ideas",
+  "promptGiveIdeasBody": "Brainstorm creative ideas with me about ",
+  "promptExplainSimply": "Explain simply",
+  "promptExplainSimplyBody": "Explain this in simple words: ",
+  "promptFixWriting": "Fix my writing",
+  "promptFixWritingBody": "Improve this writing for clarity and tone:\n\n",
+  "promptHelpStudy": "Help me study",
+  "promptHelpStudyBody": "Help me study this topic: ",
+  "promptPlanTrip": "Plan a trip",
+  "promptPlanTripBody": "Help me plan a trip to ",
+  "promptSummarize": "Summarize this",
+  "promptSummarizeBody": "Summarize this clearly:\n\n",
+  "promptChecklist": "Make a checklist",
+  "promptChecklistBody": "Make a practical checklist for ",
+  "promptFunFact": "Tell me a fun fact",
+  "promptFunFactBody": "Tell me a fun fact about ",
+  "promptQuizMe": "Quiz me",
+  "promptQuizMeBody": "Quiz me on ",
+  "promptRoleplay": "Roleplay with me",
+  "promptRoleplayBody": "Let's roleplay. You are ",
+  "promptCodeHelp": "Code help",
+  "promptCodeHelpBody": "Help me with this code problem:\n\n",
+  "promptDraftReply": "Draft a reply",
+  "promptDraftReplyBody": "Draft a polite reply to this:\n\n",
+  "promptPracticeInterview": "Practice interview",
+  "promptPracticeInterviewBody": "Practice interview questions for ",
+  "promptMealIdeas": "Meal ideas",
+  "promptMealIdeasBody": "Suggest meal ideas using ",
+  "promptWorkoutPlan": "Workout plan",
+  "promptWorkoutPlanBody": "Create a simple workout plan for ",
+  "promptTranslateCasually": "Translate casually",
+  "promptTranslateCasuallyBody": "Translate this casually:\n\n",
+  "promptNameIdeas": "Name ideas",
+  "promptNameIdeasBody": "Brainstorm name ideas for ",
+  "promptProsCons": "Pros and cons",
+  "promptProsConsBody": "List pros and cons of ",
+  "promptRewriteShorter": "Rewrite shorter",
+  "promptRewriteShorterBody": "Rewrite this shorter and clearer:\n\n",
+  "promptTeachVocab": "Teach me vocab",
+  "promptTeachVocabBody": "Teach me useful vocabulary about ",
+  "promptStoryTime": "Story time",
+  "promptStoryTimeBody": "Tell a short story about ",
+  "promptDebugWithMe": "Debug with me",
+  "promptDebugWithMeBody": "Help me debug this:\n\n",
+  "promptDailyMotivation": "Daily motivation",
+  "promptDailyMotivationBody": "Give me a short motivational nudge about ",
+  "promptPlayDnd": "Play DnD",
+  "promptPlayDndBody": "Let's play a short D&D adventure. I am ",
+  "promptWordChain": "Word chain",
+  "promptWordChainBody": "Let's play word chain. Start with: ",
+  "promptRiddleDuel": "Riddle duel",
+  "promptRiddleDuelBody": "Give me a riddle to solve.",
+  "promptWouldYouRather": "Would you rather",
+  "promptWouldYouRatherBody": "Ask me a fun would-you-rather question.",
+  "promptEscapeRoom": "Escape room",
+  "promptEscapeRoomBody": "Start a short text escape-room puzzle for me.",
+  "promptTriviaBattle": "Trivia battle",
+  "promptTriviaBattleBody": "Quiz me with trivia about ",
+  "promptStoryRpg": "Story RPG",
+  "promptStoryRpgBody": "Start a short story RPG. My character is ",
+  "promptGuessNumber": "Guess the number",
+  "promptGuessNumberBody": "Let's play guess the number. Think of a number between 1 and 100.",
+  "promptTwoTruths": "Two truths one lie",
+  "promptTwoTruthsBody": "Let's play two truths and a lie. You go first.",
+  "promptReadMyFile": "Read my file",
+  "promptWhatIsImage": "What is this image",
+  "promptTakePhoto": "Take a photo",
+  "promptTranscribeAudio": "Transcribe audio",
+  "promptPersonaGenerator": "Persona Generator",
+  "personaShareMemoryCategoriesLabel": "Categories to share",
+  "personaShareMemoryCategoriesSubtitle": "Choose which kinds of memories this persona can use in chats.",
+  "chooseFaceForBubbles": "Choose face for bubbles",
+  "moveMemories": "Move memories",
+  "deletePersonaAndMemories": "Delete persona + memories",
+  "moveMemoriesTo": "Move memories to…",
+  "globalSharedMemories": "Global (shared with all personas)",
+  "personaMemoriesAssignedHint": "{count} memory item(s) are assigned to \"{name}\".\nChoose what should happen to them:",
+  "@personaMemoriesAssignedHint": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "homeSyncTitle": "Keep chats in sync?",
+  "homeSyncBodyBoth": "This phone has {phoneChats} chats and LM Mini Home has {macChats}. Enable sync to merge conversations and folders so you can continue on either device. Uses your existing encrypted relay.",
+  "@homeSyncBodyBoth": {
+    "placeholders": {
+      "phoneChats": { "type": "int" },
+      "macChats": { "type": "int" }
+    }
+  },
+  "homeSyncBodyPhoneOnly": "Copy chats and folders from this phone to LM Mini Home, then keep them in sync over your encrypted relay.",
+  "homeSyncBodyMacOnly": "Bring chats and folders from LM Mini Home onto this phone, then keep them in sync over your encrypted relay.",
+  "homeSyncBodyGeneric": "Merge conversations and folders between this phone and LM Mini Home so you can continue on either device. Uses your existing encrypted relay.",
+  "homeSyncEnable": "Enable sync",
+  "homeSyncNotNow": "Not now",
+  "homeSyncSettingsTitle": "Sync chats with Home",
+  "homeSyncSettingsSubtitle": "Copy chats and folders between this phone and your Mac",
+  "homeSyncMergedToast": "Chats and folders are now in sync",
+  "homeSyncFailedToast": "Couldn't sync. Open Share with phone on your Mac and try again.",
+  "homeSyncPersonasTitle": "Sync personas",
+  "homeSyncPersonasSubtitle": "Copy the ones you pick, including photos and memories",
+  "homeSyncPersonasPickTitle": "Choose personas",
+  "homeSyncPersonasPickSubtitle": "Checked personas copy between this device and Home, with their photo and memories.",
+  "homeSyncPersonasSave": "Save and sync",
+  "homeSyncPersonasSavedToast": "Personas are now in sync",
+  "homeSyncPersonasEmpty": "No personas to copy yet.",
+  "homeSyncPersonasUnreachable": "Can't reach Home. Open Share with phone on your Mac, then try again.",
+  "homeSyncPersonasOnBoth": "On both devices",
+  "homeSyncPersonasOnHome": "LM Mini Home",
+  "homeSyncPersonasOnPhone": "your phone",
+  "homeSyncPersonasThisPhone": "this phone",
+  "homeSyncPersonasOnDevice": "On {device}",
+  "@homeSyncPersonasOnDevice": {
+    "placeholders": {
+      "device": {
+        "type": "String"
+      }
+    }
+  },
+  "homeSyncPersonasMemoryCount": "{count} memories",
+  "@homeSyncPersonasMemoryCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeSyncPersonasNoMemories": "No memories yet",
+  "reportToSupport": "Send to support",
+  "localhostConnectionHelp": "Can't connect to localhost. On a phone or tablet, localhost means this device — not your computer. In Settings, use your computer's IP address instead (for example http://192.168.1.10:1234) and keep both on the same Wi‑Fi.",
+  "lmStudioPcNotAllowingTitle": "Your PC is not allowing connections",
+  "lmStudioPcNotAllowingBody": "In LM Studio on your computer, open Developer → Server Settings and turn on Serve on Local Network.",
+  "lmStudioHostDownTitle": "Can't reach your PC",
+  "lmStudioHostDownStep1": "Make sure the computer is on — not asleep or shut down.",
+  "lmStudioHostDownStep2": "In LM Studio, open Developer → Server Settings and turn on Serve on Local Network.",
+  "cantReachMacTitle": "Can't reach your Mac",
+  "cantReachMacStep1": "Open Share with phone in LM Mini Home on your Mac.",
+  "cantReachMacStep2": "Wait until it says Connected, then try again.",
+  "lmStudioServerSettingsImageLabel": "LM Studio Developer → Server Settings. Serve on Local Network should be on.",
+  "modelMissingTitle": "This model isn't on your PC",
+  "modelMissingBody": "The selected model isn't available. Pick another from Model Selection.",
+  "modelMissingBodyNamed": "“{model}” isn't on your computer. Pick another from Model Selection.",
+  "@modelMissingBodyNamed": {
+    "placeholders": {
+      "model": { "type": "String" }
+    }
+  },
+  "outputTokensExhaustedTitle": "The model ran out of output tokens",
+  "outputTokensExhaustedBody": "There weren't enough output tokens left to write a reply. Increase max tokens and try again.",
+  "thinkingBudgetRetryTitle": "Thinking used the output limit",
+  "thinkingBudgetRetryBody": "High thinking filled the output limit, so this reply uses low thinking. Raise max tokens to keep high thinking.",
+  "adjustMaxTokens": "Adjust max tokens",
+  "ggmlSchedulerCrashBody": "The model server crashed (llama.cpp scheduler). This isn't Mini. Lower context length and max tokens — very large values (for example 128k context) often cause this.",
+  "generationTerminatedBody": "LM Studio stopped the generation on your computer (the process was terminated).",
+  "generationTerminatedHugeImageBody": "LM Studio stopped the generation on your computer. Your attached image is probably huge ({size}) — compress it and resend.",
+  "@generationTerminatedHugeImageBody": {
+    "placeholders": {
+      "size": { "type": "String" }
+    }
+  },
+  "compressAndResendImages": "Compress image and resend",
+  "imageCompressFailed": "Couldn't shrink the attached image. Try a smaller photo.",
+  "droppedChatBodyHelp": "Mini sent this chat, but it never reached LM Studio. If you run a proxy, tunnel, or extra URL in front of LM Studio, try without it — or point Mini straight at LM Studio (your computer's IP, USB, or Connect).",
+  "comfyUiNoCheckpointsTitle": "ComfyUI has no image model",
+  "comfyUiNoCheckpointsBody": "ComfyUI has no checkpoint to load. Add a .safetensors file to ComfyUI’s models/checkpoints folder, then pick it in Image Generation settings.",
+  "comfyUiNoCheckpointSelectedBody": "No image model is selected. Open Image Generation settings and pick a checkpoint.",
+  "comfyUiUnknownCheckpointBody": "ComfyUI doesn’t have checkpoint “{name}”. Pick another in Image Generation settings.",
+  "@comfyUiUnknownCheckpointBody": {
+    "placeholders": {
+      "name": { "type": "String" }
+    }
+  },
+  "comfyUiWorkflowRejectedBody": "ComfyUI rejected the workflow. Check Image Generation settings.",
+  "comfyUiDiffusionOnlyTitle": "This graph needs your ComfyUI workflow",
+  "comfyUiDiffusionOnlyBody": "Mini’s built-in workflow loads a classic SD checkpoint. Your Comfy Desktop graph uses a diffusion model (UNET) plus CLIP and VAE. Export it as API Format (Workflow → Export) and pick that file under Image Generation.",
+  "openImageSettings": "Image settings",
+  "imageGenUnreachableTitle": "Can't reach {name}",
+  "@imageGenUnreachableTitle": {
+    "placeholders": {
+      "name": { "type": "String" }
+    }
+  },
+  "imageGenUnreachableBody": "Nothing is answering at {url}. Start {name} on your computer and stay on the same Wi‑Fi.",
+  "@imageGenUnreachableBody": {
+    "placeholders": {
+      "name": { "type": "String" },
+      "url": { "type": "String" }
+    }
+  },
+  "imageGenUnreachableNoUrlBody": "No image generation server is set. Add ComfyUI or AUTOMATIC1111 in Image Generation settings.",
+  "sharedHostUpdateImageTitle": "Update image generation too?",
+  "sharedHostUpdateChatTitle": "Update {name} too?",
+  "@sharedHostUpdateChatTitle": {
+    "placeholders": {
+      "name": { "type": "String" }
+    }
+  },
+  "sharedHostUpdateBody": "{changedName} and {peerName} were both on {oldHost}. Update {peerName} to {newUrl}?",
+  "@sharedHostUpdateBody": {
+    "placeholders": {
+      "changedName": { "type": "String" },
+      "peerName": { "type": "String" },
+      "oldHost": { "type": "String" },
+      "newUrl": { "type": "String" }
+    }
+  },
+  "sharedHostUpdateConfirm": "Update and test",
+  "sharedHostUpdateSkip": "Keep current",
+  "sharedHostTesting": "Testing {name}…",
+  "@sharedHostTesting": {
+    "placeholders": {
+      "name": { "type": "String" }
+    }
+  },
+  "sharedHostTestSuccessTitle": "Connected",
+  "sharedHostTestSuccessBody": "Reached {name} at {url}.",
+  "@sharedHostTestSuccessBody": {
+    "placeholders": {
+      "name": { "type": "String" },
+      "url": { "type": "String" }
+    }
+  },
+  "sharedHostTestFailTitle": "Couldn't connect",
+  "sharedHostTestFailBody": "Updated {name} to {url}, but Mini couldn't reach it. {error}",
+  "@sharedHostTestFailBody": {
+    "placeholders": {
+      "name": { "type": "String" },
+      "url": { "type": "String" },
+      "error": { "type": "String" }
+    }
+  },
+  "supportTicketTitle": "Report a problem",
+  "supportTicketPrefillDescription": "A log file with the error details is attached. Add anything else that might help:",
+  "supportTicketSubmitted": "Thanks — your report was sent.",
+  "supportTicketAlreadyOpen": "You already have an open report for this error.",
+  "supportTicketViewExisting": "View report",
+  "supportTicketAlreadySending": "This error is already being reported.",
+  "supportUnavailable": "Support isn't available right now. Try again when you're online.",
+  "somethingWentWrong": "Something went wrong",
+  "uncaughtErrorSnack": "Something went wrong.",
+  "errorLogLabel": "LOG",
+  "appLock": "App Lock",
+  "appLockSubtitleOff": "Require a PIN after the app is closed",
+  "appLockSubtitleOn": "Asks again after {duration}",
+  "@appLockSubtitleOn": {
+    "placeholders": {
+      "duration": { "type": "String" }
+    }
+  },
+  "appLockUnlockTitle": "LM Mini is locked",
+  "appLockDescription": "Protect chats on this device with a numeric PIN and optional Face ID. The PIN stays on this device and is never synced.",
+  "appLockEnable": "Lock with PIN",
+  "appLockEnableSubtitle": "Ask for your PIN when you return",
+  "appLockPinLength4": "4 digits",
+  "appLockPinLength6": "6 digits",
+  "appLockRequireAfter": "Ask again after",
+  "appLockTimeoutImmediate": "Immediately",
+  "appLockTimeout15s": "15 seconds",
+  "appLockTimeout1m": "1 minute",
+  "appLockTimeout5m": "5 minutes",
+  "appLockTimeout15m": "15 minutes",
+  "appLockTimeout1h": "1 hour",
+  "appLockChangePin": "Change PIN",
+  "appLockEnterCurrentPin": "Enter current PIN",
+  "appLockChooseNewPin": "Choose a PIN",
+  "appLockConfirmPin": "Confirm PIN",
+  "appLockPinsDontMatch": "PINs didn’t match. Try again.",
+  "appLockWrongPin": "Wrong PIN. Try again.",
+  "appLockTooManyAttempts": "Too many attempts. Try again in {seconds}s.",
+  "@appLockTooManyAttempts": {
+    "placeholders": {
+      "seconds": { "type": "int" }
+    }
+  },
+  "appLockForgotHint": "If you forget your PIN, you can reset it with a verification email sent to your signed-in account. Sign in before you lose the PIN, or you won’t be able to recover it.",
+  "appLockProRequired": "App Lock is a Pro feature",
+  "appLockEnabledToast": "App Lock is on",
+  "appLockDisabledToast": "App Lock is off",
+  "appLockChangedToast": "PIN updated",
+  "appLockBiometricsToggle": "Unlock with {method}",
+  "@appLockBiometricsToggle": {
+    "placeholders": {
+      "method": { "type": "String" }
+    }
+  },
+  "appLockBiometricsSubtitle": "Use Face ID, Touch ID, or a fingerprint instead of your PIN.",
+  "appLockBiometricFaceId": "Face ID",
+  "appLockBiometricFace": "Face unlock",
+  "appLockBiometricTouchId": "Touch ID",
+  "appLockBiometricFingerprint": "Fingerprint",
+  "appLockBiometricGeneric": "biometrics",
+  "appLockUnlockWithBiometrics": "Unlock with {method}",
+  "@appLockUnlockWithBiometrics": {
+    "placeholders": {
+      "method": { "type": "String" }
+    }
+  },
+  "appLockBiometricsFailed": "Couldn’t unlock with {method}. Use your PIN.",
+  "@appLockBiometricsFailed": {
+    "placeholders": {
+      "method": { "type": "String" }
+    }
+  },
+  "appLockSignInToRecover": "Sign in, or you won’t be able to recover App Lock if this PIN is lost.",
+  "appLockSignInToRecoverBound": "Sign in as {email}, or you won’t be able to recover App Lock if this PIN is lost.",
+  "@appLockSignInToRecoverBound": {
+    "placeholders": {
+      "email": { "type": "String" }
+    }
+  },
+  "appLockNotSignedInNoRecovery": "You aren’t signed in. You won’t be able to recover this PIN if it’s lost.",
+  "appLockForgotPin": "Forgot PIN?",
+  "appLockSendRecoveryEmail": "Email a verification link",
+  "appLockRecoveryEmailSent": "We sent a verification email to {email}. Open it, then come back here.",
+  "@appLockRecoveryEmailSent": {
+    "placeholders": {
+      "email": { "type": "String" }
+    }
+  },
+  "appLockRecoveryIVerified": "I verified — continue",
+  "appLockRecoveryResend": "Resend email",
+  "appLockRecoveryReauth": "Sign in again to reset your PIN",
+  "appLockRecoveryWrongAccount": "This PIN is tied to {email}. Sign in with that account to recover it.",
+  "@appLockRecoveryWrongAccount": {
+    "placeholders": {
+      "email": { "type": "String" }
+    }
+  },
+  "appLockRecoveryUnavailable": "PIN recovery isn’t set up. You’ll need this PIN, or reinstall LM Mini.",
+  "appLockRecoveryFailed": "Couldn’t verify your account. Try again.",
+  "appLockRecoveryNoEmail": "This account has no email to send a verification link to.",
+  "appLockRecoveryTooMany": "Too many emails. Wait a minute and try again.",
+  "appLockRecoverySetPin": "Choose a new PIN",
+  "appLockContinueWithEmail": "Continue with email",
+  "appLockSignedInRecoverHint": "If you forget this PIN, we can email a verification link to {email}.",
+  "@appLockSignedInRecoverHint": {
+    "placeholders": {
+      "email": { "type": "String" }
+    }
+  },
+  "appLockRecoveryAccount": "PIN recovery",
+  "appLockRecoveryAccountOn": "Verification emails go to {email}",
+  "@appLockRecoveryAccountOn": {
+    "placeholders": {
+      "email": { "type": "String" }
+    }
+  },
+  "appLockRecoveryAccountOff": "Sign in so you can recover a lost PIN",
+  "appLockRecoveryAccountOffSubtitle": "Without a signed-in account, a lost PIN can only be cleared by reinstalling the app.",
+  "appLockBackToPin": "Use PIN",
+  "premiumAppLock": "App Lock",
+  "premiumAppLockTagline": "PIN-protect the app",
+  "premiumAppLockDescription": "Set a 4- or 6-digit PIN, unlock with Face ID, and recover a lost PIN with a verification email. The PIN stays on this device."
+}

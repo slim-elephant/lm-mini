@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="widget_main_description">Quick access to LM Mini chat and usage stats</string>
+    <string name="widget_news_description">AI-generated briefing using your custom prompt.</string>
+    <string name="widget_personas_description">Quick access to your saved personas.</string>
+    <string name="widget_folders_description">Your most-used chat folders.</string>
+    <string name="widget_recents_description">Jump back into your latest conversations.</string>
+
+    <string name="widget_app_stats">App Stats</string>
+    <string name="widget_messages">Messages: %1$d</string>
+    <string name="widget_tokens_in">Tokens In: %1$dk</string>
+    <string name="widget_tokens_out">Tokens Out: %1$dk</string>
+    <string name="widget_tap_to_chat">Tap to chat</string>
+
+    <string name="widget_news_title">News</string>
+    <string name="widget_pro_badge">PRO</string>
+    <string name="widget_news_pro_locked">Pro feature</string>
+    <string name="widget_news_pro_hint">Upgrade in LM Mini to enable AI-generated briefings.</string>
+    <string name="widget_news_setup">Tap to set up</string>
+    <string name="widget_news_setup_hint">Add a prompt in Widget settings to generate content.</string>
+    <string name="widget_news_refreshing">Refreshing…</string>
+    <string name="widget_news_default_title">Your brief</string>
+
+    <string name="widget_personas_title">Start a chat</string>
+    <string name="widget_personas_empty">Create a persona in LM Mini to see it here.</string>
+
+    <string name="widget_folders_title">Folders</string>
+    <string name="widget_folders_empty">Organize chats into folders to see them here.</string>
+
+    <string name="widget_recents_title">Recent Chats</string>
+    <string name="widget_recents_empty">Your recent chats will appear here.</string>
+    <string name="widget_untitled_chat">Untitled</string>
+
+    <string name="widget_time_just_now">just now</string>
+    <string name="widget_time_minutes">%1$dm ago</string>
+    <string name="widget_time_hours">%1$dh ago</string>
+    <string name="widget_time_days">%1$dd ago</string>
+</resources>

@@ -1,0 +1,18 @@
+name: lm_mini_premium
+description: >
+  Stub implementations of premium features for LM Mini open-source builds.
+  Replace with the real premium package for full functionality.
+version: 1.0.0
+publish_to: 'none'
+
+environment:
+  sdk: '>=3.6.0 <4.0.0'
+  flutter: '>=3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  http: ^1.1.0
+  sqflite: ^2.3.0
+  path: ^1.9.0
+  shared_preferences: ^2.2.2

@@ -1,0 +1,9 @@
+#include? "Pods/Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"
+#include "Generated.xcconfig"
+// See Debug.xcconfig. Simulator arm64 is required for the watch simulator.
+EXCLUDED_ARCHS[sdk=iphonesimulator*]=i386
+FRAMEWORK_SEARCH_PATHS[sdk=iphonesimulator*] = $(SRCROOT)/build/mlkit-sim $(inherited)
+// BigMoeOnEdge is paused. The static libs are built for A14+ (armv8.4-a+i8mm)
+// and force-loaded, which crashes older iPhones at launch and does not run on
+// 16 Pro Max either. Uncomment to link ios/Flutter/bmoe.xcconfig again.
+// #include? "bmoe.xcconfig"

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Placeholder Firebase config for open-source builds. Copy it to
+  macos/Runner/GoogleService-Info.plist, or replace it with the file your own
+  Firebase project generates. Every value here is a dummy.
+-->
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</string>
+	<key>GCM_SENDER_ID</key>
+	<string>000000000000</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>net.neuro9.lmmini</string>
+	<key>PROJECT_ID</key>
+	<string>your-firebase-project</string>
+	<key>STORAGE_BUCKET</key>
+	<string>your-firebase-project.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false></false>
+	<key>IS_GCM_ENABLED</key>
+	<false></false>
+	<key>IS_SIGNIN_ENABLED</key>
+	<false></false>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:000000000000:ios:0000000000000000000000</string>
+</dict>
+</plist>

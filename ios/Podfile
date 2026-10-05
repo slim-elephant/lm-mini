@@ -1,0 +1,139 @@
+# Uncomment this line to define a global platform for your project
+platform :ios, '16.0'
+
+# CocoaPods analytics sends network stats synchronously affecting flutter build latency.
+ENV['COCOAPODS_DISABLE_STATS'] = 'true'
+
+project 'Runner', {
+  'Debug' => :debug,
+  'Profile' => :release,
+  'Release' => :release,
+}
+
+def flutter_root
+  generated_xcode_build_settings_path = File.expand_path(File.join('..', 'Flutter', 'Generated.xcconfig'), __FILE__)
+  unless File.exist?(generated_xcode_build_settings_path)
+    raise "#{generated_xcode_build_settings_path} must exist. If you're running pod install manually, make sure flutter pub get is executed first"
+  end
+
+  File.foreach(generated_xcode_build_settings_path) do |line|
+    matches = line.match(/FLUTTER_ROOT\=(.*)/)
+    return matches[1].strip if matches
+  end
+  raise "FLUTTER_ROOT not found in #{generated_xcode_build_settings_path}. Try deleting Generated.xcconfig, then run flutter pub get"
+end
+
+require File.expand_path(File.join('packages', 'flutter_tools', 'bin', 'podhelper'), flutter_root)
+
+flutter_ios_podfile_setup
+
+# China App Store / MIIT: do not compile the plugin's Swift (import CallKit).
+# Restore: delete this method and the call in post_install — see agent.md.
+def disable_callkit_pod(installer)
+  stub = File.expand_path('callkit_stub/FlutterCallkitIncomingPlugin.m', __dir__)
+  unless File.exist?(stub)
+    raise "CallKit stub missing: #{stub}"
+  end
+
+  installer.pods_project.targets.each do |target|
+    next unless target.name == 'flutter_callkit_incoming'
+
+    phase = target.source_build_phase
+    phase.files.to_a.each do |build_file|
+      ref = build_file.file_ref
+      next unless ref
+      ext = File.extname(ref.path.to_s).downcase
+      next unless %w[.swift .m .mm .c .cpp].include?(ext)
+      phase.remove_file_reference(ref)
+    end
+
+    group = installer.pods_project.main_group.find_subpath('CallKitDisabled', true)
+    file_ref = group.files.to_a.find do |f|
+      File.expand_path(f.real_path.to_s) == stub
+    rescue StandardError
+      false
+    end
+    file_ref ||= group.new_file(stub)
+    already = phase.files.to_a.any? { |bf| bf.file_ref == file_ref }
+    phase.add_file_reference(file_ref, true) unless already
+  end
+end
+
+target 'Runner' do
+  use_frameworks! :linkage => :static
+  use_modular_headers!
+
+  flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
+  target 'RunnerTests' do
+    inherit! :search_paths
+  end
+end
+
+post_install do |installer|
+  disable_callkit_pod(installer)
+
+  installer.pods_project.targets.each do |target|
+    flutter_additional_ios_build_settings(target)
+
+    target.build_configurations.each do |config|
+      # Force minimum deployment target for all pods to suppress warnings and build errors
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '16.0'
+
+      # Drop the inherited simulator-arm64 exclusion (ML Kit). Without this,
+      # every pod builds x86_64 for the simulator and cannot link into the
+      # arm64 iPhone simulator the watch needs. See Debug.xcconfig.
+      config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'i386'
+      
+      # Enable permission_handler permissions (required for iOS)
+      config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= [
+        '$(inherited)',
+        'PERMISSION_CAMERA=1',
+        'PERMISSION_PHOTOS=1',
+        'PERMISSION_MICROPHONE=1',
+      ]
+    end
+  end
+
+  # ─────────────────────────────────────────────────────────────────
+  # App Store validation fix: strip simulator slices from embedded
+  # frameworks (fllama, objective_c) on device builds. Without this,
+  # App Store Connect rejects the IPA when a framework still contains a
+  # simulator slice, including an arm64 slice tagged IOSSIMULATOR.
+  # See ios/scripts/strip_simulator_slices.sh for the full rationale.
+  # ─────────────────────────────────────────────────────────────────
+  runner_project_path = File.expand_path('Runner.xcodeproj', __dir__)
+  runner_project = Xcodeproj::Project.open(runner_project_path)
+  runner_project.targets.each do |target|
+    next unless target.name == 'Runner'
+    phase_name = 'Strip simulator slices from embedded frameworks'
+    already_present = target.build_phases.any? do |bp|
+      bp.respond_to?(:name) && bp.name == phase_name
+    end
+    next if already_present
+    phase = target.new_shell_script_build_phase(phase_name)
+    phase.shell_path = '/bin/sh'
+    phase.shell_script = '"${SRCROOT}/scripts/strip_simulator_slices.sh"'
+    phase.input_paths = ['$(SRCROOT)/scripts/strip_simulator_slices.sh']
+    # Run after Flutter's own "Thin Binary" phase. Xcode runs phases in
+    # the order they appear; appending puts us last, which is what we
+    # want — we want to strip after every framework is in place.
+  end
+  runner_project.targets.each do |target|
+    next unless target.name == 'Runner'
+    phase_name = 'Retag ML Kit for the arm64 simulator'
+    already_present = target.build_phases.any? do |bp|
+      bp.respond_to?(:name) && bp.name == phase_name
+    end
+    next if already_present
+    phase = target.new_shell_script_build_phase(phase_name)
+    phase.shell_path = '/bin/sh'
+    phase.shell_script = 'python3 "${SRCROOT}/scripts/retag_mlkit_simulator.py"'
+    phase.input_paths = ['$(SRCROOT)/scripts/retag_mlkit_simulator.py']
+    # Link needs these copies. Keep the phase ahead of Compile Sources.
+    phases = target.build_phases
+    phases.delete(phase)
+    insert_at = phases.index { |bp| bp.respond_to?(:name) && bp.name == 'Compile Sources' } || 0
+    phases.insert(insert_at, phase)
+  end
+  runner_project.save
+end

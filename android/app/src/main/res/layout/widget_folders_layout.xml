@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/folders_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/widget_background"
+    android:padding="12dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/widget_folders_title"
+        android:textColor="#1565C0"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginVertical="6dp"
+        android:background="#33000000" />
+
+    <TextView
+        android:id="@+id/folders_empty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/widget_folders_empty"
+        android:textColor="#616161"
+        android:textSize="12sp"
+        android:visibility="gone" />
+
+    <LinearLayout android:id="@+id/folder_0" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:paddingVertical="4dp" android:visibility="gone">
+        <TextView android:id="@+id/folder_0_accent" android:layout_width="4dp" android:layout_height="22dp" android:background="@drawable/widget_accent_bar" />
+        <TextView android:id="@+id/folder_0_name" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="8dp" android:maxLines="1" android:ellipsize="end" android:textSize="13sp" android:textColor="#212121" android:textStyle="bold" />
+        <TextView android:id="@+id/folder_0_count" android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingHorizontal="6dp" android:paddingVertical="2dp" android:background="@drawable/widget_persona_chip" android:textSize="11sp" android:textColor="#616161" />
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/folder_1" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:paddingVertical="4dp" android:visibility="gone">
+        <TextView android:id="@+id/folder_1_accent" android:layout_width="4dp" android:layout_height="22dp" android:background="@drawable/widget_accent_bar" />
+        <TextView android:id="@+id/folder_1_name" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="8dp" android:maxLines="1" android:ellipsize="end" android:textSize="13sp" android:textColor="#212121" android:textStyle="bold" />
+        <TextView android:id="@+id/folder_1_count" android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingHorizontal="6dp" android:paddingVertical="2dp" android:background="@drawable/widget_persona_chip" android:textSize="11sp" android:textColor="#616161" />
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/folder_2" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:paddingVertical="4dp" android:visibility="gone">
+        <TextView android:id="@+id/folder_2_accent" android:layout_width="4dp" android:layout_height="22dp" android:background="@drawable/widget_accent_bar" />
+        <TextView android:id="@+id/folder_2_name" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="8dp" android:maxLines="1" android:ellipsize="end" android:textSize="13sp" android:textColor="#212121" android:textStyle="bold" />
+        <TextView android:id="@+id/folder_2_count" android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingHorizontal="6dp" android:paddingVertical="2dp" android:background="@drawable/widget_persona_chip" android:textSize="11sp" android:textColor="#616161" />
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/folder_3" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:paddingVertical="4dp" android:visibility="gone">
+        <TextView android:id="@+id/folder_3_accent" android:layout_width="4dp" android:layout_height="22dp" android:background="@drawable/widget_accent_bar" />
+        <TextView android:id="@+id/folder_3_name" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="8dp" android:maxLines="1" android:ellipsize="end" android:textSize="13sp" android:textColor="#212121" android:textStyle="bold" />
+        <TextView android:id="@+id/folder_3_count" android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingHorizontal="6dp" android:paddingVertical="2dp" android:background="@drawable/widget_persona_chip" android:textSize="11sp" android:textColor="#616161" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,12 @@
+#include? "Pods/Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"
+#include "Generated.xcconfig"
+// ML Kit 6 marks its arm64 slice as a device build, so Flutter excludes
+// simulator arm64 and the iPhone simulator is stuck on x86_64. watchOS 26
+// simulators are arm64-only and will not connect to that. Allow arm64 and
+// link the retagged copies from ios/scripts/retag_mlkit_simulator.py.
+EXCLUDED_ARCHS[sdk=iphonesimulator*]=i386
+FRAMEWORK_SEARCH_PATHS[sdk=iphonesimulator*] = $(SRCROOT)/build/mlkit-sim $(inherited)
+// BigMoeOnEdge is paused. The static libs are built for A14+ (armv8.4-a+i8mm)
+// and force-loaded, which crashes older iPhones at launch and does not run on
+// 16 Pro Max either. Uncomment to link ios/Flutter/bmoe.xcconfig again.
+// #include? "bmoe.xcconfig"

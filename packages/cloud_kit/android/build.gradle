@@ -1,0 +1,31 @@
+group 'dev.tutorialwork.cloud_kit'
+version '1.0'
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.1.0'
+    }
+}
+
+rootProject.allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+apply plugin: 'com.android.library'
+
+android {
+    namespace "dev.tutorialwork.cloud_kit"
+    compileSdkVersion 34
+
+    defaultConfig {
+        minSdkVersion 16
+    }
+}

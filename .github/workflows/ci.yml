@@ -1,0 +1,51 @@
+name: CI
+
+# Stub-only checks: default pubspec.yaml points at packages/premium_stub.
+# Do not inject packages/premium or Firebase secrets on this workflow.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Analyze and test (premium stub)
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Stub Firebase options
+        run: |
+          if [ ! -f lib/firebase_options.dart ]; then
+            cp lib/firebase_options.example.dart lib/firebase_options.dart
+          fi
+          test ! -f pubspec_overrides.yaml
+          grep -q 'packages/premium_stub' pubspec.yaml
+
+      - name: Pub get
+        run: flutter pub get
+
+      - name: Analyze
+        run: |
+          set +e
+          flutter analyze | tee analyze.out
+          if grep -q 'error •' analyze.out; then
+            echo "Analyzer reported errors"
+            exit 1
+          fi
+          echo "No analyzer errors (warnings/infos allowed)"
+
+      - name: Test
+        run: flutter test --reporter expanded

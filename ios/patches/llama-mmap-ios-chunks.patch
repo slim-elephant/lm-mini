@@ -1,0 +1,39 @@
+diff --git a/src/llama-mmap.cpp b/src/llama-mmap.cpp
+index 4d183cbc9..e66dc8438 100644
+--- a/src/llama-mmap.cpp
++++ b/src/llama-mmap.cpp
+@@ -478,10 +478,34 @@ struct llama_mmap::impl {
+         // MAP_POPULATE would fault in the lazy ranges too
+         if (prefetch && lazy_ranges.empty()) { flags |= MAP_POPULATE; }
+ #endif
++        // iOS refuses a single mmap() of a ~18 GB GGUF (ENOMEM) even though the mapping
++        // is file-backed. Reserve VAS, then MAP_FIXED 128 MiB file windows. Prefetching
++        // the whole file would jetsam the process, so WILLNEED is disabled on iPhone.
++#if defined(__APPLE__) && TARGET_OS_IPHONE
++        prefetch = 0;
++        const size_t page = (size_t) sysconf(_SC_PAGESIZE);
++        const size_t chunk = 128ull * 1024 * 1024;
++        const size_t reserve = (size + page - 1) & ~(page - 1);
++        addr = mmap(NULL, reserve, PROT_NONE, MAP_PRIVATE | MAP_ANON, -1, 0);
++        if (addr == MAP_FAILED) {
++            throw std::runtime_error(format("mmap reserve failed (%zu bytes): %s", reserve, strerror(errno)));
++        }
++        for (size_t off = 0; off < size; off += chunk) {
++            const size_t len = std::min(chunk, reserve - off);
++            void * p = mmap((char *) addr + off, len, PROT_READ, MAP_FIXED | flags, fd, (off_t) off);
++            if (p == MAP_FAILED) {
++                const int saved = errno;
++                munmap(addr, reserve);
++                throw std::runtime_error(format("mmap chunk at %zu failed: %s", off, strerror(saved)));
++            }
++        }
++        LLAMA_LOG_INFO("%s: iOS mapped %zu bytes in %zu-byte chunks\n", __func__, size, chunk);
++#else
+         addr = mmap(NULL, file->size(), PROT_READ, flags, fd, 0);
+         if (addr == MAP_FAILED) {
+             throw std::runtime_error(format("mmap failed: %s", strerror(errno)));
+         }
++#endif
+ 
+         // page-aligned madvise over [beg, end), clamped to the file
+         auto advise = [&](size_t beg, size_t end, int advice, const char * name) {

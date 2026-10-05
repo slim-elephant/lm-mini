@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/personas_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/widget_background"
+    android:padding="12dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/widget_personas_title"
+        android:textColor="#4527A0"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginVertical="6dp"
+        android:background="#33000000" />
+
+    <TextView
+        android:id="@+id/personas_empty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/widget_personas_empty"
+        android:textColor="#616161"
+        android:textSize="12sp"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/personas_grid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/persona_0"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="4dp"
+                android:background="@drawable/widget_persona_chip">
+                <TextView android:id="@+id/persona_0_dot" android:layout_width="16dp" android:layout_height="16dp" android:background="@drawable/widget_accent_bar" />
+                <TextView android:id="@+id/persona_0_name" android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center" android:maxLines="1" android:ellipsize="end" android:textSize="10sp" android:textColor="#212121" android:layout_marginTop="4dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/persona_1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="4dp"
+                android:layout_marginStart="4dp"
+                android:background="@drawable/widget_persona_chip">
+                <TextView android:id="@+id/persona_1_dot" android:layout_width="16dp" android:layout_height="16dp" android:background="@drawable/widget_accent_bar" />
+                <TextView android:id="@+id/persona_1_name" android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center" android:maxLines="1" android:ellipsize="end" android:textSize="10sp" android:textColor="#212121" android:layout_marginTop="4dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/persona_2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="4dp"
+                android:layout_marginStart="4dp"
+                android:background="@drawable/widget_persona_chip">
+                <TextView android:id="@+id/persona_2_dot" android:layout_width="16dp" android:layout_height="16dp" android:background="@drawable/widget_accent_bar" />
+                <TextView android:id="@+id/persona_2_name" android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center" android:maxLines="1" android:ellipsize="end" android:textSize="10sp" android:textColor="#212121" android:layout_marginTop="4dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/persona_3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="4dp"
+                android:background="@drawable/widget_persona_chip">
+                <TextView android:id="@+id/persona_3_dot" android:layout_width="16dp" android:layout_height="16dp" android:background="@drawable/widget_accent_bar" />
+                <TextView android:id="@+id/persona_3_name" android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center" android:maxLines="1" android:ellipsize="end" android:textSize="10sp" android:textColor="#212121" android:layout_marginTop="4dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/persona_4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="4dp"
+                android:layout_marginStart="4dp"
+                android:background="@drawable/widget_persona_chip">
+                <TextView android:id="@+id/persona_4_dot" android:layout_width="16dp" android:layout_height="16dp" android:background="@drawable/widget_accent_bar" />
+                <TextView android:id="@+id/persona_4_name" android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center" android:maxLines="1" android:ellipsize="end" android:textSize="10sp" android:textColor="#212121" android:layout_marginTop="4dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/persona_5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="4dp"
+                android:layout_marginStart="4dp"
+                android:background="@drawable/widget_persona_chip">
+                <TextView android:id="@+id/persona_5_dot" android:layout_width="16dp" android:layout_height="16dp" android:background="@drawable/widget_accent_bar" />
+                <TextView android:id="@+id/persona_5_name" android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center" android:maxLines="1" android:ellipsize="end" android:textSize="10sp" android:textColor="#212121" android:layout_marginTop="4dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

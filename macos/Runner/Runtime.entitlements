@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Entitlements for Contents/Resources/runtime/llama-server (and peers).
+  Mac App Store requires every Mach-O executable in the bundle to enable
+  App Sandbox. inherit = true so the sidecar shares the host app sandbox
+  when launched via Process.start (access to models, localhost, etc.).
+-->
+<plist version="1.0">
+<dict>
+	<key>com.apple.security.app-sandbox</key>
+	<true/>
+	<key>com.apple.security.inherit</key>
+	<true/>
+</dict>
+</plist>
