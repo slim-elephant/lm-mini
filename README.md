@@ -1,5 +1,16 @@
 # LM Mini (open-source build)
 
+[![App Store](https://img.shields.io/badge/App_Store-Download-0D96F6?logo=apple&logoColor=white)](https://apps.apple.com/app/lm-mini/id6751125309)
+[![Google Play](https://img.shields.io/badge/Google_Play-Download-414141?logo=googleplay&logoColor=white)](https://play.google.com/store/apps/details?id=net.neuro9.lmmini)
+[![Website](https://img.shields.io/badge/Website-lmmini.com-7C4DFF)](https://lmmini.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue)](LICENSE)
+
+**[Website](https://lmmini.com)** ·
+[App Store (iPhone, iPad, Mac)](https://apps.apple.com/app/lm-mini/id6751125309) ·
+[Google Play](https://play.google.com/store/apps/details?id=net.neuro9.lmmini) ·
+[Desktop downloads](https://lmmini.com/download.html) ·
+[Docs](https://lmmini.com/docs.html)
+
 Chat with local and on-device AI from your phone, tablet, watch or desktop.
 
 LM Mini is a Flutter chat client for LM Studio, Ollama, oMLX, Jan, Unsloth and
