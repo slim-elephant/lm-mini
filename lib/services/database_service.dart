@@ -13,7 +13,7 @@ class DatabaseService {
   static Database? _database;
   static const String _dbName = 'chat_app.db';
   static const int _dbVersion =
-      12; // Persist generatedImageInfo (ComfyUI request details) on messages
+      13; // Persist the character expression shown with assistant replies
 
   static const String _messagesTable = 'messages';
   static const String _conversationsTable = 'conversations';
@@ -70,6 +70,7 @@ class DatabaseService {
         generated_image_paths TEXT,
         generated_image_info TEXT,
         participant_id TEXT,
+        expression TEXT,
         alternatives TEXT,
         alternative_index INTEGER,
         conversation_id TEXT NOT NULL,
@@ -194,6 +195,14 @@ class DatabaseService {
       if (!hasGeneratedImageInfo) {
         await db.execute(
           'ALTER TABLE $_messagesTable ADD COLUMN generated_image_info TEXT',
+        );
+      }
+    }
+
+    if (oldVersion < 13) {
+      if (!await _columnExists(db, _messagesTable, 'expression')) {
+        await db.execute(
+          'ALTER TABLE $_messagesTable ADD COLUMN expression TEXT',
         );
       }
     }
@@ -335,6 +344,7 @@ class DatabaseService {
             ? jsonEncode(message.allGeneratedImagePaths)
             : null,
         'generated_image_info': message.generatedImageInfo,
+        'expression': message.expression,
         'participant_id': message.participantId,
         'alternatives': message.alternatives != null
             ? jsonEncode(message.alternatives!.map((m) => m.toJson()).toList())
@@ -457,6 +467,7 @@ class DatabaseService {
           imagePaths != null && imagePaths.isNotEmpty ? imagePaths.first : null,
       'generatedImageInfo': map['generated_image_info'],
       'participantId': map['participant_id'],
+      'expression': map['expression'],
       'alternatives': map['alternatives'] != null
           ? jsonDecode(map['alternatives'] as String)
           : null,
@@ -485,7 +496,8 @@ class DatabaseService {
              m.model_info, m.runtime_info, m.usage, m.image_urls,
              m.file_attachments, m.response_id, m.image_prompt,
              m.generated_image_paths, m.generated_image_info,
-             m.participant_id, m.alternatives, m.alternative_index,
+             m.participant_id, m.expression, m.alternatives,
+             m.alternative_index,
              m.conversation_id, c.title AS conversation_title
       FROM $_messagesTable m
       LEFT JOIN $_conversationsTable c ON c.id = m.conversation_id
@@ -605,6 +617,7 @@ class DatabaseService {
             ? jsonEncode(message.allGeneratedImagePaths)
             : null,
         'generated_image_info': message.generatedImageInfo,
+        'expression': message.expression,
         'alternatives': message.alternatives != null
             ? jsonEncode(message.alternatives!.map((m) => m.toJson()).toList())
             : null,

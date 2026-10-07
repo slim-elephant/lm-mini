@@ -96,6 +96,18 @@ class SystemPrompt {
   /// Optional full Model Parameters snapshot for this persona.
   final ParamPreset? customParams;
 
+  /// Assistant message posted when a new chat starts with this persona
+  /// (SillyTavern `first_mes`). Null = the chat starts empty.
+  final String? greeting;
+
+  /// Other opening messages from an imported character card. One is picked
+  /// at random alongside [greeting] when a chat starts.
+  final List<String>? alternateGreetings;
+
+  /// Expression sprites: emotion label (see `kExpressionLabels`) → image
+  /// path relative to the app documents directory.
+  final Map<String, String>? expressionSprites;
+
   SystemPrompt({
     required this.id,
     required this.name,
@@ -125,7 +137,14 @@ class SystemPrompt {
     this.memoryWriteScope = MemoryScope.global,
     this.useCustomParams = false,
     this.customParams,
+    this.greeting,
+    this.alternateGreetings,
+    this.expressionSprites,
   });
+
+  /// Whether this persona has at least one expression sprite.
+  bool get hasExpressionSprites =>
+      expressionSprites != null && expressionSprites!.isNotEmpty;
 
   /// Whether this system prompt has persona fields configured
   bool get isPersona =>
@@ -136,7 +155,9 @@ class SystemPrompt {
       kokoroSpeakerId != null ||
       kokoroSpeed != null ||
       elevenLabsVoiceId != null ||
-      grokVoiceId != null;
+      grokVoiceId != null ||
+      greeting != null ||
+      hasExpressionSprites;
 
   SystemPrompt copyWith({
     String? id,
@@ -184,6 +205,12 @@ class SystemPrompt {
     bool? useCustomParams,
     Object? customParams = _unset,
     bool clearCustomParams = false,
+    String? greeting,
+    bool clearGreeting = false,
+    List<String>? alternateGreetings,
+    bool clearAlternateGreetings = false,
+    Map<String, String>? expressionSprites,
+    bool clearExpressionSprites = false,
   }) {
     return SystemPrompt(
       id: id ?? this.id,
@@ -244,6 +271,13 @@ class SystemPrompt {
           : (identical(customParams, _unset)
               ? this.customParams
               : customParams as ParamPreset?),
+      greeting: clearGreeting ? null : (greeting ?? this.greeting),
+      alternateGreetings: clearAlternateGreetings
+          ? null
+          : (alternateGreetings ?? this.alternateGreetings),
+      expressionSprites: clearExpressionSprites
+          ? null
+          : (expressionSprites ?? this.expressionSprites),
     );
   }
 
@@ -281,6 +315,10 @@ class SystemPrompt {
         'memoryWriteScope': memoryWriteScope.name,
         'useCustomParams': useCustomParams,
         if (customParams != null) 'customParams': customParams!.toJson(),
+        if (greeting != null && greeting!.isNotEmpty) 'greeting': greeting,
+        if (alternateGreetings != null && alternateGreetings!.isNotEmpty)
+          'alternateGreetings': alternateGreetings,
+        if (hasExpressionSprites) 'expressionSprites': expressionSprites,
       };
 
   factory SystemPrompt.fromJson(Map<String, dynamic> json) => SystemPrompt(
@@ -313,7 +351,24 @@ class SystemPrompt {
         memoryWriteScope: memoryScopeFromWire(json['memoryWriteScope']),
         useCustomParams: json['useCustomParams'] as bool? ?? false,
         customParams: _parseCustomParams(json['customParams']),
+        greeting: _nonEmptyString(json['greeting']),
+        alternateGreetings: (json['alternateGreetings'] as List?)
+            ?.map((e) => e.toString())
+            .where((e) => e.trim().isNotEmpty)
+            .toList(),
+        expressionSprites: _parseSprites(json['expressionSprites']),
       );
+
+  static Map<String, String>? _parseSprites(dynamic raw) {
+    if (raw is! Map) return null;
+    final out = <String, String>{};
+    raw.forEach((k, v) {
+      final key = k.toString().trim();
+      final path = v?.toString().trim() ?? '';
+      if (key.isNotEmpty && path.isNotEmpty) out[key] = path;
+    });
+    return out.isEmpty ? null : out;
+  }
 
   static ParamPreset? _parseCustomParams(dynamic raw) {
     if (raw is! Map) return null;

@@ -12725,6 +12725,234 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Set a 4- or 6-digit PIN, unlock with Face ID, and recover a lost PIN with a verification email. The PIN stays on this device.'**
   String get premiumAppLockDescription;
+
+  /// No description provided for @spritePanelShow.
+  ///
+  /// In en, this message translates to:
+  /// **'Show {name}\'s expression'**
+  String spritePanelShow(String name);
+
+  /// No description provided for @personaExpressionsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Expressions'**
+  String get personaExpressionsTitle;
+
+  /// No description provided for @personaExpressionsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Character sprites that change with the mood of each reply. Name images after the expression, like joy.png or anger.png, or import a SillyTavern sprite zip.'**
+  String get personaExpressionsSubtitle;
+
+  /// No description provided for @personaExpressionsImport.
+  ///
+  /// In en, this message translates to:
+  /// **'Import sprites'**
+  String get personaExpressionsImport;
+
+  /// No description provided for @personaExpressionsRemoveAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove all'**
+  String get personaExpressionsRemoveAll;
+
+  /// No description provided for @personaExpressionsRemoveAllConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove all expression sprites from {name}?'**
+  String personaExpressionsRemoveAllConfirm(String name);
+
+  /// No description provided for @personaExpressionsReplace.
+  ///
+  /// In en, this message translates to:
+  /// **'Replace image'**
+  String get personaExpressionsReplace;
+
+  /// No description provided for @personaExpressionsRemove.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove'**
+  String get personaExpressionsRemove;
+
+  /// No description provided for @personaExpressionsImported.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{No sprites added} =1{1 sprite added} other{{count} sprites added}}'**
+  String personaExpressionsImported(int count);
+
+  /// No description provided for @personaExpressionsUnmatched.
+  ///
+  /// In en, this message translates to:
+  /// **'Skipped (not an expression name): {files}'**
+  String personaExpressionsUnmatched(String files);
+
+  /// No description provided for @personaExpressionsMissing.
+  ///
+  /// In en, this message translates to:
+  /// **'Missing'**
+  String get personaExpressionsMissing;
+
+  /// No description provided for @characterCardImport.
+  ///
+  /// In en, this message translates to:
+  /// **'Import character card'**
+  String get characterCardImport;
+
+  /// No description provided for @characterCardImportedOne.
+  ///
+  /// In en, this message translates to:
+  /// **'Imported {name}'**
+  String characterCardImportedOne(String name);
+
+  /// No description provided for @characterCardImportedMany.
+  ///
+  /// In en, this message translates to:
+  /// **'Imported {count} characters'**
+  String characterCardImportedMany(int count);
+
+  /// No description provided for @characterCardImportFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t import {file}: {reason}'**
+  String characterCardImportFailed(String file, String reason);
+
+  /// No description provided for @characterCardLoreSkipped.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 keyword lorebook entry wasn\'t imported} other{{count} keyword lorebook entries weren\'t imported}}'**
+  String characterCardLoreSkipped(int count);
+
+  /// No description provided for @appearanceExpressionSprites.
+  ///
+  /// In en, this message translates to:
+  /// **'Character expressions'**
+  String get appearanceExpressionSprites;
+
+  /// No description provided for @appearanceExpressionSpritesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'For personas with expression sprites'**
+  String get appearanceExpressionSpritesSubtitle;
+
+  /// No description provided for @expressionSpriteModeOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Off'**
+  String get expressionSpriteModeOff;
+
+  /// No description provided for @expressionSpriteModePanel.
+  ///
+  /// In en, this message translates to:
+  /// **'Large sprite'**
+  String get expressionSpriteModePanel;
+
+  /// No description provided for @expressionSpriteModeAvatar.
+  ///
+  /// In en, this message translates to:
+  /// **'Message avatar'**
+  String get expressionSpriteModeAvatar;
+
+  /// No description provided for @expressionSpriteModeBoth.
+  ///
+  /// In en, this message translates to:
+  /// **'Both'**
+  String get expressionSpriteModeBoth;
+
+  /// No description provided for @spriteGenerateButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Generate'**
+  String get spriteGenerateButton;
+
+  /// No description provided for @spriteGenerateTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Generate expressions'**
+  String get spriteGenerateTitle;
+
+  /// No description provided for @spriteGenerateAppearance.
+  ///
+  /// In en, this message translates to:
+  /// **'Appearance'**
+  String get spriteGenerateAppearance;
+
+  /// No description provided for @spriteGenerateAppearanceHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Hair, eyes, clothing and art style'**
+  String get spriteGenerateAppearanceHint;
+
+  /// No description provided for @spriteGenerateSeed.
+  ///
+  /// In en, this message translates to:
+  /// **'Seed'**
+  String get spriteGenerateSeed;
+
+  /// No description provided for @spriteGenerateSeedHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'The same seed keeps the character looking alike across expressions.'**
+  String get spriteGenerateSeedHelp;
+
+  /// No description provided for @spriteGenerateCore.
+  ///
+  /// In en, this message translates to:
+  /// **'8 core'**
+  String get spriteGenerateCore;
+
+  /// No description provided for @spriteGenerateAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All 28'**
+  String get spriteGenerateAll;
+
+  /// No description provided for @spriteGenerateOnlyMissing.
+  ///
+  /// In en, this message translates to:
+  /// **'Only missing expressions'**
+  String get spriteGenerateOnlyMissing;
+
+  /// No description provided for @spriteGenerateStart.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{Generate 1 image} other{Generate {count} images}}'**
+  String spriteGenerateStart(int count);
+
+  /// No description provided for @spriteGenerateProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Generating {current} of {total}: {label}'**
+  String spriteGenerateProgress(int current, int total, String label);
+
+  /// No description provided for @spriteGenerateNeedsImageGen.
+  ///
+  /// In en, this message translates to:
+  /// **'Set up image generation first in Settings → Image Generation.'**
+  String get spriteGenerateNeedsImageGen;
+
+  /// No description provided for @spriteGenerateDone.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 expression generated} other{{count} expressions generated}}'**
+  String spriteGenerateDone(int count);
+
+  /// No description provided for @spriteGenerateFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Stopped at {label}: {error}'**
+  String spriteGenerateFailed(String label, String error);
+
+  /// No description provided for @personaGreetingLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'First message (optional)'**
+  String get personaGreetingLabel;
+
+  /// No description provided for @personaGreetingHint.
+  ///
+  /// In en, this message translates to:
+  /// **'What the character says when a new chat starts'**
+  String get personaGreetingHint;
 }
 
 class _AppLocalizationsDelegate

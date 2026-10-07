@@ -2545,8 +2545,30 @@ class SettingsProvider with ChangeNotifier {
       memoryWriteScope: src.memoryWriteScope,
       useCustomParams: src.useCustomParams,
       customParams: src.customParams,
+      greeting: src.greeting,
+      alternateGreetings: src.alternateGreetings != null
+          ? List.from(src.alternateGreetings!)
+          : null,
+      expressionSprites: src.expressionSprites != null
+          ? Map.from(src.expressionSprites!)
+          : null,
     );
     addSystemPrompt(newPrompt);
+  }
+
+  /// `'off'`, `'panel'`, `'avatar'` or `'both'`.
+  void updateExpressionSpriteMode(String mode) {
+    if (!const ['off', 'panel', 'avatar', 'both'].contains(mode)) return;
+    _settings = _settings.copyWith(expressionSpriteMode: mode);
+    _settingsService.saveSettings(_settings);
+    notifyListeners();
+  }
+
+  void setSpritePanelCollapsed(bool collapsed) {
+    if (_settings.spritePanelCollapsed == collapsed) return;
+    _settings = _settings.copyWith(spritePanelCollapsed: collapsed);
+    _settingsService.saveSettings(_settings);
+    notifyListeners();
   }
 
   void updateTopP(double topP) {

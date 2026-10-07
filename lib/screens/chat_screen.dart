@@ -74,6 +74,8 @@ import '../widgets/chat_glass_header.dart';
 import '../widgets/group_participant_glass_chip.dart';
 import '../widgets/semantic_search_dialog.dart';
 import '../models/system_prompt.dart';
+import '../utils/expression_tags.dart';
+import '../widgets/expression_sprite_panel.dart';
 import '../widgets/feature_request_unread_listener.dart';
 import '../services/feature_request_service.dart';
 import '../screens/feature_requests_screen.dart';
@@ -1406,6 +1408,31 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                           .currentMessages
                                                           .isEmpty
                                                       ? _EmptyChatScrollBody(
+                                                          personaGreeting: () {
+                                                            final greeting =
+                                                                chatProvider.greetingPreview(
+                                                                    settingsProvider
+                                                                        .settings);
+                                                            if (greeting ==
+                                                                null) {
+                                                              return null;
+                                                            }
+                                                            return MessageBubble(
+                                                              key: ValueKey(
+                                                                  greeting.id),
+                                                              message: greeting,
+                                                              userAvatarPath:
+                                                                  userAvatar,
+                                                              assistantAvatarPath:
+                                                                  assistantAvatar,
+                                                              conversationSettings:
+                                                                  conversation
+                                                                      ?.settings,
+                                                              participantColor:
+                                                                  bubblePersona
+                                                                      ?.color,
+                                                            );
+                                                          }(),
                                                           showPromptPills:
                                                               showPromptPills,
                                                           // Desktop: cards sit under the
@@ -1635,6 +1662,13 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                                   }
                                                                 }
 
+                                                                final spriteAvatar =
+                                                                    _spriteAvatarForMessage(
+                                                                  message: message,
+                                                                  chatProvider: chatProvider,
+                                                                  settingsProvider: settingsProvider,
+                                                                  participant: participant,
+                                                                );
                                                                 return AnimatedContainer(
                                                                   duration: const Duration(
                                                                       milliseconds:
@@ -1669,7 +1703,7 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                                             participant,
                                                                         assistantAvatar:
                                                                             assistantAvatar,
-                                                                      )}',
+                                                                      )}|${spriteAvatar ?? ''}',
                                                                     ),
                                                                     message:
                                                                         message,
@@ -1683,7 +1717,8 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                                     userAvatarPath:
                                                                         userAvatar,
                                                                     assistantAvatarPath:
-                                                                        assistantAvatar,
+                                                                        spriteAvatar ??
+                                                                            assistantAvatar,
                                                                     conversationSettings:
                                                                         conversation
                                                                             ?.settings,
@@ -1699,15 +1734,20 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                                         participant
                                                                             ?.displayName,
                                                                     participantAvatarPath:
-                                                                        participant
-                                                                            ?.avatarPath,
+                                                                        spriteAvatar ??
+                                                                            participant
+                                                                                ?.avatarPath,
                                                                     participantColor: participant
                                                                             ?.color ??
                                                                         (chatProvider.isGroupChat
                                                                             ? null
                                                                             : bubblePersona?.color),
-                                                                    assistantAvatarAlignment:
-                                                                        _resolveAssistantAvatarAlignment(
+                                                                    assistantAvatarAlignment: spriteAvatar !=
+                                                                            null
+                                                                        ? const Alignment(
+                                                                            0,
+                                                                            -0.8)
+                                                                        : _resolveAssistantAvatarAlignment(
                                                                       chatProvider:
                                                                           chatProvider,
                                                                       settingsProvider:
@@ -1715,8 +1755,10 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                                       participant:
                                                                           participant,
                                                                     ),
-                                                                    assistantAvatarScale:
-                                                                        _resolveAssistantAvatarScale(
+                                                                    assistantAvatarScale: spriteAvatar !=
+                                                                            null
+                                                                        ? 1.0
+                                                                        : _resolveAssistantAvatarScale(
                                                                       chatProvider:
                                                                           chatProvider,
                                                                       settingsProvider:
@@ -1820,6 +1862,50 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                           ),
                                                         ),
                                                 ),
+                                                // Character expression sprite (visual-novel style).
+                                                Builder(builder: (context) {
+                                                  final sprite = _spritePanelState(
+                                                    chatProvider: chatProvider,
+                                                    settingsProvider:
+                                                        settingsProvider,
+                                                  );
+                                                  if (sprite == null) {
+                                                    return const SizedBox
+                                                        .shrink();
+                                                  }
+                                                  return Positioned.fill(
+                                                    child: LayoutBuilder(
+                                                      builder: (context, box) =>
+                                                          Align(
+                                                        alignment: Alignment
+                                                            .bottomRight,
+                                                        child: Padding(
+                                                          padding: EdgeInsets.only(
+                                                            right: 8,
+                                                            bottom: _showScrollToBottom
+                                                                ? 64
+                                                                : 8,
+                                                          ),
+                                                          child:
+                                                              ExpressionSpritePanel(
+                                                            persona:
+                                                                sprite.persona,
+                                                            expression: sprite
+                                                                .expression,
+                                                            collapsed: settingsProvider
+                                                                .settings
+                                                                .spritePanelCollapsed,
+                                                            onCollapsedChanged:
+                                                                settingsProvider
+                                                                    .setSpritePanelCollapsed,
+                                                            availableHeight:
+                                                                box.maxHeight,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  );
+                                                }),
                                                 if (_showScrollToBottom &&
                                                     chatProvider.currentMessages
                                                         .isNotEmpty)
@@ -2394,6 +2480,61 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
   }
 
   /// Active saved persona for Edit, or null if custom/none/group.
+  /// Expression sprite to use as this reply's avatar, when the persona has
+  /// sprites and the user chose avatar mode. Null keeps the normal avatar.
+  String? _spriteAvatarForMessage({
+    required ChatMessage message,
+    required ChatProvider chatProvider,
+    required SettingsProvider settingsProvider,
+    GroupChatParticipant? participant,
+  }) {
+    if (message.role != 'assistant' || message.expression == null) return null;
+    if (!settingsProvider.settings.showsSpriteAvatars) return null;
+    final persona = _resolveProfilePersonaForMessage(
+      chatProvider: chatProvider,
+      settingsProvider: settingsProvider,
+      participant: participant,
+    );
+    if (persona == null || !persona.hasExpressionSprites) return null;
+    return spriteForExpression(persona.expressionSprites, message.expression);
+  }
+
+  /// Persona and expression for the sprite panel: the speaker of the latest
+  /// finished reply (group chats) or the chat's persona.
+  ({SystemPrompt persona, String? expression})? _spritePanelState({
+    required ChatProvider chatProvider,
+    required SettingsProvider settingsProvider,
+  }) {
+    if (!settingsProvider.settings.showsSpritePanel) return null;
+    final messages = chatProvider.currentMessages;
+    ChatMessage? latest;
+    for (var i = messages.length - 1; i >= 0; i--) {
+      final m = messages[i];
+      if (m.role == 'assistant' && !m.id.startsWith('temp_')) {
+        latest = m;
+        break;
+      }
+    }
+    GroupChatParticipant? participant;
+    if (chatProvider.isGroupChat) {
+      if (latest?.participantId == null) return null;
+      for (final p in chatProvider.groupParticipants) {
+        if (p.id == latest!.participantId) {
+          participant = p;
+          break;
+        }
+      }
+      if (participant == null) return null;
+    }
+    final persona = _resolveProfilePersonaForMessage(
+      chatProvider: chatProvider,
+      settingsProvider: settingsProvider,
+      participant: participant,
+    );
+    if (persona == null || !persona.hasExpressionSprites) return null;
+    return (persona: persona, expression: latest?.expression);
+  }
+
   SystemPrompt? _resolveEditablePersona({
     required ChatProvider chatProvider,
     required SettingsProvider settingsProvider,
@@ -3787,6 +3928,9 @@ class _ErrorActionChip extends StatelessWidget {
 /// Empty new-chat body: greeting + prompt pills + starter tiles in one
 /// scroll view so keyboard + tall composer cannot overflow the column.
 class _EmptyChatScrollBody extends StatelessWidget {
+  /// Persona greeting bubble (character card `first_mes`); replaces the
+  /// generic greeting when set.
+  final Widget? personaGreeting;
   final bool showPromptPills;
 
   /// When true (desktop shell), skip mobile marquee/tiles — cards live under
@@ -3806,6 +3950,7 @@ class _EmptyChatScrollBody extends StatelessWidget {
   final VoidCallback onAudioChat;
 
   const _EmptyChatScrollBody({
+    this.personaGreeting,
     required this.showPromptPills,
     this.suppressMobileStarters = false,
     required this.showImagesTile,
@@ -3837,7 +3982,7 @@ class _EmptyChatScrollBody extends StatelessWidget {
             ? constraints.maxHeight >= 80
             : !isLandscape && constraints.maxHeight >= 120;
 
-        if (!showMobileCards && !showGreeting) {
+        if (!showMobileCards && !showGreeting && personaGreeting == null) {
           return const SizedBox.shrink();
         }
 
@@ -3880,9 +4025,14 @@ class _EmptyChatScrollBody extends StatelessWidget {
           child: Column(
             children: [
               Expanded(
-                child: showGreeting
-                    ? const Center(child: _EmptyChatGreeting())
-                    : const SizedBox.shrink(),
+                child: personaGreeting != null
+                    ? SingleChildScrollView(
+                        padding: const EdgeInsets.all(16),
+                        child: personaGreeting,
+                      )
+                    : showGreeting
+                        ? const Center(child: _EmptyChatGreeting())
+                        : const SizedBox.shrink(),
               ),
               if (starters != null) starters,
             ],

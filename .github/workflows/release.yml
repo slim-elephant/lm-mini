@@ -1,45 +1,138 @@
 name: Release
 
-# Push a version tag to publish a GitHub Release (source zip/tarball attached
-# automatically). Example:
-#   git tag v1.8.21
-#   git push origin v1.8.21
+# Push a version tag to build the open-source Android APKs and publish a
+# GitHub Release:
+#   git tag v1.10.1
+#   git push origin v1.10.1
 #
-# This is not GitHub Packages (npm/Docker/Maven). Flutter apps are not
-# published there. pubspec.yaml has publish_to: none so this is also not
-# a pub.dev package.
+# "Run workflow" (workflow_dispatch) builds the same APKs as downloadable
+# workflow artifacts without creating a release.
+#
+# These are the open-source build (Pro stubs, no Play Firebase config). They
+# install as "LM Mini OSS" (net.neuro9.lmmini.oss), next to the store app.
+#
+# Signing secrets (Settings → Secrets and variables → Actions):
+#   LMMINI_KEYSTORE_BASE64    base64 of the release keystore (.jks / .p12)
+#   LMMINI_KEYSTORE_PASSWORD  keystore password
+#   LMMINI_KEY_ALIAS          key alias
+#   LMMINI_KEY_PASSWORD       key password
+# Keep the same key for every release, or users can't install updates.
 
 on:
   push:
     tags:
       - 'v*'
+  workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  release:
-    name: GitHub Release
+  android:
+    name: Android APKs
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 60
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Create release
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Version
+        id: version
+        run: |
+          if [[ "$GITHUB_REF" == refs/tags/v* ]]; then
+            name="${GITHUB_REF_NAME#v}"
+          else
+            name="$(grep '^version:' pubspec.yaml | sed -E 's/version: *([^+]+).*/\1/')"
+          fi
+          # Must grow with every release so Android accepts updates.
+          echo "name=$name" >> "$GITHUB_OUTPUT"
+          echo "code=$GITHUB_RUN_NUMBER" >> "$GITHUB_OUTPUT"
+          echo "Building $name ($GITHUB_RUN_NUMBER)"
+
+      - name: Signing key
+        env:
+          KEYSTORE_BASE64: ${{ secrets.LMMINI_KEYSTORE_BASE64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.LMMINI_KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.LMMINI_KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.LMMINI_KEY_PASSWORD }}
+        run: |
+          if [ -z "$KEYSTORE_BASE64" ]; then
+            if [[ "$GITHUB_REF" == refs/tags/v* ]]; then
+              echo "::error::Release builds need the LMMINI_KEYSTORE_* secrets."
+              exit 1
+            fi
+            echo "::warning::No signing secrets; using the debug key (not for release)."
+            exit 0
+          fi
+          echo "$KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/release.jks"
+          {
+            echo "LMMINI_KEYSTORE=$RUNNER_TEMP/release.jks"
+            echo "LMMINI_KEYSTORE_PASSWORD=$KEYSTORE_PASSWORD"
+            echo "LMMINI_KEY_ALIAS=$KEY_ALIAS"
+            echo "LMMINI_KEY_PASSWORD=$KEY_PASSWORD"
+          } >> "$GITHUB_ENV"
+
+      - name: Stub Firebase options
+        run: |
+          if [ ! -f lib/firebase_options.dart ]; then
+            cp lib/firebase_options.example.dart lib/firebase_options.dart
+          fi
+          grep -q 'packages/premium_stub' pubspec.yaml
+
+      - name: Pub get
+        run: flutter pub get
+
+      - name: Build APKs
+        env:
+          LMMINI_OSS: '1'
+        run: |
+          flutter build apk --release --split-per-abi \
+            --build-name='${{ steps.version.outputs.name }}' \
+            --build-number='${{ steps.version.outputs.code }}'
+
+      - name: Collect
+        run: |
+          mkdir dist
+          v='${{ steps.version.outputs.name }}'
+          for abi in arm64-v8a armeabi-v7a x86_64; do
+            cp "build/app/outputs/flutter-apk/app-$abi-release.apk" \
+               "dist/LM-Mini-OSS-$v-$abi.apk"
+          done
+          (cd dist && sha256sum *.apk > SHA256SUMS.txt)
+          cat dist/SHA256SUMS.txt
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: lm-mini-oss-android-${{ steps.version.outputs.name }}
+          path: dist/*
+
+      - name: Publish release
+        if: startsWith(github.ref, 'refs/tags/v')
         uses: softprops/action-gh-release@v2
         with:
+          files: dist/*
           generate_release_notes: true
           make_latest: true
           body: |
-            Open-core snapshot of LM Mini (`packages/premium_stub`).
+            Open-source build of LM Mini for Android. It installs as **LM Mini OSS** next to the store app.
 
-            Install from source:
-            ```bash
-            git clone https://github.com/slim-elephant/lm-mini.git
-            cd lm-mini
-            flutter pub get
-            flutter run
-            ```
+            **Which file?** Most phones: `arm64-v8a`. Older 32-bit phones: `armeabi-v7a`. Emulators and Chromebooks: `x86_64`.
 
-            App Store / Play builds use the private Pro package and are not this tag.
+            - Pro features aren't included. Get them in the official app on [Google Play](https://play.google.com/store/apps/details?id=net.neuro9.lmmini) or the [App Store](https://apps.apple.com/app/lm-mini/id6751125309).
+            - On-device models need 64-bit Android on an ARMv8.2 CPU with dot product. Other phones can still chat with LM Studio, Ollama and other servers.
+            - Check downloads against `SHA256SUMS.txt`. Signing certificate SHA-256: `b3f180b7352765c864d394add91ca9171497c257576bf77d6abdf5b93927dcc9`
+
+            Build it yourself: https://lmmini.com/docs/build-from-source.html

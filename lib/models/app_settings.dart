@@ -534,6 +534,24 @@ class AppSettings {
   /// Preferred name for the AI to call the user. Null if not set.
   final String? preferredUserName;
 
+  /// How persona expression sprites appear in chat:
+  /// `'off'`, `'panel'` (large sprite above the composer), `'avatar'`
+  /// (message avatar shows the reply's expression) or `'both'`.
+  final String expressionSpriteMode;
+
+  /// Whether the chat sprite panel is collapsed.
+  final bool spritePanelCollapsed;
+
+  /// Expressions the model may tag replies with in this chat. Set by
+  /// ChatProvider.getEffectiveSettings when the chat's persona has sprites;
+  /// never saved.
+  final List<String>? expressionLabels;
+
+  bool get showsSpritePanel =>
+      expressionSpriteMode == 'panel' || expressionSpriteMode == 'both';
+  bool get showsSpriteAvatars =>
+      expressionSpriteMode == 'avatar' || expressionSpriteMode == 'both';
+
   /// Whether the one-time voice/audio setup dialog has been completed.
   final bool hasCompletedAudioSetup;
 
@@ -736,6 +754,9 @@ class AppSettings {
     this.hasCompletedOnboarding = false,
     this.aiExperienceLevel,
     this.preferredUserName,
+    this.expressionSpriteMode = 'both',
+    this.spritePanelCollapsed = false,
+    this.expressionLabels,
     this.hasCompletedAudioSetup = false,
     this.hasAcceptedArenaDataShare = false,
     this.arenaShareAnonymousResults = true,
@@ -1118,6 +1139,9 @@ class AppSettings {
     bool? hasCompletedOnboarding,
     Object? aiExperienceLevel = _unset,
     Object? preferredUserName = _unset,
+    String? expressionSpriteMode,
+    bool? spritePanelCollapsed,
+    Object? expressionLabels = _unset,
     bool? hasCompletedAudioSetup,
     bool? hasAcceptedArenaDataShare,
     bool? arenaShareAnonymousResults,
@@ -1384,6 +1408,11 @@ class AppSettings {
       preferredUserName: identical(preferredUserName, _unset)
           ? this.preferredUserName
           : preferredUserName as String?,
+      expressionSpriteMode: expressionSpriteMode ?? this.expressionSpriteMode,
+      spritePanelCollapsed: spritePanelCollapsed ?? this.spritePanelCollapsed,
+      expressionLabels: identical(expressionLabels, _unset)
+          ? this.expressionLabels
+          : expressionLabels as List<String>?,
       hasCompletedAudioSetup:
           hasCompletedAudioSetup ?? this.hasCompletedAudioSetup,
       hasAcceptedArenaDataShare:
@@ -1554,6 +1583,8 @@ class AppSettings {
       'hasCompletedOnboarding': hasCompletedOnboarding,
       'aiExperienceLevel': aiExperienceLevel,
       'preferredUserName': preferredUserName,
+      'expressionSpriteMode': expressionSpriteMode,
+      'spritePanelCollapsed': spritePanelCollapsed,
       'hasCompletedAudioSetup': hasCompletedAudioSetup,
       'hasAcceptedArenaDataShare': hasAcceptedArenaDataShare,
       'arenaShareAnonymousResults': arenaShareAnonymousResults,
@@ -1762,6 +1793,11 @@ class AppSettings {
       hasCompletedOnboarding: json['hasCompletedOnboarding'] ?? false,
       aiExperienceLevel: json['aiExperienceLevel'] as String?,
       preferredUserName: json['preferredUserName'] as String?,
+      expressionSpriteMode: const ['off', 'panel', 'avatar', 'both']
+              .contains(json['expressionSpriteMode'])
+          ? json['expressionSpriteMode'] as String
+          : 'both',
+      spritePanelCollapsed: json['spritePanelCollapsed'] as bool? ?? false,
       hasCompletedAudioSetup: json['hasCompletedAudioSetup'] ?? false,
       hasAcceptedArenaDataShare: json['hasAcceptedArenaDataShare'] ?? false,
       arenaShareAnonymousResults: json['arenaShareAnonymousResults'] ?? true,

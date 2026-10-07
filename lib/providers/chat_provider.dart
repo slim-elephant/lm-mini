@@ -21,6 +21,8 @@ import '../utils/lan_server_error.dart';
 import '../utils/model_not_found_error.dart';
 import '../utils/output_token_limit_error.dart';
 import '../utils/thinking_budget.dart';
+import '../utils/expression_tags.dart';
+import '../utils/persona_greeting.dart';
 import '../utils/image_gen_prompt.dart';
 import '../utils/comfyui_prompt_error.dart';
 import '../utils/comfyui_catalog.dart';
@@ -1102,6 +1104,44 @@ class ChatProvider with ChangeNotifier {
   /// Merges global settings with chat-level overrides, then model/persona
   /// param presets (Pro): chat sampler → persona custom → model preset → global.
   AppSettings getEffectiveSettings(AppSettings globalSettings) {
+    return _withExpressionLabels(
+      _effectiveSettingsBase(globalSettings),
+      globalSettings,
+    );
+  }
+
+  /// When the chat's persona has expression sprites (and sprites are on),
+  /// lists the expressions the model may use and asks for the hidden
+  /// `[EXPRESSION: …]` tag in the system prompt.
+  AppSettings _withExpressionLabels(
+    AppSettings effective,
+    AppSettings globalSettings, {
+    String? personaId,
+  }) {
+    final id = personaId ?? effective.selectedSystemPromptId;
+    SystemPrompt? persona;
+    if (globalSettings.expressionSpriteMode != 'off' && id != null) {
+      for (final p in globalSettings.savedSystemPrompts ?? const []) {
+        if (p.id == id) {
+          persona = p;
+          break;
+        }
+      }
+    }
+    final labels = expressionLabelsForSprites(persona?.expressionSprites);
+    if (labels.isEmpty) {
+      return effective.expressionLabels == null
+          ? effective
+          : effective.copyWith(expressionLabels: null);
+    }
+    return effective.copyWith(
+      expressionLabels: labels,
+      systemPrompt:
+          applyExpressionInstructionToSystem(effective.systemPrompt, labels),
+    );
+  }
+
+  AppSettings _effectiveSettingsBase(AppSettings globalSettings) {
     final chatSettings =
         _currentConversation?.settings ?? const <String, dynamic>{};
     final layered = _withParamPresets(globalSettings, chatSettings);
@@ -1645,6 +1685,51 @@ class ChatProvider with ChangeNotifier {
   }
 
   /// Persist [selectedSystemPromptId] onto the chat once, if unbound.
+  /// The persona greeting shown in an empty 1:1 chat (SillyTavern
+  /// `first_mes`). Not saved until the first message is sent.
+  ChatMessage? greetingPreview(AppSettings globalSettings) {
+    final conv = _currentConversation;
+    if (conv == null || _currentMessages.isNotEmpty) return null;
+    if (conv.settings['isGroupChat'] == true) return null;
+    // A custom inline prompt replaces the persona.
+    if (conv.settings.containsKey('systemPrompt')) return null;
+    final id = conv.settings['systemPromptId']?.toString() ??
+        globalSettings.selectedSystemPromptId;
+    SystemPrompt? persona;
+    for (final p in globalSettings.savedSystemPrompts ?? const []) {
+      if (p.id == id) {
+        persona = p;
+        break;
+      }
+    }
+    final text = greetingForConversation(persona, conv.id);
+    if (text == null) return null;
+    return ChatMessage(
+      id: 'greeting_${conv.id}',
+      content: text,
+      role: 'assistant',
+      timestamp: conv.createdAt,
+    );
+  }
+
+  /// Saves the greeting as the first assistant message, so the model sees
+  /// it as context, right before the user's first message.
+  Future<void> _materializeGreetingIfNeeded(AppSettings globalSettings) async {
+    final preview = greetingPreview(globalSettings);
+    final conv = _currentConversation;
+    if (preview == null || conv == null) return;
+    final message = preview.copyWith(
+      id: _uid(),
+      timestamp: DateTime.now().subtract(const Duration(milliseconds: 1)),
+    );
+    try {
+      await _databaseService.insertMessage(message, conv.id);
+      _currentMessages.add(message);
+    } catch (e) {
+      debugPrint('ChatProvider: saving persona greeting failed: $e');
+    }
+  }
+
   Future<void> _ensureConversationPersonaBound(AppSettings settings) async {
     final conv = _currentConversation;
     if (conv == null) return;
@@ -2466,6 +2551,8 @@ class ChatProvider with ChangeNotifier {
             'ChatProvider: Final messageContent length: ${messageContent.length}');
       }
 
+      await _materializeGreetingIfNeeded(settings);
+
       // Add user message (display content only, not file contents)
       final userMessage = ChatMessage(
         id: _uid(),
@@ -3137,6 +3224,13 @@ class ChatProvider with ChangeNotifier {
         effectiveInput,
         enabled: settings.imageGenEnabled,
       );
+      // Stateful sessions only send the system prompt once.
+      if (previousResponseId != null) {
+        effectiveInput = appendExpressionTurnReminder(
+          effectiveInput as String,
+          settings.expressionLabels,
+        );
+      }
     }
 
     String aiResponse = '';
@@ -3569,6 +3663,7 @@ class ChatProvider with ChangeNotifier {
           responseId: responseId,
           stats: stats != null ? MessageStats.fromJson(stats) : null,
           imagePrompt: assembled.imagePrompt,
+          expression: assembled.expression,
         );
         await _databaseService.insertMessage(
             orphanMessage, originConversationId);
@@ -3668,6 +3763,7 @@ class ChatProvider with ChangeNotifier {
       responseId: responseId,
       stats: stats != null ? MessageStats.fromJson(stats) : null,
       imagePrompt: extractedImagePrompt,
+      expression: assembled.expression,
       alternatives: tempAssistantMessage.alternatives,
       alternativeIndex: tempAssistantMessage.alternativeIndex,
     );
@@ -3824,22 +3920,26 @@ class ChatProvider with ChangeNotifier {
     return '<think>$reasoning</think>\n$message';
   }
 
-  ({String content, String? imagePrompt}) _assistantContentWithImagePrompt({
+  ({String content, String? imagePrompt, String? expression})
+      _assistantContentWithImagePrompt({
     required String message,
     String? reasoning,
     required bool showReasoning,
   }) {
+    final fromMessage = extractExpressionTag(message);
+    final fromReasoning = extractExpressionTag(reasoning ?? '');
     final img = extractImagePromptFromAssistant(
-      message: message,
-      reasoning: reasoning,
+      message: fromMessage.cleanContent,
+      reasoning: fromReasoning.cleanContent,
     );
     return (
       content: _formatAssistantWithReasoning(
         img.cleanContent,
-        reasoning: extractImagePrompt(reasoning ?? '').cleanContent,
+        reasoning: extractImagePrompt(fromReasoning.cleanContent).cleanContent,
         showReasoning: showReasoning,
       ),
       imagePrompt: img.imagePrompt,
+      expression: fromMessage.expression ?? fromReasoning.expression,
     );
   }
 
@@ -4743,7 +4843,8 @@ class ChatProvider with ChangeNotifier {
                 // Build display content with thinking tags if we have reasoning
                 // Strip [IMG_PROMPT: ...] from display so it doesn't flash on screen
                 // Also strip truncated tags (no closing ]) when output limit is hit
-                String displayText = accumulatedContent
+                String displayText = stripExpressionTagsForDisplay(
+                        accumulatedContent)
                     .replaceAll(
                         RegExp(r'\[IMG_PROMPT:\s*.+?\]', dotAll: true), '')
                     .replaceAll(
@@ -5327,7 +5428,8 @@ class ChatProvider with ChangeNotifier {
                       }
 
                       // Build display (strip IMG_PROMPT flash + truncated tag)
-                      String displayText = accumulatedContent
+                      String displayText = stripExpressionTagsForDisplay(
+                              accumulatedContent)
                           .replaceAll(
                               RegExp(r'\[IMG_PROMPT:\s*.+?\]', dotAll: true),
                               '')
@@ -5874,6 +5976,7 @@ class ChatProvider with ChangeNotifier {
                 : null,
             responseId: chatEndResponseId,
             imagePrompt: extractedImagePrompt,
+            expression: assembled.expression,
             alternatives: tempMessage.alternatives,
             alternativeIndex: tempMessage.alternativeIndex,
           );
@@ -6595,6 +6698,8 @@ class ChatProvider with ChangeNotifier {
     notifyListeners();
 
     try {
+      await _materializeGreetingIfNeeded(settings);
+
       // Add user message
       final userMessage = ChatMessage(
         id: _uid(),
@@ -7328,9 +7433,12 @@ class ChatProvider with ChangeNotifier {
         settings: settings,
         history: packedHistory,
         userMessage: userApiContent,
-        systemPrompt: applyImageGenInstructionToSystem(
-          settings.effectiveSystemPrompt,
-          enabled: settings.imageGenEnabled,
+        systemPrompt: applyExpressionInstructionToSystem(
+          applyImageGenInstructionToSystem(
+            settings.effectiveSystemPrompt,
+            enabled: settings.imageGenEnabled,
+          ),
+          settings.expressionLabels,
         ),
         memoryContext: memoryContext,
         imageUrls: imageUrls,
@@ -7358,8 +7466,8 @@ class ChatProvider with ChangeNotifier {
         // Update the temp message in-place so the UI shows the stream.
         final idx = _currentMessages.indexWhere((m) => m.id == tempMessageId);
         if (idx >= 0) {
-          _currentMessages[idx] =
-              _currentMessages[idx].copyWith(content: buffer.toString());
+          _currentMessages[idx] = _currentMessages[idx].copyWith(
+              content: stripExpressionTagsForDisplay(buffer.toString()));
           notifyListeners();
         }
       }
@@ -7384,6 +7492,7 @@ class ChatProvider with ChangeNotifier {
         alternativeIndex:
             idx >= 0 ? _currentMessages[idx].alternativeIndex : null,
         imagePrompt: assembled.imagePrompt,
+        expression: assembled.expression,
       );
       if (idx >= 0) {
         _currentMessages[idx] = finalMessage;

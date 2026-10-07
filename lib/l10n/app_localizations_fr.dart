@@ -7169,4 +7169,174 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get premiumAppLockDescription =>
       'Définissez un PIN à 4 ou 6 chiffres, déverrouillez avec Face ID et récupérez un PIN perdu par e-mail de vérification. Le PIN reste sur cet appareil.';
+
+  @override
+  String spritePanelShow(String name) {
+    return 'Afficher l’expression de $name';
+  }
+
+  @override
+  String get personaExpressionsTitle => 'Expressions';
+
+  @override
+  String get personaExpressionsSubtitle =>
+      'Des images du personnage qui changent selon l’humeur de chaque réponse. Nomme les images d’après l’expression, comme joy.png ou anger.png, ou importe un zip de sprites SillyTavern.';
+
+  @override
+  String get personaExpressionsImport => 'Importer des sprites';
+
+  @override
+  String get personaExpressionsRemoveAll => 'Tout supprimer';
+
+  @override
+  String personaExpressionsRemoveAllConfirm(String name) {
+    return 'Supprimer tous les sprites d’expression de $name ?';
+  }
+
+  @override
+  String get personaExpressionsReplace => 'Remplacer l’image';
+
+  @override
+  String get personaExpressionsRemove => 'Supprimer';
+
+  @override
+  String personaExpressionsImported(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count sprites ajoutés',
+      one: '1 sprite ajouté',
+      zero: 'Aucun sprite ajouté',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String personaExpressionsUnmatched(String files) {
+    return 'Ignorés (pas un nom d’expression) : $files';
+  }
+
+  @override
+  String get personaExpressionsMissing => 'Manquant';
+
+  @override
+  String get characterCardImport => 'Importer une carte de personnage';
+
+  @override
+  String characterCardImportedOne(String name) {
+    return '$name importé';
+  }
+
+  @override
+  String characterCardImportedMany(int count) {
+    return '$count personnages importés';
+  }
+
+  @override
+  String characterCardImportFailed(String file, String reason) {
+    return 'Impossible d’importer $file : $reason';
+  }
+
+  @override
+  String characterCardLoreSkipped(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count entrées de lorebook par mot-clé n’ont pas été importées',
+      one: '1 entrée de lorebook par mot-clé n’a pas été importée',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get appearanceExpressionSprites => 'Expressions du personnage';
+
+  @override
+  String get appearanceExpressionSpritesSubtitle =>
+      'Pour les personas avec des sprites d’expression';
+
+  @override
+  String get expressionSpriteModeOff => 'Désactivé';
+
+  @override
+  String get expressionSpriteModePanel => 'Grand sprite';
+
+  @override
+  String get expressionSpriteModeAvatar => 'Avatar du message';
+
+  @override
+  String get expressionSpriteModeBoth => 'Les deux';
+
+  @override
+  String get spriteGenerateButton => 'Générer';
+
+  @override
+  String get spriteGenerateTitle => 'Générer des expressions';
+
+  @override
+  String get spriteGenerateAppearance => 'Apparence';
+
+  @override
+  String get spriteGenerateAppearanceHint =>
+      'Cheveux, yeux, vêtements et style';
+
+  @override
+  String get spriteGenerateSeed => 'Graine';
+
+  @override
+  String get spriteGenerateSeedHelp =>
+      'La même graine garde le personnage ressemblant d’une expression à l’autre.';
+
+  @override
+  String get spriteGenerateCore => '8 de base';
+
+  @override
+  String get spriteGenerateAll => 'Les 28';
+
+  @override
+  String get spriteGenerateOnlyMissing =>
+      'Seulement les expressions manquantes';
+
+  @override
+  String spriteGenerateStart(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Générer $count images',
+      one: 'Générer 1 image',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String spriteGenerateProgress(int current, int total, String label) {
+    return 'Génération $current sur $total : $label';
+  }
+
+  @override
+  String get spriteGenerateNeedsImageGen =>
+      'Configure d’abord la génération d’images dans Réglages → Génération d’images.';
+
+  @override
+  String spriteGenerateDone(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count expressions générées',
+      one: '1 expression générée',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String spriteGenerateFailed(String label, String error) {
+    return 'Arrêté à $label : $error';
+  }
+
+  @override
+  String get personaGreetingLabel => 'Premier message (facultatif)';
+
+  @override
+  String get personaGreetingHint =>
+      'Ce que dit le personnage au début d’une nouvelle conversation';
 }

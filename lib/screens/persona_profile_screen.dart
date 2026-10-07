@@ -21,6 +21,7 @@ import '../widgets/persona_avatar.dart';
 import 'avatar_focus_screen.dart';
 import 'chat_screen.dart';
 import 'memory_screen.dart';
+import 'persona_sprites_screen.dart';
 import 'subscription_screen.dart';
 import 'system_prompts_screen.dart';
 import '../widgets/glass_blur.dart';
@@ -351,6 +352,12 @@ class _PersonaProfileScreenState extends State<PersonaProfileScreen> {
                 onTap: () => Navigator.pop(context),
               ),
               const Spacer(),
+              _GlassCircle(
+                glass: glass,
+                icon: Icons.theater_comedy_rounded,
+                onTap: () => PersonaSpritesScreen.open(context, persona),
+              ),
+              const SizedBox(width: 10),
               if (avatarPath != null && !dialog) ...[
                 _GlassCircle(
                   glass: glass,

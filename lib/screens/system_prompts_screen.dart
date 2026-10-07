@@ -11,6 +11,7 @@ import '../models/param_preset.dart';
 import '../models/system_prompt.dart';
 import '../providers/settings_provider.dart';
 import '../services/builtin_persona_service.dart';
+import '../services/character_card_import_service.dart';
 import '../services/comfyui_service.dart';
 import '../services/local_model_download_service.dart';
 import '../services/persona_memory_service.dart';
@@ -141,6 +142,46 @@ class _SystemPromptsScreenState extends State<SystemPromptsScreen> {
     }
   }
 
+  /// SillyTavern character cards (.png / .json / .charx) → personas.
+  Future<void> _importCharacterCards(BuildContext context) async {
+    final l10n = AppLocalizations.of(context);
+    final settingsProvider = context.read<SettingsProvider>();
+    final messenger = ScaffoldMessenger.of(context);
+    final name = settingsProvider.settings.preferredUserName?.trim();
+    final CharacterCardImportResult? result;
+    try {
+      result = await CharacterCardImportService.pickAndImportCards(
+        userName: name == null || name.isEmpty ? 'User' : name,
+      );
+    } catch (e) {
+      messenger.showSnackBar(SnackBar(content: Text(e.toString())));
+      return;
+    }
+    if (result == null || !context.mounted) return;
+    for (final persona in result.personas) {
+      settingsProvider.addSystemPrompt(persona);
+    }
+    final lines = <String>[
+      if (result.personas.length == 1)
+        l10n.characterCardImportedOne(result.personas.first.name)
+      else if (result.personas.length > 1)
+        l10n.characterCardImportedMany(result.personas.length),
+      for (final e in result.failures.entries)
+        l10n.characterCardImportFailed(e.key, e.value),
+      if (result.skippedLoreEntries > 0)
+        l10n.characterCardLoreSkipped(result.skippedLoreEntries),
+    ];
+    if (lines.isNotEmpty) {
+      messenger.showSnackBar(SnackBar(
+        content: Text(lines.join('\n')),
+        duration: const Duration(seconds: 6),
+      ));
+    }
+    if (result.personas.length == 1 && context.mounted) {
+      await PersonaProfileScreen.open(context, result.personas.first);
+    }
+  }
+
   Future<void> _openPersonaGenerator(BuildContext context) async {
     final prompt = await PersonaGeneratorDialog.show(context);
     if (prompt == null || !context.mounted) return;
@@ -163,6 +204,18 @@ class _SystemPromptsScreenState extends State<SystemPromptsScreen> {
       onLightCanvas: embedded ? true : null,
       child: Icon(
         Icons.auto_awesome_rounded,
+        size: 22,
+        color: embedded
+            ? (isDark ? Colors.white : Colors.black.withValues(alpha: 0.88))
+            : Colors.white,
+      ),
+    );
+    final importAction = GlassCircleIconButton(
+      tooltip: '${l10n.characterCardImport} (${l10n.betaBadge})',
+      onTap: () => _importCharacterCards(context),
+      onLightCanvas: embedded ? true : null,
+      child: Icon(
+        Icons.file_download_outlined,
         size: 22,
         color: embedded
             ? (isDark ? Colors.white : Colors.black.withValues(alpha: 0.88))
@@ -383,6 +436,8 @@ class _SystemPromptsScreenState extends State<SystemPromptsScreen> {
                         ),
                       ),
                     ),
+                    importAction,
+                    const SizedBox(width: 8),
                     generatorAction,
                   ],
                 ),
@@ -402,7 +457,7 @@ class _SystemPromptsScreenState extends State<SystemPromptsScreen> {
         child: GlassPageHeader(
           title: l10n.systemPromptsTitle,
           onBack: () => Navigator.of(context).maybePop(),
-          actions: [generatorAction],
+          actions: [importAction, generatorAction],
         ),
       ),
       floatingActionButton: fab,
@@ -1020,6 +1075,7 @@ class SystemPromptEditorScreen extends StatefulWidget {
 class _SystemPromptEditorScreenState extends State<SystemPromptEditorScreen> {
   final _nameController = TextEditingController();
   final _contentController = TextEditingController();
+  final _greetingController = TextEditingController();
   List<String> _boundModelIds = [];
   bool _bindToModels = false;
 
@@ -1129,6 +1185,7 @@ class _SystemPromptEditorScreenState extends State<SystemPromptEditorScreen> {
     if (widget.prompt != null) {
       _nameController.text = widget.prompt!.name;
       _contentController.text = widget.prompt!.content;
+      _greetingController.text = widget.prompt!.greeting ?? '';
       _boundModelIds = List.from(widget.prompt!.boundModelIds ?? []);
       _bindToModels = _boundModelIds.isNotEmpty;
       _avatarPath = widget.prompt!.avatarPath;
@@ -1211,6 +1268,7 @@ class _SystemPromptEditorScreenState extends State<SystemPromptEditorScreen> {
   void dispose() {
     _nameController.dispose();
     _contentController.dispose();
+    _greetingController.dispose();
     super.dispose();
   }
 
@@ -1240,6 +1298,7 @@ class _SystemPromptEditorScreenState extends State<SystemPromptEditorScreen> {
   Future<void> _save() async {
     final name = _nameController.text.trim();
     final content = _contentController.text.trim();
+    final greeting = _greetingController.text.trim();
 
     final l10n = AppLocalizations.of(context);
     if (name.isEmpty) {
@@ -1309,6 +1368,8 @@ class _SystemPromptEditorScreenState extends State<SystemPromptEditorScreen> {
         useCustomParams: _personaUseCustomParamsToSave,
         customParams: _personaCustomParamsToSave,
         clearCustomParams: _personaCustomParamsToSave == null,
+        greeting: greeting.isEmpty ? null : greeting,
+        clearGreeting: greeting.isEmpty,
       );
       if (hasAvatar && (avatarChanged || updated.palettePrimary == null)) {
         updated = await PersonaPalette.ensureCached(updated);
@@ -1349,6 +1410,7 @@ class _SystemPromptEditorScreenState extends State<SystemPromptEditorScreen> {
         memoryWriteScope: _memoryWriteScope,
         useCustomParams: _personaUseCustomParamsToSave,
         customParams: _personaCustomParamsToSave,
+        greeting: greeting.isEmpty ? null : greeting,
       );
       if (hasAvatar) {
         prompt = await PersonaPalette.ensureCached(prompt);
@@ -1398,6 +1460,19 @@ class _SystemPromptEditorScreenState extends State<SystemPromptEditorScreen> {
               ),
               maxLines: wide ? 16 : 10,
               minLines: wide ? 8 : 5,
+              textCapitalization: TextCapitalization.sentences,
+            ),
+            const SizedBox(height: 14),
+            TextField(
+              controller: _greetingController,
+              decoration: _promptsFieldDecoration(
+                context,
+                labelText: l10n.personaGreetingLabel,
+                hintText: l10n.personaGreetingHint,
+                alignLabelWithHint: true,
+              ),
+              maxLines: wide ? 8 : 5,
+              minLines: 2,
               textCapitalization: TextCapitalization.sentences,
             ),
           ],

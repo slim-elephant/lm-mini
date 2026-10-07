@@ -3107,5 +3107,79 @@
   "appLockBackToPin": "Use PIN",
   "premiumAppLock": "App Lock",
   "premiumAppLockTagline": "PIN-protect the app",
-  "premiumAppLockDescription": "Set a 4- or 6-digit PIN, unlock with Face ID, and recover a lost PIN with a verification email. The PIN stays on this device."
+  "premiumAppLockDescription": "Set a 4- or 6-digit PIN, unlock with Face ID, and recover a lost PIN with a verification email. The PIN stays on this device.",
+  "spritePanelShow": "Show {name}'s expression",
+  "@spritePanelShow": {
+    "placeholders": { "name": { "type": "String" } }
+  },
+  "personaExpressionsTitle": "Expressions",
+  "personaExpressionsSubtitle": "Character sprites that change with the mood of each reply. Name images after the expression, like joy.png or anger.png, or import a SillyTavern sprite zip.",
+  "personaExpressionsImport": "Import sprites",
+  "personaExpressionsRemoveAll": "Remove all",
+  "personaExpressionsRemoveAllConfirm": "Remove all expression sprites from {name}?",
+  "@personaExpressionsRemoveAllConfirm": {
+    "placeholders": { "name": { "type": "String" } }
+  },
+  "personaExpressionsReplace": "Replace image",
+  "personaExpressionsRemove": "Remove",
+  "personaExpressionsImported": "{count, plural, =0{No sprites added} =1{1 sprite added} other{{count} sprites added}}",
+  "@personaExpressionsImported": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "personaExpressionsUnmatched": "Skipped (not an expression name): {files}",
+  "@personaExpressionsUnmatched": {
+    "placeholders": { "files": { "type": "String" } }
+  },
+  "personaExpressionsMissing": "Missing",
+  "characterCardImport": "Import character card",
+  "characterCardImportedOne": "Imported {name}",
+  "@characterCardImportedOne": {
+    "placeholders": { "name": { "type": "String" } }
+  },
+  "characterCardImportedMany": "Imported {count} characters",
+  "@characterCardImportedMany": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "characterCardImportFailed": "Couldn't import {file}: {reason}",
+  "@characterCardImportFailed": {
+    "placeholders": { "file": { "type": "String" }, "reason": { "type": "String" } }
+  },
+  "characterCardLoreSkipped": "{count, plural, =1{1 keyword lorebook entry wasn't imported} other{{count} keyword lorebook entries weren't imported}}",
+  "@characterCardLoreSkipped": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "appearanceExpressionSprites": "Character expressions",
+  "appearanceExpressionSpritesSubtitle": "For personas with expression sprites",
+  "expressionSpriteModeOff": "Off",
+  "expressionSpriteModePanel": "Large sprite",
+  "expressionSpriteModeAvatar": "Message avatar",
+  "expressionSpriteModeBoth": "Both",
+  "spriteGenerateButton": "Generate",
+  "spriteGenerateTitle": "Generate expressions",
+  "spriteGenerateAppearance": "Appearance",
+  "spriteGenerateAppearanceHint": "Hair, eyes, clothing and art style",
+  "spriteGenerateSeed": "Seed",
+  "spriteGenerateSeedHelp": "The same seed keeps the character looking alike across expressions.",
+  "spriteGenerateCore": "8 core",
+  "spriteGenerateAll": "All 28",
+  "spriteGenerateOnlyMissing": "Only missing expressions",
+  "spriteGenerateStart": "{count, plural, =1{Generate 1 image} other{Generate {count} images}}",
+  "@spriteGenerateStart": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "spriteGenerateProgress": "Generating {current} of {total}: {label}",
+  "@spriteGenerateProgress": {
+    "placeholders": { "current": { "type": "int" }, "total": { "type": "int" }, "label": { "type": "String" } }
+  },
+  "spriteGenerateNeedsImageGen": "Set up image generation first in Settings → Image Generation.",
+  "spriteGenerateDone": "{count, plural, =1{1 expression generated} other{{count} expressions generated}}",
+  "@spriteGenerateDone": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "spriteGenerateFailed": "Stopped at {label}: {error}",
+  "@spriteGenerateFailed": {
+    "placeholders": { "label": { "type": "String" }, "error": { "type": "String" } }
+  },
+  "personaGreetingLabel": "First message (optional)",
+  "personaGreetingHint": "What the character says when a new chat starts"
 }

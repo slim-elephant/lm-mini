@@ -254,6 +254,43 @@ class AppearanceSettingsScreen extends StatelessWidget {
                     ],
                   ),
                 ),
+                const SizedBox(height: 10),
+                _card(
+                  context,
+                  child: DesktopPreferenceRow(
+                    icon: Icons.theater_comedy_outlined,
+                    title: l10n.appearanceExpressionSprites,
+                    subtitle:
+                        '${l10n.betaBadge} · ${l10n.appearanceExpressionSpritesSubtitle}',
+                    trailing: DropdownButton<String>(
+                      value: settingsProvider.settings.expressionSpriteMode,
+                      underline: const SizedBox.shrink(),
+                      onChanged: (v) {
+                        if (v != null) {
+                          settingsProvider.updateExpressionSpriteMode(v);
+                        }
+                      },
+                      items: [
+                        DropdownMenuItem(
+                          value: 'both',
+                          child: Text(l10n.expressionSpriteModeBoth),
+                        ),
+                        DropdownMenuItem(
+                          value: 'panel',
+                          child: Text(l10n.expressionSpriteModePanel),
+                        ),
+                        DropdownMenuItem(
+                          value: 'avatar',
+                          child: Text(l10n.expressionSpriteModeAvatar),
+                        ),
+                        DropdownMenuItem(
+                          value: 'off',
+                          child: Text(l10n.expressionSpriteModeOff),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
                 const SizedBox(height: 22),
                 _sectionLabel(context, 'Chat text'),
                 const SizedBox(height: 10),

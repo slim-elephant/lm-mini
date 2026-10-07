@@ -37,6 +37,10 @@ class ChatMessage {
   // Group chat support
   final String? participantId; // Links to GroupChatParticipant.id in group chats
 
+  /// Character expression for this reply (`joy`, `anger`, …), from the hidden
+  /// `[EXPRESSION: …]` tag. Picks the persona's expression sprite.
+  final String? expression;
+
   // Swipes / generation alternatives
   final List<ChatMessage>? alternatives;
   final int? alternativeIndex;
@@ -59,6 +63,7 @@ class ChatMessage {
     this.generatedImagePaths,
     this.generatedImageInfo,
     this.participantId,
+    this.expression,
     this.alternatives,
     this.alternativeIndex,
   });
@@ -99,6 +104,7 @@ class ChatMessage {
     List<String>? generatedImagePaths,
     String? generatedImageInfo,
     String? participantId,
+    String? expression,
     List<ChatMessage>? alternatives,
     int? alternativeIndex,
   }) {
@@ -120,6 +126,7 @@ class ChatMessage {
       generatedImagePaths: generatedImagePaths ?? this.generatedImagePaths,
       generatedImageInfo: generatedImageInfo ?? this.generatedImageInfo,
       participantId: participantId ?? this.participantId,
+      expression: expression ?? this.expression,
       alternatives: alternatives ?? this.alternatives,
       alternativeIndex: alternativeIndex ?? this.alternativeIndex,
     );

@@ -8,10 +8,19 @@ plugins {
     id "dev.flutter.flutter-gradle-plugin"
 }
 
+// Open-source GitHub builds (LMMINI_OSS=1) install next to the Play app:
+// different application ID and label, and no Play Firebase config.
+def ossBuild = System.getenv('LMMINI_OSS') == '1'
+
 // Firebase config is optional for open-source builds.
-if (file('google-services.json').exists()) {
+if (file('google-services.json').exists() && !ossBuild) {
     apply plugin: 'com.google.gms.google-services'
 }
+
+// Release signing: LMMINI_KEYSTORE (+ _PASSWORD, LMMINI_KEY_ALIAS,
+// LMMINI_KEY_PASSWORD) when set; otherwise the debug key, so
+// `flutter run --release` keeps working without a keystore.
+def releaseKeystore = System.getenv('LMMINI_KEYSTORE')
 
 android {
     namespace = "net.neuro9.lmmini"
@@ -37,13 +46,24 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+        if (ossBuild) applicationIdSuffix = ".oss"
+        manifestPlaceholders += [appLabel: ossBuild ? "LM Mini OSS" : "LM Mini"]
+    }
+
+    signingConfigs {
+        if (releaseKeystore) {
+            release {
+                storeFile = file(releaseKeystore)
+                storePassword = System.getenv('LMMINI_KEYSTORE_PASSWORD')
+                keyAlias = System.getenv('LMMINI_KEY_ALIAS')
+                keyPassword = System.getenv('LMMINI_KEY_PASSWORD')
+            }
+        }
     }
 
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.debug
+            signingConfig = releaseKeystore ? signingConfigs.release : signingConfigs.debug
         }
     }
 }

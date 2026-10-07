@@ -6779,4 +6779,164 @@ class AppLocalizationsZh extends AppLocalizations {
   @override
   String get premiumAppLockDescription =>
       '设置 4 或 6 位数字 PIN，可用面容 ID 解锁，并通过验证邮件找回丢失的 PIN。PIN 只保存在本机。';
+
+  @override
+  String spritePanelShow(String name) {
+    return '显示$name的表情';
+  }
+
+  @override
+  String get personaExpressionsTitle => '表情';
+
+  @override
+  String get personaExpressionsSubtitle =>
+      '随每条回复情绪变化的角色立绘。按表情命名图片（如 joy.png、anger.png），或导入 SillyTavern 立绘压缩包。';
+
+  @override
+  String get personaExpressionsImport => '导入立绘';
+
+  @override
+  String get personaExpressionsRemoveAll => '全部移除';
+
+  @override
+  String personaExpressionsRemoveAllConfirm(String name) {
+    return '移除$name的所有表情立绘？';
+  }
+
+  @override
+  String get personaExpressionsReplace => '替换图片';
+
+  @override
+  String get personaExpressionsRemove => '移除';
+
+  @override
+  String personaExpressionsImported(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '已添加 $count 张立绘',
+      zero: '未添加立绘',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String personaExpressionsUnmatched(String files) {
+    return '已跳过（不是表情名称）：$files';
+  }
+
+  @override
+  String get personaExpressionsMissing => '缺少';
+
+  @override
+  String get characterCardImport => '导入角色卡';
+
+  @override
+  String characterCardImportedOne(String name) {
+    return '已导入$name';
+  }
+
+  @override
+  String characterCardImportedMany(int count) {
+    return '已导入 $count 个角色';
+  }
+
+  @override
+  String characterCardImportFailed(String file, String reason) {
+    return '无法导入 $file：$reason';
+  }
+
+  @override
+  String characterCardLoreSkipped(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '有 $count 条关键词世界书条目未导入',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get appearanceExpressionSprites => '角色表情';
+
+  @override
+  String get appearanceExpressionSpritesSubtitle => '适用于有表情立绘的角色';
+
+  @override
+  String get expressionSpriteModeOff => '关闭';
+
+  @override
+  String get expressionSpriteModePanel => '大立绘';
+
+  @override
+  String get expressionSpriteModeAvatar => '消息头像';
+
+  @override
+  String get expressionSpriteModeBoth => '两者';
+
+  @override
+  String get spriteGenerateButton => '生成';
+
+  @override
+  String get spriteGenerateTitle => '生成表情';
+
+  @override
+  String get spriteGenerateAppearance => '外貌';
+
+  @override
+  String get spriteGenerateAppearanceHint => '发型、眼睛、服装和画风';
+
+  @override
+  String get spriteGenerateSeed => '种子';
+
+  @override
+  String get spriteGenerateSeedHelp => '使用相同种子可让角色在各表情中保持一致。';
+
+  @override
+  String get spriteGenerateCore => '8 个常用';
+
+  @override
+  String get spriteGenerateAll => '全部 28 个';
+
+  @override
+  String get spriteGenerateOnlyMissing => '仅生成缺少的表情';
+
+  @override
+  String spriteGenerateStart(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '生成 $count 张图片',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String spriteGenerateProgress(int current, int total, String label) {
+    return '正在生成第 $current/$total 张：$label';
+  }
+
+  @override
+  String get spriteGenerateNeedsImageGen => '请先在“设置 → 图像生成”中完成设置。';
+
+  @override
+  String spriteGenerateDone(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '已生成 $count 个表情',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String spriteGenerateFailed(String label, String error) {
+    return '在 $label 处停止：$error';
+  }
+
+  @override
+  String get personaGreetingLabel => '开场白（可选）';
+
+  @override
+  String get personaGreetingHint => '新对话开始时角色说的话';
 }

@@ -38,6 +38,7 @@ ChatMessage _$ChatMessageFromJson(Map<String, dynamic> json) => ChatMessage(
           .toList(),
       generatedImageInfo: json['generatedImageInfo'] as String?,
       participantId: json['participantId'] as String?,
+      expression: json['expression'] as String?,
       alternatives: (json['alternatives'] as List<dynamic>?)
           ?.map((e) => ChatMessage.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -64,6 +65,7 @@ Map<String, dynamic> _$ChatMessageToJson(ChatMessage instance) =>
       'generatedImagePaths': instance.generatedImagePaths,
       'generatedImageInfo': instance.generatedImageInfo,
       'participantId': instance.participantId,
+      'expression': instance.expression,
       'alternatives': instance.alternatives?.map((e) => e.toJson()).toList(),
       'alternativeIndex': instance.alternativeIndex,
     };
