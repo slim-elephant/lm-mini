@@ -496,13 +496,25 @@ abstract final class TtsLanguageCatalog {
       return false;
     }
     for (final file in spec.requiredFiles) {
-      if (!File(p.join(dirPath, file)).existsSync()) return false;
+      final f = File(p.join(dirPath, file));
+      if (!f.existsSync()) return false;
+      // sherpa-onnx aborts the whole app on a truncated model, so an
+      // interrupted download must not count as installed.
+      if (f.lengthSync() < (_minBytes[file] ?? 1)) return false;
     }
     if (spec.engine == TtsEngineKind.vits) {
-      return findOnnxFile(dirPath) != null;
+      final onnx = findOnnxFile(dirPath);
+      return onnx != null && File(onnx).lengthSync() >= 5 * 1024 * 1024;
     }
     return true;
   }
+
+  /// Smallest plausible size per pack file (real files are far larger:
+  /// Kokoro model.onnx is 310+ MB, voices.bin 5+ MB).
+  static const Map<String, int> _minBytes = {
+    'model.onnx': 50 * 1024 * 1024,
+    'voices.bin': 512 * 1024,
+  };
 
   static String joinExisting(String modelPath, List<String> names) {
     return names

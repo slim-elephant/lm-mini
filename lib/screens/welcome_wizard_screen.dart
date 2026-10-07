@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:lm_mini_premium/lm_mini_premium.dart';
 import 'package:provider/provider.dart';
 
+import '../utils/fllama_cpu_support.dart';
 import '../l10n/app_localizations.dart';
 import '../models/local_model_spec.dart';
 import '../models/server_profile.dart';
@@ -204,6 +205,13 @@ class _WelcomeWizardScreenState extends State<WelcomeWizardScreen> {
   }
 
   Future<void> _downloadPick(LocalModelSpec spec) async {
+    if (spec.engine == LocalEngine.fllama && !FllamaCpuSupport.isSupported) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text(FllamaCpuSupport.unsupportedMessage),
+        duration: Duration(seconds: 6),
+      ));
+      return;
+    }
     if (!SubscriptionService().isPremium && !spec.isFreeSlot) {
       // Public builds have no upgrade path; free-slot picks are offered instead.
       if (!ProFeatures.showUpsell) return;

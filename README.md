@@ -1,13 +1,15 @@
 # LM Mini (open-source build)
 
-[![App Store](https://img.shields.io/badge/App_Store-Download-0D96F6?logo=apple&logoColor=white)](https://apps.apple.com/app/lm-mini/id6751125309)
-[![Google Play](https://img.shields.io/badge/Google_Play-Download-414141?logo=googleplay&logoColor=white)](https://play.google.com/store/apps/details?id=net.neuro9.lmmini)
+<p>
+  <a href="https://apps.apple.com/app/lm-mini/id6751125309"><img alt="Download on the App Store" src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" height="54"></a>
+  &nbsp;
+  <a href="https://play.google.com/store/apps/details?id=net.neuro9.lmmini"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" height="80"></a>
+</p>
+
 [![Website](https://img.shields.io/badge/Website-lmmini.com-7C4DFF)](https://lmmini.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue)](LICENSE)
 
 **[Website](https://lmmini.com)** ·
-[App Store (iPhone, iPad, Mac)](https://apps.apple.com/app/lm-mini/id6751125309) ·
-[Google Play](https://play.google.com/store/apps/details?id=net.neuro9.lmmini) ·
 [Desktop downloads](https://lmmini.com/download.html) ·
 [Docs](https://lmmini.com/docs.html)
 

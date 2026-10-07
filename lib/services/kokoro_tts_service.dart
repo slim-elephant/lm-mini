@@ -12,6 +12,7 @@ import 'package:wakelock_plus/wakelock_plus.dart';
 import '../utils/just_audio_play.dart';
 import '../utils/tts_language_catalog.dart';
 import 'kokoro_model_manager.dart';
+import 'device_capability_service.dart';
 
 /// On-device TTS using Kokoro (en/es/fr/zh) and Piper (de/ru) via sherpa-onnx.
 class KokoroTtsService {
@@ -223,6 +224,16 @@ class KokoroTtsService {
           'Test on a real iPhone, or switch Speaking voice to Built-in.';
       debugPrint('KokoroTtsService: $msg');
       throw StateError(msg);
+    }
+
+    // Kokoro needs ~600 MB while loading; on small phones ONNX Runtime runs
+    // out of memory and sherpa-onnx aborts the app. Use the system voice.
+    if (!kIsWeb && Platform.isAndroid) {
+      final cap = await DeviceCapabilityService.instance.get();
+      if (cap.ramGb > 0 && cap.ramGb < 3) {
+        debugPrint('KokoroTtsService: ${cap.ramGb} GB RAM, skipping Kokoro');
+        return false;
+      }
     }
 
     final config = await _workerConfigFor(langId);

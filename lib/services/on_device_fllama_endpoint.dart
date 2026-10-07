@@ -5,8 +5,10 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:fllama/fllama.dart' as fllama;
 
 import '../models/local_model_spec.dart';
+import '../utils/fllama_cpu_support.dart';
 import 'llm_endpoint.dart';
 import 'local_model_download_service.dart';
+import 'device_capability_service.dart';
 
 /// Adapter that runs inference locally via the fllama (llama.cpp) plugin.
 ///
@@ -50,6 +52,7 @@ class OnDeviceFllamaEndpoint implements LLMEndpoint {
     if (!Platform.isIOS && !Platform.isAndroid && !Platform.isMacOS) {
       return false;
     }
+    if (!FllamaCpuSupport.isSupported) return false;
     await _downloads.init();
     final entry = _downloads.entryById(spec.id);
     if (entry == null || entry.status != LocalModelStatus.ready) return false;
@@ -89,6 +92,13 @@ class OnDeviceFllamaEndpoint implements LLMEndpoint {
   }) {
     final controller = StreamController<String>();
     () async {
+      // Must run before any package:fllama call: opening libfllama.so on
+      // an ARMv8.0 Android phone crashes the whole app (SIGILL).
+      if (!FllamaCpuSupport.isSupported) {
+        controller.addError(StateError(FllamaCpuSupport.unsupportedMessage));
+        await controller.close();
+        return;
+      }
       if (Platform.isIOS && await _isIosSimulator()) {
         controller.addError(StateError(
           'GGUF (fllama) inference is not available in the iOS Simulator — '
@@ -111,6 +121,23 @@ class OnDeviceFllamaEndpoint implements LLMEndpoint {
         controller.addError(StateError('Model file missing on disk: $path'));
         await controller.close();
         return;
+      }
+      // A model that doesn't fit makes llama.cpp's failed-load cleanup crash
+      // the app natively, so refuse it in Dart first.
+      if (Platform.isAndroid) {
+        final cap = await DeviceCapabilityService.instance.get();
+        var bytes = await File(path).length();
+        if (mmprojPath != null && await File(mmprojPath).exists()) {
+          bytes += await File(mmprojPath).length();
+        }
+        if (cap.ramGb > 0 && bytes > cap.ramGb * 1e9 * 0.45) {
+          controller.addError(StateError(
+            '"${spec.displayName}" needs more memory than this phone has '
+            '(${cap.ramGb.toStringAsFixed(0)} GB RAM). Pick a smaller model.',
+          ));
+          await controller.close();
+          return;
+        }
       }
 
       // Map our role strings → fllama's Role enum.
