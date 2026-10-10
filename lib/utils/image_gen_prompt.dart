@@ -3,15 +3,18 @@ import 'response_parser.dart';
 /// Cold-session system instruction. Ask for the tag at the **start** of the
 /// reply so a shrinking LM Studio output budget (context filling up) cannot
 /// eat `[IMG_PROMPT]` the way an end-of-message tag is lost after a few turns.
+///
+/// Tool calls must come first: a model that starts writing the tag has
+/// committed to a text reply and never calls web search / MCP tools.
 const kImageGenSystemInstruction =
-    '\n\n[IMAGE_GEN_INSTRUCTION] After any thinking, start each reply with a single hidden tag [IMG_PROMPT: concise English comma-separated visual tags], then write your answer. Do not mention this tag to the user.';
+    '\n\n[IMAGE_GEN_INSTRUCTION] If you need a tool (for example web search), call it first. After any thinking and tool calls, start your written answer with a single hidden tag [IMG_PROMPT: concise English comma-separated visual tags], then write your answer. Do not mention this tag to the user.';
 
 /// Per-turn reminder on the current user payload. LM Studio `/api/v1/chat`
 /// must not re-send `system_prompt` once `previous_response_id` is set
 /// (it appends a system message mid-history). Without this, the model
 /// forgets the tag after the first replies.
 const kImageGenTurnReminder =
-    '\n\n[IMAGE_GEN_INSTRUCTION] Start your reply with [IMG_PROMPT: english comma-separated visual tags], then the answer. Do not mention the tag.';
+    '\n\n[IMAGE_GEN_INSTRUCTION] Use any tool you need first (such as web search). Then start your written answer with [IMG_PROMPT: english comma-separated visual tags], then the answer. Do not mention the tag.';
 
 String applyImageGenInstructionToSystem(
   String systemPrompt, {

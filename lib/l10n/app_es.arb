@@ -1056,6 +1056,15 @@
   "streamingPhaseWriting": "Escribiendo respuesta",
   "streamingPhaseSearching": "Buscando",
   "streamingPhaseUsingTools": "Usando herramientas",
+  "streamingPhaseConnecting": "Conectando con {provider}…",
+  "networkOfflineTitle": "Estás sin conexión",
+  "networkOfflineBody": "Conéctate a una red Wi-Fi o a datos móviles e inténtalo de nuevo.",
+  "networkNeedsWifiTitle": "Con datos móviles: {provider} necesita el Wi-Fi de tu casa",
+  "networkNeedsWifiBody": "{provider} en tu ordenador ({host}) solo es accesible desde el Wi-Fi de tu casa. Conéctate a ese Wi-Fi o activa el Acceso Remoto para usarlo desde cualquier lugar.",
+  "networkLostWifiTitle": "Se perdió la conexión con {provider}",
+  "networkLostWifiBody": "Tu teléfono salió del Wi-Fi. Vuelve a conectarte al Wi-Fi de tu casa o activa el Acceso Remoto para seguir chateando desde cualquier lugar.",
+  "networkUseRemoteAccess": "Usar Acceso Remoto",
+  "networkSwitchProvider": "Cambiar de proveedor",
   "previewUserMessage": "¿Qué zócalo tiene esta placa?",
   "bubbleAvatarSizeLabel": "Tamaño del avatar en la burbuja",
   "bubbleAvatarRadiusValue": "radio de {value}px",
@@ -2337,5 +2346,6 @@
   "spriteGenerateDone": "{count, plural, =1{1 expresión generada} other{{count} expresiones generadas}}",
   "spriteGenerateFailed": "Se detuvo en {label}: {error}",
   "personaGreetingLabel": "Primer mensaje (opcional)",
-  "personaGreetingHint": "Lo que dice el personaje al empezar un chat nuevo"
+  "personaGreetingHint": "Lo que dice el personaje al empezar un chat nuevo",
+  "personaMemoryOwnOnlyNote": "Esta persona tiene su propia memoria: solo ve lo que aprendió en sus propios chats, nunca tus recuerdos compartidos."
 }

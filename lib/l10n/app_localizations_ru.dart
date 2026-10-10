@@ -3868,6 +3868,43 @@ class AppLocalizationsRu extends AppLocalizations {
   String get streamingPhaseUsingTools => 'Использование инструментов';
 
   @override
+  String streamingPhaseConnecting(String provider) {
+    return 'Подключение к $provider…';
+  }
+
+  @override
+  String get networkOfflineTitle => 'Нет подключения к сети';
+
+  @override
+  String get networkOfflineBody =>
+      'Подключитесь к Wi-Fi или мобильному интернету и попробуйте снова.';
+
+  @override
+  String networkNeedsWifiTitle(String provider) {
+    return 'Мобильный интернет — $provider нужен домашний Wi-Fi';
+  }
+
+  @override
+  String networkNeedsWifiBody(String provider, String host) {
+    return '$provider на вашем компьютере ($host) доступен только через домашний Wi-Fi. Подключитесь к этому Wi-Fi или включите удалённый доступ, чтобы пользоваться им откуда угодно.';
+  }
+
+  @override
+  String networkLostWifiTitle(String provider) {
+    return 'Связь с $provider потеряна';
+  }
+
+  @override
+  String get networkLostWifiBody =>
+      'Телефон отключился от Wi-Fi. Снова подключитесь к домашнему Wi-Fi или включите удалённый доступ, чтобы продолжать чат откуда угодно.';
+
+  @override
+  String get networkUseRemoteAccess => 'Включить удалённый доступ';
+
+  @override
+  String get networkSwitchProvider => 'Сменить провайдера';
+
+  @override
   String get previewUserMessage => 'Какой сокет у этой платы?';
 
   @override
@@ -5661,14 +5698,14 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get memoryScopePrivateSubtitle =>
-      'A fact about you that only this persona sees';
+      'Facts about you that only this persona sees. It won\'t see your shared memories';
 
   @override
   String get memoryScopeLore => 'Character notes';
 
   @override
   String get memoryScopeLoreSubtitle =>
-      'Roleplay details for this character, never treated as facts about you';
+      'Roleplay details for this character, never treated as facts about you. It won\'t see your shared memories';
 
   @override
   String get memoryVisibility => 'Visibility';
@@ -7302,4 +7339,8 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get personaGreetingHint => 'Что персонаж говорит в начале нового чата';
+
+  @override
+  String get personaMemoryOwnOnlyNote =>
+      'У этой персоны своя память: она видит только то, что узнала в своих чатах, и никогда — ваши общие воспоминания.';
 }

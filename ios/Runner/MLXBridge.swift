@@ -33,6 +33,7 @@
 
 import Flutter
 import Foundation
+import UIKit
 
 // MARK: - Public bridge (always available, no @available)
 
@@ -130,6 +131,37 @@ fileprivate enum MLXRunner {
   /// Set once per process. See `capGpuCache`.
   fileprivate static var didCapGpuCache = false
 
+  /// iOS rejects GPU work from a backgrounded app. MLX surfaces that as a C++
+  /// exception from `metal::check_error` on the command-buffer completion
+  /// thread, which nothing can catch — the app aborts (seen in TestFlight
+  /// crashes when a Watch request ran the model with the phone locked).
+  /// So: never start MLX work in the background, and stop at the next token
+  /// when the app leaves the foreground.
+  fileprivate static var inBackground = false
+  private static var observersInstalled = false
+
+  static func installLifecycleObservers() {
+    guard !observersInstalled else { return }
+    observersInstalled = true
+    inBackground = UIApplication.shared.applicationState == .background
+    let center = NotificationCenter.default
+    center.addObserver(forName: UIApplication.didEnterBackgroundNotification,
+                       object: nil, queue: .main) { _ in
+      inBackground = true
+      if activeGeneration != nil {
+        NSLog("🧠 MLX app backgrounded — stopping generation (GPU not allowed)")
+        cancel()
+      }
+    }
+    center.addObserver(forName: UIApplication.willEnterForegroundNotification,
+                       object: nil, queue: .main) { _ in
+      inBackground = false
+    }
+  }
+
+  static let backgroundMessage =
+    "On-device MLX models only run while LM Mini is open on the iPhone. Open the app and try again."
+
   /// mlx-swift's default cache limit equals the Metal working-set limit, so
   /// the first prefill keeps every temporary buffer. iOS then jetsams the
   /// app ("used too much memory") while those kernels compile. The iOS
@@ -145,8 +177,15 @@ fileprivate enum MLXRunner {
   }
 
   static func handle(call: FlutterMethodCall, result: @escaping FlutterResult) {
+    installLifecycleObservers()
     switch call.method {
     case "load":
+      if inBackground {
+        NSLog("🧠 MLX load refused: app in background")
+        result(FlutterError(code: "background", message: backgroundMessage,
+                            details: nil))
+        return
+      }
       guard let args = call.arguments as? [String: Any],
             let path = args["modelPath"] as? String
       else {
@@ -205,6 +244,14 @@ fileprivate enum MLXRunner {
   }
 
   static func stream(arguments: Any?, sink: @escaping FlutterEventSink) {
+    installLifecycleObservers()
+    if inBackground {
+      NSLog("🧠 MLX stream refused: app in background")
+      sink(FlutterError(code: "background", message: backgroundMessage,
+                        details: nil))
+      sink(FlutterEndOfEventStream)
+      return
+    }
     guard let args = arguments as? [String: Any]
     else {
       sink(FlutterError(code: "bad_args",
@@ -299,7 +346,9 @@ fileprivate enum MLXRunner {
           parameters: params,
           context: context
         ) { tokens in
-          if Task.isCancelled || epoch != generationEpoch { return .stop }
+          if Task.isCancelled || epoch != generationEpoch || inBackground {
+            return .stop
+          }
           // tokens is the cumulative sequence so far.
           if tokens.count > produced.count {
             if produced.isEmpty, let first = tokens.first {

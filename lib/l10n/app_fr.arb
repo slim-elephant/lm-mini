@@ -1056,6 +1056,15 @@
   "streamingPhaseWriting": "Rédaction de la réponse",
   "streamingPhaseSearching": "Recherche",
   "streamingPhaseUsingTools": "Utilisation des outils",
+  "streamingPhaseConnecting": "Connexion à {provider}…",
+  "networkOfflineTitle": "Vous êtes hors ligne",
+  "networkOfflineBody": "Connectez-vous au Wi-Fi ou aux données mobiles, puis réessayez.",
+  "networkNeedsWifiTitle": "En données mobiles — {provider} a besoin du Wi-Fi de la maison",
+  "networkNeedsWifiBody": "{provider} sur votre ordinateur ({host}) n’est accessible que depuis le Wi-Fi de la maison. Rejoignez ce Wi-Fi, ou activez l’accès à distance pour l’utiliser partout.",
+  "networkLostWifiTitle": "Connexion à {provider} perdue",
+  "networkLostWifiBody": "Votre téléphone a quitté le Wi-Fi. Reconnectez-vous au Wi-Fi de la maison, ou activez l’accès à distance pour continuer à discuter partout.",
+  "networkUseRemoteAccess": "Utiliser l’accès à distance",
+  "networkSwitchProvider": "Changer de fournisseur",
   "previewUserMessage": "Quel socket a cette carte ?",
   "bubbleAvatarSizeLabel": "Taille de l'avatar dans la bulle",
   "bubbleAvatarRadiusValue": "{value}px de rayon",
@@ -2337,5 +2346,6 @@
   "spriteGenerateDone": "{count, plural, =1{1 expression générée} other{{count} expressions générées}}",
   "spriteGenerateFailed": "Arrêté à {label} : {error}",
   "personaGreetingLabel": "Premier message (facultatif)",
-  "personaGreetingHint": "Ce que dit le personnage au début d’une nouvelle conversation"
+  "personaGreetingHint": "Ce que dit le personnage au début d’une nouvelle conversation",
+  "personaMemoryOwnOnlyNote": "Ce persona garde sa propre mémoire : il ne voit que ce qu'il a appris dans ses propres discussions, jamais tes souvenirs partagés."
 }

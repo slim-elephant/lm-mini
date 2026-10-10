@@ -165,7 +165,9 @@ class OnDeviceMlxEndpoint implements LLMEndpoint {
         debugPrint(
             '🧠 MLX load failed (attempt $attempt/$maxAttempts): '
             '${e.code} ${e.message}');
-        if (attempt >= maxAttempts) rethrow;
+        // Backgrounded app: iOS forbids GPU work. Not a cold-start glitch, so
+        // don't unload the model and retry — just report it.
+        if (attempt >= maxAttempts || e.code == 'background') rethrow;
         // Drop any half-initialized native state, give Metal a beat, retry.
         try {
           await _channel.invokeMethod('unload');

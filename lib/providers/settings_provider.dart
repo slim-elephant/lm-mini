@@ -30,6 +30,9 @@ import '../utils/lm_studio_download_cancel.dart';
 import '../utils/image_picker_helper.dart';
 import '../utils/app_navigator.dart';
 import '../utils/remote_host_backends.dart';
+import '../utils/server_reachability.dart';
+import '../utils/network_preflight_error.dart';
+import '../services/network_status_service.dart';
 import '../utils/server_model_memory.dart';
 import '../utils/param_preset_key.dart';
 import '../utils/unsloth_load.dart';
@@ -688,6 +691,17 @@ class SettingsProvider with ChangeNotifier {
     _connectionError = null;
     notifyListeners();
 
+    // Offline / mobile data with a home-LAN server / host down: say so in
+    // seconds instead of waiting ~60 s for the OS connect timeout.
+    final blocked = await _modelListPreflight(providerKind);
+    if (blocked != null) {
+      _connectionError = blocked;
+      _availableModels = [];
+      _isLoadingModels = false;
+      notifyListeners();
+      return;
+    }
+
     try {
       final cloud = CloudApiService();
       if (isCloudProviderKind(providerKind)) {
@@ -776,6 +790,74 @@ class SettingsProvider with ChangeNotifier {
       await _settingsService.saveSettings(_settings);
     }
     notifyListeners();
+  }
+
+  /// Network check before listing models. Returns a user-facing error, or
+  /// null to go ahead. Never throws.
+  Future<String?> _modelListPreflight(String providerKind) async {
+    try {
+      if (_settings.usbModeEnabled) return null;
+      final isCloud = isCloudProviderKind(providerKind);
+      final cp = isCloud ? resolveCloudProvider() : null;
+      final url = (isCloud ? cp?.effectiveBaseUrl : _settings.serverUrl) ?? '';
+      if (url.trim().isEmpty) return null;
+      final scope =
+          _settings.isRemoteActive ? HostScope.public : classifyHost(url);
+      if (scope == HostScope.loopback) return null;
+
+      final net = await NetworkStatusService.instance.refresh(
+        timeout: const Duration(milliseconds: 800),
+      );
+      final decision = decide(
+        hostScope: scope,
+        isOffline: net.isOffline,
+        hasLocalNetwork: net.hasLocalNetwork,
+        hasVpn: net.hasVpn,
+      );
+      final name = providerKind == 'cloud'
+          ? (cp?.type.displayName ?? 'the server')
+          : RemoteHostBackends.displayName(providerKind);
+      final host = hostOf(url) ?? url;
+      switch (decision) {
+        case PreflightDecision.proceed:
+          return null;
+        case PreflightDecision.blockOffline:
+          return NetworkPreflightError.offlineMessage;
+        case PreflightDecision.blockNeedsWifi:
+          return NetworkPreflightError.needsWifiMessage(name, host);
+        case PreflightDecision.probe:
+          break;
+      }
+
+      var raw = url.trim();
+      if (!raw.contains('://')) raw = 'http://$raw';
+      final uri = Uri.tryParse(raw);
+      if (uri == null || uri.host.isEmpty) return null;
+      final result = await ServerReachability.probe(uri);
+      if (result == ProbeResult.ok) return null;
+      if (scope == HostScope.localNetwork &&
+          !net.hasLocalNetwork &&
+          net.hasMobile) {
+        return NetworkPreflightError.needsWifiMessage(name, host);
+      }
+      if (result == ProbeResult.timeout &&
+          Platform.isIOS &&
+          scope != HostScope.public &&
+          !ServerReachability.hasEverReachedLocalHost) {
+        // First LAN connection may be waiting on the Local Network prompt.
+        return null;
+      }
+      const tag = NetworkPreflightError.detailPrefix;
+      final hostPort = '${uri.host}:${portFor(uri)}';
+      return _friendlyConnectionError(
+        result == ProbeResult.refused
+            ? 'SocketException: Connection refused ($tag $hostPort)'
+            : 'SocketException: Host is down ($tag $hostPort)',
+      );
+    } catch (e) {
+      debugPrint('Model list preflight skipped: $e');
+      return null;
+    }
   }
 
   /// Load a specific model

@@ -1674,6 +1674,36 @@
   "streamingPhaseWriting": "Writing response",
   "streamingPhaseSearching": "Searching",
   "streamingPhaseUsingTools": "Using tools",
+  "streamingPhaseConnecting": "Connecting to {provider}…",
+  "@streamingPhaseConnecting": {
+    "placeholders": {
+      "provider": { "type": "String" }
+    }
+  },
+  "networkOfflineTitle": "You're offline",
+  "networkOfflineBody": "Connect to Wi-Fi or mobile data and try again.",
+  "networkNeedsWifiTitle": "On mobile data — {provider} needs your home Wi-Fi",
+  "@networkNeedsWifiTitle": {
+    "placeholders": {
+      "provider": { "type": "String" }
+    }
+  },
+  "networkNeedsWifiBody": "{provider} on your computer ({host}) is only reachable on your home Wi-Fi. Join that Wi-Fi, or turn on Remote Access to use it from anywhere.",
+  "@networkNeedsWifiBody": {
+    "placeholders": {
+      "provider": { "type": "String" },
+      "host": { "type": "String" }
+    }
+  },
+  "networkLostWifiTitle": "Lost connection to {provider}",
+  "@networkLostWifiTitle": {
+    "placeholders": {
+      "provider": { "type": "String" }
+    }
+  },
+  "networkLostWifiBody": "Your phone left the Wi-Fi. Rejoin your home Wi-Fi, or turn on Remote Access to keep chatting from anywhere.",
+  "networkUseRemoteAccess": "Use Remote Access",
+  "networkSwitchProvider": "Switch provider",
   "previewUserMessage": "What's the socket on this board?",
   "bubbleAvatarSizeLabel": "Picture size",
   "bubbleAvatarRadiusValue": "Size {value}",
@@ -2474,9 +2504,9 @@
   "memoryScopeGlobal": "Everyone",
   "memoryScopeGlobalSubtitle": "Available in every chat",
   "memoryScopePrivate": "Private to persona",
-  "memoryScopePrivateSubtitle": "A fact about you that only this persona sees",
+  "memoryScopePrivateSubtitle": "Facts about you that only this persona sees. It won't see your shared memories",
   "memoryScopeLore": "Character notes",
-  "memoryScopeLoreSubtitle": "Roleplay details for this character, never treated as facts about you",
+  "memoryScopeLoreSubtitle": "Roleplay details for this character, never treated as facts about you. It won't see your shared memories",
   "memoryVisibility": "Visibility",
   "memoryChangeVisibility": "Change visibility",
   "memoryScopeFilterAll": "All",
@@ -3181,5 +3211,9 @@
     "placeholders": { "label": { "type": "String" }, "error": { "type": "String" } }
   },
   "personaGreetingLabel": "First message (optional)",
-  "personaGreetingHint": "What the character says when a new chat starts"
+  "personaGreetingHint": "What the character says when a new chat starts",
+  "personaMemoryOwnOnlyNote": "This persona keeps its own memories: it only sees what it learned in its own chats, never your shared memories.",
+  "@personaMemoryOwnOnlyNote": {
+    "description": "Persona editor: shown instead of the memory category chips when the persona files memories as private or lore."
+  }
 }

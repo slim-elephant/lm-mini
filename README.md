@@ -1,9 +1,9 @@
-# LM Mini (open-source build)
+# LM Mini
 
 <p>
   <a href="https://apps.apple.com/app/lm-mini/id6751125309"><img alt="Download on the App Store" src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" height="54"></a>
   &nbsp;
-  <a href="https://play.google.com/store/apps/details?id=net.neuro9.lmmini"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" height="80"></a>
+  <a href="https://play.google.com/store/apps/details?id=net.neuro9.lmmini"><img alt="Get it on Google Play" src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" height="54"></a>
 </p>
 
 [![Website](https://img.shields.io/badge/Website-lmmini.com-7C4DFF)](https://lmmini.com)

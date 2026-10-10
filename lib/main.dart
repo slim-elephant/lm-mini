@@ -32,6 +32,7 @@ import 'utils/firebase_storage_error.dart';
 import 'widgets/setup_help_banner.dart';
 import 'services/changelog_service.dart';
 import 'services/app_notification_service.dart';
+import 'services/ops_alert_service.dart';
 import 'services/promotional_premium_service.dart';
 import 'services/local_model_download_service.dart';
 import 'utils/image_picker_helper.dart';
@@ -59,6 +60,7 @@ import 'desktop/debug_log_buffer.dart';
 import 'desktop/host/desktop_host_service.dart';
 import 'desktop/runtime/desktop_runtime_manager.dart';
 import 'desktop/tray/desktop_tray_service.dart';
+import 'services/network_status_service.dart';
 import 'utils/client_platform.dart';
 import 'dart:async';
 import 'dart:io';
@@ -81,6 +83,10 @@ void main() async {
     } catch (_) {}
   });
   _installErrorHandlers();
+
+  // Wi‑Fi / mobile / offline awareness for LAN chat preflight. Never blocks
+  // startup; on plugin errors the service stays "unknown" (= online).
+  unawaited(NetworkStatusService.instance.initialize());
 
   if (Platform.isMacOS) {
     MacosMenuService.instance.initialize();
@@ -147,6 +153,15 @@ void main() async {
     } catch (e) {
       debugPrint('⚠️ Anonymous auth failed (non-blocking): $e');
     }
+
+    // Admin-only ops alert pushes: register now and whenever the user changes.
+    unawaited(OpsAlertService.instance.syncForCurrentUser());
+    FirebaseAuth.instance
+        .authStateChanges()
+        .map((user) => user?.uid)
+        .distinct()
+        .skip(1)
+        .listen((_) => unawaited(OpsAlertService.instance.syncForCurrentUser()));
 
     // Firebase Analytics: log platform on every mobile session so Android and
     // iOS installs both appear in the Firebase / GA4 console.
@@ -459,6 +474,8 @@ class _AppInitializerState extends State<AppInitializer>
       // Refresh the Pro news widget content if stale (no-op for free users
       // or when no prompt is configured).
       unawaited(NewsWidgetService.instance.refreshIfPossible());
+      // Connection may have changed while backgrounded (Wi‑Fi → 5G).
+      unawaited(NetworkStatusService.instance.refresh());
       // Restore remote LM Connect if it dropped while backgrounded.
       if (mounted) {
         unawaited(context.read<SettingsProvider>().onAppResumed());

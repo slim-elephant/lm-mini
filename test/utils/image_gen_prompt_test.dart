@@ -61,8 +61,21 @@ void main() {
         'You are helpful.',
         enabled: true,
       );
-      expect(sys, contains('start each reply'));
+      expect(sys, contains('start your written answer'));
       expect(extractImagePrompt('[IMG_PROMPT: a, b]\nHello').imagePrompt, 'a, b');
+    });
+
+    test('instructions let the model call tools before the tag', () {
+      // A model that starts writing the tag has committed to text and will
+      // never call web search, so tools must be allowed first.
+      expect(
+        applyImageGenInstructionToSystem('You are helpful.', enabled: true),
+        contains('call it first'),
+      );
+      expect(
+        appendImageGenTurnReminder('check solana price', enabled: true),
+        contains('Use any tool you need first'),
+      );
     });
 
     test('does not inject instruction when image generation is off', () {

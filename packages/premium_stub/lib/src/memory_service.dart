@@ -92,6 +92,32 @@ class MemoryService extends ChangeNotifier {
   List<MemoryItem> itemsVisibleForWrite(MemoryScope scope, String? personaId) =>
       const [];
 
+  /// Always empty in stub.
+  List<MemoryItem> itemsForDedupPrompt(
+    MemoryScope scope,
+    String? personaId,
+    String snippet, {
+    int limit = 50,
+  }) =>
+      const [];
+
+  /// Always null in stub.
+  MemoryItem? findUpsertTarget(
+    String content, {
+    String category = 'general',
+    MemoryScope scope = MemoryScope.global,
+    String? personaId,
+    String? replaces,
+  }) =>
+      null;
+
+  /// Exact match only in stub.
+  static bool contentOverlaps(String a, String b) =>
+      a.toLowerCase().trim() == b.toLowerCase().trim();
+
+  /// No-op in stub.
+  void debugReplaceItems(List<MemoryItem> items, {bool enabled = true}) {}
+
   /// Always false in stub.
   bool isDuplicate(String content, {MemoryScope? scope, String? personaId}) =>
       false;
@@ -110,6 +136,7 @@ class MemoryService extends ChangeNotifier {
     String? category,
     MemoryScope scope = MemoryScope.global,
     String? personaId,
+    String? replaces,
   }) async =>
       null;
 
@@ -132,8 +159,11 @@ class MemoryService extends ChangeNotifier {
     String? personaId,
     String? personaName,
     bool enforcePersonaScope = true,
+    bool isolatePersona = false,
     List<String>? allowedCategories,
-    int maxItems = 40,
+    int maxSharedItems = 30,
+    int maxPersonaItems = 20,
+    int maxLoreItems = 40,
   }) =>
       '';
 
@@ -163,10 +193,12 @@ class MemoryUpsertResult {
   final MemoryScope scope;
   final String? personaId;
   final String? previousContent;
+  final bool unchanged;
 
   const MemoryUpsertResult({
     required this.id,
     required this.wasUpdate,
+    this.unchanged = false,
     required this.fact,
     required this.category,
     this.scope = MemoryScope.global,

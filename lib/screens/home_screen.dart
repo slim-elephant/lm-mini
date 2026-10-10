@@ -1247,7 +1247,18 @@ class _HomeScreenState extends State<HomeScreen> {
     const double innerPad = 1.5;
     const double labelWidth = 78.0;
     const avatarOuter = (avatarRadius + ringPad + innerPad) * 2;
-    const rowHeight = avatarOuter + 10 + 18; // avatar + gap + label
+    const double labelGap = 9;
+    const double labelFontSize = 13;
+    const double labelLineHeight = 1.2;
+    const double verticalPadding = 6 + 4; // matches the scroll view padding
+    // Size the row from the real label height so large system text can't
+    // overflow it; the label itself stops growing past 1.3×.
+    final labelScaler =
+        MediaQuery.textScalerOf(context).clamp(maxScaleFactor: 1.3);
+    final labelHeight =
+        labelScaler.scale(labelFontSize) * labelLineHeight;
+    final rowHeight =
+        avatarOuter + labelGap + labelHeight + verticalPadding + 2;
 
     // Navy top zone → bright labels. Gradient wallpaper → theme-aware.
     final hasGradient = context.hasBackgroundGradient;
@@ -1264,13 +1275,14 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisSize: MainAxisSize.min,
           children: [
             avatar,
-            const SizedBox(height: 9),
+            const SizedBox(height: labelGap),
             Text(
               label,
+              textScaler: labelScaler,
               style: GoogleFonts.poppins(
                 color: labelColor,
-                height: 1.2,
-                fontSize: 13,
+                height: labelLineHeight,
+                fontSize: labelFontSize,
                 fontWeight: FontWeight.w500,
                 letterSpacing: 0,
                 shadows: hasGradient

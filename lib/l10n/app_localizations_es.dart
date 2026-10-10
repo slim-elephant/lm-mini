@@ -3877,6 +3877,43 @@ class AppLocalizationsEs extends AppLocalizations {
   String get streamingPhaseUsingTools => 'Usando herramientas';
 
   @override
+  String streamingPhaseConnecting(String provider) {
+    return 'Conectando con $provider…';
+  }
+
+  @override
+  String get networkOfflineTitle => 'Estás sin conexión';
+
+  @override
+  String get networkOfflineBody =>
+      'Conéctate a una red Wi-Fi o a datos móviles e inténtalo de nuevo.';
+
+  @override
+  String networkNeedsWifiTitle(String provider) {
+    return 'Con datos móviles: $provider necesita el Wi-Fi de tu casa';
+  }
+
+  @override
+  String networkNeedsWifiBody(String provider, String host) {
+    return '$provider en tu ordenador ($host) solo es accesible desde el Wi-Fi de tu casa. Conéctate a ese Wi-Fi o activa el Acceso Remoto para usarlo desde cualquier lugar.';
+  }
+
+  @override
+  String networkLostWifiTitle(String provider) {
+    return 'Se perdió la conexión con $provider';
+  }
+
+  @override
+  String get networkLostWifiBody =>
+      'Tu teléfono salió del Wi-Fi. Vuelve a conectarte al Wi-Fi de tu casa o activa el Acceso Remoto para seguir chateando desde cualquier lugar.';
+
+  @override
+  String get networkUseRemoteAccess => 'Usar Acceso Remoto';
+
+  @override
+  String get networkSwitchProvider => 'Cambiar de proveedor';
+
+  @override
   String get previewUserMessage => '¿Qué zócalo tiene esta placa?';
 
   @override
@@ -5672,14 +5709,14 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get memoryScopePrivateSubtitle =>
-      'A fact about you that only this persona sees';
+      'Facts about you that only this persona sees. It won\'t see your shared memories';
 
   @override
   String get memoryScopeLore => 'Character notes';
 
   @override
   String get memoryScopeLoreSubtitle =>
-      'Roleplay details for this character, never treated as facts about you';
+      'Roleplay details for this character, never treated as facts about you. It won\'t see your shared memories';
 
   @override
   String get memoryVisibility => 'Visibility';
@@ -7318,4 +7355,8 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get personaGreetingHint =>
       'Lo que dice el personaje al empezar un chat nuevo';
+
+  @override
+  String get personaMemoryOwnOnlyNote =>
+      'Esta persona tiene su propia memoria: solo ve lo que aprendió en sus propios chats, nunca tus recuerdos compartidos.';
 }

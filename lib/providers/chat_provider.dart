@@ -29,6 +29,8 @@ import '../utils/comfyui_catalog.dart';
 import '../utils/image_gen_unreachable_error.dart';
 import '../utils/lms_mcp_error.dart';
 import '../utils/server_unreachable_error.dart';
+import '../utils/server_reachability.dart';
+import '../utils/network_preflight_error.dart';
 import '../utils/lms_http_error.dart';
 import '../utils/unique_id.dart';
 import '../models/chat_message.dart';
@@ -41,6 +43,7 @@ import '../services/generated_image_library_service.dart';
 import '../models/generated_image_library_item.dart';
 import '../services/lm_studio_service.dart';
 import '../services/ollama_service.dart';
+import '../services/network_status_service.dart';
 import '../services/mcp_http_client.dart';
 import '../services/tool_support_resolver.dart';
 import '../desktop/inference/local_inference_engine.dart';
@@ -72,11 +75,13 @@ import 'settings_provider.dart';
 import 'dart:convert';
 import 'dart:async';
 import 'dart:math';
+import 'dart:io' show Platform;
 
 part '../pro/group_chat/chat_provider_group.dart';
 part '../pro/chat/chat_provider_memory.dart';
 part '../pro/chat/chat_provider_compact.dart';
 part '../pro/tools/chat_provider_pro_tools.dart';
+part 'chat_provider_network.dart';
 
 /// One-shot toast shown by [ChatScreen] after the provider handles an event.
 enum ChatToast {
@@ -169,6 +174,10 @@ class ChatProvider with ChangeNotifier {
   // Key = assistant message ID, Value = list of events for that response
   final Map<String, List<MemoryEvent>> _memoryEvents = {};
 
+  /// Per conversation: id of the newest message memory extraction has
+  /// already read, so the next pass only learns from newer turns.
+  final Map<String, String> _memoryExtractedThrough = {};
+
   // For saving multiple outputs when regenerating responses
   List<ChatMessage>? _pendingAlternatives;
 
@@ -207,6 +216,12 @@ class ChatProvider with ChangeNotifier {
   /// resolve load-param conflicts via [SettingsProvider].
   SettingsProvider? _activeSettingsProvider;
   BuildContext? _activeUiContext;
+
+  // Network preflight / mid-stream Wi‑Fi loss (see chat_provider_network.dart).
+  _LanStreamTarget? _activeLanTarget;
+  StreamSubscription<NetworkSnapshot>? _networkSub;
+  Timer? _networkLossTimer;
+  ({String message, String detail})? _networkLossError;
 
   bool _modelSupportsTools(AppSettings settings) =>
       ToolSupportResolver.instance.currentModelSupportsTools(
@@ -553,6 +568,7 @@ class ChatProvider with ChangeNotifier {
         selectedModel.isEmpty) {
       return false;
     }
+    if (await _invalidateSessionIfInstructionsChanged()) return true;
     final lastUsed = _lastUsedModelId();
     if (lastUsed == null || _isSameModelId(lastUsed, selectedModel)) {
       return false;
@@ -568,6 +584,44 @@ class ChatProvider with ChangeNotifier {
     await _databaseService.updateConversation(_currentConversation!);
     _syncConversationInList(_currentConversation!);
     return true;
+  }
+
+  /// Bump when the session-start instructions change in a way old LM Studio
+  /// sessions must not keep. `/api/v1/chat` stores `system_prompt` with the
+  /// session and never re-reads it while `previous_response_id` is set.
+  ///
+  /// 2: image-gen instruction lets the model call tools before the
+  ///    `[IMG_PROMPT]` tag (the old "start each reply with the tag" wording
+  ///    stopped Pro Search / MCP tool calls entirely).
+  static const int _sessionInstructionsVersion = 2;
+  static const String _sessionInstructionsKey = 'sessionInstructionsVersion';
+
+  /// Drop a stateful session started under older instructions, once per chat,
+  /// so the next send re-sends history with the current system prompt.
+  /// Returns true when a session was dropped.
+  Future<bool> _invalidateSessionIfInstructionsChanged() async {
+    final conv = _currentConversation;
+    if (conv == null) return false;
+    if (conv.settings[_sessionInstructionsKey] == _sessionInstructionsVersion) {
+      return false;
+    }
+    final hadSession = conv.lastResponseId != null;
+    if (hadSession) {
+      debugPrint('🔄 Session instructions changed (v$_sessionInstructionsVersion)'
+          ' — invalidating session (will reinject full history)');
+    }
+    _currentConversation = conv.copyWith(
+      settings: {
+        ...conv.settings,
+        _sessionInstructionsKey: _sessionInstructionsVersion,
+      },
+      clearLastResponseId: hadSession,
+      updatedAt: hadSession ? DateTime.now() : null,
+    );
+    if (hadSession) _sessionWarm = false;
+    await _databaseService.updateConversation(_currentConversation!);
+    _syncConversationInList(_currentConversation!);
+    return hadSession;
   }
 
   /// Keep the home-list copy of a conversation in sync (e.g. lastResponseId).
@@ -763,9 +817,7 @@ class ChatProvider with ChangeNotifier {
     _streamingStatus = value;
     final phase = StreamingPhase.canonical(value);
     if (phase == null) return;
-    if (StreamingPhase.shouldRecord(_streamingPhaseLog, phase)) {
-      _streamingPhaseLog.add(phase);
-    }
+    StreamingPhase.record(_streamingPhaseLog, phase);
   }
 
   /// LM Studio no longer has this chat's `previous_response_id`.
@@ -1661,6 +1713,15 @@ class ChatProvider with ChangeNotifier {
     return effectiveSettings;
   }
 
+  /// Settings the next send in this chat would use (per-chat overrides +
+  /// cloud routing). Used by the proactive network banner.
+  AppSettings networkTargetSettings(AppSettings globalSettings) =>
+      _applyCloudRouting(getEffectiveSettings(globalSettings));
+
+  /// "LM Studio", "Ollama", cloud provider name… for [settings].
+  String networkProviderName(AppSettings settings) =>
+      _preflightProviderName(settings);
+
   /// Check if chat has any setting overrides
   bool get hasSettingOverrides {
     if (_currentConversation == null) return false;
@@ -1825,6 +1886,11 @@ class ChatProvider with ChangeNotifier {
     return persona.memoryWriteScope;
   }
 
+  /// Personas that file memories as private or lore keep their own memory:
+  /// they never see the shared global pool.
+  bool _personaKeepsOwnMemories(SystemPrompt? persona) =>
+      persona != null && persona.memoryWriteScope != MemoryScope.global;
+
   /// Whether the chat currently open allows memory at all.
   bool get _chatMemoryEnabled =>
       _currentConversation?.settings['memoryEnabled'] as bool? ?? true;
@@ -1902,6 +1968,8 @@ class ChatProvider with ChangeNotifier {
       personaId: personaId,
       personaName: persona?.name,
       enforcePersonaScope: PersonaMemoryService.instance.isEnabled,
+      // A persona that keeps its own memories sees only those.
+      isolatePersona: _personaKeepsOwnMemories(persona),
       allowedCategories: isGroupChat
           ? null
           : _memoryCategoriesForPersona(settings, personaId: personaId),
@@ -2444,6 +2512,8 @@ class ChatProvider with ChangeNotifier {
     _sendMessageOriginId = _currentConversation!.id;
     _error = null;
     _thinkingBudgetNotice = false;
+    _activeLanTarget = null;
+    _networkLossError = null;
     _setStreamingStatus(null);
     _streamingProgress = null;
     _currentReasoning = null;
@@ -2624,6 +2694,11 @@ class ChatProvider with ChangeNotifier {
         await _proSendGroupMessage(messageContent, effectiveSettings, imageUrls,
             userDisplayContent: displayContent, memoryContext: memoryContext);
       } else {
+        // Wi‑Fi / mobile data / offline check + quick TCP probe for LAN
+        // servers. Throws NetworkPreflightException → catch below; the user
+        // message stays so the send can be retried.
+        await _preflightServer(effectiveSettings);
+        if (_shouldCancelGeneration) return;
         final readySettings = await _ensureChatBackendReady(effectiveSettings);
         if (readySettings == null) {
           await _databaseService.deleteMessage(userMessage.id);
@@ -2644,8 +2719,12 @@ class ChatProvider with ChangeNotifier {
         );
       }
     } catch (e) {
-      // Only set error if not already set by inner handler (e.g., streaming error event)
-      if (_error == null) {
+      if (e is NetworkPreflightException) {
+        // Offline / mobile data / LAN host down — plain setup copy.
+        _error = e.message;
+        _errorDetail = e.detail;
+      } else if (_error == null) {
+        // Only set error if not already set by inner handler (e.g., streaming error event)
         final errStr = e.toString();
         // Strip 'Exception: ' prefix if present
         final cleanErr =
@@ -2674,6 +2753,7 @@ class ChatProvider with ChangeNotifier {
       _activeSettingsProvider = null;
       _activeUiContext = null;
     }
+    _finishNetworkWatchForSend();
 
     // Track successful chat completion for review prompting.
     // Stop / repetition-loop cancels are not successes.
@@ -7393,6 +7473,8 @@ class ChatProvider with ChangeNotifier {
     List<String>? imageUrls,
   }) async {
     final originConversationId = _currentConversation!.id;
+    // On-device needs no network; a stale LAN target must not stop it.
+    _activeLanTarget = null;
 
     // Temp assistant message so the chat UI shows the spinner immediately.
     final tempMessageId = 'temp_${DateTime.now().millisecondsSinceEpoch}';
@@ -7630,6 +7712,19 @@ class ChatProvider with ChangeNotifier {
 
     final userMessage = _currentMessages[userMsgIdx];
 
+    // Network check before the old reply is deleted, so an unreachable
+    // server (offline / mobile data / LAN host down) leaves the chat as-is.
+    // Group chats check per participant instead.
+    _networkLossError = null;
+    if (_currentConversation!.settings['isGroupChat'] != true &&
+        !await _preflightBeforeRegenerate(
+          _applyCloudRouting(getEffectiveSettings(settings)),
+        )) {
+      _activeSettingsProvider = null;
+      _activeUiContext = null;
+      return;
+    }
+
     // Find the previous response_id to branch from (the assistant message
     // before the user msg we're regenerating from, if any).
     String? previousResponseId;
@@ -7730,7 +7825,10 @@ class ChatProvider with ChangeNotifier {
         }
       }
     } catch (e) {
-      if (_setContextOverflowError(e) ||
+      if (e is NetworkPreflightException) {
+        _error = e.message;
+        _errorDetail = e.detail;
+      } else if (_setContextOverflowError(e) ||
           _setHostInferenceError(e) ||
           _setSetupGuidanceError(e, settings)) {
         // User-facing host / setup message is already set.
@@ -7743,6 +7841,7 @@ class ChatProvider with ChangeNotifier {
       _activeSettingsProvider = null;
       _activeUiContext = null;
     }
+    _finishNetworkWatchForSend();
 
     if (_currentConversation?.id == _sendMessageOriginId) {
       _isSendingMessage = false;
@@ -7863,6 +7962,10 @@ class ChatProvider with ChangeNotifier {
       await _invalidateSessionIfModelChanged(effectiveSettings.selectedModel);
       await _beginGenerationSession(effectiveSettings);
 
+      if (!isGroupChat) {
+        await _preflightServer(effectiveSettings);
+        if (_shouldCancelGeneration) return;
+      }
       final readySettings = await _ensureChatBackendReady(effectiveSettings);
       if (readySettings == null) return;
       effectiveSettings = readySettings;
@@ -7902,7 +8005,10 @@ class ChatProvider with ChangeNotifier {
         );
       }
     } catch (e) {
-      if (_setContextOverflowError(e) ||
+      if (e is NetworkPreflightException) {
+        _error = e.message;
+        _errorDetail = e.detail;
+      } else if (_setContextOverflowError(e) ||
           _setHostInferenceError(e) ||
           _setSetupGuidanceError(e, settings)) {
         // User-facing host / setup message is already set.
@@ -7914,6 +8020,7 @@ class ChatProvider with ChangeNotifier {
       _endLiveActivity();
       _activeSettingsProvider = null;
       _activeUiContext = null;
+      _finishNetworkWatchForSend();
       if (_currentConversation?.id == _sendMessageOriginId) {
         _isSendingMessage = false;
         _setStreamingStatus(null);
@@ -7973,6 +8080,18 @@ class ChatProvider with ChangeNotifier {
     notifyListeners();
 
     if (andRegenerate && message.role == 'user') {
+      // Network check before later messages are deleted: the edit is saved,
+      // but an unreachable server must not wipe the rest of the chat.
+      _networkLossError = null;
+      if (_currentConversation!.settings['isGroupChat'] != true &&
+          !await _preflightBeforeRegenerate(
+            _applyCloudRouting(getEffectiveSettings(settings)),
+          )) {
+        _activeSettingsProvider = null;
+        _activeUiContext = null;
+        return;
+      }
+
       // Delete everything after this user message
       final toDelete = _currentMessages.sublist(idx + 1);
       for (final m in toDelete) {
@@ -8056,13 +8175,19 @@ class ChatProvider with ChangeNotifier {
           }
         }
       } catch (e) {
-        _error = 'Failed to regenerate after edit: $e';
+        if (e is NetworkPreflightException) {
+          _error = e.message;
+          _errorDetail = e.detail;
+        } else {
+          _error = 'Failed to regenerate after edit: $e';
+        }
       } finally {
         await _stopPartialSaveTimer();
         _endLiveActivity();
         _activeSettingsProvider = null;
         _activeUiContext = null;
       }
+      _finishNetworkWatchForSend();
 
       if (_currentConversation?.id == _sendMessageOriginId) {
         _isSendingMessage = false;

@@ -7030,6 +7030,60 @@ abstract class AppLocalizations {
   /// **'Using tools'**
   String get streamingPhaseUsingTools;
 
+  /// No description provided for @streamingPhaseConnecting.
+  ///
+  /// In en, this message translates to:
+  /// **'Connecting to {provider}…'**
+  String streamingPhaseConnecting(String provider);
+
+  /// No description provided for @networkOfflineTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re offline'**
+  String get networkOfflineTitle;
+
+  /// No description provided for @networkOfflineBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect to Wi-Fi or mobile data and try again.'**
+  String get networkOfflineBody;
+
+  /// No description provided for @networkNeedsWifiTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'On mobile data — {provider} needs your home Wi-Fi'**
+  String networkNeedsWifiTitle(String provider);
+
+  /// No description provided for @networkNeedsWifiBody.
+  ///
+  /// In en, this message translates to:
+  /// **'{provider} on your computer ({host}) is only reachable on your home Wi-Fi. Join that Wi-Fi, or turn on Remote Access to use it from anywhere.'**
+  String networkNeedsWifiBody(String provider, String host);
+
+  /// No description provided for @networkLostWifiTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Lost connection to {provider}'**
+  String networkLostWifiTitle(String provider);
+
+  /// No description provided for @networkLostWifiBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Your phone left the Wi-Fi. Rejoin your home Wi-Fi, or turn on Remote Access to keep chatting from anywhere.'**
+  String get networkLostWifiBody;
+
+  /// No description provided for @networkUseRemoteAccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Use Remote Access'**
+  String get networkUseRemoteAccess;
+
+  /// No description provided for @networkSwitchProvider.
+  ///
+  /// In en, this message translates to:
+  /// **'Switch provider'**
+  String get networkSwitchProvider;
+
   /// No description provided for @previewUserMessage.
   ///
   /// In en, this message translates to:
@@ -10142,7 +10196,7 @@ abstract class AppLocalizations {
   /// No description provided for @memoryScopePrivateSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'A fact about you that only this persona sees'**
+  /// **'Facts about you that only this persona sees. It won\'t see your shared memories'**
   String get memoryScopePrivateSubtitle;
 
   /// No description provided for @memoryScopeLore.
@@ -10154,7 +10208,7 @@ abstract class AppLocalizations {
   /// No description provided for @memoryScopeLoreSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Roleplay details for this character, never treated as facts about you'**
+  /// **'Roleplay details for this character, never treated as facts about you. It won\'t see your shared memories'**
   String get memoryScopeLoreSubtitle;
 
   /// No description provided for @memoryVisibility.
@@ -12953,6 +13007,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'What the character says when a new chat starts'**
   String get personaGreetingHint;
+
+  /// Persona editor: shown instead of the memory category chips when the persona files memories as private or lore.
+  ///
+  /// In en, this message translates to:
+  /// **'This persona keeps its own memories: it only sees what it learned in its own chats, never your shared memories.'**
+  String get personaMemoryOwnOnlyNote;
 }
 
 class _AppLocalizationsDelegate

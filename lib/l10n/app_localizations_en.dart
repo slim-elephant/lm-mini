@@ -3827,6 +3827,43 @@ class AppLocalizationsEn extends AppLocalizations {
   String get streamingPhaseUsingTools => 'Using tools';
 
   @override
+  String streamingPhaseConnecting(String provider) {
+    return 'Connecting to $provider…';
+  }
+
+  @override
+  String get networkOfflineTitle => 'You\'re offline';
+
+  @override
+  String get networkOfflineBody =>
+      'Connect to Wi-Fi or mobile data and try again.';
+
+  @override
+  String networkNeedsWifiTitle(String provider) {
+    return 'On mobile data — $provider needs your home Wi-Fi';
+  }
+
+  @override
+  String networkNeedsWifiBody(String provider, String host) {
+    return '$provider on your computer ($host) is only reachable on your home Wi-Fi. Join that Wi-Fi, or turn on Remote Access to use it from anywhere.';
+  }
+
+  @override
+  String networkLostWifiTitle(String provider) {
+    return 'Lost connection to $provider';
+  }
+
+  @override
+  String get networkLostWifiBody =>
+      'Your phone left the Wi-Fi. Rejoin your home Wi-Fi, or turn on Remote Access to keep chatting from anywhere.';
+
+  @override
+  String get networkUseRemoteAccess => 'Use Remote Access';
+
+  @override
+  String get networkSwitchProvider => 'Switch provider';
+
+  @override
   String get previewUserMessage => 'What\'s the socket on this board?';
 
   @override
@@ -5603,14 +5640,14 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get memoryScopePrivateSubtitle =>
-      'A fact about you that only this persona sees';
+      'Facts about you that only this persona sees. It won\'t see your shared memories';
 
   @override
   String get memoryScopeLore => 'Character notes';
 
   @override
   String get memoryScopeLoreSubtitle =>
-      'Roleplay details for this character, never treated as facts about you';
+      'Roleplay details for this character, never treated as facts about you. It won\'t see your shared memories';
 
   @override
   String get memoryVisibility => 'Visibility';
@@ -7235,4 +7272,8 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get personaGreetingHint =>
       'What the character says when a new chat starts';
+
+  @override
+  String get personaMemoryOwnOnlyNote =>
+      'This persona keeps its own memories: it only sees what it learned in its own chats, never your shared memories.';
 }

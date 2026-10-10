@@ -9,6 +9,7 @@ import '../models/message_stats.dart';
 import '../utils/chat_message_normalizer.dart';
 import '../utils/log_redaction.dart';
 import '../utils/ollama_tool_support.dart';
+import '../utils/server_http_client.dart';
 
 /// Native Ollama HTTP client (`/api/chat`, `/api/tags`, `/api/show`).
 ///
@@ -30,6 +31,9 @@ class OllamaService {
 
   /// Relay auth token when remote LM Connect is active.
   String? remoteAuthToken;
+
+  /// True while any `/api/chat` (or pull) client is still open.
+  static bool get hasActiveStreams => _activeStreamClients.isNotEmpty;
 
   /// Abort in-flight `/api/chat` streams (same pattern as LM Studio).
   static void cancelAllActiveStreams() {
@@ -144,7 +148,7 @@ class OllamaService {
     }
     final base = _normalizeBase(baseUrl);
     final ownedClient = client == null;
-    final httpClient = client ?? http.Client();
+    final httpClient = client ?? createServerHttpClient();
     if (ownedClient) _activeStreamClients.add(httpClient);
 
     try {
@@ -346,7 +350,8 @@ class OllamaService {
       }).toList(),
     }));
 
-    final client = http.Client();
+    // Short TCP connect timeout: a dead LAN host fails in seconds.
+    final client = createServerHttpClient();
     _activeStreamClients.add(client);
     try {
       final request = http.Request('POST', Uri.parse('$base/api/chat'));

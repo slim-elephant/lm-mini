@@ -1056,6 +1056,15 @@
   "streamingPhaseWriting": "Schreibe Antwort",
   "streamingPhaseSearching": "Suche",
   "streamingPhaseUsingTools": "Nutze Werkzeuge",
+  "streamingPhaseConnecting": "Verbinde mit {provider}…",
+  "networkOfflineTitle": "Du bist offline",
+  "networkOfflineBody": "Verbinde dich mit WLAN oder mobilen Daten und versuch es noch einmal.",
+  "networkNeedsWifiTitle": "Mobile Daten – {provider} braucht dein WLAN zu Hause",
+  "networkNeedsWifiBody": "{provider} auf deinem Computer ({host}) ist nur über dein WLAN zu Hause erreichbar. Verbinde dich mit diesem WLAN oder schalte Fernzugriff ein, um es überall zu nutzen.",
+  "networkLostWifiTitle": "Verbindung zu {provider} verloren",
+  "networkLostWifiBody": "Dein Handy ist nicht mehr im WLAN. Verbinde dich wieder mit deinem WLAN zu Hause oder schalte Fernzugriff ein, um überall weiterzuchatten.",
+  "networkUseRemoteAccess": "Fernzugriff nutzen",
+  "networkSwitchProvider": "Anbieter wechseln",
   "previewUserMessage": "Welchen Sockel hat dieses Board?",
   "bubbleAvatarSizeLabel": "Avatargröße in Sprechblasen",
   "bubbleAvatarRadiusValue": "{value}px Radius",
@@ -2337,5 +2346,6 @@
   "spriteGenerateDone": "{count, plural, =1{1 Ausdruck generiert} other{{count} Ausdrücke generiert}}",
   "spriteGenerateFailed": "Bei {label} gestoppt: {error}",
   "personaGreetingLabel": "Erste Nachricht (optional)",
-  "personaGreetingHint": "Was der Charakter sagt, wenn ein neuer Chat beginnt"
+  "personaGreetingHint": "Was der Charakter sagt, wenn ein neuer Chat beginnt",
+  "personaMemoryOwnOnlyNote": "Diese Persona hat ein eigenes Gedächtnis: Sie sieht nur, was sie in ihren eigenen Chats gelernt hat, nie deine geteilten Erinnerungen."
 }

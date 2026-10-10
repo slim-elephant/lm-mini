@@ -1633,6 +1633,15 @@
   "streamingPhaseWriting": "正在写回复",
   "streamingPhaseSearching": "正在搜索",
   "streamingPhaseUsingTools": "正在使用工具",
+  "streamingPhaseConnecting": "正在连接 {provider}…",
+  "networkOfflineTitle": "你已离线",
+  "networkOfflineBody": "请连接 Wi-Fi 或移动数据后重试。",
+  "networkNeedsWifiTitle": "正在使用移动数据 — {provider} 需要家里的 Wi-Fi",
+  "networkNeedsWifiBody": "电脑上的 {provider}（{host}）只能通过家里的 Wi-Fi 访问。请连接该 Wi-Fi，或开启远程访问以便随时随地使用。",
+  "networkLostWifiTitle": "与 {provider} 的连接已断开",
+  "networkLostWifiBody": "手机已断开 Wi-Fi。请重新连接家里的 Wi-Fi，或开启远程访问以便随时随地继续聊天。",
+  "networkUseRemoteAccess": "使用远程访问",
+  "networkSwitchProvider": "切换提供商",
   "previewUserMessage": "这块主板是什么接口？",
   "bubbleAvatarSizeLabel": "图片尺寸",
   "bubbleAvatarRadiusValue": "尺寸{value}",
@@ -2925,5 +2934,6 @@
   "spriteGenerateDone": "{count, plural, other{已生成 {count} 个表情}}",
   "spriteGenerateFailed": "在 {label} 处停止：{error}",
   "personaGreetingLabel": "开场白（可选）",
-  "personaGreetingHint": "新对话开始时角色说的话"
+  "personaGreetingHint": "新对话开始时角色说的话",
+  "personaMemoryOwnOnlyNote": "该角色拥有独立记忆：只能看到在自己聊天中学到的内容，看不到你的共享记忆。"
 }

@@ -26,6 +26,10 @@ import '../utils/comfyui_prompt_error.dart';
 import '../utils/image_gen_unreachable_error.dart';
 import '../utils/server_unreachable_error.dart';
 import '../widgets/setup_help_banner.dart';
+import '../widgets/network_status_banner.dart';
+import '../widgets/full_width_streaming_status.dart';
+import '../utils/network_preflight_error.dart';
+import '../utils/streaming_phase.dart';
 import '../l10n/app_localizations.dart';
 import '../services/call_service.dart';
 import '../services/export_service.dart';
@@ -1870,8 +1874,15 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                         settingsProvider,
                                                   );
                                                   if (sprite == null) {
-                                                    return const SizedBox
-                                                        .shrink();
+                                                    // Must stay positioned: a
+                                                    // non-positioned child sizes
+                                                    // this Stack to 0×0 width and
+                                                    // hides every message.
+                                                    return const Positioned(
+                                                      left: 0,
+                                                      top: 0,
+                                                      child: SizedBox.shrink(),
+                                                    );
                                                   }
                                                   return Positioned.fill(
                                                     child: LayoutBuilder(
@@ -1953,13 +1964,44 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                       _proGroupAskBar(context, chatProvider,
                                           settingsProvider, groupChatLocked),
 
+                                    // Offline / mobile data with a home-LAN
+                                    // provider — hides itself when it clears.
+                                    if (!NetworkPreflightError.matches(
+                                            chatProvider.error) &&
+                                        !NetworkPreflightError.matches(
+                                            settingsProvider.connectionError))
+                                      NetworkStatusBanner(
+                                        isGroupChat: chatProvider.isGroupChat,
+                                        resolveTarget: () {
+                                          final t = chatProvider
+                                              .networkTargetSettings(
+                                                  settingsProvider.settings);
+                                          return NetworkBannerTarget(
+                                            providerKind: t.activeProviderKind,
+                                            serverUrl: t.serverUrl,
+                                            isRemoteActive: t.isRemoteActive,
+                                            usbModeEnabled: t.usbModeEnabled,
+                                            providerName: chatProvider
+                                                .networkProviderName(t),
+                                          );
+                                        },
+                                        onSwitchProvider: () =>
+                                            _openSelectModel(
+                                          context,
+                                          settingsProvider,
+                                        ),
+                                      ),
+
                                     // Streaming / loading — directly above the composer
                                     // (hidden in full-width view; status lives in the reply).
                                     if (!settingsProvider
                                             .settings.fullWidthAssistant &&
                                         chatProvider.streamingStatus != null)
                                       StreamingThinkingIndicator(
-                                        status: chatProvider.streamingStatus!,
+                                        status: _localizedStreamingStatus(
+                                          context,
+                                          chatProvider.streamingStatus!,
+                                        ),
                                         progress:
                                             chatProvider.streamingProgress,
                                         isInReasoningMode:
@@ -1968,6 +2010,26 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                             chatProvider.currentReasoning,
                                         isModelLoading:
                                             chatProvider.isModelLoading,
+                                      )
+                                    // Full-width: no reply bubble exists yet while
+                                    // the network check runs — show it here.
+                                    else if (settingsProvider
+                                            .settings.fullWidthAssistant &&
+                                        chatProvider.isSendingMessage &&
+                                        StreamingPhase.isConnecting(
+                                            chatProvider.streamingStatus) &&
+                                        !chatProvider.currentMessages.any(
+                                            (m) => m.id.startsWith('temp_')))
+                                      Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            20, 4, 20, 4),
+                                        child: Align(
+                                          alignment: Alignment.centerLeft,
+                                          child: FullWidthStreamingStatusHost(
+                                            fontSize: settingsProvider
+                                                .settings.chatFontSize,
+                                          ),
+                                        ),
                                       )
                                     else if (chatProvider.isAutoGeneratingImage)
                                       StreamingThinkingIndicator(
@@ -2400,6 +2462,14 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
           ),
         ),
       ),
+    );
+  }
+
+  /// "Connecting to LM Studio…" in the user's language; other statuses as-is.
+  String _localizedStreamingStatus(BuildContext context, String status) {
+    if (!StreamingPhase.isConnecting(status)) return status;
+    return AppLocalizations.of(context).streamingPhaseConnecting(
+      StreamingPhase.connectingTarget(status),
     );
   }
 
@@ -3620,6 +3690,16 @@ class _ErrorBanner extends StatelessWidget {
     final textColor = isDark
         ? const Color(0xFFFFB4AB)
         : Theme.of(context).colorScheme.onErrorContainer;
+
+    // Offline / mobile data / Wi‑Fi lost: plain copy + Remote Access action.
+    final netIssue = NetworkPreflightError.parse(detailBlob);
+    if (netIssue != null) {
+      return NetworkIssueBanner(
+        issue: netIssue,
+        onDismiss: onDismiss,
+        onSwitchProvider: onSelectModel,
+      );
+    }
 
     final lanKind = LanServerError.classify(detailBlob);
     if (LanServerError.shouldShowLmStudioLanHelp(

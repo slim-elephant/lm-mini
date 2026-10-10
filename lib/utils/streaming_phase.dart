@@ -7,8 +7,27 @@ abstract final class StreamingPhase {
   static const searching = 'Searching';
   static const usingTools = 'Using tools';
 
+  /// "Connecting to LM Studio…" (network preflight). Not MCP.
+  static bool isConnecting(String? status) {
+    if (status == null) return false;
+    final s = status.toLowerCase();
+    return s.startsWith('connecting to ') && !s.contains('mcp');
+  }
+
+  /// Provider name inside a [isConnecting] status ("LM Studio").
+  static String connectingTarget(String status) {
+    var t = status.trim();
+    if (t.length >= 14) t = t.substring(14);
+    while (t.endsWith('…') || t.endsWith('.')) {
+      t = t.substring(0, t.length - 1);
+    }
+    return t.trim();
+  }
+
   /// Collapse noisy status strings into a stable stacked-line label.
+  /// A connecting status is kept verbatim (it carries the provider name).
   static String? canonical(String status) {
+    if (isConnecting(status)) return status;
     final s = status.toLowerCase();
     if (s.contains('starting chat') ||
         s.contains('session expired') ||
@@ -45,6 +64,15 @@ abstract final class StreamingPhase {
 
   /// A late load event must not add a second "Loading model" line once the
   /// turn has moved on to prompt processing or a later stage.
+  /// Add [phase] to [log]. "Connecting to …" is the first line only until
+  /// the next stage arrives — that stage replaces it instead of stacking.
+  static void record(List<String> log, String phase) {
+    if (log.isNotEmpty && isConnecting(log.last) && log.last != phase) {
+      log.removeLast();
+    }
+    if (shouldRecord(log, phase)) log.add(phase);
+  }
+
   static bool shouldRecord(List<String> log, String phase) {
     if (log.isNotEmpty && log.last == phase) return false;
     if (phase == loadingModel && log.any((p) => p != loadingModel)) {

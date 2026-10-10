@@ -1,4 +1,4 @@
-# Contributing to LM Mini (open-source build)
+# Contributing to LM Mini
 
 Thanks for helping. This repository is an exported snapshot of the LM Mini
 app source. The free features are complete here. LM Mini Pro implementations

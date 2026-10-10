@@ -3,7 +3,7 @@ description: "A companion app for LM Studio, Ollama and oMLX that lets you chat 
 
 publish_to: 'none'
 
-version: 1.10.1+142
+version: 1.10.2+145
 
 environment:
   sdk: '>=3.6.0 <4.0.0'
@@ -16,6 +16,8 @@ dependencies:
   intl: any
   cupertino_icons: ^1.0.8
   http: ^1.1.0
+  # Wi-Fi / cellular / offline awareness for LAN server preflight.
+  connectivity_plus: ^6.1.5
   shared_preferences: ^2.2.2
   sqflite: ^2.3.0
   path: ^1.8.3
@@ -68,6 +70,8 @@ dependencies:
     path: packages/cloud_kit
   firebase_analytics: ^11.6.0
   flutter_local_notifications: ^19.0.0
+  # Admin-only ops alert pushes (OpsAlertService). Major tracks firebase_core 3.x.
+  firebase_messaging: ^15.2.10
   # Keep as a regular dependency so Android plugin registration resolves
   # during release CLI builds (GeneratedPluginRegistrant references it).
   flutter_native_splash: ^2.3.6

@@ -3688,6 +3688,42 @@ class AppLocalizationsZh extends AppLocalizations {
   String get streamingPhaseUsingTools => '正在使用工具';
 
   @override
+  String streamingPhaseConnecting(String provider) {
+    return '正在连接 $provider…';
+  }
+
+  @override
+  String get networkOfflineTitle => '你已离线';
+
+  @override
+  String get networkOfflineBody => '请连接 Wi-Fi 或移动数据后重试。';
+
+  @override
+  String networkNeedsWifiTitle(String provider) {
+    return '正在使用移动数据 — $provider 需要家里的 Wi-Fi';
+  }
+
+  @override
+  String networkNeedsWifiBody(String provider, String host) {
+    return '电脑上的 $provider（$host）只能通过家里的 Wi-Fi 访问。请连接该 Wi-Fi，或开启远程访问以便随时随地使用。';
+  }
+
+  @override
+  String networkLostWifiTitle(String provider) {
+    return '与 $provider 的连接已断开';
+  }
+
+  @override
+  String get networkLostWifiBody =>
+      '手机已断开 Wi-Fi。请重新连接家里的 Wi-Fi，或开启远程访问以便随时随地继续聊天。';
+
+  @override
+  String get networkUseRemoteAccess => '使用远程访问';
+
+  @override
+  String get networkSwitchProvider => '切换提供商';
+
+  @override
   String get previewUserMessage => '这块主板是什么接口？';
 
   @override
@@ -5383,14 +5419,14 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get memoryScopePrivateSubtitle =>
-      'A fact about you that only this persona sees';
+      'Facts about you that only this persona sees. It won\'t see your shared memories';
 
   @override
   String get memoryScopeLore => 'Character notes';
 
   @override
   String get memoryScopeLoreSubtitle =>
-      'Roleplay details for this character, never treated as facts about you';
+      'Roleplay details for this character, never treated as facts about you. It won\'t see your shared memories';
 
   @override
   String get memoryVisibility => 'Visibility';
@@ -6939,4 +6975,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get personaGreetingHint => '新对话开始时角色说的话';
+
+  @override
+  String get personaMemoryOwnOnlyNote => '该角色拥有独立记忆：只能看到在自己聊天中学到的内容，看不到你的共享记忆。';
 }

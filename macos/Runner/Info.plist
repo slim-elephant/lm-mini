@@ -71,5 +71,7 @@
 			</dict>
 		</dict>
 	</array>
+	<key>FirebaseMessagingAutoInitEnabled</key>
+	<false/>
 </dict>
 </plist>

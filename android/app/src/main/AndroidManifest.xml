@@ -114,6 +114,15 @@
             android:name=".ModelDownloadForegroundService"
             android:exported="false"
             android:foregroundServiceType="dataSync" />
+        <!-- Admin-only ops alert pushes (OpsAlertService) land in this channel
+             when the app is backgrounded; the channel is created at runtime. -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="ops_alerts" />
+        <!-- No FCM token for regular users; OpsAlertService enables it for admins. -->
+        <meta-data
+            android:name="firebase_messaging_auto_init_enabled"
+            android:value="false" />
     </application>
     <!-- Required to query activities that can process text, see:
          https://developer.android.com/training/package-visibility and

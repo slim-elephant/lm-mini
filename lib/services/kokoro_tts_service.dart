@@ -6,6 +6,7 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sherpa_onnx/sherpa_onnx.dart' as sherpa;
 import 'package:just_audio/just_audio.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
@@ -22,6 +23,9 @@ class KokoroTtsService {
 
   Isolate? _workerIsolate;
   SendPort? _workerSendPort;
+  /// Completes when the worker isolate has actually exited (onExit).
+  Completer<void>? _workerExited;
+  ReceivePort? _workerExitPort;
   final AudioPlayer _player = AudioPlayer();
   bool _playerBusy = false; // guard against re-entrant play calls
   bool _isInitialized = false;
@@ -133,14 +137,86 @@ class KokoroTtsService {
     });
   }
 
+  /// Shut the sherpa worker down and wait for it to really exit.
+  ///
+  /// Killing the isolate right after 'dispose' (the old behaviour) tore it
+  /// down while sherpa-onnx's native threads were still generating or
+  /// freeing the model — App Store crash logs show SIGSEGV in
+  /// dart::OSThread::~OSThread with sherpa busy on other threads. So ask it
+  /// to free + exit, wait for onExit, and only force-kill a hung worker.
   Future<void> _killWorker() async {
-    try {
-      _workerSendPort?.send('dispose');
-    } catch (_) {}
-    _workerIsolate?.kill(priority: Isolate.immediate);
+    final isolate = _workerIsolate;
+    final exited = _workerExited;
+    final sendPort = _workerSendPort;
     _workerIsolate = null;
     _workerSendPort = null;
     _workerEngineGroup = null;
+    _workerExited = null;
+    if (isolate != null) {
+      var graceful = false;
+      if (sendPort != null && exited != null) {
+        try {
+          sendPort.send('dispose');
+          // A sentence in flight finishes before 'dispose' is handled.
+          await exited.future.timeout(const Duration(seconds: 5));
+          graceful = true;
+        } catch (_) {/* timed out or port gone — fall through to kill */}
+      }
+      if (!graceful) {
+        debugPrint('KokoroTtsService: worker did not exit in time — killing');
+        isolate.kill(priority: Isolate.immediate);
+      }
+    }
+    _workerExitPort?.close();
+    _workerExitPort = null;
+  }
+
+  // ── Crash-loop guard for voice-pack loading ──────────────────────────
+  // sherpa-onnx aborts the whole app (uncatchable C++ exception) when a
+  // voice pack is corrupt or incompatible. A marker written before loading
+  // and cleared on 'ready' tells the next attempt that the last load never
+  // finished. After two unfinished loads of the same pack in a row, stop
+  // loading it until its files change (re-download).
+  static const _kInitPending = 'kokoro.init_pending';
+  static const _kInitStrikes = 'kokoro.init_strikes';
+  static const _maxInitStrikes = 2;
+
+  static String _packSignature(Map<String, String> config) {
+    final model = config['model'] ?? '';
+    try {
+      final st = File(model).statSync();
+      return '$model|${st.size}|${st.modified.millisecondsSinceEpoch}';
+    } catch (_) {
+      return model;
+    }
+  }
+
+  /// Missing or truncated files make sherpa-onnx abort instead of throwing.
+  static String? _missingPackFile(Map<String, String> config) {
+    final required = <String>[
+      config['model'] ?? '',
+      config['tokens'] ?? '',
+      if (config['engine'] != 'vits') config['voices'] ?? '',
+    ];
+    for (final path in required) {
+      if (path.isEmpty) return '(unset)';
+      final f = File(path);
+      if (!f.existsSync() || f.lengthSync() == 0) return p.basename(path);
+    }
+    final model = File(config['model']!);
+    if (model.lengthSync() < 1024 * 1024) return p.basename(model.path);
+    final dataDir = config['dataDir'] ?? '';
+    if (dataDir.isNotEmpty && !Directory(dataDir).existsSync()) {
+      return p.basename(dataDir);
+    }
+    for (final key in ['lexicon', 'ruleFsts']) {
+      for (final path in (config[key] ?? '').split(',')) {
+        if (path.trim().isNotEmpty && !File(path.trim()).existsSync()) {
+          return p.basename(path.trim());
+        }
+      }
+    }
+    return null;
   }
 
   Future<Map<String, String>?> _workerConfigFor(String langId) async {
@@ -246,16 +322,51 @@ class KokoroTtsService {
       return true;
     }
 
+    final missing = _missingPackFile(config);
+    if (missing != null) {
+      final msg = 'This voice pack is incomplete ($missing is missing or '
+          'damaged). Delete and re-download it in Voice settings, or switch '
+          'Speaking voice to Built-in.';
+      debugPrint('KokoroTtsService: $msg');
+      throw StateError(msg);
+    }
+
+    final signature = _packSignature(config);
+    final prefs = await SharedPreferences.getInstance();
+    final pending = prefs.getString(_kInitPending);
+    var strikes = prefs.getInt(_kInitStrikes) ?? 0;
+    if (pending != null) {
+      // The last load never reached 'ready' — the app died during it.
+      strikes = pending == signature ? strikes + 1 : 0;
+    }
+    if (pending == signature && strikes >= _maxInitStrikes) {
+      const msg = 'This voice pack keeps crashing while loading, so Mini '
+          'stopped using it. Delete and re-download it in Voice settings, or '
+          'switch Speaking voice to Built-in.';
+      debugPrint('KokoroTtsService: blocked crashing pack $signature');
+      throw StateError(msg);
+    }
+
     await _killWorker();
+    await prefs.setString(_kInitPending, signature);
+    await prefs.setInt(_kInitStrikes, strikes);
     final numThreads = Platform.numberOfProcessors > 4 ? 4 : 2;
     final initPort = ReceivePort();
     debugPrint(
         'KokoroTtsService: Spawning sherpa worker lang=$langId group=$group '
         'espeak=${config['lang']} fsts=${(config['ruleFsts'] ?? '').isEmpty ? 'none' : 'zh'}');
+    final exitPort = ReceivePort();
+    final exited = Completer<void>();
+    exitPort.listen((_) {
+      if (!exited.isCompleted) exited.complete();
+    });
+    _workerExitPort = exitPort;
+    _workerExited = exited;
     try {
       _workerIsolate = await Isolate.spawn(
         _ttsWorkerEntryPoint,
         [initPort.sendPort, config, numThreads],
+        onExit: exitPort.sendPort,
       );
     } catch (e) {
       initPort.close();
@@ -274,12 +385,16 @@ class KokoroTtsService {
     } on TimeoutException {
       initPort.close();
       await _killWorker();
+      // Failed but the app survived: not a crash strike.
+      await prefs.remove(_kInitPending);
       const msg = 'KokoroTtsService: Worker timed out during initialisation';
       debugPrint(msg);
       throw Exception(msg);
     } catch (e) {
       initPort.close();
       await _killWorker();
+      // Failed but the app survived: not a crash strike.
+      await prefs.remove(_kInitPending);
       final msg = 'KokoroTtsService: Worker init receive error: $e';
       debugPrint(msg);
       throw Exception(msg);
@@ -289,12 +404,17 @@ class KokoroTtsService {
     if (initResult[0] != 'ready') {
       final reason = initResult.length > 1 ? initResult[1] : 'unknown';
       await _killWorker();
+      // Failed but the app survived: not a crash strike.
+      await prefs.remove(_kInitPending);
       final msg = 'KokoroTtsService: Worker init failed: $reason';
       debugPrint(msg);
       throw Exception(msg);
     }
     _workerSendPort = initResult[1] as SendPort;
     _workerEngineGroup = group;
+    // Loaded fine: clear the crash-loop marker.
+    await prefs.remove(_kInitPending);
+    await prefs.setInt(_kInitStrikes, 0);
     debugPrint('KokoroTtsService: Worker ready group=$group lang=$langId');
     return true;
   }
@@ -1083,13 +1203,7 @@ class KokoroTtsService {
     _playerCompleteSub?.cancel();
     _playerCompleteSub = null;
     await _player.dispose();
-    try {
-      _workerSendPort?.send('dispose');
-    } catch (_) {}
-    _workerIsolate?.kill(priority: Isolate.immediate);
-    _workerIsolate = null;
-    _workerSendPort = null;
-    _workerEngineGroup = null;
+    await _killWorker();
     _isInitialized = false;
     _playerListenerReady = false;
   }

@@ -20,6 +20,7 @@ import '../utils/firebase_storage_error.dart';
 import '../utils/image_gen_unreachable_error.dart';
 import '../utils/lms_mcp_error.dart';
 import '../utils/server_unreachable_error.dart';
+import '../utils/network_preflight_error.dart';
 import '../utils/host_inference_error.dart';
 import '../utils/lms_http_error.dart';
 
@@ -39,6 +40,7 @@ class ErrorReportService {
     return GoogleFontLoadError.matches(error) ||
         LocalhostConnectionError.matches(error) ||
         ServerUnreachableError.matches(error) ||
+        NetworkPreflightError.matches(error) ||
         AudioSessionBusyError.matches(error) ||
         ModelNotFoundError.matches(error) ||
         OutputTokenLimitError.matches(error) ||

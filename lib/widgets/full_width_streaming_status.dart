@@ -93,6 +93,11 @@ class FullWidthStreamingStatus extends StatelessWidget {
       case StreamingPhase.usingTools:
         return l10n.streamingPhaseUsingTools;
       default:
+        if (StreamingPhase.isConnecting(phase)) {
+          return l10n.streamingPhaseConnecting(
+            StreamingPhase.connectingTarget(phase),
+          );
+        }
         return phase;
     }
   }

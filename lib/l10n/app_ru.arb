@@ -1056,6 +1056,15 @@
   "streamingPhaseWriting": "Пишу ответ",
   "streamingPhaseSearching": "Поиск",
   "streamingPhaseUsingTools": "Использование инструментов",
+  "streamingPhaseConnecting": "Подключение к {provider}…",
+  "networkOfflineTitle": "Нет подключения к сети",
+  "networkOfflineBody": "Подключитесь к Wi-Fi или мобильному интернету и попробуйте снова.",
+  "networkNeedsWifiTitle": "Мобильный интернет — {provider} нужен домашний Wi-Fi",
+  "networkNeedsWifiBody": "{provider} на вашем компьютере ({host}) доступен только через домашний Wi-Fi. Подключитесь к этому Wi-Fi или включите удалённый доступ, чтобы пользоваться им откуда угодно.",
+  "networkLostWifiTitle": "Связь с {provider} потеряна",
+  "networkLostWifiBody": "Телефон отключился от Wi-Fi. Снова подключитесь к домашнему Wi-Fi или включите удалённый доступ, чтобы продолжать чат откуда угодно.",
+  "networkUseRemoteAccess": "Включить удалённый доступ",
+  "networkSwitchProvider": "Сменить провайдера",
   "previewUserMessage": "Какой сокет у этой платы?",
   "bubbleAvatarSizeLabel": "Размер аватара в пузыре",
   "bubbleAvatarRadiusValue": "радиус {value}px",
@@ -2337,5 +2346,6 @@
   "spriteGenerateDone": "{count, plural, one{Сгенерировано {count} выражение} few{Сгенерировано {count} выражения} other{Сгенерировано {count} выражений}}",
   "spriteGenerateFailed": "Остановлено на {label}: {error}",
   "personaGreetingLabel": "Первое сообщение (необязательно)",
-  "personaGreetingHint": "Что персонаж говорит в начале нового чата"
+  "personaGreetingHint": "Что персонаж говорит в начале нового чата",
+  "personaMemoryOwnOnlyNote": "У этой персоны своя память: она видит только то, что узнала в своих чатах, и никогда — ваши общие воспоминания."
 }

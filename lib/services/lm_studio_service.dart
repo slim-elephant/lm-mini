@@ -14,6 +14,7 @@ import '../utils/lms_http_error.dart';
 import '../utils/lm_studio_download_cancel.dart';
 import '../utils/model_not_found_error.dart';
 import '../utils/openai_compatible_params.dart';
+import '../utils/server_http_client.dart';
 import '../utils/unsloth_load.dart';
 import '../utils/image_gen_prompt.dart';
 import 'package:lm_mini_premium/lm_mini_premium.dart';
@@ -90,10 +91,40 @@ class LMStudioService {
     }
   }
 
+  /// One-shot GET to the chat server with a short TCP connect timeout.
+  static Future<http.Response> _serverGet(
+    Uri url, {
+    Map<String, String>? headers,
+  }) async {
+    final client = createServerHttpClient();
+    try {
+      return await client.get(url, headers: headers);
+    } finally {
+      client.close();
+    }
+  }
+
+  /// One-shot POST to the chat server with a short TCP connect timeout.
+  static Future<http.Response> _serverPost(
+    Uri url, {
+    Map<String, String>? headers,
+    Object? body,
+  }) async {
+    final client = createServerHttpClient();
+    try {
+      return await client.post(url, headers: headers, body: body);
+    } finally {
+      client.close();
+    }
+  }
+
   /// Track the SSE client immediately so download polling yields, then wait
   /// for any in-flight status GET before opening the stream.
+  ///
+  /// Uses [createServerHttpClient] so a dead LAN host fails within
+  /// [kServerConnectTimeout] instead of the OS default (~60–75 s).
   Future<http.Client> _beginStreamClient() async {
-    final client = http.Client();
+    final client = createServerHttpClient();
     _activeStreamClients.add(client);
     await waitForDownloadStatusIdle();
     return client;
@@ -626,7 +657,7 @@ class LMStudioService {
   }) async {
     try {
       final headers = _buildHeaders(apiToken: apiToken);
-      final response = await http.get(
+      final response = await _serverGet(
         Uri.parse('$baseUrl$_modelsEndpoint'),
         headers: headers,
       );
@@ -651,7 +682,7 @@ class LMStudioService {
       if (response.statusCode == 404 ||
           response.statusCode == 405 ||
           response.statusCode == 200) {
-        final openAi = await http.get(
+        final openAi = await _serverGet(
           Uri.parse('$baseUrl/v1/models'),
           headers: headers,
         );
@@ -1923,7 +1954,7 @@ class LMStudioService {
           'LMStudioService: Non-streaming request (likely memory extraction):');
       debugPrint(jsonEncodeForLog(requestBody));
 
-      final response = await http.post(
+      final response = await _serverPost(
         Uri.parse('$baseUrl$_openAIChatEndpoint'),
         headers: _buildHeaders(apiToken: apiToken),
         body: jsonEncode(requestBody),
@@ -2034,7 +2065,7 @@ class LMStudioService {
       debugPrint('LMStudioService: Stateful chat request:');
       debugPrint(jsonEncodeForLog(requestBody));
 
-      final response = await http.post(
+      final response = await _serverPost(
         Uri.parse('$baseUrl$_statefulChatEndpoint'),
         headers: _buildHeaders(apiToken: apiToken),
         body: jsonEncode(requestBody),
@@ -2784,7 +2815,7 @@ class LMStudioService {
     String? apiToken,
   }) async {
     try {
-      final response = await http.get(
+      final response = await _serverGet(
         Uri.parse('$baseUrl$_modelsV0Endpoint/$modelId'),
         headers: _buildHeaders(apiToken: apiToken),
       );
@@ -2822,7 +2853,7 @@ class LMStudioService {
         if (stopSequence != null) 'stop': stopSequence,
       };
 
-      final response = await http.post(
+      final response = await _serverPost(
         Uri.parse('$baseUrl$_completionsEndpoint'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode(requestBody),
@@ -2863,7 +2894,7 @@ class LMStudioService {
         'input': text,
       };
 
-      final response = await http.post(
+      final response = await _serverPost(
         Uri.parse('$baseUrl$_embeddingsEndpoint'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode(requestBody),
@@ -2899,7 +2930,7 @@ class LMStudioService {
         'input': texts,
       };
 
-      final response = await http.post(
+      final response = await _serverPost(
         Uri.parse('$baseUrl$_embeddingsEndpoint'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode(requestBody),
@@ -2945,7 +2976,7 @@ class LMStudioService {
         if (config != null) ...config,
       };
 
-      final response = await http.post(
+      final response = await _serverPost(
         Uri.parse('$baseUrl$_loadModelEndpoint'),
         headers: _buildHeaders(apiToken: apiToken),
         body: jsonEncode(requestBody),
@@ -3075,7 +3106,7 @@ class LMStudioService {
         'instance_id': id,
       };
 
-      final response = await http.post(
+      final response = await _serverPost(
         Uri.parse('$baseUrl$_unloadModelEndpoint'),
         headers: _buildHeaders(apiToken: apiToken),
         body: jsonEncode(requestBody),
