@@ -97,7 +97,7 @@ extension _NetworkPreflight on ChatProvider {
       case PreflightDecision.blockNeedsWifi:
         throw NetworkPreflightException(
           NetworkPreflightError.needsWifiMessage(name, host),
-          detail: '$tag mobile data only; $host is on a home network.',
+          detail: '$tag mobile data only; $host is on a local network.',
         );
       case PreflightDecision.probe:
         break;

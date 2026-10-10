@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../utils/network_preflight_error.dart';
 import '../providers/chat_provider.dart';
 import '../models/chat_conversation.dart';
 import '../models/chat_folder.dart';
@@ -1184,7 +1185,10 @@ class _HomeScreenState extends State<HomeScreen> {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            if (chatProvider.error != null)
+            // Offline / mobile-data send failures belong to the chat (pill +
+            // "Not delivered" bubble), not a second banner here.
+            if (chatProvider.error != null &&
+                !NetworkPreflightError.matches(chatProvider.error))
               _buildErrorBanner(context, chatProvider),
             if (_personasExpanded) const SizedBox(height: 12),
             AnimatedSize(

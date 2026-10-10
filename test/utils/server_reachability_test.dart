@@ -235,6 +235,36 @@ void main() {
       expect(i?.host, '192.168.1.5');
     });
 
+    test('needs Wi‑Fi copy no longer says "home"', () {
+      final msg =
+          NetworkPreflightError.needsWifiMessage('LM Studio', '192.168.1.5');
+      expect(msg.toLowerCase(), isNot(contains('home')));
+      expect(msg, contains('same Wi-Fi network as your computer'));
+    });
+
+    test('old "home Wi-Fi" messages already stored still parse', () {
+      const old = "You're on mobile data. LM Studio on your computer "
+          '(192.168.100.178) is only reachable on your home Wi-Fi. Join that '
+          'Wi-Fi, or turn on Remote Access to use it from anywhere.';
+      final i = NetworkPreflightError.parse(old);
+      expect(i?.kind, NetworkIssueKind.needsWifi);
+      expect(i?.provider, 'LM Studio');
+      expect(i?.host, '192.168.100.178');
+      expect(NetworkPreflightError.matches(old), isTrue);
+    });
+
+    test('non-breaking hyphen Wi‑Fi variant parses', () {
+      const nb = "You're on mobile data. Ollama on your computer (mypc) is "
+          'only reachable on the same Wi\u2011Fi network as your computer.';
+      expect(NetworkPreflightError.parse(nb)?.host, 'mypc');
+      expect(
+        NetworkPreflightError.parse(
+                'Lost connection to Jan — your phone left the Wi\u2011Fi.')
+            ?.kind,
+        NetworkIssueKind.lostWifi,
+      );
+    });
+
     test('lost Wi‑Fi round-trips provider', () {
       final i = NetworkPreflightError.parse(
           NetworkPreflightError.lostWifiMessage('Ollama'));

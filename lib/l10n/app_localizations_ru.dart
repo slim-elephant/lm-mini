@@ -3881,12 +3881,12 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String networkNeedsWifiTitle(String provider) {
-    return 'Мобильный интернет — $provider нужен домашний Wi-Fi';
+    return 'Мобильный интернет — $provider нужен Wi-Fi';
   }
 
   @override
   String networkNeedsWifiBody(String provider, String host) {
-    return '$provider на вашем компьютере ($host) доступен только через домашний Wi-Fi. Подключитесь к этому Wi-Fi или включите удалённый доступ, чтобы пользоваться им откуда угодно.';
+    return '$provider на вашем компьютере ($host) доступен только в той же сети Wi-Fi, что и компьютер. Подключитесь к этой сети Wi-Fi или включите удалённый доступ, чтобы пользоваться им откуда угодно.';
   }
 
   @override
@@ -3896,13 +3896,23 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get networkLostWifiBody =>
-      'Телефон отключился от Wi-Fi. Снова подключитесь к домашнему Wi-Fi или включите удалённый доступ, чтобы продолжать чат откуда угодно.';
+      'Телефон отключился от Wi-Fi. Снова подключитесь к той же сети Wi-Fi, что и компьютер, или включите удалённый доступ, чтобы продолжать чат откуда угодно.';
 
   @override
   String get networkUseRemoteAccess => 'Включить удалённый доступ';
 
   @override
   String get networkSwitchProvider => 'Сменить провайдера';
+
+  @override
+  String get messageNotDelivered => 'Не доставлено · Нажмите, чтобы повторить';
+
+  @override
+  String get messageRetrying => 'Отправка…';
+
+  @override
+  String get messageNotDeliveredA11y =>
+      'Сообщение не доставлено. Нажмите, чтобы повторить.';
 
   @override
   String get previewUserMessage => 'Какой сокет у этой платы?';
@@ -7343,4 +7353,30 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get personaMemoryOwnOnlyNote =>
       'У этой персоны своя память: она видит только то, что узнала в своих чатах, и никогда — ваши общие воспоминания.';
+
+  @override
+  String get remoteAccessSwitchTitle => 'Удалённый доступ';
+
+  @override
+  String get remoteAccessSwitchOnSubtitle =>
+      'Вкл.: доступ к компьютеру откуда угодно.';
+
+  @override
+  String get remoteAccessSwitchOffSubtitle =>
+      'Выкл.: используется сервер в вашей домашней сети. Сопряжение сохраняется.';
+
+  @override
+  String get remoteAccessSwitchConnecting => 'Подключение к компьютеру…';
+
+  @override
+  String get remoteAccessUnreachable =>
+      'Удалённый доступ включён, но компьютер не отвечает. Убедитесь, что он не спит и общий доступ включён.';
+
+  @override
+  String get remoteAccessTurnOnFailed =>
+      'Не удалось включить удалённый доступ. Попробуйте ещё раз.';
+
+  @override
+  String get remoteAccessTurnOffFailed =>
+      'Не удалось выключить удалённый доступ. Попробуйте ещё раз.';
 }

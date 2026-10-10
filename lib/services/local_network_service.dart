@@ -100,7 +100,13 @@ class LocalNetworkService {
   /// local network access in iOS Settings.
   static bool isLikelyLocalNetworkPermissionIssue(String errorMessage) {
     if (!Platform.isIOS) return false;
+    return matchesPermissionSignature(errorMessage);
+  }
 
+  /// Error text that looks like iOS silently blocking LAN sockets. Platform
+  /// independent (for tests); callers must also check iOS, Wi‑Fi and a LAN
+  /// host — see `resolveConnectionIssue`.
+  static bool matchesPermissionSignature(String errorMessage) {
     // Permission denied usually times out or has no route. Connection refused
     // means we reached the PC (LMS isn't serving). Host is down means the
     // machine is off/asleep — those get LMS setup help, not this iOS sheet.

@@ -3840,12 +3840,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String networkNeedsWifiTitle(String provider) {
-    return 'On mobile data — $provider needs your home Wi-Fi';
+    return 'On mobile data — $provider needs Wi-Fi';
   }
 
   @override
   String networkNeedsWifiBody(String provider, String host) {
-    return '$provider on your computer ($host) is only reachable on your home Wi-Fi. Join that Wi-Fi, or turn on Remote Access to use it from anywhere.';
+    return '$provider on your computer ($host) is only reachable on the same Wi-Fi network as your computer. Connect to that Wi-Fi, or turn on Remote Access to use it from anywhere.';
   }
 
   @override
@@ -3855,13 +3855,22 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get networkLostWifiBody =>
-      'Your phone left the Wi-Fi. Rejoin your home Wi-Fi, or turn on Remote Access to keep chatting from anywhere.';
+      'Your phone left the Wi-Fi. Reconnect to the same Wi-Fi as your computer, or turn on Remote Access to keep chatting from anywhere.';
 
   @override
   String get networkUseRemoteAccess => 'Use Remote Access';
 
   @override
   String get networkSwitchProvider => 'Switch provider';
+
+  @override
+  String get messageNotDelivered => 'Not delivered · Tap to retry';
+
+  @override
+  String get messageRetrying => 'Sending…';
+
+  @override
+  String get messageNotDeliveredA11y => 'Message not delivered. Tap to retry.';
 
   @override
   String get previewUserMessage => 'What\'s the socket on this board?';
@@ -7276,4 +7285,30 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get personaMemoryOwnOnlyNote =>
       'This persona keeps its own memories: it only sees what it learned in its own chats, never your shared memories.';
+
+  @override
+  String get remoteAccessSwitchTitle => 'Use Remote Access';
+
+  @override
+  String get remoteAccessSwitchOnSubtitle =>
+      'On: reach your computer from anywhere.';
+
+  @override
+  String get remoteAccessSwitchOffSubtitle =>
+      'Off: uses your home network server. Your pairing is kept.';
+
+  @override
+  String get remoteAccessSwitchConnecting => 'Connecting to your computer…';
+
+  @override
+  String get remoteAccessUnreachable =>
+      'Remote Access is on, but your computer isn\'t answering. Make sure it\'s awake and sharing.';
+
+  @override
+  String get remoteAccessTurnOnFailed =>
+      'Couldn\'t turn on Remote Access. Try again.';
+
+  @override
+  String get remoteAccessTurnOffFailed =>
+      'Couldn\'t turn off Remote Access. Try again.';
 }

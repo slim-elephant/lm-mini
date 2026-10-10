@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'param_preset.dart';
 import 'system_prompt.dart';
+import '../utils/relay_url.dart';
 
 /// Reads a non-nullable list field safely. After hot reload, newly added list
 /// fields on existing [AppSettings] instances can be null at runtime.
@@ -848,7 +849,10 @@ class AppSettings {
     if (isRemoteActive &&
         remoteServerUrl != null &&
         remoteServerUrl!.isNotEmpty) {
-      url = serverUrl; // relay URL — relay-client routes /sdapi/* to A1111
+      // Relay URL — relay-client routes /sdapi/* to A1111. Use the paired
+      // URL, not [serverUrl]: chat settings patched for a cloud provider
+      // carry that provider's URL there.
+      url = remoteServerUrl!;
     } else {
       url = imageGenServerUrl;
     }
@@ -872,12 +876,19 @@ class AppSettings {
     return imageGenNegativePrompt;
   }
 
+  /// True when [url] is under the active paired relay URL. Relay-only
+  /// headers (token, backend routing, LM Studio custom headers) must never
+  /// go anywhere else.
+  bool isActiveRelayUrl(String url) =>
+      isRemoteActive && isRelayRequestUrl(url, remoteServerUrl);
+
   /// Extra headers needed for image gen requests when going through relay.
+  /// Null for a direct A1111 / ComfyUI / RunPod host: neither the relay
+  /// token nor the LM Studio custom headers go there.
   Map<String, String>? get imageGenRelayHeaders {
+    if (!isActiveRelayUrl(effectiveImageGenUrl)) return null;
     final headers = <String, String>{};
-    if (isRemoteActive &&
-        remoteAuthToken != null &&
-        remoteAuthToken!.isNotEmpty) {
+    if (remoteAuthToken != null && remoteAuthToken!.isNotEmpty) {
       headers['X-LM-Mini-Token'] = remoteAuthToken!;
     }
     final extra = effectiveExtraHeaders;
@@ -899,7 +910,7 @@ class AppSettings {
     if (isRemoteActive &&
         remoteServerUrl != null &&
         remoteServerUrl!.isNotEmpty) {
-      return serverUrl;
+      return remoteServerUrl!;
     }
 
     final uri = Uri.tryParse(serverUrl);
@@ -919,8 +930,9 @@ class AppSettings {
   }
 
   /// Extra headers needed for Remote Kokoro requests when going through relay.
+  /// Null when the user pointed Kokoro at their own URL.
   Map<String, String>? get voiceRemoteKokoroHeaders {
-    if (isRemoteActive &&
+    if (isActiveRelayUrl(effectiveVoiceRemoteKokoroUrl) &&
         remoteAuthToken != null &&
         remoteAuthToken!.isNotEmpty) {
       return {'X-LM-Mini-Token': remoteAuthToken!};

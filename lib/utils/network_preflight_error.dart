@@ -39,17 +39,21 @@ abstract final class NetworkPreflightError {
 
   static String needsWifiMessage(String provider, String host) =>
       "You're on mobile data. $provider on your computer ($host) is only "
-      'reachable on your home Wi-Fi. Join that Wi-Fi, or turn on Remote '
-      'Access to use it from anywhere.';
+      'reachable on the same Wi-Fi network as your computer. Connect to that '
+      'Wi-Fi, or turn on Remote Access to use it from anywhere.';
 
   static String lostWifiMessage(String provider) =>
       'Lost connection to $provider — your phone left the Wi-Fi.';
 
+  /// Current copy and the older "home Wi-Fi" wording (messages already
+  /// stored in chats / support logs must still parse).
   static final RegExp _needsWifi = RegExp(
-    r"You're on mobile data\. (.+?) on your computer \((.*?)\) is only reachable on your home Wi-Fi\.",
+    r"You're on mobile data\. (.+?) on your computer \((.*?)\) is only "
+    r'reachable on (?:your home Wi[-\u2011]Fi|the same Wi[-\u2011]Fi network '
+    r'as your computer)\.',
   );
   static final RegExp _lostWifi = RegExp(
-    r'Lost connection to (.+?) — your phone left the Wi-Fi\.',
+    r'Lost connection to (.+?) — your phone left the Wi[-\u2011]Fi\.',
   );
 
   /// Parse one of our own messages back into a [NetworkIssue].

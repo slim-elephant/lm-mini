@@ -34,6 +34,41 @@ void main() {
       expect(out, contains('[redacted-jwt]'));
     });
 
+    test('strips secret query params from URLs', () {
+      final out = redactLogSecrets(
+        'connecting wss://relay.example.com/ws?session=abc123&token=s3cr3t-T0k',
+      );
+      expect(out, isNot(contains('s3cr3t-T0k')));
+      expect(out, contains('&token=[redacted]'));
+      // Non-secret params stay readable.
+      expect(out, contains('session=abc123'));
+    });
+
+    test('query param redaction is case-insensitive and covers all names', () {
+      for (final name in const [
+        'token',
+        'key',
+        'api_key',
+        'apikey',
+        'access_token',
+        'secret',
+        'password',
+        'TOKEN',
+        'Api_Key',
+      ]) {
+        final out =
+            redactLogSecrets('GET https://h.example/x?$name=VALUE42&a=1');
+        expect(out, isNot(contains('VALUE42')), reason: name);
+        expect(out, contains('?$name=[redacted]&a=1'), reason: name);
+      }
+    });
+
+    test('does not touch params that merely contain a secret name', () {
+      final out = redactLogSecrets('https://h.example/x?monkey=1&tokens=2');
+      expect(out, contains('monkey=1'));
+      expect(out, contains('tokens=2'));
+    });
+
     test('truncates a huge non-JSON line', () {
       final huge = 'prefix ${'x' * 8000} suffix';
       final out = redactLogSecrets(huge);

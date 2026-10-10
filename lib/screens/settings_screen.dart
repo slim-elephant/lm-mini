@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -58,6 +60,9 @@ import '../services/lm_studio_service.dart';
 import 'widget_settings_screen.dart';
 import 'siri_shortcuts_screen.dart';
 import 'watch_settings_screen.dart';
+import '../services/network_status_service.dart';
+import '../utils/connection_issue.dart';
+import '../widgets/network_status_banner.dart';
 import 'providers_screen.dart';
 import '../models/server_profile.dart';
 import '../services/server_profile_service.dart';
@@ -72,6 +77,7 @@ import '../widgets/glass_blur.dart';
 import '../widgets/glass_page_header.dart';
 import '../widgets/glass_settings_scaffold.dart';
 import '../widgets/home_glass_header.dart';
+import '../widgets/remote_access_switch.dart';
 import '../desktop/desktop_platform.dart';
 import '../desktop/ui/desktop_host_screen.dart';
 import '../desktop/runtime/desktop_runtime_manager.dart';
@@ -402,6 +408,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
         ),
         children: [
           _buildRecentServersSection(context, settingsProvider),
+          // Debug builds only: fake mobile data / offline / Wi‑Fi so the
+          // chat pill, preflight and "Not delivered" flow can be checked on
+          // a simulator.
+          if (kDebugMode) const _DebugNetworkSimulatorTile(),
         ],
       ),
 
@@ -487,13 +497,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
               title: Text(l10n.remoteAccess),
               subtitle: Text(
-                settingsProvider.settings.isRemoteActive
-                    ? l10n.connectedRemotely
-                    : settingsProvider.settings.remoteServerUrl != null
-                        ? l10n.pairedNotActive
-                        : l10n.accessLmStudioAnywhere,
+                RemoteAccessSwitch.isPaired(settingsProvider)
+                    ? remoteAccessSwitchSubtitle(
+                        l10n, settingsProvider.settings.isRemoteActive)
+                    : settingsProvider.settings.isRemoteActive
+                        ? l10n.connectedRemotely
+                        : settingsProvider.settings.remoteServerUrl != null
+                            ? l10n.pairedNotActive
+                            : l10n.accessLmStudioAnywhere,
               ),
-              trailing: const Icon(Icons.chevron_right),
+              // Paired: quick on/off without opening Remote Access.
+              trailing: RemoteAccessSwitch.isPaired(settingsProvider)
+                  ? const RemoteAccessSwitch()
+                  : const Icon(Icons.chevron_right),
               onTap: () {
                 _openSettingsScreen(
                   SettingsNavId.remoteAccess,
@@ -3499,10 +3515,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
     )) {
       return;
     }
+    // Same single-issue rules as the chat banner: offline / mobile data
+    // get the network explanation (never "Connection failed" or the iOS
+    // Local Network hint), and that hint only shows on Wi‑Fi.
+    final issue = isAuthError
+        ? null
+        : settingsProvider.resolveGlobalConnectionIssue(error: error);
+    if (issue != null && issue.isNetworkState) {
+      showNetworkIssueDialog(context, issue);
+      return;
+    }
     final isLocalUrl = LocalNetworkService.isLocalNetworkUrl(serverUrl);
-    final isLikelyPermissionIssue = Platform.isIOS &&
-        isLocalUrl &&
-        LocalNetworkService.isLikelyLocalNetworkPermissionIssue(error);
+    final isLikelyPermissionIssue =
+        issue?.kind == ConnectionIssueKind.localNetworkPermission;
     final lanKind = LanServerError.classify(error);
     final showLmStudioLanHelp = LanServerError.shouldShowLmStudioLanHelp(
       error: error,
@@ -4594,6 +4619,42 @@ class _SettingsAdvancedGlassToggle extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+/// Debug-only row that cycles [NetworkStatusService.debugOverride]:
+/// real → mobile data → offline → Wi‑Fi → real.
+class _DebugNetworkSimulatorTile extends StatelessWidget {
+  const _DebugNetworkSimulatorTile();
+
+  static const _modes = <(String, NetworkSnapshot?)>[
+    ('Real network', null),
+    ('Mobile data (5G)', NetworkSnapshot([ConnectivityResult.mobile])),
+    ('Offline', NetworkSnapshot([ConnectivityResult.none])),
+    ('Wi-Fi', NetworkSnapshot([ConnectivityResult.wifi])),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    final service = NetworkStatusService.instance;
+    return ListenableBuilder(
+      listenable: service,
+      builder: (context, _) {
+        final current = service.isOverridden ? service.snapshot : null;
+        var index = _modes.indexWhere((m) => m.$2 == current);
+        if (index < 0) index = 0;
+        return ListTile(
+          leading: const Icon(Icons.bug_report_outlined),
+          title: const Text('Simulate network (debug)'),
+          subtitle: Text(_modes[index].$1),
+          trailing: const Icon(Icons.sync_alt_rounded),
+          onTap: () {
+            final next = _modes[(index + 1) % _modes.length];
+            service.debugOverride(next.$2);
+          },
+        );
+      },
     );
   }
 }

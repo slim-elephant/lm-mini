@@ -65,6 +65,13 @@ final _httpAuthHeader = RegExp(
   multiLine: true,
 );
 
+/// Secret-bearing URL query params (`?token=…`, `&api_key=…`, …).
+final _secretQueryParam = RegExp(
+  r'([?&](?:token|key|api_key|apikey|access_token|secret|password)=)'
+  r'''(?!\[redacted\])[^&#\s"'<>]+''',
+  caseSensitive: false,
+);
+
 final _bearerToken = RegExp(
   r'Bearer\s+[A-Za-z0-9\-._~+/]+=*',
   caseSensitive: false,
@@ -80,6 +87,7 @@ String redactLogSecrets(String input) {
   var s = input;
   s = s.replaceAllMapped(_jsonSecretKey, (m) => '${m[1]}$_redacted${m[3]}');
   s = s.replaceAllMapped(_httpAuthHeader, (m) => '${m[1]}$_redacted');
+  s = s.replaceAllMapped(_secretQueryParam, (m) => '${m[1]}$_redacted');
   s = s.replaceAllMapped(_bearerToken, (_) => 'Bearer $_redacted');
   s = s.replaceAllMapped(_jwt, (_) => '[redacted-jwt]');
   final asJson = _trimJsonBlobIfPossible(s);

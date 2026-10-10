@@ -3,7 +3,7 @@ description: "A companion app for LM Studio, Ollama and oMLX that lets you chat 
 
 publish_to: 'none'
 
-version: 1.10.2+145
+version: 1.10.2+147
 
 environment:
   sdk: '>=3.6.0 <4.0.0'
@@ -133,3 +133,5 @@ flutter_native_splash:
     image: assets/icons/splash_icon.png
   ios: true
   web: false
+
+  

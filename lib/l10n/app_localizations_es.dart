@@ -3890,12 +3890,12 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String networkNeedsWifiTitle(String provider) {
-    return 'Con datos móviles: $provider necesita el Wi-Fi de tu casa';
+    return 'Con datos móviles: $provider necesita Wi-Fi';
   }
 
   @override
   String networkNeedsWifiBody(String provider, String host) {
-    return '$provider en tu ordenador ($host) solo es accesible desde el Wi-Fi de tu casa. Conéctate a ese Wi-Fi o activa el Acceso Remoto para usarlo desde cualquier lugar.';
+    return '$provider en tu ordenador ($host) solo es accesible desde la misma red Wi-Fi que tu ordenador. Conéctate a esa Wi-Fi o activa el Acceso Remoto para usarlo desde cualquier lugar.';
   }
 
   @override
@@ -3905,13 +3905,23 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get networkLostWifiBody =>
-      'Tu teléfono salió del Wi-Fi. Vuelve a conectarte al Wi-Fi de tu casa o activa el Acceso Remoto para seguir chateando desde cualquier lugar.';
+      'Tu teléfono salió del Wi-Fi. Vuelve a conectarte a la misma Wi-Fi que tu ordenador o activa el Acceso Remoto para seguir chateando desde cualquier lugar.';
 
   @override
   String get networkUseRemoteAccess => 'Usar Acceso Remoto';
 
   @override
   String get networkSwitchProvider => 'Cambiar de proveedor';
+
+  @override
+  String get messageNotDelivered => 'No entregado · Toca para reintentar';
+
+  @override
+  String get messageRetrying => 'Enviando…';
+
+  @override
+  String get messageNotDeliveredA11y =>
+      'Mensaje no entregado. Toca para reintentar.';
 
   @override
   String get previewUserMessage => '¿Qué zócalo tiene esta placa?';
@@ -7359,4 +7369,30 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get personaMemoryOwnOnlyNote =>
       'Esta persona tiene su propia memoria: solo ve lo que aprendió en sus propios chats, nunca tus recuerdos compartidos.';
+
+  @override
+  String get remoteAccessSwitchTitle => 'Usar acceso remoto';
+
+  @override
+  String get remoteAccessSwitchOnSubtitle =>
+      'Activado: accede a tu ordenador desde cualquier lugar.';
+
+  @override
+  String get remoteAccessSwitchOffSubtitle =>
+      'Desactivado: usa el servidor de tu red doméstica. El emparejamiento se conserva.';
+
+  @override
+  String get remoteAccessSwitchConnecting => 'Conectando con tu ordenador…';
+
+  @override
+  String get remoteAccessUnreachable =>
+      'El acceso remoto está activado, pero tu ordenador no responde. Asegúrate de que esté encendido y compartiendo.';
+
+  @override
+  String get remoteAccessTurnOnFailed =>
+      'No se pudo activar el acceso remoto. Inténtalo de nuevo.';
+
+  @override
+  String get remoteAccessTurnOffFailed =>
+      'No se pudo desactivar el acceso remoto. Inténtalo de nuevo.';
 }

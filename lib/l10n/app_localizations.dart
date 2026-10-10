@@ -7051,13 +7051,13 @@ abstract class AppLocalizations {
   /// No description provided for @networkNeedsWifiTitle.
   ///
   /// In en, this message translates to:
-  /// **'On mobile data — {provider} needs your home Wi-Fi'**
+  /// **'On mobile data — {provider} needs Wi-Fi'**
   String networkNeedsWifiTitle(String provider);
 
   /// No description provided for @networkNeedsWifiBody.
   ///
   /// In en, this message translates to:
-  /// **'{provider} on your computer ({host}) is only reachable on your home Wi-Fi. Join that Wi-Fi, or turn on Remote Access to use it from anywhere.'**
+  /// **'{provider} on your computer ({host}) is only reachable on the same Wi-Fi network as your computer. Connect to that Wi-Fi, or turn on Remote Access to use it from anywhere.'**
   String networkNeedsWifiBody(String provider, String host);
 
   /// No description provided for @networkLostWifiTitle.
@@ -7069,7 +7069,7 @@ abstract class AppLocalizations {
   /// No description provided for @networkLostWifiBody.
   ///
   /// In en, this message translates to:
-  /// **'Your phone left the Wi-Fi. Rejoin your home Wi-Fi, or turn on Remote Access to keep chatting from anywhere.'**
+  /// **'Your phone left the Wi-Fi. Reconnect to the same Wi-Fi as your computer, or turn on Remote Access to keep chatting from anywhere.'**
   String get networkLostWifiBody;
 
   /// No description provided for @networkUseRemoteAccess.
@@ -7083,6 +7083,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Switch provider'**
   String get networkSwitchProvider;
+
+  /// Under a user chat bubble whose send failed; tapping retries.
+  ///
+  /// In en, this message translates to:
+  /// **'Not delivered · Tap to retry'**
+  String get messageNotDelivered;
+
+  /// No description provided for @messageRetrying.
+  ///
+  /// In en, this message translates to:
+  /// **'Sending…'**
+  String get messageRetrying;
+
+  /// No description provided for @messageNotDeliveredA11y.
+  ///
+  /// In en, this message translates to:
+  /// **'Message not delivered. Tap to retry.'**
+  String get messageNotDeliveredA11y;
 
   /// No description provided for @previewUserMessage.
   ///
@@ -13013,6 +13031,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'This persona keeps its own memories: it only sees what it learned in its own chats, never your shared memories.'**
   String get personaMemoryOwnOnlyNote;
+
+  /// Remote Access on/off switch label (keeps the pairing).
+  ///
+  /// In en, this message translates to:
+  /// **'Use Remote Access'**
+  String get remoteAccessSwitchTitle;
+
+  /// Remote Access switch subtitle when on.
+  ///
+  /// In en, this message translates to:
+  /// **'On: reach your computer from anywhere.'**
+  String get remoteAccessSwitchOnSubtitle;
+
+  /// Remote Access switch subtitle when off.
+  ///
+  /// In en, this message translates to:
+  /// **'Off: uses your home network server. Your pairing is kept.'**
+  String get remoteAccessSwitchOffSubtitle;
+
+  /// Accessibility label while the Remote Access switch reconnects.
+  ///
+  /// In en, this message translates to:
+  /// **'Connecting to your computer…'**
+  String get remoteAccessSwitchConnecting;
+
+  /// SnackBar after turning Remote Access on when the paired computer does not answer.
+  ///
+  /// In en, this message translates to:
+  /// **'Remote Access is on, but your computer isn\'t answering. Make sure it\'s awake and sharing.'**
+  String get remoteAccessUnreachable;
+
+  /// SnackBar when turning Remote Access on failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t turn on Remote Access. Try again.'**
+  String get remoteAccessTurnOnFailed;
+
+  /// SnackBar when turning Remote Access off failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t turn off Remote Access. Try again.'**
+  String get remoteAccessTurnOffFailed;
 }
 
 class _AppLocalizationsDelegate

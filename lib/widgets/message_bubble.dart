@@ -100,6 +100,15 @@ class MessageBubble extends StatelessWidget {
   /// Opens persona profile when the assistant avatar is tapped.
   final VoidCallback? onAssistantAvatarTap;
 
+  /// User turn whose send failed with no reply ("Not delivered").
+  final bool isFailed;
+
+  /// This failed user turn is being sent again right now.
+  final bool isRetrying;
+
+  /// Tap "Not delivered · Tap to retry". Null while another send runs.
+  final VoidCallback? onRetry;
+
   const MessageBubble({
     super.key,
     required this.message,
@@ -122,6 +131,9 @@ class MessageBubble extends StatelessWidget {
     this.assistantAvatarAlignment = const Alignment(0, -0.28),
     this.assistantAvatarScale = 1.0,
     this.onAssistantAvatarTap,
+    this.isFailed = false,
+    this.isRetrying = false,
+    this.onRetry,
   });
 
   String? _shortModelLabel(String? model) {
@@ -650,7 +662,7 @@ class MessageBubble extends StatelessWidget {
             ? screenWidth * 0.95
             : screenWidth * 0.75);
 
-    final messageRow = Padding(
+    final bubbleRow = Padding(
       padding: EdgeInsets.symmetric(
         vertical: wideThread ? (avatarAbove ? 0 : 12) : (avatarAbove ? 0 : 4),
       ),
@@ -662,6 +674,13 @@ class MessageBubble extends StatelessWidget {
           if (!isUser && showSideAvatars) ...[
             buildAssistantAvatar(),
             const SizedBox(width: 8),
+          ],
+          if (isUser && (isFailed || isRetrying)) ...[
+            _DeliveryStatusIcon(
+              retrying: isRetrying,
+              onRetry: onRetry,
+            ),
+            const SizedBox(width: 6),
           ],
           Flexible(
             fit: fullWidthAssistant ? FlexFit.tight : FlexFit.loose,
@@ -1302,6 +1321,22 @@ class MessageBubble extends StatelessWidget {
         ],
       ),
     );
+
+    // "Not delivered · Tap to retry" under a failed user bubble.
+    final Widget messageRow = (isUser && (isFailed || isRetrying))
+        ? Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              bubbleRow,
+              _DeliveryStatusLine(
+                retrying: isRetrying,
+                onRetry: onRetry,
+                trailingInset: showSideAvatars ? avatarRadius * 2 + 8 : 0,
+              ),
+            ],
+          )
+        : bubbleRow;
 
     // Avatar-above layout: wrap messageRow in Column with avatar on top
     if (avatarAbove) {
@@ -4300,6 +4335,91 @@ class _WideThreadAssistantBarState extends State<_WideThreadAssistantBar> {
       baseSettings: globalSettings,
       prompt: prompt,
       settingsProvider: context.read<SettingsProvider>(),
+    );
+  }
+}
+
+/// Red "!" beside a user bubble that was not delivered (spinner while it is
+/// being retried). Tapping it retries, like the line under the bubble.
+class _DeliveryStatusIcon extends StatelessWidget {
+  final bool retrying;
+  final VoidCallback? onRetry;
+
+  const _DeliveryStatusIcon({required this.retrying, this.onRetry});
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final cs = Theme.of(context).colorScheme;
+    if (retrying) {
+      return Semantics(
+        label: l10n.messageRetrying,
+        child: Padding(
+          padding: const EdgeInsets.only(top: 12),
+          child: SizedBox(
+            width: 16,
+            height: 16,
+            child: CircularProgressIndicator(
+              strokeWidth: 2,
+              color: cs.onSurfaceVariant,
+            ),
+          ),
+        ),
+      );
+    }
+    return Semantics(
+      button: onRetry != null,
+      label: l10n.messageNotDeliveredA11y,
+      excludeSemantics: true,
+      child: InkResponse(
+        onTap: onRetry,
+        radius: 20,
+        child: Padding(
+          padding: const EdgeInsets.only(top: 8),
+          child: Icon(Icons.error_rounded, color: cs.error, size: 22),
+        ),
+      ),
+    );
+  }
+}
+
+/// "Not delivered · Tap to retry" (or "Sending…") under a failed user bubble.
+class _DeliveryStatusLine extends StatelessWidget {
+  final bool retrying;
+  final VoidCallback? onRetry;
+  final double trailingInset;
+
+  const _DeliveryStatusLine({
+    required this.retrying,
+    this.onRetry,
+    this.trailingInset = 0,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final cs = Theme.of(context).colorScheme;
+    final text = retrying ? l10n.messageRetrying : l10n.messageNotDelivered;
+    return Padding(
+      padding: EdgeInsets.only(top: 2, bottom: 4, right: 4 + trailingInset),
+      child: Semantics(
+        button: !retrying && onRetry != null,
+        child: InkWell(
+          onTap: retrying ? null : onRetry,
+          borderRadius: BorderRadius.circular(8),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 3),
+            child: Text(
+              text,
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+                color: retrying ? cs.onSurfaceVariant : cs.error,
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

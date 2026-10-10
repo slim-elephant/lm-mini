@@ -32,6 +32,7 @@ import '../utils/app_navigator.dart';
 import '../utils/remote_host_backends.dart';
 import '../utils/server_reachability.dart';
 import '../utils/network_preflight_error.dart';
+import '../utils/connection_issue.dart';
 import '../services/network_status_service.dart';
 import '../utils/server_model_memory.dart';
 import '../utils/param_preset_key.dart';
@@ -106,6 +107,27 @@ class SettingsProvider with ChangeNotifier {
   String? get connectionError => _connectionError;
   bool get hasAttemptedConnection => _hasAttemptedConnection;
   bool get showSupportSection => _showSupportSection;
+
+  /// The single issue Settings / launch popups should explain for the
+  /// global provider (same rules as the chat banner). [error] defaults to
+  /// [connectionError].
+  ConnectionIssue? resolveGlobalConnectionIssue({String? error}) {
+    final kind = _settings.activeProviderKind;
+    final isCloud = isCloudProviderKind(kind);
+    final cp = isCloud ? resolveCloudProvider() : null;
+    final target = cp == null
+        ? _settings
+        : _settings.copyWith(serverUrl: cp.effectiveBaseUrl);
+    return resolveConnectionIssue(
+      settings: target,
+      net: NetworkStatusService.instance.snapshot,
+      providerName: kind == 'cloud'
+          ? (cp?.type.displayName ?? 'the server')
+          : RemoteHostBackends.displayName(kind),
+      connectionError: error ?? _connectionError,
+      localAccessProven: ServerReachability.hasEverReachedLocalHost,
+    );
+  }
 
   /// Dismiss the chat/settings connection error banner.
   void clearConnectionError() {
@@ -2132,7 +2154,10 @@ class SettingsProvider with ChangeNotifier {
   /// Sync remote auth token on LMStudioService / Ollama / CloudApi (startup).
   void _syncRemoteAuthToken() {
     final token = _settings.isRemoteActive ? _settings.remoteAuthToken : null;
+    final relayUrl =
+        _settings.isRemoteActive ? _settings.remoteServerUrl : null;
     _lmStudioService.remoteAuthToken = token;
+    _lmStudioService.remoteRelayBaseUrl = relayUrl;
     _lmStudioService.remoteBackend =
         _settings.isRemoteActive ? remoteBackendKind : null;
     _lmStudioService.customHeaders = _settings.effectiveExtraHeaders;
@@ -2140,7 +2165,9 @@ class SettingsProvider with ChangeNotifier {
         (_settings.isRemoteActive && _settings.activeProviderKind == 'ollama')
             ? token
             : null;
+    OllamaService.instance.remoteRelayBaseUrl = relayUrl;
     CloudApiService().remoteAuthToken = token;
+    CloudApiService().remoteRelayBaseUrl = relayUrl;
   }
 
   // ── USB Mode ────────────────────────────────────────────────

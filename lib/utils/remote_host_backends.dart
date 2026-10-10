@@ -211,6 +211,8 @@ class RemoteHostBackends {
     final remote = settings.isRemoteActive &&
         (settings.remoteAuthToken?.isNotEmpty ?? false);
     client.remoteAuthToken = remote ? settings.remoteAuthToken : null;
+    // Relay headers are only attached to requests under this URL.
+    client.remoteRelayBaseUrl = remote ? settings.remoteServerUrl : null;
     if (!remote) {
       client.remoteBackend = null;
       client.customHeaders = settings.effectiveExtraHeaders;

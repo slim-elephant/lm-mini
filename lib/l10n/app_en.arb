@@ -1682,13 +1682,13 @@
   },
   "networkOfflineTitle": "You're offline",
   "networkOfflineBody": "Connect to Wi-Fi or mobile data and try again.",
-  "networkNeedsWifiTitle": "On mobile data — {provider} needs your home Wi-Fi",
+  "networkNeedsWifiTitle": "On mobile data — {provider} needs Wi-Fi",
   "@networkNeedsWifiTitle": {
     "placeholders": {
       "provider": { "type": "String" }
     }
   },
-  "networkNeedsWifiBody": "{provider} on your computer ({host}) is only reachable on your home Wi-Fi. Join that Wi-Fi, or turn on Remote Access to use it from anywhere.",
+  "networkNeedsWifiBody": "{provider} on your computer ({host}) is only reachable on the same Wi-Fi network as your computer. Connect to that Wi-Fi, or turn on Remote Access to use it from anywhere.",
   "@networkNeedsWifiBody": {
     "placeholders": {
       "provider": { "type": "String" },
@@ -1701,9 +1701,13 @@
       "provider": { "type": "String" }
     }
   },
-  "networkLostWifiBody": "Your phone left the Wi-Fi. Rejoin your home Wi-Fi, or turn on Remote Access to keep chatting from anywhere.",
+  "networkLostWifiBody": "Your phone left the Wi-Fi. Reconnect to the same Wi-Fi as your computer, or turn on Remote Access to keep chatting from anywhere.",
   "networkUseRemoteAccess": "Use Remote Access",
   "networkSwitchProvider": "Switch provider",
+  "messageNotDelivered": "Not delivered · Tap to retry",
+  "@messageNotDelivered": { "description": "Under a user chat bubble whose send failed; tapping retries." },
+  "messageRetrying": "Sending…",
+  "messageNotDeliveredA11y": "Message not delivered. Tap to retry.",
   "previewUserMessage": "What's the socket on this board?",
   "bubbleAvatarSizeLabel": "Picture size",
   "bubbleAvatarRadiusValue": "Size {value}",
@@ -3215,5 +3219,33 @@
   "personaMemoryOwnOnlyNote": "This persona keeps its own memories: it only sees what it learned in its own chats, never your shared memories.",
   "@personaMemoryOwnOnlyNote": {
     "description": "Persona editor: shown instead of the memory category chips when the persona files memories as private or lore."
+  },
+  "remoteAccessSwitchTitle": "Use Remote Access",
+  "@remoteAccessSwitchTitle": {
+    "description": "Remote Access on/off switch label (keeps the pairing)."
+  },
+  "remoteAccessSwitchOnSubtitle": "On: reach your computer from anywhere.",
+  "@remoteAccessSwitchOnSubtitle": {
+    "description": "Remote Access switch subtitle when on."
+  },
+  "remoteAccessSwitchOffSubtitle": "Off: uses your home network server. Your pairing is kept.",
+  "@remoteAccessSwitchOffSubtitle": {
+    "description": "Remote Access switch subtitle when off."
+  },
+  "remoteAccessSwitchConnecting": "Connecting to your computer…",
+  "@remoteAccessSwitchConnecting": {
+    "description": "Accessibility label while the Remote Access switch reconnects."
+  },
+  "remoteAccessUnreachable": "Remote Access is on, but your computer isn't answering. Make sure it's awake and sharing.",
+  "@remoteAccessUnreachable": {
+    "description": "SnackBar after turning Remote Access on when the paired computer does not answer."
+  },
+  "remoteAccessTurnOnFailed": "Couldn't turn on Remote Access. Try again.",
+  "@remoteAccessTurnOnFailed": {
+    "description": "SnackBar when turning Remote Access on failed."
+  },
+  "remoteAccessTurnOffFailed": "Couldn't turn off Remote Access. Try again.",
+  "@remoteAccessTurnOffFailed": {
+    "description": "SnackBar when turning Remote Access off failed."
   }
 }

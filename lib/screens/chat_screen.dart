@@ -29,6 +29,10 @@ import '../widgets/setup_help_banner.dart';
 import '../widgets/network_status_banner.dart';
 import '../widgets/full_width_streaming_status.dart';
 import '../utils/network_preflight_error.dart';
+import '../utils/connection_issue.dart';
+import '../utils/server_reachability.dart';
+import '../services/network_status_service.dart';
+import 'providers_screen.dart';
 import '../utils/streaming_phase.dart';
 import '../l10n/app_localizations.dart';
 import '../services/call_service.dart';
@@ -42,7 +46,6 @@ import '../utils/kokoro_speaker_resolver.dart';
 import '../utils/elevenlabs_voice_resolver.dart';
 import '../utils/grok_voice_resolver.dart';
 import '../utils/tts_engine.dart';
-import '../services/local_network_service.dart';
 import '../services/on_device_llm_service.dart';
 import '../utils/chat_reasoning_toggle.dart';
 import '../utils/image_picker_helper.dart';
@@ -1270,88 +1273,81 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                         onAdjustMaxTokens: () =>
                                             _openModelParameters(context),
                                       ),
-                                    // Chat error banner (dismissible with expandable details)
-                                    if (chatProvider.error != null)
-                                      _ErrorBanner(
-                                        error: chatProvider.error!,
-                                        errorDetail: chatProvider.errorDetail,
-                                        onDismiss: () =>
-                                            chatProvider.clearError(),
-                                        serverUrl:
-                                            settingsProvider.settings.serverUrl,
-                                        isRemoteActive: settingsProvider
-                                            .settings.isRemoteActive,
-                                        usbModeEnabled: settingsProvider
-                                            .settings.usbModeEnabled,
-                                        providerKind: settingsProvider
-                                            .settings.activeProviderKind,
-                                        selectedModel: settingsProvider
-                                            .settings.selectedModel,
-                                        onSelectModel: () => _openSelectModel(
-                                          context,
+                                    // ONE connection / error banner for this
+                                    // chat (resolveConnectionIssue). Offline /
+                                    // mobile data render as the pill above the
+                                    // composer instead, never up here too.
+                                    ListenableBuilder(
+                                      listenable:
+                                          NetworkStatusService.instance,
+                                      builder: (context, _) {
+                                        final issue = _connectionIssue(
+                                          chatProvider,
                                           settingsProvider,
-                                        ),
-                                        onGoToModels: () =>
-                                            _openModelManagement(context),
-                                        onAdjustMaxTokens: () =>
-                                            _openModelParameters(context),
-                                        onOpenImageSettings: () =>
-                                            _openImageGenerationSettings(
-                                          context,
-                                        ),
-                                        onCompressAndResend: chatProvider
-                                                .canCompressAndResendImages
-                                            ? () => chatProvider
-                                                    .compressLastImagesAndResend(
-                                                  settingsProvider.settings,
-                                                  settingsProvider:
-                                                      settingsProvider,
-                                                  uiContext: context,
-                                                )
-                                            : null,
-                                        largeImageBytes: chatProvider
-                                            .latestLargeUserImageBytes,
-                                      ),
-
-                                    // Connection status — only relevant for LM Studio.
-                                    // On-Device / Cloud / Apple Intelligence don't depend
-                                    // on the LM Studio HTTP endpoint, so suppress the
-                                    // misleading red banner there.
-                                    if (settingsProvider.connectionError !=
-                                            null &&
-                                        _showsServerConnectionBanner(
-                                          settingsProvider,
-                                        ))
-                                      _ErrorBanner(
-                                        error:
-                                            settingsProvider.connectionError!,
-                                        errorDetail:
-                                            settingsProvider.connectionError,
-                                        onDismiss: () => settingsProvider
-                                            .clearConnectionError(),
-                                        serverUrl:
-                                            settingsProvider.settings.serverUrl,
-                                        isRemoteActive: settingsProvider
-                                            .settings.isRemoteActive,
-                                        usbModeEnabled: settingsProvider
-                                            .settings.usbModeEnabled,
-                                        providerKind: settingsProvider
-                                            .settings.activeProviderKind,
-                                        selectedModel: settingsProvider
-                                            .settings.selectedModel,
-                                        onSelectModel: () => _openSelectModel(
-                                          context,
-                                          settingsProvider,
-                                        ),
-                                        onGoToModels: () =>
-                                            _openModelManagement(context),
-                                        onAdjustMaxTokens: () =>
-                                            _openModelParameters(context),
-                                        onOpenImageSettings: () =>
-                                            _openImageGenerationSettings(
-                                          context,
-                                        ),
-                                      ),
+                                        );
+                                        if (issue == null ||
+                                            issue.isNetworkState) {
+                                          return const SizedBox.shrink();
+                                        }
+                                        final fromChat = issue.source ==
+                                            ConnectionIssueSource.chat;
+                                        return _ErrorBanner(
+                                          issue: issue,
+                                          error: fromChat
+                                              ? (chatProvider.error ??
+                                                  issue.error ??
+                                                  '')
+                                              : (issue.error ?? ''),
+                                          errorDetail: fromChat
+                                              ? chatProvider.errorDetail
+                                              : issue.detail,
+                                          onDismiss: fromChat
+                                              ? chatProvider.clearError
+                                              : settingsProvider
+                                                  .clearConnectionError,
+                                          serverUrl: settingsProvider
+                                              .settings.serverUrl,
+                                          isRemoteActive: settingsProvider
+                                              .settings.isRemoteActive,
+                                          usbModeEnabled: settingsProvider
+                                              .settings.usbModeEnabled,
+                                          providerKind: settingsProvider
+                                              .settings.activeProviderKind,
+                                          selectedModel: settingsProvider
+                                              .settings.selectedModel,
+                                          onSelectModel: () =>
+                                              _openSelectModel(
+                                            context,
+                                            settingsProvider,
+                                          ),
+                                          onSwitchProvider: () =>
+                                              _openProviders(context),
+                                          onGoToModels: () =>
+                                              _openModelManagement(context),
+                                          onAdjustMaxTokens: () =>
+                                              _openModelParameters(context),
+                                          onOpenImageSettings: () =>
+                                              _openImageGenerationSettings(
+                                            context,
+                                          ),
+                                          onCompressAndResend: fromChat &&
+                                                  chatProvider
+                                                      .canCompressAndResendImages
+                                              ? () => chatProvider
+                                                      .compressLastImagesAndResend(
+                                                    settingsProvider.settings,
+                                                    settingsProvider:
+                                                        settingsProvider,
+                                                    uiContext: context,
+                                                  )
+                                              : null,
+                                          largeImageBytes: fromChat
+                                              ? chatProvider
+                                                  .latestLargeUserImageBytes
+                                              : null,
+                                        );
+                                      },
+                                    ),
 
                                     // SearXNG V0 notice (one-time, resets on re-toggle)
                                     if (showSearxngV0Notice)
@@ -1650,6 +1646,16 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                                       final m =
                                                                           messages[
                                                                               i];
+                                                                      // A later "Not delivered" turn: retry
+                                                                      // that bubble, don't regenerate (and
+                                                                      // delete) it from here.
+                                                                      if (m.role ==
+                                                                              'user' &&
+                                                                          chatProvider.failedMessageIds.contains(m.id)) {
+                                                                        isLastAssistantMessage =
+                                                                            false;
+                                                                        break;
+                                                                      }
                                                                       if (m.role ==
                                                                               'assistant' &&
                                                                           !m.content.startsWith(
@@ -1859,6 +1865,26 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                                                           .updateMessageInPlace(
                                                                               updated);
                                                                     },
+                                                                    // "Not delivered · Tap to retry"
+                                                                    isFailed: message.role ==
+                                                                            'user' &&
+                                                                        chatProvider.failedMessageIds.contains(message.id),
+                                                                    isRetrying: message.role ==
+                                                                            'user' &&
+                                                                        chatProvider.retryingMessageId ==
+                                                                            message.id,
+                                                                    onRetry: message.role ==
+                                                                                'user' &&
+                                                                            !chatProvider
+                                                                                .isSendingMessage
+                                                                        ? () => chatProvider
+                                                                                .retryFailedMessage(
+                                                                              message.id,
+                                                                              settingsProvider.settings,
+                                                                              settingsProvider: settingsProvider,
+                                                                              uiContext: context,
+                                                                            )
+                                                                        : null,
                                                                   ),
                                                                 );
                                                               },
@@ -1964,33 +1990,41 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                       _proGroupAskBar(context, chatProvider,
                                           settingsProvider, groupChatLocked),
 
-                                    // Offline / mobile data with a home-LAN
-                                    // provider — hides itself when it clears.
-                                    if (!NetworkPreflightError.matches(
-                                            chatProvider.error) &&
-                                        !NetworkPreflightError.matches(
-                                            settingsProvider.connectionError))
-                                      NetworkStatusBanner(
-                                        isGroupChat: chatProvider.isGroupChat,
-                                        resolveTarget: () {
-                                          final t = chatProvider
-                                              .networkTargetSettings(
-                                                  settingsProvider.settings);
-                                          return NetworkBannerTarget(
-                                            providerKind: t.activeProviderKind,
-                                            serverUrl: t.serverUrl,
-                                            isRemoteActive: t.isRemoteActive,
-                                            usbModeEnabled: t.usbModeEnabled,
-                                            providerName: chatProvider
-                                                .networkProviderName(t),
-                                          );
-                                        },
-                                        onSwitchProvider: () =>
-                                            _openSelectModel(
-                                          context,
+                                    // Offline / mobile data with a LAN
+                                    // provider — the only place those show
+                                    // (a failed send expands it with the
+                                    // explanation; the bubble says "Not
+                                    // delivered"). Hides when it clears.
+                                    ListenableBuilder(
+                                      listenable:
+                                          NetworkStatusService.instance,
+                                      builder: (context, _) {
+                                        final issue = _connectionIssue(
+                                          chatProvider,
                                           settingsProvider,
-                                        ),
-                                      ),
+                                        );
+                                        return NetworkStatusBanner(
+                                          issue: issue != null &&
+                                                  issue.isNetworkState
+                                              ? issue
+                                              : null,
+                                          onDismiss: () {
+                                            if (NetworkPreflightError.matches(
+                                                chatProvider.error)) {
+                                              chatProvider.clearError();
+                                            }
+                                            if (NetworkPreflightError.matches(
+                                                settingsProvider
+                                                    .connectionError)) {
+                                              settingsProvider
+                                                  .clearConnectionError();
+                                            }
+                                          },
+                                          onSwitchProvider: () =>
+                                              _openProviders(context),
+                                        );
+                                      },
+                                    ),
 
                                     // Streaming / loading — directly above the composer
                                     // (hidden in full-width view; status lives in the reply).
@@ -2471,6 +2505,37 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
     return AppLocalizations.of(context).streamingPhaseConnecting(
       StreamingPhase.connectingTarget(status),
     );
+  }
+
+  /// The single connection issue for this chat (see resolveConnectionIssue).
+  ConnectionIssue? _connectionIssue(
+    ChatProvider chatProvider,
+    SettingsProvider settingsProvider,
+  ) {
+    final target = chatProvider.networkTargetSettings(settingsProvider.settings);
+    return resolveConnectionIssue(
+      settings: target,
+      net: NetworkStatusService.instance.snapshot,
+      providerName: chatProvider.networkProviderName(target),
+      chatError: chatProvider.error,
+      chatErrorDetail: chatProvider.errorDetail,
+      // Model-list / health errors only apply to LAN-style servers.
+      connectionError: _showsServerConnectionBanner(settingsProvider)
+          ? settingsProvider.connectionError
+          : null,
+      lanCheck: !chatProvider.isGroupChat,
+      localAccessProven: ServerReachability.hasEverReachedLocalHost,
+    );
+  }
+
+  /// "Switch provider": the full servers / providers list (same screen as
+  /// Settings → More servers), not the model picker.
+  Future<void> _openProviders(BuildContext context) async {
+    await Navigator.of(context).push(
+      MaterialPageRoute(builder: (_) => const ProvidersScreen()),
+    );
+    if (!mounted) return;
+    ServerReachability.clearCache();
   }
 
   Future<void> _openSelectModel(
@@ -3638,6 +3703,8 @@ class _ThinkingBudgetBanner extends StatelessWidget {
 
 /// Compact error banner with optional model actions + local-network hint.
 class _ErrorBanner extends StatelessWidget {
+  /// What [resolveConnectionIssue] decided this banner is about.
+  final ConnectionIssue issue;
   final String error;
   final String? errorDetail;
   final VoidCallback onDismiss;
@@ -3647,6 +3714,7 @@ class _ErrorBanner extends StatelessWidget {
   final String? providerKind;
   final String? selectedModel;
   final VoidCallback? onSelectModel;
+  final VoidCallback? onSwitchProvider;
   final VoidCallback? onGoToModels;
   final VoidCallback? onAdjustMaxTokens;
   final VoidCallback? onOpenImageSettings;
@@ -3654,6 +3722,7 @@ class _ErrorBanner extends StatelessWidget {
   final int? largeImageBytes;
 
   const _ErrorBanner({
+    required this.issue,
     required this.error,
     this.errorDetail,
     required this.onDismiss,
@@ -3663,6 +3732,7 @@ class _ErrorBanner extends StatelessWidget {
     this.providerKind,
     this.selectedModel,
     this.onSelectModel,
+    this.onSwitchProvider,
     this.onGoToModels,
     this.onAdjustMaxTokens,
     this.onOpenImageSettings,
@@ -3679,25 +3749,24 @@ class _ErrorBanner extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final isIOS = Platform.isIOS;
-    final isLocalUrl =
-        serverUrl != null && LocalNetworkService.isLocalNetworkUrl(serverUrl!);
     final detailBlob = _blob;
-    final isLikelyNetworkIssue = isIOS &&
-        isLocalUrl &&
-        LocalNetworkService.isLikelyLocalNetworkPermissionIssue(detailBlob);
+    // Only when the resolver saw iOS + Wi‑Fi + a LAN host + the permission
+    // signature — never on mobile data.
+    final isLikelyNetworkIssue =
+        issue.kind == ConnectionIssueKind.localNetworkPermission;
 
     final textColor = isDark
         ? const Color(0xFFFFB4AB)
         : Theme.of(context).colorScheme.onErrorContainer;
 
-    // Offline / mobile data / Wi‑Fi lost: plain copy + Remote Access action.
-    final netIssue = NetworkPreflightError.parse(detailBlob);
+    // Wi‑Fi lost mid-reply: plain copy + Remote Access action. (Offline /
+    // mobile data never reach here — they are the composer pill.)
+    final netIssue = issue.networkIssue;
     if (netIssue != null) {
       return NetworkIssueBanner(
         issue: netIssue,
         onDismiss: onDismiss,
-        onSwitchProvider: onSelectModel,
+        onSwitchProvider: onSwitchProvider,
       );
     }
 

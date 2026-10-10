@@ -3894,12 +3894,12 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String networkNeedsWifiTitle(String provider) {
-    return 'Mobile Daten – $provider braucht dein WLAN zu Hause';
+    return 'Mobile Daten – $provider braucht WLAN';
   }
 
   @override
   String networkNeedsWifiBody(String provider, String host) {
-    return '$provider auf deinem Computer ($host) ist nur über dein WLAN zu Hause erreichbar. Verbinde dich mit diesem WLAN oder schalte Fernzugriff ein, um es überall zu nutzen.';
+    return '$provider auf deinem Computer ($host) ist nur im selben WLAN wie dein Computer erreichbar. Verbinde dich mit diesem WLAN oder schalte Fernzugriff ein, um es überall zu nutzen.';
   }
 
   @override
@@ -3909,13 +3909,23 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get networkLostWifiBody =>
-      'Dein Handy ist nicht mehr im WLAN. Verbinde dich wieder mit deinem WLAN zu Hause oder schalte Fernzugriff ein, um überall weiterzuchatten.';
+      'Dein Handy ist nicht mehr im WLAN. Verbinde dich wieder mit demselben WLAN wie dein Computer oder schalte Fernzugriff ein, um überall weiterzuchatten.';
 
   @override
   String get networkUseRemoteAccess => 'Fernzugriff nutzen';
 
   @override
   String get networkSwitchProvider => 'Anbieter wechseln';
+
+  @override
+  String get messageNotDelivered => 'Nicht zugestellt · Tippen zum Wiederholen';
+
+  @override
+  String get messageRetrying => 'Wird gesendet…';
+
+  @override
+  String get messageNotDeliveredA11y =>
+      'Nachricht nicht zugestellt. Tippen zum Wiederholen.';
 
   @override
   String get previewUserMessage => 'Welchen Sockel hat dieses Board?';
@@ -7352,4 +7362,30 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get personaMemoryOwnOnlyNote =>
       'Diese Persona hat ein eigenes Gedächtnis: Sie sieht nur, was sie in ihren eigenen Chats gelernt hat, nie deine geteilten Erinnerungen.';
+
+  @override
+  String get remoteAccessSwitchTitle => 'Fernzugriff verwenden';
+
+  @override
+  String get remoteAccessSwitchOnSubtitle =>
+      'An: Erreiche deinen Computer von überall.';
+
+  @override
+  String get remoteAccessSwitchOffSubtitle =>
+      'Aus: Nutzt den Server in deinem Heimnetz. Die Kopplung bleibt erhalten.';
+
+  @override
+  String get remoteAccessSwitchConnecting => 'Verbinde mit deinem Computer…';
+
+  @override
+  String get remoteAccessUnreachable =>
+      'Fernzugriff ist an, aber dein Computer antwortet nicht. Achte darauf, dass er wach ist und freigibt.';
+
+  @override
+  String get remoteAccessTurnOnFailed =>
+      'Fernzugriff konnte nicht eingeschaltet werden. Versuch es noch einmal.';
+
+  @override
+  String get remoteAccessTurnOffFailed =>
+      'Fernzugriff konnte nicht ausgeschaltet werden. Versuch es noch einmal.';
 }

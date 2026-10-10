@@ -9,6 +9,7 @@ import '../models/message_stats.dart';
 import '../utils/chat_message_normalizer.dart';
 import '../utils/log_redaction.dart';
 import '../utils/ollama_tool_support.dart';
+import '../utils/relay_url.dart';
 import '../utils/server_http_client.dart';
 
 /// Native Ollama HTTP client (`/api/chat`, `/api/tags`, `/api/show`).
@@ -32,6 +33,9 @@ class OllamaService {
   /// Relay auth token when remote LM Connect is active.
   String? remoteAuthToken;
 
+  /// Paired relay base URL. Relay headers only go to requests under it.
+  String? remoteRelayBaseUrl;
+
   /// True while any `/api/chat` (or pull) client is still open.
   static bool get hasActiveStreams => _activeStreamClients.isNotEmpty;
 
@@ -49,20 +53,42 @@ class OllamaService {
     }
   }
 
-  Map<String, String> _headers({String? apiToken}) {
+  Map<String, String> _headers({
+    required String requestUrl,
+    String? apiToken,
+    Map<String, String>? extraHeaders,
+  }) {
     final headers = <String, String>{
       'Content-Type': 'application/json',
       'Accept': 'application/x-ndjson, application/json',
-      // Tell LM Mini Connect to route to the local Ollama process.
-      'X-LM-Mini-Backend': 'ollama',
     };
     final token = apiToken?.trim();
     if (token != null && token.isNotEmpty) {
       headers['Authorization'] = 'Bearer $token';
     }
-    final relay = remoteAuthToken?.trim();
-    if (relay != null && relay.isNotEmpty) {
-      headers['X-LM-Mini-Token'] = relay;
+    // Provider custom headers (e.g. a proxy in front of Ollama). Never let
+    // them override body framing.
+    extraHeaders?.forEach((key, value) {
+      final k = key.trim();
+      final lower = k.toLowerCase();
+      if (k.isEmpty ||
+          lower == 'content-length' ||
+          lower == 'transfer-encoding' ||
+          lower == 'host' ||
+          lower == 'connection' ||
+          lower == 'expect') {
+        return;
+      }
+      headers[k] = value;
+    });
+    // Relay token + routing header only for the paired relay URL.
+    if (isRelayRequestUrl(requestUrl, remoteRelayBaseUrl)) {
+      // Tell LM Mini Connect to route to the local Ollama process.
+      headers['X-LM-Mini-Backend'] = 'ollama';
+      final relay = remoteAuthToken?.trim();
+      if (relay != null && relay.isNotEmpty) {
+        headers['X-LM-Mini-Token'] = relay;
+      }
     }
     return headers;
   }
@@ -85,7 +111,8 @@ class OllamaService {
   }) async {
     final base = _normalizeBase(baseUrl);
     final response = await http
-        .get(Uri.parse('$base/api/tags'), headers: _headers(apiToken: apiToken))
+        .get(Uri.parse('$base/api/tags'),
+            headers: _headers(requestUrl: base, apiToken: apiToken))
         .timeout(const Duration(seconds: 15));
     if (response.statusCode != 200) {
       throw Exception(
@@ -153,7 +180,7 @@ class OllamaService {
 
     try {
       final request = http.Request('POST', Uri.parse('$base/api/pull'));
-      request.headers.addAll(_headers(apiToken: apiToken));
+      request.headers.addAll(_headers(requestUrl: base, apiToken: apiToken));
       request.body = jsonEncode({
         'model': name,
         'stream': true,
@@ -221,7 +248,7 @@ class OllamaService {
       final response = await http
           .post(
             Uri.parse('$base/api/show'),
-            headers: _headers(apiToken: apiToken),
+            headers: _headers(requestUrl: base, apiToken: apiToken),
             body: jsonEncode({'model': model, 'name': model}),
           )
           .timeout(_showTimeout);
@@ -355,7 +382,12 @@ class OllamaService {
     _activeStreamClients.add(client);
     try {
       final request = http.Request('POST', Uri.parse('$base/api/chat'));
-      request.headers.addAll(_headers(apiToken: apiToken));
+      request.headers.addAll(_headers(
+        requestUrl: base,
+        apiToken: apiToken,
+        // Patched per provider: the Ollama provider's own custom headers.
+        extraHeaders: settings.effectiveExtraHeaders,
+      ));
       request.body = jsonEncode(requestBody);
 
       final streamedResponse = await client.send(request);

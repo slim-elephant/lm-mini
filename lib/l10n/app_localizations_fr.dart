@@ -3904,12 +3904,12 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String networkNeedsWifiTitle(String provider) {
-    return 'En données mobiles — $provider a besoin du Wi-Fi de la maison';
+    return 'En données mobiles — $provider a besoin du Wi-Fi';
   }
 
   @override
   String networkNeedsWifiBody(String provider, String host) {
-    return '$provider sur votre ordinateur ($host) n’est accessible que depuis le Wi-Fi de la maison. Rejoignez ce Wi-Fi, ou activez l’accès à distance pour l’utiliser partout.';
+    return '$provider sur votre ordinateur ($host) n’est accessible que depuis le même réseau Wi-Fi que votre ordinateur. Connectez-vous à ce Wi-Fi, ou activez l’accès à distance pour l’utiliser partout.';
   }
 
   @override
@@ -3919,13 +3919,23 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get networkLostWifiBody =>
-      'Votre téléphone a quitté le Wi-Fi. Reconnectez-vous au Wi-Fi de la maison, ou activez l’accès à distance pour continuer à discuter partout.';
+      'Votre téléphone a quitté le Wi-Fi. Reconnectez-vous au même Wi-Fi que votre ordinateur, ou activez l’accès à distance pour continuer à discuter partout.';
 
   @override
   String get networkUseRemoteAccess => 'Utiliser l’accès à distance';
 
   @override
   String get networkSwitchProvider => 'Changer de fournisseur';
+
+  @override
+  String get messageNotDelivered => 'Non distribué · Touchez pour réessayer';
+
+  @override
+  String get messageRetrying => 'Envoi…';
+
+  @override
+  String get messageNotDeliveredA11y =>
+      'Message non distribué. Touchez pour réessayer.';
 
   @override
   String get previewUserMessage => 'Quel socket a cette carte ?';
@@ -7380,4 +7390,30 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get personaMemoryOwnOnlyNote =>
       'Ce persona garde sa propre mémoire : il ne voit que ce qu\'il a appris dans ses propres discussions, jamais tes souvenirs partagés.';
+
+  @override
+  String get remoteAccessSwitchTitle => 'Utiliser l\'accès à distance';
+
+  @override
+  String get remoteAccessSwitchOnSubtitle =>
+      'Activé : accède à ton ordinateur de n’importe où.';
+
+  @override
+  String get remoteAccessSwitchOffSubtitle =>
+      'Désactivé : utilise le serveur de ton réseau domestique. L’appairage est conservé.';
+
+  @override
+  String get remoteAccessSwitchConnecting => 'Connexion à ton ordinateur…';
+
+  @override
+  String get remoteAccessUnreachable =>
+      'L’accès à distance est activé, mais ton ordinateur ne répond pas. Vérifie qu’il est allumé et qu’il partage.';
+
+  @override
+  String get remoteAccessTurnOnFailed =>
+      'Impossible d’activer l’accès à distance. Réessaie.';
+
+  @override
+  String get remoteAccessTurnOffFailed =>
+      'Impossible de désactiver l’accès à distance. Réessaie.';
 }

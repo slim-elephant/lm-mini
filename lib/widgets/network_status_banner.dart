@@ -6,6 +6,7 @@ import '../providers/chat_provider.dart';
 import '../providers/settings_provider.dart';
 import '../screens/remote_access_screen.dart';
 import '../services/network_status_service.dart';
+import '../utils/connection_issue.dart';
 import '../utils/network_preflight_error.dart';
 import '../utils/server_reachability.dart';
 import 'glass_blur.dart';
@@ -95,6 +96,74 @@ List<Widget> networkIssueActions(
   ];
 }
 
+/// Offline / mobile-data explanation as a dialog (Settings "Test",
+/// launch popup) — same copy and actions as the chat pill, never the
+/// generic "Connection failed" or the iOS Local Network hint.
+Future<void> showNetworkIssueDialog(
+  BuildContext context,
+  ConnectionIssue issue, {
+  VoidCallback? onSwitchProvider,
+}) {
+  final l10n = AppLocalizations.of(context);
+  final offline = issue.kind == ConnectionIssueKind.offline;
+  final provider = issue.provider.isEmpty ? 'LM Studio' : issue.provider;
+  final paired = (context
+              .read<SettingsProvider>()
+              .settings
+              .remoteServerUrl ??
+          '')
+      .trim()
+      .isNotEmpty;
+  return showDialog<void>(
+    context: context,
+    builder: (dialogContext) => AlertDialog(
+      icon: Icon(offline ? Icons.cloud_off_rounded : Icons.wifi_off_rounded),
+      title: Text(
+        offline
+            ? l10n.networkOfflineTitle
+            : l10n.networkNeedsWifiTitle(provider),
+        textAlign: TextAlign.center,
+      ),
+      content: Text(
+        offline
+            ? l10n.networkOfflineBody
+            : l10n.networkNeedsWifiBody(
+                provider,
+                issue.host.isEmpty ? '—' : issue.host,
+              ),
+        textAlign: TextAlign.center,
+      ),
+      actionsAlignment: MainAxisAlignment.center,
+      actions: [
+        if (!offline)
+          TextButton(
+            onPressed: () {
+              Navigator.pop(dialogContext);
+              if (context.mounted) {
+                _useRemoteAccess(context, paired: paired);
+              }
+            },
+            child: Text(
+              paired ? l10n.networkUseRemoteAccess : l10n.remoteAccess,
+            ),
+          ),
+        if (!offline && onSwitchProvider != null)
+          TextButton(
+            onPressed: () {
+              Navigator.pop(dialogContext);
+              onSwitchProvider();
+            },
+            child: Text(l10n.networkSwitchProvider),
+          ),
+        FilledButton(
+          onPressed: () => Navigator.pop(dialogContext),
+          child: Text(l10n.dismiss),
+        ),
+      ],
+    ),
+  );
+}
+
 Future<void> _useRemoteAccess(
   BuildContext context, {
   required bool paired,
@@ -124,84 +193,67 @@ Future<void> _useRemoteAccess(
 }
 
 /// Compact frosted pill above the composer while the phone is offline, or on
-/// mobile data with a home-LAN provider. Hides itself when that clears.
+/// mobile data with a LAN provider. This is the ONLY place those two issues
+/// show in a chat — the caller passes what `resolveConnectionIssue` picked
+/// (null hides it). When a send just failed for that reason the pill also
+/// shows the explanation; the failed bubble says "Not delivered".
 class NetworkStatusBanner extends StatefulWidget {
-  /// Chat target settings (per-chat overrides + cloud routing applied).
-  final NetworkBannerTarget Function() resolveTarget;
-  final bool isGroupChat;
+  /// Offline / needsWifi issue to show, or null.
+  final ConnectionIssue? issue;
   final VoidCallback? onSwitchProvider;
+
+  /// Also called when the user closes the pill (clear stored errors).
+  final VoidCallback? onDismiss;
 
   const NetworkStatusBanner({
     super.key,
-    required this.resolveTarget,
-    this.isGroupChat = false,
+    required this.issue,
     this.onSwitchProvider,
+    this.onDismiss,
   });
 
   @override
   State<NetworkStatusBanner> createState() => _NetworkStatusBannerState();
 }
 
-/// The few fields the banner needs from the chat's effective settings.
-class NetworkBannerTarget {
-  final String providerKind;
-  final String serverUrl;
-  final bool isRemoteActive;
-  final bool usbModeEnabled;
-  final String providerName;
-
-  const NetworkBannerTarget({
-    required this.providerKind,
-    required this.serverUrl,
-    required this.isRemoteActive,
-    required this.usbModeEnabled,
-    required this.providerName,
-  });
-}
-
 class _NetworkStatusBannerState extends State<NetworkStatusBanner> {
   /// Dismissed for this exact condition; shows again once it changes.
   String? _dismissedKey;
 
+  /// Source on the previous build — a new failed send (source turns to
+  /// chat) shows the pill again even if it was closed before.
+  ConnectionIssueSource? _lastSource;
+
   @override
   Widget build(BuildContext context) {
-    return ListenableBuilder(
-      listenable: NetworkStatusService.instance,
-      builder: (context, _) {
-        final net = NetworkStatusService.instance.snapshot;
-        // Cheap early out: nothing to say on Wi‑Fi / unknown.
-        if (!net.isOffline && net.hasLocalNetwork) {
-          return const SizedBox.shrink();
-        }
-        final target = widget.resolveTarget();
-        final kind = proactiveNetworkIssue(
-          providerKind: target.providerKind,
-          serverUrl: target.serverUrl,
-          isRemoteActive: target.isRemoteActive,
-          usbModeEnabled: target.usbModeEnabled,
-          isOffline: net.isOffline,
-          hasLocalNetwork: net.hasLocalNetwork,
-          hasVpn: net.hasVpn,
-          lanCheck: !widget.isGroupChat,
-        );
-        final key = '${kind?.name}|${target.serverUrl}|$net';
-        final visible = kind != null && _dismissedKey != key;
-        return AnimatedSize(
-          duration: const Duration(milliseconds: 220),
-          curve: Curves.easeOut,
-          alignment: Alignment.bottomCenter,
-          child: visible
-              ? _buildPill(context, kind, target, key)
-              : const SizedBox(width: double.infinity),
-        );
-      },
+    final issue = widget.issue;
+    if (issue?.source == ConnectionIssueSource.chat &&
+        _lastSource != ConnectionIssueSource.chat) {
+      _dismissedKey = null;
+    }
+    _lastSource = issue?.source;
+    final kind = issue?.networkIssue?.kind;
+    final usable = issue != null &&
+        (kind == NetworkIssueKind.offline ||
+            kind == NetworkIssueKind.needsWifi);
+    final key = usable
+        ? '${kind!.name}|${issue.host}|'
+            '${NetworkStatusService.instance.snapshot}'
+        : null;
+    final visible = usable && _dismissedKey != key;
+    return AnimatedSize(
+      duration: const Duration(milliseconds: 220),
+      curve: Curves.easeOut,
+      alignment: Alignment.bottomCenter,
+      child: visible
+          ? _buildPill(context, issue, key!)
+          : const SizedBox(width: double.infinity),
     );
   }
 
   Widget _buildPill(
     BuildContext context,
-    NetworkIssueKind kind,
-    NetworkBannerTarget target,
+    ConnectionIssue issue,
     String key,
   ) {
     final l10n = AppLocalizations.of(context);
@@ -223,10 +275,20 @@ class _NetworkStatusBannerState extends State<NetworkStatusBanner> {
               Colors.white.withValues(alpha: 0.2),
             ],
     );
-    final offline = kind == NetworkIssueKind.offline;
+    final offline = issue.kind == ConnectionIssueKind.offline;
+    final provider = issue.provider.isEmpty ? 'LM Studio' : issue.provider;
     final title = offline
         ? l10n.networkOfflineTitle
-        : l10n.networkNeedsWifiTitle(target.providerName);
+        : l10n.networkNeedsWifiTitle(provider);
+    // A send just failed for this reason → explain it here (no second
+    // banner on top). Proactive state stays one line.
+    final expanded = issue.source == ConnectionIssueSource.chat;
+    final body = offline
+        ? l10n.networkOfflineBody
+        : l10n.networkNeedsWifiBody(
+            provider,
+            issue.host.isEmpty ? '—' : issue.host,
+          );
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(12, 4, 12, 6),
@@ -277,10 +339,25 @@ class _NetworkStatusBannerState extends State<NetworkStatusBanner> {
                           minHeight: 30,
                         ),
                         tooltip: l10n.dismiss,
-                        onPressed: () => setState(() => _dismissedKey = key),
+                        onPressed: () {
+                          setState(() => _dismissedKey = key);
+                          widget.onDismiss?.call();
+                        },
                       ),
                     ],
                   ),
+                  if (expanded)
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(26, 2, 12, 0),
+                      child: Text(
+                        body,
+                        style: TextStyle(
+                          color: ink.withValues(alpha: 0.78),
+                          fontSize: 12,
+                          height: 1.3,
+                        ),
+                      ),
+                    ),
                   if (!offline) ...[
                     const SizedBox(height: 6),
                     Padding(

@@ -57,6 +57,10 @@ class CloudApiService extends ChangeNotifier {
   /// Relay token when remote LM Mini Connect is active.
   String? remoteAuthToken;
 
+  /// Paired relay base URL. [remoteAuthToken] only goes to providers whose
+  /// base URL is under it (free local servers routed through the relay).
+  String? remoteRelayBaseUrl;
+
   List<CloudApiProvider> get providers => List.unmodifiable(_providers);
   String? get activeProviderId => _activeProviderId;
   CloudApiProvider? get activeProvider {
@@ -434,6 +438,7 @@ class CloudApiService extends ChangeNotifier {
     final relay = remoteAuthToken?.trim();
     if (relay != null &&
         relay.isNotEmpty &&
+        _isUnderRelay(provider.effectiveBaseUrl) &&
         (provider.type == CloudApiType.ollama ||
             provider.type == CloudApiType.omlx ||
             provider.type == CloudApiType.jan ||
@@ -442,6 +447,24 @@ class CloudApiService extends ChangeNotifier {
       headers['X-LM-Mini-Backend'] = provider.type.providerKind;
     }
     return headers;
+  }
+
+  /// Same scheme/host/port as [remoteRelayBaseUrl], path at or under it.
+  bool _isUnderRelay(String url) {
+    final relay = Uri.tryParse(remoteRelayBaseUrl?.trim() ?? '');
+    final target = Uri.tryParse(url.trim());
+    if (relay == null ||
+        target == null ||
+        relay.host.isEmpty ||
+        relay.scheme.toLowerCase() != target.scheme.toLowerCase() ||
+        relay.host.toLowerCase() != target.host.toLowerCase() ||
+        relay.port != target.port) {
+      return false;
+    }
+    final base = relay.path.replaceAll(RegExp(r'/+$'), '');
+    return base.isEmpty ||
+        target.path == base ||
+        target.path.startsWith('$base/');
   }
 
   Map<String, String> _authHeaders(CloudApiProvider provider) =>

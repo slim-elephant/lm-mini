@@ -13,6 +13,8 @@ import 'providers/folder_provider.dart';
 import 'providers/theme_provider.dart';
 import 'screens/adaptive_root.dart';
 import 'screens/settings_screen.dart';
+import 'screens/providers_screen.dart';
+import 'widgets/network_status_banner.dart';
 import 'screens/splash_screen.dart';
 import 'screens/welcome_wizard_screen.dart';
 import 'services/deep_link_service.dart';
@@ -676,6 +678,20 @@ class _AppInitializerState extends State<AppInitializer>
     final l10n = AppLocalizations.of(context);
     final error =
         settingsProvider.connectionError ?? l10n.connectionFailedMessage;
+    // Offline / on mobile data with a LAN server: say that (same copy as the
+    // chat pill), not "Connection failed".
+    final issue = settingsProvider.resolveGlobalConnectionIssue();
+    if (issue != null && issue.isNetworkState) {
+      showNetworkIssueDialog(
+        context,
+        issue,
+        onSwitchProvider: () => Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => const ProvidersScreen()),
+        ),
+      );
+      return;
+    }
     if (settingsProvider.settings.usbModeEnabled) {
       showConnectHostHelpDialog(
         context,

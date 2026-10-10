@@ -105,7 +105,9 @@ class SiriInferenceSnapshot {
       if (extra != null) _mergeHeaders(headers, extra);
     }
 
-    if (settings.isRemoteActive) {
+    // Relay token + routing only for requests to the paired relay URL —
+    // never to a cloud API or LAN host.
+    if (settings.isActiveRelayUrl(chatUrl)) {
       final relay = settings.remoteAuthToken?.trim();
       if (relay != null && relay.isNotEmpty) {
         headers['X-LM-Mini-Token'] = relay;

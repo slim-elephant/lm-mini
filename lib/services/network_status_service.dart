@@ -73,16 +73,25 @@ class NetworkStatusService extends ChangeNotifier {
   Connectivity? _connectivity;
   StreamSubscription<List<ConnectivityResult>>? _sub;
   NetworkSnapshot _snapshot = NetworkSnapshot.unknown;
+
+  /// Debug-only forced snapshot (see [debugOverride]). Wins over the OS.
+  NetworkSnapshot? _override;
   final StreamController<NetworkSnapshot> _changes =
       StreamController<NetworkSnapshot>.broadcast();
   bool _initStarted = false;
 
-  NetworkSnapshot get snapshot => _snapshot;
-  List<ConnectivityResult>? get connectionTypes => _snapshot.types;
-  bool get isOffline => _snapshot.isOffline;
-  bool get hasLocalNetwork => _snapshot.hasLocalNetwork;
-  bool get hasVpn => _snapshot.hasVpn;
-  bool get hasMobile => _snapshot.hasMobile;
+  /// What every caller should use: the debug override when set, else the
+  /// last OS reading. Preflight, banners and the model-list check all read
+  /// this (directly or via [refresh]), so an override is seen everywhere.
+  NetworkSnapshot get snapshot => _override ?? _snapshot;
+  List<ConnectivityResult>? get connectionTypes => snapshot.types;
+  bool get isOffline => snapshot.isOffline;
+  bool get hasLocalNetwork => snapshot.hasLocalNetwork;
+  bool get hasVpn => snapshot.hasVpn;
+  bool get hasMobile => snapshot.hasMobile;
+
+  /// True while [debugOverride] is forcing a snapshot.
+  bool get isOverridden => _override != null;
 
   /// Emits each time the connection set changes.
   Stream<NetworkSnapshot> get changes => _changes.stream;
@@ -109,21 +118,25 @@ class NetworkStatusService extends ChangeNotifier {
     Duration timeout = const Duration(milliseconds: 1200),
   }) async {
     final c = _connectivity;
-    if (c == null) return _snapshot;
+    if (c == null) return snapshot;
     try {
       final r = await c.checkConnectivity().timeout(timeout);
       _apply(r);
     } catch (e) {
       debugPrint('NetworkStatusService: check failed ($e)');
     }
-    return _snapshot;
+    return snapshot;
   }
 
   void _apply(List<ConnectivityResult> results) {
     final next = NetworkSnapshot(List.unmodifiable(results));
     if (next == _snapshot) return;
-    debugPrint('📶 Network: $_snapshot → $next');
+    debugPrint('📶 Network: $_snapshot → $next'
+        '${_override != null ? ' (overridden: $_override)' : ''}');
     _snapshot = next;
+    // While overridden, keep tracking the OS silently; callers keep seeing
+    // the forced snapshot until the override is cleared.
+    if (_override != null) return;
     // A host that answered on Wi‑Fi may be unreachable on 5G (and back).
     ServerReachability.clearCache();
     if (!_changes.isClosed) _changes.add(next);
@@ -139,6 +152,33 @@ class NetworkStatusService extends ChangeNotifier {
       return;
     }
     _apply(types);
+  }
+
+  /// Debug builds / tests only: force the snapshot every caller sees
+  /// (preflight, chat pill, Settings, model-list check) and emit a change,
+  /// so mobile data / offline / Wi‑Fi can be simulated on a simulator.
+  /// Pass null to go back to the real OS reading. No-op in release.
+  ///
+  /// ```dart
+  /// NetworkStatusService.instance.debugOverride(
+  ///     const NetworkSnapshot([ConnectivityResult.mobile])); // 5G
+  /// NetworkStatusService.instance.debugOverride(
+  ///     const NetworkSnapshot([ConnectivityResult.none]));   // offline
+  /// NetworkStatusService.instance.debugOverride(null);       // real
+  /// ```
+  /// Settings shows a "Simulate network" row in debug builds that calls this.
+  void debugOverride(NetworkSnapshot? snapshot) {
+    if (!kDebugMode) return;
+    final before = this.snapshot;
+    _override = snapshot;
+    final after = this.snapshot;
+    debugPrint('📶 Network override: ${snapshot ?? 'cleared'} '
+        '(effective $before → $after)');
+    if (after == before) return;
+    // Same as a real change: cached probe results belong to the old route.
+    ServerReachability.clearCache();
+    if (!_changes.isClosed) _changes.add(after);
+    notifyListeners();
   }
 
   @override

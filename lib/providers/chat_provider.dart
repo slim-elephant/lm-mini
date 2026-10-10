@@ -31,6 +31,7 @@ import '../utils/lms_mcp_error.dart';
 import '../utils/server_unreachable_error.dart';
 import '../utils/server_reachability.dart';
 import '../utils/network_preflight_error.dart';
+import '../utils/failed_messages.dart';
 import '../utils/lms_http_error.dart';
 import '../utils/unique_id.dart';
 import '../models/chat_message.dart';
@@ -82,6 +83,7 @@ part '../pro/chat/chat_provider_memory.dart';
 part '../pro/chat/chat_provider_compact.dart';
 part '../pro/tools/chat_provider_pro_tools.dart';
 part 'chat_provider_network.dart';
+part 'chat_provider_failed.dart';
 
 /// One-shot toast shown by [ChatScreen] after the provider handles an event.
 enum ChatToast {
@@ -222,6 +224,9 @@ class ChatProvider with ChangeNotifier {
   StreamSubscription<NetworkSnapshot>? _networkSub;
   Timer? _networkLossTimer;
   ({String message, String detail})? _networkLossError;
+
+  /// User message being retried in place ("Not delivered · Tap to retry").
+  String? _retryingMessageId;
 
   bool _modelSupportsTools(AppSettings settings) =>
       ToolSupportResolver.instance.currentModelSupportsTools(
@@ -1678,10 +1683,23 @@ class ChatProvider with ChangeNotifier {
     // Only force-off for providers that cannot accept a tools array.
     final enableToolUse =
         cloudProvider.type.supportsTools ? settings.enableToolUse : false;
+    // Swap LM Studio's custom / Cloudflare Access headers for this
+    // provider's own headers so the LM Studio secrets never reach a cloud
+    // API (and a proxied Ollama / OpenAI-compatible host gets its own).
+    final providerHeaders = cloudProvider.customHeadersEnabled
+        ? cloudProvider.customHeaders
+        : null;
+    final hasProviderHeaders =
+        providerHeaders != null && providerHeaders.isNotEmpty;
     return settings.copyWith(
       activeProviderKind: cloudProvider.type.providerKind,
       serverUrl: cloudProvider.effectiveBaseUrl,
       apiToken: apiKey.isEmpty ? null : apiKey,
+      customRequestHeaders:
+          hasProviderHeaders ? Map<String, String>.of(providerHeaders) : null,
+      customHeadersEnabled: hasProviderHeaders,
+      cfAccessClientId: null,
+      cfAccessClientSecret: null,
       selectedModel: hasChatModelOverride
           ? settings.selectedModel
           : (cloudProvider.selectedModel ?? settings.selectedModel),
@@ -2481,10 +2499,29 @@ class ChatProvider with ChangeNotifier {
   }
 
   Future<void> sendMessage(String content, AppSettings settings,
+          {List<String>? imageUrls,
+          List<FileAttachment>? fileAttachments,
+          SettingsProvider? settingsProvider,
+          BuildContext? uiContext}) =>
+      _sendMessageImpl(
+        content,
+        settings,
+        imageUrls: imageUrls,
+        fileAttachments: fileAttachments,
+        settingsProvider: settingsProvider,
+        uiContext: uiContext,
+      );
+
+  /// The whole send pipeline. With [replay] set, the existing user message
+  /// is sent again in place (failed-message retry): no new bubble, anything
+  /// after it (tool-call noise) is removed and the session is rewound to the
+  /// last reply before it, so its text reaches the model exactly once.
+  Future<void> _sendMessageImpl(String content, AppSettings settings,
       {List<String>? imageUrls,
       List<FileAttachment>? fileAttachments,
       SettingsProvider? settingsProvider,
-      BuildContext? uiContext}) async {
+      BuildContext? uiContext,
+      ChatMessage? replay}) async {
     if (_currentConversation == null) return;
 
     // Voice mode fire-and-forget can overlap turns; stacking sends causes
@@ -2510,7 +2547,9 @@ class ChatProvider with ChangeNotifier {
     _shouldCancelGeneration = false; // Reset cancellation flag
     _reviewEligibleReply = false;
     _sendMessageOriginId = _currentConversation!.id;
+    _retryingMessageId = replay?.id;
     _error = null;
+    _errorDetail = null;
     _thinkingBudgetNotice = false;
     _activeLanTarget = null;
     _networkLossError = null;
@@ -2570,6 +2609,7 @@ class ChatProvider with ChangeNotifier {
       await _invalidateSessionIfModelChanged(effectiveSettings.selectedModel);
     }
 
+    String? sentUserMessageId;
     try {
       // Build the message content with file attachments
       String messageContent = content;
@@ -2621,36 +2661,47 @@ class ChatProvider with ChangeNotifier {
             'ChatProvider: Final messageContent length: ${messageContent.length}');
       }
 
-      await _materializeGreetingIfNeeded(settings);
+      final ChatMessage userMessage;
+      if (replay != null) {
+        await _prepareReplayTurn(replay);
+        userMessage = replay;
+        sentUserMessageId = replay.id;
+      } else {
+        await _materializeGreetingIfNeeded(settings);
 
-      // Add user message (display content only, not file contents)
-      final userMessage = ChatMessage(
-        id: _uid(),
-        content: displayContent,
-        role: 'user',
-        timestamp: DateTime.now(),
-        imageUrls: imageUrls,
-        fileAttachments: fileAttachments,
-      );
+        // Add user message (display content only, not file contents)
+        userMessage = ChatMessage(
+          id: _uid(),
+          content: displayContent,
+          role: 'user',
+          timestamp: DateTime.now(),
+          imageUrls: imageUrls,
+          fileAttachments: fileAttachments,
+        );
 
-      try {
-        await _databaseService.insertMessage(
-            userMessage, _currentConversation!.id);
-      } catch (e, st) {
-        debugPrint('ChatProvider: insertMessage failed: $e\n$st');
-        rethrow;
+        try {
+          await _databaseService.insertMessage(
+              userMessage, _currentConversation!.id);
+        } catch (e, st) {
+          debugPrint('ChatProvider: insertMessage failed: $e\n$st');
+          rethrow;
+        }
+        _currentMessages.add(userMessage);
+        sentUserMessageId = userMessage.id;
+        // Touch updatedAt now so the home list (and a relaunch) puts this
+        // chat first even if the reply is still streaming.
+        _currentConversation = _currentConversation!.copyWith(
+          updatedAt: userMessage.timestamp,
+        );
+        await _databaseService.updateConversation(_currentConversation!);
+        _syncConversationInList(_currentConversation!);
+        notifyListeners();
+        debugPrint('ChatProvider: user message saved; '
+            'provider=${effectiveSettings.activeProviderKind}');
       }
-      _currentMessages.add(userMessage);
-      // Touch updatedAt now so the home list (and a relaunch) puts this
-      // chat first even if the reply is still streaming.
-      _currentConversation = _currentConversation!.copyWith(
-        updatedAt: userMessage.timestamp,
-      );
-      await _databaseService.updateConversation(_currentConversation!);
-      _syncConversationInList(_currentConversation!);
-      notifyListeners();
-      debugPrint('ChatProvider: user message saved; '
-          'provider=${effectiveSettings.activeProviderKind}');
+      // Earlier "Not delivered" turns ride along as history (see
+      // _includeUndeliveredTurnsInContext).
+      await _includeUndeliveredTurnsInContext(userMessage.id);
 
       // Build memory context for premium users (per-chat toggle).
       // Honors persona scoping when enabled — single chats use the active
@@ -2698,25 +2749,36 @@ class ChatProvider with ChangeNotifier {
         // servers. Throws NetworkPreflightException → catch below; the user
         // message stays so the send can be retried.
         await _preflightServer(effectiveSettings);
-        if (_shouldCancelGeneration) return;
-        final readySettings = await _ensureChatBackendReady(effectiveSettings);
+        // Stop during preflight: stopGeneration already reset the UI; fall
+        // through so the shared cleanup below still runs.
+        final readySettings = _shouldCancelGeneration
+            ? null
+            : await _ensureChatBackendReady(effectiveSettings);
         if (readySettings == null) {
-          await _databaseService.deleteMessage(userMessage.id);
-          _currentMessages.removeWhere((m) => m.id == userMessage.id);
+          // Setup dialog dismissed with no error: drop the new bubble as
+          // before. A real failure (e.g. model not downloaded) keeps it so
+          // it shows "Not delivered"; a retry always keeps its bubble.
+          if (replay == null &&
+              _error == null &&
+              !_shouldCancelGeneration) {
+            await _databaseService.deleteMessage(userMessage.id);
+            _currentMessages.removeWhere((m) => m.id == userMessage.id);
+            sentUserMessageId = null;
+          }
           notifyListeners();
-          return;
+        } else {
+          effectiveSettings = readySettings;
+          // Cloud provider may change if user picked one in the setup dialog.
+          effectiveCloudProvider =
+              _resolveEffectiveCloudProvider(settings: effectiveSettings);
+          await _routeNetworkAssistantReply(
+            content: messageContent,
+            settings: effectiveSettings,
+            imageUrls: imageUrls,
+            userDisplayContent: displayContent,
+            memoryContext: memoryContext,
+          );
         }
-        effectiveSettings = readySettings;
-        // Cloud provider may change if user picked one in the setup dialog.
-        effectiveCloudProvider =
-            _resolveEffectiveCloudProvider(settings: effectiveSettings);
-        await _routeNetworkAssistantReply(
-          content: messageContent,
-          settings: effectiveSettings,
-          imageUrls: imageUrls,
-          userDisplayContent: displayContent,
-          memoryContext: memoryContext,
-        );
       }
     } catch (e) {
       if (e is NetworkPreflightException) {
@@ -2754,6 +2816,13 @@ class ChatProvider with ChangeNotifier {
       _activeUiContext = null;
     }
     _finishNetworkWatchForSend();
+    // "Not delivered" when this turn errored with no reply; cleared when it
+    // (or a later turn that carried it as history) got one.
+    await _recordSendOutcome(
+      conversationId: _sendMessageOriginId,
+      userMessageId: sentUserMessageId,
+    );
+    _retryingMessageId = null;
 
     // Track successful chat completion for review prompting.
     // Stop / repetition-loop cancels are not successes.
@@ -7171,6 +7240,9 @@ class ChatProvider with ChangeNotifier {
       if (!isOnDevice && !isOllama) {
         await LMStudioService.waitForStreamsIdle();
       }
+      // Headers follow these (cloud-patched) settings, not whatever the
+      // shared client was last configured with.
+      RemoteHostBackends.configureLmStudioClient(_lmStudioService, settings);
 
       String raw;
       if (isOnDevice) {
@@ -7766,6 +7838,7 @@ class ChatProvider with ChangeNotifier {
       updatedAt: DateTime.now(),
     );
     await _databaseService.updateConversation(_currentConversation!);
+    await _includeUndeliveredTurnsInContext(userMessage.id);
 
     notifyListeners();
 
@@ -7842,6 +7915,10 @@ class ChatProvider with ChangeNotifier {
       _activeUiContext = null;
     }
     _finishNetworkWatchForSend();
+    await _recordSendOutcome(
+      conversationId: _sendMessageOriginId,
+      userMessageId: userMessage.id,
+    );
 
     if (_currentConversation?.id == _sendMessageOriginId) {
       _isSendingMessage = false;
@@ -7951,6 +8028,7 @@ class ChatProvider with ChangeNotifier {
       );
       await _databaseService.updateConversation(_currentConversation!);
       _pendingAlternatives = null;
+      await _includeUndeliveredTurnsInContext(userMessage.id);
       notifyListeners();
 
       var effectiveSettings =
@@ -8021,6 +8099,10 @@ class ChatProvider with ChangeNotifier {
       _activeSettingsProvider = null;
       _activeUiContext = null;
       _finishNetworkWatchForSend();
+      await _recordSendOutcome(
+        conversationId: _sendMessageOriginId,
+        userMessageId: userMessage.id,
+      );
       if (_currentConversation?.id == _sendMessageOriginId) {
         _isSendingMessage = false;
         _setStreamingStatus(null);
@@ -8119,6 +8201,7 @@ class ChatProvider with ChangeNotifier {
         updatedAt: DateTime.now(),
       );
       await _databaseService.updateConversation(_currentConversation!);
+      await _includeUndeliveredTurnsInContext(messageId);
       notifyListeners();
 
       // Re-send
@@ -8188,6 +8271,10 @@ class ChatProvider with ChangeNotifier {
         _activeUiContext = null;
       }
       _finishNetworkWatchForSend();
+      await _recordSendOutcome(
+        conversationId: _sendMessageOriginId,
+        userMessageId: messageId,
+      );
 
       if (_currentConversation?.id == _sendMessageOriginId) {
         _isSendingMessage = false;
@@ -8208,7 +8295,71 @@ class ChatProvider with ChangeNotifier {
 
     await _databaseService.deleteMessage(messageId);
     _currentMessages.removeAt(idx);
+    final conv = _currentConversation!;
+    final next = FailedMessages.withRemoved(conv.settings, [messageId]);
+    if (!identical(next, conv.settings)) {
+      await _saveConversationSettings(conv, next, onScreen: true);
+    }
     notifyListeners();
+  }
+
+  /// User messages in the open chat whose send failed with no reply.
+  Set<String> get failedMessageIds =>
+      FailedMessages.read(_currentConversation?.settings);
+
+  /// The failed user message currently being retried in place, if any.
+  String? get retryingMessageId =>
+      _isSendingMessage ? _retryingMessageId : null;
+
+  /// "Tap to retry" on a Not-delivered user bubble.
+  ///
+  /// * Latest user turn with no reply after it → replay that turn in place
+  ///   through the normal send pipeline (preflight, "Connecting to …",
+  ///   streaming, memory, title, image gen) without a duplicate bubble.
+  /// * Older turn (later messages exist) → remove it and send its text and
+  ///   attachments as a new message at the bottom.
+  Future<void> retryFailedMessage(
+    String messageId,
+    AppSettings settings, {
+    SettingsProvider? settingsProvider,
+    BuildContext? uiContext,
+  }) async {
+    if (_currentConversation == null) return;
+    if (_isSendingMessage || _isCompacting) return;
+    // Check the Pro gate before anything is deleted (resend-at-bottom).
+    if (GroupChatProGate.isLocked(this)) {
+      if (uiContext != null && uiContext.mounted) {
+        await GroupChatProGate.showUpgradeDialog(uiContext);
+      }
+      return;
+    }
+    final idx = _currentMessages.indexWhere((m) => m.id == messageId);
+    if (idx < 0) return;
+    final message = _currentMessages[idx];
+    switch (FailedMessages.retryPlan(_currentMessages, messageId)) {
+      case FailedRetryPlan.none:
+        return;
+      case FailedRetryPlan.replayInPlace:
+        await _sendMessageImpl(
+          message.content,
+          settings,
+          imageUrls: message.imageUrls,
+          fileAttachments: message.fileAttachments,
+          settingsProvider: settingsProvider,
+          uiContext: uiContext,
+          replay: message,
+        );
+      case FailedRetryPlan.resendAtBottom:
+        await deleteSingleMessage(messageId);
+        await _sendMessageImpl(
+          message.content,
+          settings,
+          imageUrls: message.imageUrls,
+          fileAttachments: message.fileAttachments,
+          settingsProvider: settingsProvider,
+          uiContext: uiContext,
+        );
+    }
   }
 
   /// Auto-generate an image when the AI provides an imagePrompt and auto-generate is enabled.

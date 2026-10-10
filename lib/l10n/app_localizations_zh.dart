@@ -3700,12 +3700,12 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String networkNeedsWifiTitle(String provider) {
-    return '正在使用移动数据 — $provider 需要家里的 Wi-Fi';
+    return '正在使用移动数据 — $provider 需要 Wi-Fi';
   }
 
   @override
   String networkNeedsWifiBody(String provider, String host) {
-    return '电脑上的 $provider（$host）只能通过家里的 Wi-Fi 访问。请连接该 Wi-Fi，或开启远程访问以便随时随地使用。';
+    return '电脑上的 $provider（$host）只能在与电脑相同的 Wi-Fi 网络中访问。请连接该 Wi-Fi，或开启远程访问以便随时随地使用。';
   }
 
   @override
@@ -3715,13 +3715,22 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get networkLostWifiBody =>
-      '手机已断开 Wi-Fi。请重新连接家里的 Wi-Fi，或开启远程访问以便随时随地继续聊天。';
+      '手机已断开 Wi-Fi。请重新连接与电脑相同的 Wi-Fi，或开启远程访问以便随时随地继续聊天。';
 
   @override
   String get networkUseRemoteAccess => '使用远程访问';
 
   @override
   String get networkSwitchProvider => '切换提供商';
+
+  @override
+  String get messageNotDelivered => '未送达 · 轻点重试';
+
+  @override
+  String get messageRetrying => '正在发送…';
+
+  @override
+  String get messageNotDeliveredA11y => '消息未送达。轻点重试。';
 
   @override
   String get previewUserMessage => '这块主板是什么接口？';
@@ -6978,4 +6987,25 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get personaMemoryOwnOnlyNote => '该角色拥有独立记忆：只能看到在自己聊天中学到的内容，看不到你的共享记忆。';
+
+  @override
+  String get remoteAccessSwitchTitle => '使用远程访问';
+
+  @override
+  String get remoteAccessSwitchOnSubtitle => '开启：随时随地连接你的电脑。';
+
+  @override
+  String get remoteAccessSwitchOffSubtitle => '关闭：使用家庭网络中的服务器。配对会保留。';
+
+  @override
+  String get remoteAccessSwitchConnecting => '正在连接你的电脑…';
+
+  @override
+  String get remoteAccessUnreachable => '远程访问已开启，但电脑没有响应。请确认电脑处于唤醒状态并已开启共享。';
+
+  @override
+  String get remoteAccessTurnOnFailed => '无法开启远程访问，请重试。';
+
+  @override
+  String get remoteAccessTurnOffFailed => '无法关闭远程访问，请重试。';
 }

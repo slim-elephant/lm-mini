@@ -14,6 +14,7 @@ import '../utils/lms_http_error.dart';
 import '../utils/lm_studio_download_cancel.dart';
 import '../utils/model_not_found_error.dart';
 import '../utils/openai_compatible_params.dart';
+import '../utils/relay_url.dart';
 import '../utils/server_http_client.dart';
 import '../utils/unsloth_load.dart';
 import '../utils/image_gen_prompt.dart';
@@ -179,6 +180,15 @@ class LMStudioService {
   /// `lmMiniDesktop`, …). Defaults to LM Studio for Electron Connect.
   String? remoteBackend;
 
+  /// Paired relay base URL (`remoteServerUrl`). [remoteAuthToken] and the
+  /// `X-LM-Mini-Backend` routing header are only sent to requests under it.
+  String? remoteRelayBaseUrl;
+
+  static bool _isLoopbackUrl(String? url) {
+    final host = url == null ? null : Uri.tryParse(url.trim())?.host;
+    return host == '127.0.0.1' || host == 'localhost' || host == '::1';
+  }
+
   /// Arbitrary extra HTTP headers added to every LM Studio request.
   /// Includes Cloudflare Access service-token headers and any user-defined
   /// custom headers. Set by SettingsProvider whenever settings change.
@@ -188,6 +198,7 @@ class LMStudioService {
   /// LM Studio 0.4.0+ supports Bearer token authentication
   /// When remote access is active, also includes the relay auth token
   Map<String, String> _buildHeaders({
+    required String requestUrl,
     String? apiToken,
     bool isStream = false,
     String? backend,
@@ -202,11 +213,18 @@ class LMStudioService {
     if (apiToken != null && apiToken.isNotEmpty) {
       headers['Authorization'] = 'Bearer $apiToken';
     }
-    if (remoteAuthToken != null && remoteAuthToken!.isNotEmpty) {
+    // Relay token + backend routing only ever go to the paired relay —
+    // never to cloud APIs or other hosts sharing this client.
+    final toRelay = isRelayRequestUrl(requestUrl, remoteRelayBaseUrl);
+    if (toRelay && remoteAuthToken != null && remoteAuthToken!.isNotEmpty) {
       headers['X-LM-Mini-Token'] = remoteAuthToken!;
     }
-    // Route through LM Mini Connect to the correct desktop backend.
-    final resolvedBackend = backend ??
+    // Route through LM Mini Connect to the correct desktop backend. The
+    // routing hint (not the token) may also go to a loopback URL — the USB
+    // bridge on this phone — since it never leaves the device.
+    final resolvedBackend = !(toRelay || _isLoopbackUrl(requestUrl))
+        ? null
+        : backend ??
         (cloudProviderType == CloudApiType.omlx
             ? 'omlx'
             : cloudProviderType == CloudApiType.ollama
@@ -656,7 +674,7 @@ class LMStudioService {
     String? apiToken,
   }) async {
     try {
-      final headers = _buildHeaders(apiToken: apiToken);
+      final headers = _buildHeaders(requestUrl: baseUrl, apiToken: apiToken);
       final response = await _serverGet(
         Uri.parse('$baseUrl$_modelsEndpoint'),
         headers: headers,
@@ -900,6 +918,7 @@ class LMStudioService {
       );
 
       request.headers.addAll(_buildHeaders(
+        requestUrl: requestBaseUrl,
         apiToken: apiToken,
         isStream: true,
         cloudProviderType: apiType,
@@ -1403,7 +1422,11 @@ class LMStudioService {
         Uri.parse('$baseUrl$_statefulChatEndpoint'),
       );
 
-      request.headers.addAll(_buildHeaders(apiToken: apiToken, isStream: true));
+      request.headers.addAll(_buildHeaders(
+        requestUrl: baseUrl,
+        apiToken: apiToken,
+        isStream: true,
+      ));
       request.body = jsonEncode(requestBody);
 
       // Dedicated client tracked for cancellation via stopGeneration().
@@ -1956,7 +1979,7 @@ class LMStudioService {
 
       final response = await _serverPost(
         Uri.parse('$baseUrl$_openAIChatEndpoint'),
-        headers: _buildHeaders(apiToken: apiToken),
+        headers: _buildHeaders(requestUrl: baseUrl, apiToken: apiToken),
         body: jsonEncode(requestBody),
       );
 
@@ -2067,7 +2090,7 @@ class LMStudioService {
 
       final response = await _serverPost(
         Uri.parse('$baseUrl$_statefulChatEndpoint'),
-        headers: _buildHeaders(apiToken: apiToken),
+        headers: _buildHeaders(requestUrl: baseUrl, apiToken: apiToken),
         body: jsonEncode(requestBody),
       );
 
@@ -2239,7 +2262,11 @@ class LMStudioService {
         Uri.parse('$baseUrl$_statefulChatEndpoint'),
       );
 
-      request.headers.addAll(_buildHeaders(apiToken: apiToken, isStream: true));
+      request.headers.addAll(_buildHeaders(
+        requestUrl: baseUrl,
+        apiToken: apiToken,
+        isStream: true,
+      ));
 
       request.body = jsonEncode(requestBody);
 
@@ -2750,7 +2777,7 @@ class LMStudioService {
       final response = await http
           .get(
             Uri.parse('$baseUrl$_modelsEndpoint'),
-            headers: _buildHeaders(apiToken: apiToken),
+            headers: _buildHeaders(requestUrl: baseUrl, apiToken: apiToken),
           )
           .timeout(const Duration(seconds: 5));
 
@@ -2761,7 +2788,7 @@ class LMStudioService {
         final openAi = await http
             .get(
               Uri.parse('$baseUrl/v1/models'),
-              headers: _buildHeaders(apiToken: apiToken),
+              headers: _buildHeaders(requestUrl: baseUrl, apiToken: apiToken),
             )
             .timeout(const Duration(seconds: 5));
         if (openAi.statusCode == 200) {
@@ -2817,7 +2844,7 @@ class LMStudioService {
     try {
       final response = await _serverGet(
         Uri.parse('$baseUrl$_modelsV0Endpoint/$modelId'),
-        headers: _buildHeaders(apiToken: apiToken),
+        headers: _buildHeaders(requestUrl: baseUrl, apiToken: apiToken),
       );
 
       if (response.statusCode == 200) {
@@ -2978,7 +3005,7 @@ class LMStudioService {
 
       final response = await _serverPost(
         Uri.parse('$baseUrl$_loadModelEndpoint'),
-        headers: _buildHeaders(apiToken: apiToken),
+        headers: _buildHeaders(requestUrl: baseUrl, apiToken: apiToken),
         body: jsonEncode(requestBody),
       );
 
@@ -3017,6 +3044,7 @@ class LMStudioService {
         .get(
           Uri.parse('$root/api/inference/status'),
           headers: _buildHeaders(
+            requestUrl: root,
             apiToken: apiToken,
             cloudProviderType: CloudApiType.unsloth,
           ),
@@ -3043,6 +3071,7 @@ class LMStudioService {
         .post(
           Uri.parse('$root/api/inference/load'),
           headers: _buildHeaders(
+            requestUrl: root,
             apiToken: apiToken,
             cloudProviderType: CloudApiType.unsloth,
           ),
@@ -3073,6 +3102,7 @@ class LMStudioService {
         .post(
           Uri.parse('$root/api/inference/unload'),
           headers: _buildHeaders(
+            requestUrl: root,
             apiToken: apiToken,
             cloudProviderType: CloudApiType.unsloth,
           ),
@@ -3108,7 +3138,7 @@ class LMStudioService {
 
       final response = await _serverPost(
         Uri.parse('$baseUrl$_unloadModelEndpoint'),
-        headers: _buildHeaders(apiToken: apiToken),
+        headers: _buildHeaders(requestUrl: baseUrl, apiToken: apiToken),
         body: jsonEncode(requestBody),
       );
 
@@ -3153,7 +3183,7 @@ class LMStudioService {
 
       final response = await http.post(
         Uri.parse('$baseUrl$_downloadModelEndpoint'),
-        headers: _buildHeaders(apiToken: apiToken),
+        headers: _buildHeaders(requestUrl: baseUrl, apiToken: apiToken),
         body: jsonEncode(requestBody),
       );
 
@@ -3188,7 +3218,7 @@ class LMStudioService {
 
     final response = await http.post(
       Uri.parse('$baseUrl$_downloadModelEndpoint'),
-      headers: _buildHeaders(apiToken: apiToken),
+      headers: _buildHeaders(requestUrl: baseUrl, apiToken: apiToken),
       body: jsonEncode({
         'model': hfUrl,
         'quantization': '__lmmini_quant_list_probe__',
@@ -3248,7 +3278,7 @@ class LMStudioService {
       final response = await http
           .get(
             Uri.parse('$baseUrl$_downloadStatusEndpoint/$jobId'),
-            headers: _buildHeaders(apiToken: apiToken),
+            headers: _buildHeaders(requestUrl: baseUrl, apiToken: apiToken),
           )
           .timeout(const Duration(seconds: 10));
 
@@ -3281,7 +3311,7 @@ class LMStudioService {
   }) async {
     final id = jobId.trim();
     if (id.isEmpty) return false;
-    final headers = _buildHeaders(apiToken: apiToken);
+    final headers = _buildHeaders(requestUrl: baseUrl, apiToken: apiToken);
 
     for (final attempt in lmStudioDownloadCancelAttempts(id)) {
       try {
