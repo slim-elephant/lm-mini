@@ -13847,6 +13847,78 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Encrypted in transit (HTTPS). Chats pass through the LM Mini relay and are not end-to-end encrypted.'**
   String get connectionSecuritySubtitle;
+
+  /// No description provided for @nudgeProPitch.
+  ///
+  /// In en, this message translates to:
+  /// **'Pro adds {count} features, including web search, memories and your Mac\'s models on your phone. Everything else stays free.'**
+  String nudgeProPitch(int count);
+
+  /// No description provided for @nudgeProPitchShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Pro adds web search, memories and your Mac\'s models on your phone. Everything else stays free.'**
+  String get nudgeProPitchShort;
+
+  /// No description provided for @nudgeFromPrice.
+  ///
+  /// In en, this message translates to:
+  /// **'From {price} a month, billed yearly'**
+  String nudgeFromPrice(String price);
+
+  /// No description provided for @imagePromptStyleTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Image prompt style'**
+  String get imagePromptStyleTitle;
+
+  /// No description provided for @imagePromptStyleHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'How the AI writes image prompts for {server}. Leave empty for comma-separated tags. For Flux or Krea, try: one natural English sentence describing the scene.'**
+  String imagePromptStyleHelp(String server);
+
+  /// No description provided for @aboutYouTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'About you'**
+  String get aboutYouTitle;
+
+  /// No description provided for @aboutYouSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your name and what the AI should know about you'**
+  String get aboutYouSubtitle;
+
+  /// No description provided for @aboutYouIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved on this device and sent with every chat, so you don’t have to introduce yourself each time.'**
+  String get aboutYouIntro;
+
+  /// No description provided for @aboutYouNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Your name'**
+  String get aboutYouNameLabel;
+
+  /// No description provided for @aboutYouNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'What the AI should call you'**
+  String get aboutYouNameHint;
+
+  /// No description provided for @aboutYouAboutLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'About you'**
+  String get aboutYouAboutLabel;
+
+  /// No description provided for @aboutYouAboutHint.
+  ///
+  /// In en, this message translates to:
+  /// **'For example: what you do, what you like, how you want answers.'**
+  String get aboutYouAboutHint;
 }
 
 class _AppLocalizationsDelegate

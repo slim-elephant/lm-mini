@@ -10,6 +10,7 @@ import '../services/comfyui_service.dart';
 import '../services/image_generation_facade.dart';
 import '../services/local_sd_asset_catalog.dart';
 import '../services/local_sd_asset_download_service.dart';
+import '../utils/image_gen_prompt.dart';
 import '../utils/layout_utils.dart';
 import '../utils/comfyui_catalog.dart';
 import '../utils/remote_host_backends.dart';
@@ -59,6 +60,10 @@ The canvas open in Comfy Desktop is listed as “Last run” after you Run. Plac
   final _cfgScaleController = TextEditingController();
   final _widthController = TextEditingController();
   final _heightController = TextEditingController();
+  final _promptStyleController = TextEditingController();
+
+  /// Image server whose prompt style is in [_promptStyleController].
+  String? _promptStyleFor;
   final _seedController = TextEditingController();
   final _batchSizeController = TextEditingController();
   final _hrScaleController = TextEditingController();
@@ -104,6 +109,7 @@ The canvas open in Comfy Desktop is listed as “Last run” after you Run. Plac
     _cfgScaleController.dispose();
     _widthController.dispose();
     _heightController.dispose();
+    _promptStyleController.dispose();
     _seedController.dispose();
     _batchSizeController.dispose();
     _hrScaleController.dispose();
@@ -233,6 +239,26 @@ The canvas open in Comfy Desktop is listed as “Last run” after you Run. Plac
     _syncWorkflowJsonField(context.read<SettingsProvider>().settings);
     setState(() {});
   }
+
+  /// Saves the prompt style for the selected image server (empty → default).
+  void _savePromptStyle(String value) {
+    _save((cur) {
+      final next = Map<String, String>.from(cur.imageGenPromptStyles);
+      final v = value.trim();
+      if (v.isEmpty) {
+        next.remove(cur.imageGenProvider);
+      } else {
+        next[cur.imageGenProvider] = v;
+      }
+      return cur.copyWith(imageGenPromptStyles: next);
+    });
+  }
+
+  static String _imageServerName(String provider) => switch (provider) {
+        'comfyui' => 'ComfyUI',
+        'onDevice' => 'On-device',
+        _ => 'AUTOMATIC1111 / Forge',
+      };
 
   void _save(AppSettings Function(AppSettings) updater) {
     final sp = context.read<SettingsProvider>();
@@ -567,10 +593,58 @@ The canvas open in Comfy Desktop is listed as “Last run” after you Run. Plac
       ],
     );
 
+    // Keep the style box on the selected image server's own style.
+    if (_promptStyleFor != s.imageGenProvider) {
+      _promptStyleFor = s.imageGenProvider;
+      _promptStyleController.text =
+          s.imageGenPromptStyles[s.imageGenProvider] ?? '';
+    }
+
     final promptOptions = Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         _sectionLabel(context, l10n.promptOptions),
+        const SizedBox(height: 10),
+        GlassSettingsCard(
+          padding: const EdgeInsets.all(14),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              TextField(
+                key: const ValueKey('imagePromptStyle'),
+                controller: _promptStyleController,
+                maxLines: 3,
+                minLines: 1,
+                maxLength: 300,
+                decoration: InputDecoration(
+                  labelText: l10n.imagePromptStyleTitle,
+                  hintText: kDefaultImagePromptStyle,
+                  helperText: l10n.imagePromptStyleHelp(
+                      _imageServerName(s.imageGenProvider)),
+                  helperMaxLines: 4,
+                  border: fieldBorder,
+                ),
+                onChanged: (v) {
+                  _savePromptStyle(v);
+                  setState(() {}); // Reset button follows the text
+                },
+              ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                  onPressed: _promptStyleController.text.trim().isEmpty
+                      ? null
+                      : () {
+                          _promptStyleController.clear();
+                          _savePromptStyle('');
+                          setState(() {});
+                        },
+                  child: Text(l10n.resetToDefault),
+                ),
+              ),
+            ],
+          ),
+        ),
         const SizedBox(height: 10),
         GlassSettingsCard(
           child: DesktopSettingsGrid(

@@ -16,26 +16,63 @@ const kImageGenSystemInstruction =
 const kImageGenTurnReminder =
     '\n\n[IMAGE_GEN_INSTRUCTION] Use any tool you need first (such as web search). Then start your written answer with [IMG_PROMPT: english comma-separated visual tags], then the answer. Do not mention the tag.';
 
+/// What goes inside `[IMG_PROMPT: …]` unless the user set their own style
+/// for their image server (some models, e.g. Flux / Krea, prefer sentences).
+const kDefaultImagePromptStyle = 'concise English comma-separated visual tags';
+
+/// The user's style, made safe to put inside the tag: one line, no brackets
+/// (they would end the tag early), at most 300 characters. Null/blank → the
+/// default.
+String normalizeImagePromptStyle(String? style) {
+  var s = (style ?? '').replaceAll(RegExp(r'[\[\]\r\n]+'), ' ').trim();
+  s = s.replaceAll(RegExp(r'\s{2,}'), ' ');
+  if (s.length > 300) s = s.substring(0, 300).trim();
+  return s.isEmpty ? kDefaultImagePromptStyle : s;
+}
+
+/// System instruction asking for `[IMG_PROMPT: <style>]` at the start.
+String imageGenSystemInstruction([String? style]) {
+  final st = normalizeImagePromptStyle(style);
+  if (st == kDefaultImagePromptStyle) return kImageGenSystemInstruction;
+  return '\n\n[IMAGE_GEN_INSTRUCTION] If you need a tool (for example web search), call it first. After any thinking and tool calls, start your written answer with a single hidden tag [IMG_PROMPT: $st], then write your answer. Do not mention this tag to the user.';
+}
+
+/// Per-turn reminder with the same style.
+String imageGenTurnReminder([String? style]) {
+  final st = normalizeImagePromptStyle(style);
+  if (st == kDefaultImagePromptStyle) return kImageGenTurnReminder;
+  return '\n\n[IMAGE_GEN_INSTRUCTION] Use any tool you need first (such as web search). Then start your written answer with [IMG_PROMPT: $st], then the answer. Do not mention the tag.';
+}
+
 String applyImageGenInstructionToSystem(
   String systemPrompt, {
   required bool enabled,
+  String? style,
 }) {
   if (!enabled) return systemPrompt;
   if (systemPrompt.contains('[IMAGE_GEN_INSTRUCTION]')) return systemPrompt;
-  return '$systemPrompt$kImageGenSystemInstruction';
+  return '$systemPrompt${imageGenSystemInstruction(style)}';
 }
 
-String appendImageGenTurnReminder(String content, {required bool enabled}) {
+String appendImageGenTurnReminder(
+  String content, {
+  required bool enabled,
+  String? style,
+}) {
   if (!enabled) return content;
   if (content.contains('[IMAGE_GEN_INSTRUCTION]')) return content;
-  return '$content$kImageGenTurnReminder';
+  return '$content${imageGenTurnReminder(style)}';
 }
 
 /// Append the turn reminder to a v1 `input` string or vision text part.
-dynamic withImageGenTurnReminder(dynamic input, {required bool enabled}) {
+dynamic withImageGenTurnReminder(
+  dynamic input, {
+  required bool enabled,
+  String? style,
+}) {
   if (!enabled) return input;
   if (input is String) {
-    return appendImageGenTurnReminder(input, enabled: true);
+    return appendImageGenTurnReminder(input, enabled: true, style: style);
   }
   if (input is List) {
     final copy = List<dynamic>.from(input);
@@ -50,10 +87,12 @@ dynamic withImageGenTurnReminder(dynamic input, {required bool enabled}) {
       final text = raw?.toString() ?? '';
       final updated = Map<String, dynamic>.from(item);
       if (item.containsKey('content')) {
-        updated['content'] = appendImageGenTurnReminder(text, enabled: true);
+        updated['content'] =
+            appendImageGenTurnReminder(text, enabled: true, style: style);
       }
       if (item.containsKey('text')) {
-        updated['text'] = appendImageGenTurnReminder(text, enabled: true);
+        updated['text'] =
+            appendImageGenTurnReminder(text, enabled: true, style: style);
       }
       copy[i] = updated;
       return copy;

@@ -7880,4 +7880,50 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get connectionSecuritySubtitle =>
       'Chiffré pendant le transfert (HTTPS). Les discussions passent par le relais LM Mini et ne sont pas chiffrées de bout en bout.';
+
+  @override
+  String nudgeProPitch(int count) {
+    return 'Pro ajoute $count fonctionnalités, dont la recherche web, les souvenirs et les modèles de ton Mac sur ton téléphone. Tout le reste reste gratuit.';
+  }
+
+  @override
+  String get nudgeProPitchShort =>
+      'Pro ajoute la recherche web, les souvenirs et les modèles de ton Mac sur ton téléphone. Tout le reste reste gratuit.';
+
+  @override
+  String nudgeFromPrice(String price) {
+    return 'À partir de $price par mois, facturé à l\'année';
+  }
+
+  @override
+  String get imagePromptStyleTitle => 'Style des prompts d\'image';
+
+  @override
+  String imagePromptStyleHelp(String server) {
+    return 'Comment l\'IA écrit les prompts d\'image pour $server. Laisse vide pour des tags séparés par des virgules. Pour Flux ou Krea, essaie : une phrase naturelle en anglais qui décrit la scène.';
+  }
+
+  @override
+  String get aboutYouTitle => 'À propos de vous';
+
+  @override
+  String get aboutYouSubtitle =>
+      'Votre nom et ce que l’IA doit savoir sur vous';
+
+  @override
+  String get aboutYouIntro =>
+      'Enregistré sur cet appareil et envoyé avec chaque chat, pour ne pas avoir à vous présenter à chaque fois.';
+
+  @override
+  String get aboutYouNameLabel => 'Votre nom';
+
+  @override
+  String get aboutYouNameHint => 'Comment l’IA doit vous appeler';
+
+  @override
+  String get aboutYouAboutLabel => 'À propos de vous';
+
+  @override
+  String get aboutYouAboutHint =>
+      'Par exemple : ce que vous faites, ce que vous aimez, comment vous voulez les réponses.';
 }

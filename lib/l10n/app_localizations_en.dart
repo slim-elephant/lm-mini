@@ -7770,4 +7770,50 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get connectionSecuritySubtitle =>
       'Encrypted in transit (HTTPS). Chats pass through the LM Mini relay and are not end-to-end encrypted.';
+
+  @override
+  String nudgeProPitch(int count) {
+    return 'Pro adds $count features, including web search, memories and your Mac\'s models on your phone. Everything else stays free.';
+  }
+
+  @override
+  String get nudgeProPitchShort =>
+      'Pro adds web search, memories and your Mac\'s models on your phone. Everything else stays free.';
+
+  @override
+  String nudgeFromPrice(String price) {
+    return 'From $price a month, billed yearly';
+  }
+
+  @override
+  String get imagePromptStyleTitle => 'Image prompt style';
+
+  @override
+  String imagePromptStyleHelp(String server) {
+    return 'How the AI writes image prompts for $server. Leave empty for comma-separated tags. For Flux or Krea, try: one natural English sentence describing the scene.';
+  }
+
+  @override
+  String get aboutYouTitle => 'About you';
+
+  @override
+  String get aboutYouSubtitle =>
+      'Your name and what the AI should know about you';
+
+  @override
+  String get aboutYouIntro =>
+      'Saved on this device and sent with every chat, so you don’t have to introduce yourself each time.';
+
+  @override
+  String get aboutYouNameLabel => 'Your name';
+
+  @override
+  String get aboutYouNameHint => 'What the AI should call you';
+
+  @override
+  String get aboutYouAboutLabel => 'About you';
+
+  @override
+  String get aboutYouAboutHint =>
+      'For example: what you do, what you like, how you want answers.';
 }

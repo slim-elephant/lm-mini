@@ -7852,4 +7852,50 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get connectionSecuritySubtitle =>
       'Bei der Übertragung verschlüsselt (HTTPS). Chats laufen über das LM-Mini-Relay und sind nicht Ende-zu-Ende-verschlüsselt.';
+
+  @override
+  String nudgeProPitch(int count) {
+    return 'Pro bringt $count Funktionen, etwa Websuche, Erinnerungen und die Modelle deines Macs auf dem Handy. Alles andere bleibt kostenlos.';
+  }
+
+  @override
+  String get nudgeProPitchShort =>
+      'Pro bringt Websuche, Erinnerungen und die Modelle deines Macs aufs Handy. Alles andere bleibt kostenlos.';
+
+  @override
+  String nudgeFromPrice(String price) {
+    return 'Ab $price im Monat bei jährlicher Zahlung';
+  }
+
+  @override
+  String get imagePromptStyleTitle => 'Stil der Bild-Prompts';
+
+  @override
+  String imagePromptStyleHelp(String server) {
+    return 'So schreibt die KI Bild-Prompts für $server. Leer lassen für kommagetrennte Tags. Für Flux oder Krea etwa: ein natürlicher englischer Satz, der die Szene beschreibt.';
+  }
+
+  @override
+  String get aboutYouTitle => 'Über dich';
+
+  @override
+  String get aboutYouSubtitle =>
+      'Dein Name und was die KI über dich wissen soll';
+
+  @override
+  String get aboutYouIntro =>
+      'Wird auf diesem Gerät gespeichert und mit jedem Chat gesendet, damit du dich nicht jedes Mal vorstellen musst.';
+
+  @override
+  String get aboutYouNameLabel => 'Dein Name';
+
+  @override
+  String get aboutYouNameHint => 'Wie die KI dich nennen soll';
+
+  @override
+  String get aboutYouAboutLabel => 'Über dich';
+
+  @override
+  String get aboutYouAboutHint =>
+      'Zum Beispiel: was du machst, was du magst, wie du Antworten möchtest.';
 }

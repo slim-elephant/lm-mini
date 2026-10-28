@@ -2,6 +2,16 @@
 
 All notable changes to LM Mini will be documented in this file.
 
+## [1.10.8] - 2026-10-28
+
+**About you, image prompt styles, LM Studio and Unsloth fixes**
+
+- Added About you in Settings: your name and a few words about yourself, sent with every chat so you don't have to introduce yourself (free)
+- Added: choose how the AI writes image prompts for each image server (ComfyUI, A1111, on-device), for example natural sentences for Flux or Krea
+- Improved the support dialog shows what Pro adds and its lowest monthly price, with Lifetime still offered
+- Fixes LM Studio chats failing with "not found" on servers without the new chat API; LM Mini now falls back automatically
+- Fixes Unsloth loading or downloading Q4_K_M instead of the quant you picked, including models in LM Studio's folder
+
 ## [1.10.7] - 2026-10-26
 
 **Home share: direct Wi-Fi, choose your Mac's model, smoother sync**

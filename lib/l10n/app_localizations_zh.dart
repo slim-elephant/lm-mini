@@ -12,13 +12,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get appTitle => 'LM Mini';
 
   @override
-  String get splashTagline => '本地AI聊天';
+  String get splashTagline => '本地 AI 聊天';
 
   @override
   String get homeTitle => 'LM Mini';
 
   @override
-  String get homeSearchHint => '搜索对话...';
+  String get homeSearchHint => '搜索对话…';
 
   @override
   String get allConversations => '所有对话';
@@ -27,7 +27,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get noFoldersTitle => '还没有文件夹';
 
   @override
-  String get noFoldersSubtitle => '创建文件夹来组织您的聊天记录';
+  String get noFoldersSubtitle => '创建文件夹来整理你的对话';
 
   @override
   String get noConversationsTitle => '还没有对话';
@@ -44,7 +44,7 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get noModelsAvailable => '无可用型号。请检查您的 LM Studio 连接。';
+  String get noModelsAvailable => '没有可用的模型。请检查 LM Studio 连接。';
 
   @override
   String get noVisionModelAvailable => '没有可用的视觉模型。请在 LM Studio 中加载视觉模型。';
@@ -53,7 +53,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get deleteConversationTitle => '删除对话';
 
   @override
-  String get deleteConversationMessage => '您确定要删除此对话吗？此操作无法撤消。';
+  String get deleteConversationMessage => '确定要删除此对话吗？此操作无法撤销。';
 
   @override
   String get renameConversationTitle => '重命名对话';
@@ -65,7 +65,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get deleteFolderTitle => '删除文件夹';
 
   @override
-  String get deleteFolderMessage => '这不会删除此文件夹中的对话。';
+  String get deleteFolderMessage => '此操作不会删除文件夹中的对话。';
 
   @override
   String get moveToFolderTitle => '移至文件夹';
@@ -80,7 +80,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get delete => '删除';
 
   @override
-  String get save => '节省';
+  String get save => '保存';
 
   @override
   String get close => '关闭';
@@ -107,13 +107,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get copy => '复制';
 
   @override
-  String get copied => '复制了！';
+  String get copied => '已复制！';
 
   @override
   String get copiedToClipboard => '已复制到剪贴板';
 
   @override
-  String get dismiss => '解雇';
+  String get dismiss => '关闭';
 
   @override
   String get configure => '配置';
@@ -122,28 +122,28 @@ class AppLocalizationsZh extends AppLocalizations {
   String get rename => '重命名';
 
   @override
-  String get duplicate => '复制';
+  String get duplicate => '创建副本';
 
   @override
   String get enabled => '启用';
 
   @override
-  String get disabled => '残疾人';
+  String get disabled => '已禁用';
 
   @override
-  String get active => '积极的';
+  String get active => '生效中';
 
   @override
-  String get none => '没有任何';
+  String get none => '无';
 
   @override
-  String get auto => '汽车';
+  String get auto => '自动';
 
   @override
-  String get custom => '风俗';
+  String get custom => '自定义';
 
   @override
-  String get change => '改变';
+  String get change => '更改';
 
   @override
   String get chatDefaultTitle => '聊天';
@@ -155,7 +155,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get chatSettingsMenuItem => '聊天设置';
 
   @override
-  String get appearanceMenuItem => '外貌';
+  String get appearanceMenuItem => '外观';
 
   @override
   String get exportAsPdf => '导出为 PDF';
@@ -170,13 +170,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get exportAsJson => '导出为 JSON';
 
   @override
-  String get exportAsObsidian => '出口黑曜石';
+  String get exportAsObsidian => '导出为 Obsidian 格式';
 
   @override
   String get copyToClipboard => '复制到剪贴板';
 
   @override
-  String get exportAndShare => '导出和分享';
+  String get exportAndShare => '导出并分享';
 
   @override
   String get freeFormats => '标准';
@@ -185,10 +185,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get premiumFormats => '专业格式';
 
   @override
-  String get chatExported => '聊天导出';
+  String get chatExported => '聊天已导出';
 
   @override
-  String get noModelSelectedTitle => '未选择型号';
+  String get noModelSelectedTitle => '未选择模型';
 
   @override
   String get noModelSelectedSubtitle => '请在设置中选择模型开始聊天';
@@ -202,19 +202,19 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get startConversation => '问候！今天我可以为您提供什么帮助吗？';
+  String get startConversation => '你好！今天有什么可以帮你的吗？';
 
   @override
-  String get typeMessageToBegin => '选择下面的建议，或输入消息以开始';
+  String get typeMessageToBegin => '选择下面的建议，或输入消息开始对话';
 
   @override
   String get searchMessagesTitle => '搜索消息';
 
   @override
-  String get searchQueryHint => '输入搜索查询...';
+  String get searchQueryHint => '输入搜索关键词…';
 
   @override
-  String get semanticSearchInfo => '语义搜索使用人工智能根据含义（而不仅仅是关键字）查找相关消息。';
+  String get semanticSearchInfo => '语义搜索使用 AI 按含义（而非仅靠关键词）查找相关消息。';
 
   @override
   String get noMessagesToSearch => '没有可搜索的消息';
@@ -224,14 +224,14 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String searchResultsFor(int count, String query) {
-    return '$count 匹配“$query”';
+    return '$count 条结果匹配“$query”';
   }
 
   @override
-  String get noMessagesFound => '没有找到消息';
+  String get noMessagesFound => '未找到消息';
 
   @override
-  String get tryDifferentSearch => '尝试不同的搜索查询';
+  String get tryDifferentSearch => '试试其他搜索词';
 
   @override
   String get chatCustomizationSaved => '聊天自定义已保存';
@@ -240,13 +240,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get noMessagesToExport => '没有要导出的消息';
 
   @override
-  String get exportingChat => '正在导出聊天记录...';
+  String get exportingChat => '正在导出聊天记录…';
 
   @override
-  String get chatExportedAsPdf => '聊天导出为 PDF';
+  String get chatExportedAsPdf => '聊天已导出为 PDF';
 
   @override
-  String get chatExportedAsTxt => '聊天导出为 TXT';
+  String get chatExportedAsTxt => '聊天已导出为 TXT';
 
   @override
   String exportFailed(String error) {
@@ -272,13 +272,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get showDetails => '显示详情';
 
   @override
-  String get hideDetails => '隐藏详细信息';
+  String get hideDetails => '隐藏详情';
 
   @override
   String get settingsTitle => '设置';
 
   @override
-  String get settingsAdvancedMode => '先进的';
+  String get settingsAdvancedMode => '高级';
 
   @override
   String get settingsAdvancedModeTooltip => '为高级用户显示技术选项';
@@ -290,28 +290,28 @@ class AppLocalizationsZh extends AppLocalizations {
   String get serverUrlLabel => '服务器地址';
 
   @override
-  String get serverUrlHint => 'http://本地主机:1234';
+  String get serverUrlHint => 'http://localhost:1234';
 
   @override
-  String get testConnectionRequired => '测试连接（必填）';
+  String get testConnectionRequired => '测试连接（必需）';
 
   @override
   String get testConnection => '测试连接';
 
   @override
-  String get modelsSection => '型号';
+  String get modelsSection => '模型';
 
   @override
-  String get modelSelection => '选型';
+  String get modelSelection => '选择模型';
 
   @override
-  String get noModelSelected => '未选择型号';
+  String get noModelSelected => '未选择模型';
 
   @override
-  String get modelParameters => '型号参数';
+  String get modelParameters => '模型参数';
 
   @override
-  String get modelParametersSubtitle => '温度、代币、惩罚';
+  String get modelParametersSubtitle => '温度、Token、惩罚';
 
   @override
   String get modelParametersHelpTooltip => '这些设置的含义';
@@ -321,29 +321,29 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get modelParametersHelpIntro =>
-      '每个设置的简单提示。如果您不确定，请保留默认值 - 您以后可以随时更改它们。某些选项仅针对您当前的 AI 提供商显示。';
+      '每项设置都有简单说明。不确定时保持默认即可，以后随时可以改。部分选项仅在你当前的 AI 提供商下显示。';
 
   @override
-  String get topKHelp => 'AI 考虑了多少个单词选择。更低=更安全、更可预测； 0 = 无限制。';
+  String get topKHelp => 'AI 每步考虑的候选词数量。越低越稳定、越可预测；0 表示不限制。';
 
   @override
   String get reasoningHelp =>
-      '打开或关闭推理模型的思考模式。关闭 = 更快回复且无思考过程；开启（或某一级别）会让模型逐步思考。并非所有推理模型都支持关闭思考。';
+      '开启或关闭推理模型的思考模式。关闭后回复更快、不显示思考过程；开启（或某个级别）会让模型逐步思考。并非所有推理模型都支持关闭思考。';
 
   @override
-  String get reasoningHelpShort => '打开或关闭思考。并非所有模型都支持关闭。';
+  String get reasoningHelpShort => '开启或关闭思考。并非所有模型都支持关闭。';
 
   @override
-  String get systemPrompts => '角色和系统提示';
+  String get systemPrompts => '角色与系统提示词';
 
   @override
-  String get defaultPrompt => '默认提示';
+  String get defaultPrompt => '默认提示词';
 
   @override
-  String get appearanceSection => '外貌';
+  String get appearanceSection => '外观';
 
   @override
-  String get appearance => '外貌';
+  String get appearance => '外观';
 
   @override
   String get appearanceSubtitle => '主题、背景、头像';
@@ -352,13 +352,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get supportSection => '支持';
 
   @override
-  String get rateApp => '评价 LM 迷你';
+  String get rateApp => '评价 LM Mini';
 
   @override
-  String get rateAppSubtitle => '喜欢这个应用程序吗？在 App Store 上发表评论 ⭐';
+  String get rateAppSubtitle => '喜欢这个应用？去 App Store 给个好评吧 ⭐';
 
   @override
-  String get hfBrowseTitle => '从抱脸下载';
+  String get hfBrowseTitle => '从 Hugging Face 下载';
 
   @override
   String get hfBrowseSubtitle => '浏览 GGUF 模型 — 无需 API 密钥';
@@ -370,13 +370,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get hfPasteTab => '粘贴链接';
 
   @override
-  String get hfSearchHint => '搜索 GGUF 型号...';
+  String get hfSearchHint => '搜索 GGUF 模型…';
 
   @override
-  String get hfLoadingModels => '搜索拥抱脸...';
+  String get hfLoadingModels => '正在搜索 Hugging Face…';
 
   @override
-  String get hfNoModelsFound => '没有找到型号';
+  String get hfNoModelsFound => '未找到模型';
 
   @override
   String get hfNoModelsHint => '尝试不同的搜索词或关闭 LM Studio 过滤器。';
@@ -388,19 +388,19 @@ class AppLocalizationsZh extends AppLocalizations {
   String get hfLmStudioFilterHint => '仅 Hugging Face 列出的模型可与 LM Studio 配合使用';
 
   @override
-  String get hfChatModelsFilter => '聊天模特';
+  String get hfChatModelsFilter => '聊天模型';
 
   @override
   String get hfChatBadge => '聊天';
 
   @override
-  String get hfLmStudioBadge => 'LM工作室';
+  String get hfLmStudioBadge => 'LM Studio';
 
   @override
   String get hfPasteUrlHint => 'https://huggingface.co/owner/repo';
 
   @override
-  String get hfModelInfo => '型号信息';
+  String get hfModelInfo => '模型信息';
 
   @override
   String hfDownloadsCount(String count) {
@@ -409,7 +409,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String hfLikesCount(String count) {
-    return '$count 赞';
+    return '$count 个赞';
   }
 
   @override
@@ -419,7 +419,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String hfBaseModel(String model) {
-    return '基础型号：$model';
+    return '基础模型：$model';
   }
 
   @override
@@ -431,10 +431,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get hfTagsSection => '标签';
 
   @override
-  String get hfQuantPickerHint => '较低的数量=较小的文件。 Q4_K_M 对于大多数设备来说是一个很好的平衡。';
+  String get hfQuantPickerHint => '量化等级越低，文件越小。Q4_K_M 适合大多数设备。';
 
   @override
-  String get hfBackToModels => '返回型号';
+  String get hfBackToModels => '返回模型列表';
 
   @override
   String hfGgufFilesCount(int count) {
@@ -442,10 +442,11 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get hfDownloadInBackground => '下载已开始 — 使用浮动按钮跟踪进度。您可以继续浏览或关闭此面板。';
+  String get hfDownloadInBackground => '下载已开始 — 可用浮动按钮跟踪进度。你可以继续浏览或关闭此面板。';
 
   @override
-  String get hfQuantPickerHintLmStudio => 'LM Studio 服务器列出的量化。选择一个下载到服务器。';
+  String get hfQuantPickerHintLmStudio =>
+      '由你的 LM Studio 服务器列出的量化版本。选择一个下载到服务器。';
 
   @override
   String get hfDownloadDefaultQuant => '下载';
@@ -457,44 +458,44 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get hfPasteInstructions =>
-      '粘贴 Hugging Face 存储库 URL 或输入所有者/存储库。接下来您将选择一个量化。';
+      '粘贴 Hugging Face 仓库 URL，或输入 owner/repo。下一步选择量化版本。';
 
   @override
   String get hfPasteInstructionsLmStudio =>
-      '粘贴 Hugging Face URL、所有者/存储库或 LM Studio 模型 ID。';
+      '粘贴 Hugging Face URL、owner/repo 或 LM Studio 模型 ID。';
 
   @override
-  String get hfPasteLabel => '存储库';
+  String get hfPasteLabel => '仓库';
 
   @override
-  String get hfInvalidRepo => '输入有效的 Hugging Face URL 或所有者/存储库。';
+  String get hfInvalidRepo => '请输入有效的 Hugging Face URL 或 owner/repo。';
 
   @override
-  String get hfRecommended => '受到推崇的';
+  String get hfRecommended => '推荐';
 
   @override
   String get reviewPromptTitle => '喜欢 LM Mini 吗？';
 
   @override
-  String get reviewPromptMessage => '你们进行了几次愉快的交谈！您介意在 Play 商店上留下快速评价吗？';
+  String get reviewPromptMessage => '已经聊得很愉快了！愿意去 Play 商店给个评分吗？';
 
   @override
   String get reviewPromptRate => '立即评分';
 
   @override
-  String get reviewPromptLater => '也许稍后';
+  String get reviewPromptLater => '稍后再说';
 
   @override
   String get buyMeACoffee => '请我喝杯咖啡';
 
   @override
-  String get buyMeACoffeeSubtitle => '帮助人工智能保持咖啡因！ 🤖';
+  String get buyMeACoffeeSubtitle => '帮 AI 续上咖啡因！🤖';
 
   @override
   String get featureRequests => '支持/功能请求';
 
   @override
-  String get featureRequestsSubtitle => '对功能进行投票或提交您的想法';
+  String get featureRequestsSubtitle => '为功能投票或提交你的想法';
 
   @override
   String get dataSection => '数据';
@@ -531,7 +532,7 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get importing => '输入...';
+  String get importing => '正在导入…';
 
   @override
   String get advancedSection => '高级功能';
@@ -543,13 +544,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get showRuntimeInfoSubtitle => '显示模型架构和运行时';
 
   @override
-  String get embeddingModel => '嵌入模型';
+  String get embeddingModel => 'Embedding 模型';
 
   @override
   String get enableSemanticSearch => '启用语义搜索';
 
   @override
-  String get enableSemanticSearchSubtitle => '使用嵌入查找相关消息';
+  String get enableSemanticSearchSubtitle => '使用 Embedding 查找相关消息';
 
   @override
   String get toolCalling => '工具调用';
@@ -561,13 +562,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get toolCallingDisabled => '工具调用已禁用';
 
   @override
-  String get legalSection => '合法的';
+  String get legalSection => '法律信息';
 
   @override
   String get privacyPolicy => '隐私政策';
 
   @override
-  String get privacyPolicySubtitle => '对话保存在您的设备上';
+  String get privacyPolicySubtitle => '对话仅保存在你的设备上';
 
   @override
   String get termsOfService => '服务条款';
@@ -579,39 +580,39 @@ class AppLocalizationsZh extends AppLocalizations {
   String get appName => 'LM Mini';
 
   @override
-  String get appTagline => '适用于 LM Studio、Ollama 和 oMLX 的 Pocket A.I 和配套应用程序';
+  String get appTagline => '为 LM Studio、Ollama 和 oMLX 打造的口袋 AI 伴侣应用';
 
   @override
   String get couldNotOpenLink => '无法打开链接';
 
   @override
-  String get apiToken => 'API 令牌和 USB';
+  String get apiToken => 'API Token 和 USB';
 
   @override
-  String get tokenConfigured => '令牌已配置';
+  String get tokenConfigured => 'Token 已配置';
 
   @override
   String get optionalAuthentication => '可选身份验证';
 
   @override
-  String get apiTokenLabel => 'API令牌';
+  String get apiTokenLabel => 'API Token';
 
   @override
-  String get apiTokenHint => '输入您的 LM Studio API 令牌';
+  String get apiTokenHint => '输入你的 LM Studio API Token';
 
   @override
   String get apiTokenHelp =>
-      '如果您的 LM Studio 服务器需要身份验证，请在此处输入您的 API 令牌。这是可选的，仅当您在 LM Studio 设置中启用了身份验证时才需要。';
+      '如果 LM Studio 服务器需要身份验证，在此输入你的 API Token。可选填写，仅当你在 LM Studio 设置中启用了身份验证时才需要。';
 
   @override
   String get apiTokenInfo =>
-      'LM Studio 0.4.0+支持API身份验证。在 LM Studio > 设置 > 安全中启用它。';
+      'LM Studio 0.4.0+ 支持 API 身份验证。可在 LM Studio > 设置 > 安全中开启。';
 
   @override
-  String get actionRequired => '- 需要采取行动';
+  String get actionRequired => '- 需要处理';
 
   @override
-  String get idleTtl => '空闲TTL';
+  String get idleTtl => '空闲 TTL';
 
   @override
   String get idleTtlDefault => '使用 LM Studio 默认设置（60 分钟）';
@@ -623,7 +624,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String idleTtlHoursMinutes(int hours, int mins) {
-    return '闲置 $hours 小时 $mins 分钟后自动卸载';
+    return '空闲 $hours 小时 $mins 分钟后自动卸载';
   }
 
   @override
@@ -662,41 +663,41 @@ class AppLocalizationsZh extends AppLocalizations {
   String get troubleshootStep2 => '在 LM Studio 中，打开“开发人员”选项卡（⚙️ 图标）';
 
   @override
-  String get troubleshootStep3 => '启用“在本地网络上提供服务”切换';
+  String get troubleshootStep3 => '开启“在本地网络提供服务”开关';
 
   @override
-  String get troubleshootStep4 => '验证服务器端口匹配（默认：1234）';
+  String get troubleshootStep4 => '确认服务器端口一致（默认：1234）';
 
   @override
   String troubleshootStep5(String ip) {
-    return '对于本地连接，请使用您的 IP，例如$ip';
+    return '局域网连接请使用你的 IP，例如 $ip';
   }
 
   @override
-  String get lmStudioSettings => 'LM工作室设置';
+  String get lmStudioSettings => 'LM Studio 设置';
 
   @override
   String get serveOnLocalNetworkHelp =>
-      '应在 LM Studio Developer 选项卡中启用“在本地网络上提供服务”开关（以橙色/绿色显示）。';
+      '请在 LM Studio 的 Developer 选项卡中开启“在本地网络提供服务”开关（显示为橙色/绿色）。';
 
   @override
   String get networkConnections => '网络连接：';
 
   @override
   String get networkConnectionsTips =>
-      '• 将“localhost”替换为您计算机的IP 地址\n• 确保两台设备位于同一网络上\n• 检查端口 1234 的防火墙设置';
+      '• 将 localhost 替换为你电脑的 IP 地址\n• 确保两台设备在同一网络\n• 检查端口 1234 的防火墙设置';
 
   @override
   String get noConversationsToExport => '没有要导出的对话';
 
   @override
   String exportingConversations(int count) {
-    return '正在导出 $count 对话...';
+    return '正在导出 $count 个对话…';
   }
 
   @override
   String exportSuccess(int count) {
-    return '$count 对话导出成功';
+    return '已成功导出 $count 个对话';
   }
 
   @override
@@ -706,7 +707,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get language => '语言';
 
   @override
-  String get languageSubtitle => '选择您的首选语言';
+  String get languageSubtitle => '选择你偏好的语言';
 
   @override
   String get systemDefault => '系统默认值';
@@ -739,19 +740,19 @@ class AppLocalizationsZh extends AppLocalizations {
   String get enableToolCallingAndMcps => '启用工具调用和 MCP';
 
   @override
-  String get enableToolCallingSubtitle => '允许 AI 搜索网络并呼叫 MCP';
+  String get enableToolCallingSubtitle => '允许 AI 联网搜索并调用 MCP';
 
   @override
   String get builtInToolsSection => '内置工具';
 
   @override
-  String get builtInToolsInfo => '当 AI 请求时，应用程序在本地执行的工具';
+  String get builtInToolsInfo => 'AI 请求时由应用在本地执行的工具';
 
   @override
   String get webSearch => '网页搜索';
 
   @override
-  String get webSearchUsingSearxng => '使用SearXNG';
+  String get webSearchUsingSearxng => '使用 SearXNG';
 
   @override
   String get webSearchDisabled => '已禁用（配置 SearXNG 或升级到 Pro）';
@@ -761,17 +762,17 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get integratedMcpsInfo =>
-      '使用您已在 LM Studio 中设置的 MCP。只需在此处添加 mcp.json 中的他们的名字即可。';
+      '使用你已在 LM Studio 中配置的 MCP，只需在此填入它们在 mcp.json 中的名称。';
 
   @override
   String get integratedMcpsAuthRequired =>
-      '集成 MCP 需要在 LM Studio 中启用身份验证，并在设置 → API 令牌中设置 API 令牌。';
+      '使用集成 MCP 需在 LM Studio 中启用身份验证，并在设置 → API Token 中配置 API Token。';
 
   @override
-  String get requiresApiToken => '需要 API 令牌';
+  String get requiresApiToken => '需要 API Token';
 
   @override
-  String get setApiTokenTooltip => '在“设置”中设置 API 令牌以启用';
+  String get setApiTokenTooltip => '在设置中配置 API Token 以启用';
 
   @override
   String get noIntegratedMcps => '未配置集成 MCP';
@@ -783,14 +784,14 @@ class AppLocalizationsZh extends AppLocalizations {
   String get importMcpJson => '导入 mcp.json';
 
   @override
-  String get ephemeralMcpsSection => '短暂的 MCP';
+  String get ephemeralMcpsSection => '临时 MCP';
 
   @override
   String get ephemeralMcpsInfo =>
-      'HTTP MCP 服务器按请求发送。需要在 LM Studio 中“允许每个请求 MCP”。';
+      '随每次请求发送的 HTTP MCP 服务器。需在 LM Studio 中开启“允许每个请求 MCP”。';
 
   @override
-  String get requiresPerRequestMcps => '需要：开发人员 → 服务器设置 → 允许每个请求 MCP';
+  String get requiresPerRequestMcps => '需要：Developer → 服务器设置 → 允许每个请求 MCP';
 
   @override
   String get noEphemeralMcps => '未配置临时 MCP';
@@ -802,29 +803,29 @@ class AppLocalizationsZh extends AppLocalizations {
   String get browseExampleMcps => '浏览示例 MCP 服务器';
 
   @override
-  String get addIntegratedMcpTitle => '添加MCP';
+  String get addIntegratedMcpTitle => '添加 MCP';
 
   @override
-  String get editIntegratedMcpTitle => '编辑MCP';
+  String get editIntegratedMcpTitle => '编辑 MCP';
 
   @override
   String get addIntegratedMcpInfo =>
-      '从 LM Studio 的 mcp.json 复制名称并将其粘贴到此处。例如，如果您看到名为 playwright 的键，请键入 playwright。';
+      '从 LM Studio 的 mcp.json 复制名称粘贴到这里。例如，看到名为 playwright 的键，就输入 playwright。';
 
   @override
   String get mcpNameLabel => 'mcp.json 中的名称';
 
   @override
-  String get mcpNameHint => '剧作家';
+  String get mcpNameHint => 'playwright';
 
   @override
-  String get mcpNameHelper => '仅限字母、数字和连字符 — 使用网络搜索，而不是 web_search。';
+  String get mcpNameHelper => '只能使用字母、数字和连字符 — 用 web-search，而不是 web_search。';
 
   @override
   String get exampleMcpJsonEntry => '💡 mcp.json 条目示例：';
 
   @override
-  String get nameIsRequired => '姓名为必填项';
+  String get nameIsRequired => '名称为必填项';
 
   @override
   String get mcpNameInvalidChars =>
@@ -835,16 +836,16 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String addedMcp(String name) {
-    return '添加$name';
+    return '已添加 $name';
   }
 
   @override
   String updatedMcp(String name) {
-    return '已更新$name';
+    return '已更新 $name';
   }
 
   @override
-  String get editMcpTooltip => '编辑姓名';
+  String get editMcpTooltip => '编辑名称';
 
   @override
   String get unlimitedToolCalls => '无限次工具调用';
@@ -853,10 +854,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get unlimitedToolCallsSubtitle => '取消集成和临时 MCP 的 10 次调用限制（不影响专业搜索）';
 
   @override
-  String get unlimitedToolCallsOn => 'MCP 工具调用迭代没有限制';
+  String get unlimitedToolCallsOn => 'MCP 工具调用迭代次数无限制';
 
   @override
-  String get unlimitedToolCallsOff => '限制为 10 次工具调用迭代';
+  String get unlimitedToolCallsOff => '工具调用迭代限制为 10 次';
 
   @override
   String get structuredOutput => '结构化输出';
@@ -865,37 +866,37 @@ class AppLocalizationsZh extends AppLocalizations {
   String get structuredOutputSubtitle => '强制 JSON 响应格式';
 
   @override
-  String get reasoningMode => '推理模式';
+  String get reasoningMode => '思考模式';
 
   @override
-  String get reasoningOff => '离开';
+  String get reasoningOff => '关闭';
 
   @override
-  String get reasoningLow => '低的';
+  String get reasoningLow => '低';
 
   @override
-  String get reasoningMedium => '中等的';
+  String get reasoningMedium => '中';
 
   @override
-  String get reasoningHigh => '高的';
+  String get reasoningHigh => '高';
 
   @override
-  String get reasoningOn => '在';
+  String get reasoningOn => '开启';
 
   @override
-  String get reasoningDescOff => '没有推理痕迹';
+  String get reasoningDescOff => '不显示思考过程';
 
   @override
-  String get reasoningDescLow => '最少的推理';
+  String get reasoningDescLow => '少量思考';
 
   @override
-  String get reasoningDescMedium => '平衡推理';
+  String get reasoningDescMedium => '适度思考';
 
   @override
-  String get reasoningDescHigh => '详细推理';
+  String get reasoningDescHigh => '详细思考';
 
   @override
-  String get reasoningDescOn => '完整的推理痕迹';
+  String get reasoningDescOn => '完整思考过程';
 
   @override
   String get helpSection => '帮助';
@@ -910,7 +911,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get searxngSetupGuide => 'SearXNG 设置指南';
 
   @override
-  String get searxngSetupGuideSubtitle => '设置您自己的搜索服务器';
+  String get searxngSetupGuideSubtitle => '搭建你自己的搜索服务器';
 
   @override
   String get webSearchConfig => '网页搜索配置';
@@ -920,7 +921,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get howWebSearchWorksSteps =>
-      '1. AI 决定需要当前信息\n2. 使用 Premium Search 或 SearXNG 进行应用程序搜索\n3.结果发送回AI\n4. AI 综合答案';
+      '1. AI 判断需要实时信息\n2. 应用使用 Premium Search 或 SearXNG 进行搜索\n3. 结果返回给 AI\n4. AI 综合答案';
 
   @override
   String get searchResultsLabel => '搜索结果：';
@@ -932,10 +933,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get searxngUrlOptional => 'SearXNG URL（可选）';
 
   @override
-  String get searxngUrlLabel => '搜索XNG URL';
+  String get searxngUrlLabel => 'SearXNG URL';
 
   @override
-  String get searxngUrlHint => 'http://本地主机:8888';
+  String get searxngUrlHint => 'http://localhost:8888';
 
   @override
   String get quickSetupDocker => '🐳 使用 Docker 快速设置：';
@@ -959,42 +960,42 @@ class AppLocalizationsZh extends AppLocalizations {
   String get resultBadge => '结果';
 
   @override
-  String get failedToLoadImage => '加载图像失败';
+  String get failedToLoadImage => '图片加载失败';
 
   @override
-  String get thinking => '思维';
+  String get thinking => '思考中';
 
   @override
   String get think => '思考';
 
   @override
   String thoughtFor(String duration) {
-    return '为$duration思考';
+    return '思考了 $duration';
   }
 
   @override
-  String get performanceStats => '表现统计';
+  String get performanceStats => '性能统计';
 
   @override
-  String get regenerate => '再生';
+  String get regenerate => '重新生成';
 
   @override
-  String get editMessage => '编辑留言';
+  String get editMessage => '编辑消息';
 
   @override
-  String get editMessageHint => '编辑您的消息...';
+  String get editMessageHint => '编辑消息…';
 
   @override
   String get saveAndRegenerate => '保存并重新生成';
 
   @override
-  String get deleteMessage => '删除留言';
+  String get deleteMessage => '删除消息';
 
   @override
-  String get deleteMessageConfirm => '您确定要删除此消息吗？';
+  String get deleteMessageConfirm => '确定要删除此消息吗？';
 
   @override
-  String get mcpCallTitle => 'MCP 呼叫';
+  String get mcpCallTitle => 'MCP 调用';
 
   @override
   String get mcpResultTitle => 'MCP 结果';
@@ -1057,7 +1058,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get mcpLabel => 'MCP：';
 
   @override
-  String get typeMessageHint => '输入消息...';
+  String get typeMessageHint => '输入消息…';
 
   @override
   String get attachFilesTooltip => '附加文件';
@@ -1075,28 +1076,28 @@ class AppLocalizationsZh extends AppLocalizations {
   String get userAvatar => '用户头像';
 
   @override
-  String get assistantAvatar => '助理头像';
+  String get assistantAvatar => '助手头像';
 
   @override
   String get colorsSection => '颜色';
 
   @override
-  String get userBubble => '用户泡沫';
+  String get userBubble => '用户气泡';
 
   @override
   String get userText => '用户文本';
 
   @override
-  String get assistantBubble => '助理泡泡';
+  String get assistantBubble => '助手气泡';
 
   @override
-  String get assistantText => '助理文字';
+  String get assistantText => '助手文字';
 
   @override
-  String get darkOverlay => '昏暗的壁纸';
+  String get darkOverlay => '壁纸暗度';
 
   @override
-  String get darkOverlayDescription => '聊天背景的壁纸应该设置多暗';
+  String get darkOverlayDescription => '聊天背景壁纸的暗度';
 
   @override
   String get usingGlobal => '使用全局';
@@ -1108,7 +1109,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get setCustom => '设置自定义';
 
   @override
-  String get customColor => '定制颜色';
+  String get customColor => '自定义颜色';
 
   @override
   String get defaultThemeColor => '默认主题颜色';
@@ -1135,22 +1136,22 @@ class AppLocalizationsZh extends AppLocalizations {
   String get noneSelected => '未选择';
 
   @override
-  String get systemPromptOverride => '人格面具';
+  String get systemPromptOverride => '角色';
 
   @override
   String get saved => '已保存';
 
   @override
-  String get noSavedPromptsInfo => '没有保存的人物角色。转到“设置”→“角色”来创建一些角色。';
+  String get noSavedPromptsInfo => '暂无已保存的角色。前往“设置”→“角色”创建。';
 
   @override
-  String get selectSavedPromptHint => '选择一个人物...';
+  String get selectSavedPromptHint => '选择角色…';
 
   @override
-  String get enterCustomPromptHint => '输入自定义角色提示...';
+  String get enterCustomPromptHint => '输入自定义角色提示词…';
 
   @override
-  String get personaShareMemoriesLabel => '分享回忆';
+  String get personaShareMemoriesLabel => '共享记忆';
 
   @override
   String get personaShareMemoriesSubtitle => '关闭后，此角色不会在聊天中接收或学习记忆';
@@ -1165,87 +1166,86 @@ class AppLocalizationsZh extends AppLocalizations {
   String get temperatureOverride => '温度';
 
   @override
-  String get maxTokensOverride => '最大代币数';
+  String get maxTokensOverride => '最大 Token 数';
 
   @override
-  String get topPOverride => '顶P';
+  String get topPOverride => 'Top-p';
 
   @override
-  String get topKOverride => '前K';
+  String get topKOverride => 'Top-k';
 
   @override
-  String get minPOverride => '最小P';
+  String get minPOverride => 'Min-p';
 
   @override
-  String get repeatPenaltyOverride => '重复处罚';
+  String get repeatPenaltyOverride => '重复惩罚';
 
   @override
   String get contextLengthOverride => '上下文长度';
 
   @override
-  String get systemPromptsTitle => '角色和系统提示';
+  String get systemPromptsTitle => '角色与系统提示词';
 
   @override
-  String get addSystemPromptTooltip => '添加提示或角色';
+  String get addSystemPromptTooltip => '添加提示词或角色';
 
   @override
-  String get systemPromptsInfoText =>
-      '创建和管理系统提示。将它们绑定到特定模型或全局使用它们。选择一项以使其处于活动状态。';
+  String get systemPromptsInfoText => '创建和管理系统提示词，可绑定到指定模型或全局使用。选择一项即启用。';
 
   @override
-  String get savedPromptsSection => '保存的提示';
+  String get savedPromptsSection => '已保存的提示词';
 
   @override
-  String get addSystemPrompt => '添加系统提示';
+  String get addSystemPrompt => '添加系统提示词';
 
   @override
-  String get newPrompt => '新提示或角色';
+  String get newPrompt => '新建提示词或角色';
 
   @override
-  String get noPromptSet => '没有设置提示';
+  String get noPromptSet => '未设置提示词';
 
   @override
-  String get editSystemPrompt => '编辑系统提示';
+  String get editSystemPrompt => '编辑系统提示词';
 
   @override
-  String get newSystemPrompt => '新提示或角色';
+  String get newSystemPrompt => '新建提示词或角色';
 
   @override
-  String get promptNameLabel => '提示名称';
+  String get promptNameLabel => '提示词名称';
 
   @override
-  String get promptNameHint => '例如，代码助理、创意作家……';
+  String get promptNameHint => '例如：代码助手、创意写手…';
 
   @override
-  String get systemPromptLabel => '系统提示';
+  String get systemPromptLabel => '系统提示词';
 
   @override
-  String get systemPromptEditorHint => '你是一个有用的助手，...';
+  String get systemPromptEditorHint => '你是一个乐于助人的助手…';
 
   @override
   String get bindToModels => '绑定到特定模型';
 
   @override
-  String get bindToModelsSubtitle => '将此提示限制为某些型号。解除绑定后，它适用于所有型号。';
+  String get bindToModelsSubtitle => '将此提示词限定给指定模型，未绑定时对所有模型可用。';
 
   @override
-  String get noModelsLoaded => '没有加载模型。连接到 LM Studio 并加载模型以绑定此提示。';
+  String get noModelsLoaded => '未加载模型。请先连接 LM Studio 并加载模型，再绑定提示词。';
 
   @override
   String get templatesSection => '模板';
 
   @override
-  String get pleaseEnterPromptName => '请输入此提示的名称';
+  String get pleaseEnterPromptName => '请输入提示词名称';
 
   @override
-  String get pleaseEnterPromptContent => '请输入提示内容';
+  String get pleaseEnterPromptContent => '请输入提示词内容';
 
   @override
-  String get deleteSystemPromptTitle => '删除系统提示？';
+  String get deleteSystemPromptTitle => '删除系统提示词？';
 
   @override
   String deleteSystemPromptMessage(String name) {
-    return '您确定要删除“$name”吗？此操作无法撤消。';
+    return '确定要删除“$name”吗？此操作无法撤销。';
   }
 
   @override
@@ -1270,22 +1270,22 @@ class AppLocalizationsZh extends AppLocalizations {
   String get downloadProgress => '下载进度';
 
   @override
-  String get progressLabel => '进步';
+  String get progressLabel => '进度';
 
   @override
   String get speedLabel => '速度';
 
   @override
-  String get etaLabel => '预计到达时间';
+  String get etaLabel => '预计剩余时间';
 
   @override
-  String get statusLabel => '地位';
+  String get statusLabel => '状态';
 
   @override
   String get notAvailable => '不适用';
 
   @override
-  String get calculating => '正在计算...';
+  String get calculating => '正在计算…';
 
   @override
   String get moveToFolderPopup => '移至文件夹';
@@ -1299,13 +1299,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get hideAvatars => '隐藏头像';
 
   @override
-  String get hideAvatarsSubtitle => '从聊天消息中删除头像图标';
+  String get hideAvatarsSubtitle => '移除聊天消息中的头像图标';
 
   @override
   String get autoScroll => '自动滚动';
 
   @override
-  String get autoScrollSubtitle => '当新消息到达时滚动到底部';
+  String get autoScrollSubtitle => '有新消息时自动滚动到底部';
 
   @override
   String get editMcpServer => '编辑 MCP 服务器';
@@ -1323,7 +1323,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get serverLabelHelper => '识别该服务器的名称';
 
   @override
-  String get serverUrlRequired => '服务器网址 *';
+  String get serverUrlRequired => '服务器地址 *';
 
   @override
   String get serverUrlMcpHint => 'https://huggingface.co/mcp';
@@ -1339,16 +1339,17 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get authorizationHelper =>
-      '作为 Authorization 标头发送到此 MCP。可粘贴原始令牌（会自动加 Bearer）或完整标头值。';
+      '作为 Authorization 标头发送到此 MCP。可粘贴原始 Token（会自动加 Bearer）或完整标头值。';
 
   @override
   String get additionalHeaders => '附加标头';
 
   @override
-  String get additionalHeadersHint => 'X-自定义标头：值';
+  String get additionalHeadersHint => 'X-Custom-Header: value';
 
   @override
-  String get additionalHeadersHelper => '每行一个标题（名称：值）。\n上面设置了授权。';
+  String get additionalHeadersHelper =>
+      '每行一个标头（名称: 值）。\nAPI Key / Authorization 已在上方设置。';
 
   @override
   String get labelAndUrlRequired => '标签和 URL 为必填项';
@@ -1357,20 +1358,20 @@ class AppLocalizationsZh extends AppLocalizations {
   String get urlMustStartWithHttp => 'URL 必须以 http:// 或 https:// 开头';
 
   @override
-  String get mcpServerUpdated => 'MCP服务器已更新';
+  String get mcpServerUpdated => 'MCP 服务器已更新';
 
   @override
-  String get mcpServerAdded => '添加 MCP 服务器';
+  String get mcpServerAdded => '已添加 MCP 服务器';
 
   @override
   String get importMcpJsonTitle => '导入 mcp.json';
 
   @override
-  String get pasteMcpJsonContent => '粘贴您的 mcp.json 内容';
+  String get pasteMcpJsonContent => '粘贴你的 mcp.json 内容';
 
   @override
   String get mcpJsonLocation =>
-      '位于：~/.lmstudio/config/mcp.json\n或者在 LM Studio 中：开发人员 → MCP 设置 → 打开配置';
+      '位于：~/.lmstudio/config/mcp.json\n或在 LM Studio 中：Developer → MCP 设置 → 打开配置';
 
   @override
   String get mcpJsonContentLabel => 'mcp.json 内容';
@@ -1383,28 +1384,28 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String foundMcpServers(int count) {
-    return '找到 $count MCP 服务器：';
+    return '找到 $count 个 MCP 服务器：';
   }
 
   @override
-  String get hasAuthHeaders => '具有身份验证标头';
+  String get hasAuthHeaders => '包含身份验证标头';
 
   @override
   String importSelected(int count) {
-    return '导入$count所选';
+    return '导入选中的 $count 个';
   }
 
   @override
-  String get pleasePasteMcpJson => '请粘贴您的 mcp.json 内容';
+  String get pleasePasteMcpJson => '请粘贴 mcp.json 内容';
 
   @override
-  String get noMcpServersFound => 'JSON 中未找到 mcpServer';
+  String get noMcpServersFound => 'JSON 中未找到 mcpServers';
 
   @override
   String get exampleMcpServers => 'MCP 服务器示例';
 
   @override
-  String get gitMcpInfo => '这些使用 GitMCP 提供来自 GitHub 存储库的文档';
+  String get gitMcpInfo => '这些使用 GitMCP 提供 GitHub 仓库的文档';
 
   @override
   String get browseMoreGitMcp => '在 gitmcp.io 浏览更多内容';
@@ -1428,10 +1429,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get voiceSettingsSubtitle => '文本转语音、语音输入和语音模式';
 
   @override
-  String get voiceSection => '嗓音';
+  String get voiceSection => '语音';
 
   @override
-  String get voiceStatus => '地位';
+  String get voiceStatus => '状态';
 
   @override
   String get voiceTtsEngine => '文本转语音引擎';
@@ -1452,65 +1453,65 @@ class AppLocalizationsZh extends AppLocalizations {
   String get voiceSttSettings => '语音转文本';
 
   @override
-  String get voiceSttProvider => '语音识别提供商';
+  String get voiceSttProvider => '语音识别服务';
 
   @override
-  String get voiceSttProviderSystem => '系统讲话';
+  String get voiceSttProviderSystem => '系统语音';
 
   @override
   String get voiceSttProviderSystemSubtitle =>
       'iOS 上的 Apple Speech，Android 上的 Google Speech';
 
   @override
-  String get voiceSttProviderWhisper => '设备上的耳语';
+  String get voiceSttProviderWhisper => '本机 Whisper';
 
   @override
   String get voiceSttProviderWhisperSubtitle =>
-      '离线 sherpa-onnx Whisper — 更准确，在所有平台上的工作方式相同';
+      '离线 sherpa-onnx Whisper — 更准确，各平台表现一致';
 
   @override
-  String get voiceWhisperModelNotDownloaded => '耳语模型未下载';
+  String get voiceWhisperModelNotDownloaded => 'Whisper 模型未下载';
 
   @override
-  String get voiceWhisperModelReady => '耳语模型准备就绪';
+  String get voiceWhisperModelReady => 'Whisper 模型已就绪';
 
   @override
-  String get voiceWhisperModelSize => '选择尺寸 - 较大的型号转录更准确';
+  String get voiceWhisperModelSize => '选择大小 — 越大的模型转写越准确';
 
   @override
   String get voiceWhisperDownloadButton => '下载';
 
   @override
-  String get voiceWhisperDownloading => '正在下载 Whisper 模型...';
+  String get voiceWhisperDownloading => '正在下载 Whisper 模型…';
 
   @override
-  String get voiceWhisperDownloadStarting => '开始下载...';
+  String get voiceWhisperDownloadStarting => '开始下载…';
 
   @override
   String get voiceWhisperDownloadFailed => '下载失败';
 
   @override
-  String get voiceWhisperDeleteModel => '删除选定的 Whisper 模型';
+  String get voiceWhisperDeleteModel => '删除选中的 Whisper 模型';
 
   @override
-  String get voiceWhisperDeleteTitle => '删除耳语模型？';
+  String get voiceWhisperDeleteTitle => '删除 Whisper 模型？';
 
   @override
   String get voiceWhisperDeleteMessage =>
-      '这会将所选模型从设备存储中释放。设备上的语音识别将回退到系统语音，直到您再次下载 Whisper 模型。';
+      '这会释放该模型占用的设备存储。在你重新下载 Whisper 模型之前，语音识别会回退到系统语音。';
 
   @override
   String get voiceWhisperDeleteConfirm => '删除';
 
   @override
-  String get voiceWhisperFallback => '如果未下载模型，则返回系统语音';
+  String get voiceWhisperFallback => '未下载模型时回退到系统语音';
 
   @override
-  String get voiceWhisperBiggerBetterTitle => '为什么要选择更大的型号？';
+  String get voiceWhisperBiggerBetterTitle => '为什么选更大的模型？';
 
   @override
   String get voiceWhisperBiggerBetterBody =>
-      '较大的 Whisper 模型通常会生成更准确的文字记录，尤其是对于口音、安静的音频、背景噪音和不常见的单词。它们还需要更多存储空间，并且在您的设备上运行速度较慢。\n\nTiny 适合简短、清晰的演讲。 Base 或 Small 更适合较长的文件。 Large v3 Turbo 是大型模型中最快/最小的（经过修剪的 Large v3）。 Full Large v3 是最准确的，但也是最重的。';
+      '更大的 Whisper 模型通常转写更准确 — 尤其在口音、轻声、背景噪音和生僻词上。代价是占用更多存储，在你的设备上运行也更慢。\n\nTiny 足以应对简短清晰的语音，较长的文件建议用 Base 或 Small。Large v3 Turbo 是大模型中最快、最小的（Large v3 的裁剪版）。Full Large v3 最准确，但体积也最大。';
 
   @override
   String get voiceWhisperUseModel => '使用';
@@ -1526,25 +1527,25 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get audioSetupMessage =>
-      '语音聊天需要文本转语音才能让人工智能回复。选择设备上的 Kokoro 神经语音以获得最佳质量，或使用设备的内置语音 - 无需下载。';
+      '语音聊天需要助手开口说话。下载语音包可获得最自然的声音，也可以直接使用手机内置语音 — 无需下载。';
 
   @override
-  String get audioSetupWhisperStatus => '耳语语音识别';
+  String get audioSetupWhisperStatus => 'Whisper 语音识别';
 
   @override
   String get audioSetupKokoroStatus => 'Kokoro 神经语音';
 
   @override
-  String get audioSetupStatusReady => '准备好';
+  String get audioSetupStatusReady => '就绪';
 
   @override
   String get audioSetupStatusMissing => '未下载';
 
   @override
-  String get audioSetupOnDeviceButton => '下载Kokoro语音';
+  String get audioSetupOnDeviceButton => '下载 Kokoro 语音';
 
   @override
-  String get audioSetupOnDeviceSubtitle => 'Kokoro 神经 TTS · 约 300 MB · 离线工作';
+  String get audioSetupOnDeviceSubtitle => 'Kokoro 神经 TTS · 约 300 MB · 可离线使用';
 
   @override
   String get audioSetupSystemButton => '使用系统语音';
@@ -1556,16 +1557,16 @@ class AppLocalizationsZh extends AppLocalizations {
   String get audioSetupConfigureButton => '语音设置';
 
   @override
-  String get audioSetupNotNow => '现在不要';
+  String get audioSetupNotNow => '暂不';
 
   @override
-  String get audioSetupDownloadingWhisper => '正在下载耳语...';
+  String get audioSetupDownloadingWhisper => '正在下载 Whisper…';
 
   @override
-  String get audioSetupDownloadingKokoro => '正在下载心...';
+  String get audioSetupDownloadingKokoro => '正在下载 Kokoro…';
 
   @override
-  String get audioSetupDownloadComplete => '模型准备好了';
+  String get audioSetupDownloadComplete => '模型已就绪';
 
   @override
   String get audioSetupContinueButton => '继续';
@@ -1574,28 +1575,28 @@ class AppLocalizationsZh extends AppLocalizations {
   String get voiceModeSettings => '语音模式';
 
   @override
-  String get voiceAutoRead => '自动读取回复';
+  String get voiceAutoRead => '自动朗读回复';
 
   @override
-  String get voiceAutoReadSubtitle => '自动朗读新的助理消息';
+  String get voiceAutoReadSubtitle => '自动朗读新的助手消息';
 
   @override
   String get voiceSpeechRate => '语速';
 
   @override
-  String get voicePitch => '沥青';
+  String get voicePitch => '音调';
 
   @override
   String get voiceLanguage => '语音语言';
 
   @override
-  String get voiceLanguageSubtitle => '口头回复的语言（文本转语音）';
+  String get voiceLanguageSubtitle => '语音回复所用的语言（文本转语音）';
 
   @override
   String get voiceSttLanguage => '识别语言';
 
   @override
-  String get voiceSttLanguageSubtitle => '用于文本麦克风和语音通话。可能与口头回复语言不同。';
+  String get voiceSttLanguageSubtitle => '用于文字输入的麦克风和语音通话，可与语音回复语言不同。';
 
   @override
   String get voiceSelection => '语音选择';
@@ -1607,54 +1608,54 @@ class AppLocalizationsZh extends AppLocalizations {
   String get voiceTestVoice => '测试语音';
 
   @override
-  String get voiceTestVoiceSubtitle => '播放样本以听听当前的语音设置';
+  String get voiceTestVoiceSubtitle => '播放一段示例，试听当前语音设置';
 
   @override
   String get voiceTestPhrase => '你好！这就是我现在的声音。';
 
   @override
-  String get voiceTestProgressInitializing => '启动 TTS 引擎...';
+  String get voiceTestProgressInitializing => '正在启动 TTS 引擎…';
 
   @override
-  String get voiceTestProgressGenerating => '生成语音...';
+  String get voiceTestProgressGenerating => '正在生成语音…';
 
   @override
-  String get voiceTestProgressPreparing => '正在准备播放...';
+  String get voiceTestProgressPreparing => '正在准备播放…';
 
   @override
-  String get voiceTestProgressPlaying => '播放样本...';
+  String get voiceTestProgressPlaying => '正在播放示例…';
 
   @override
-  String get voiceTestProgressConnecting => '正在连接远程语音...';
+  String get voiceTestProgressConnecting => '正在连接远程语音…';
 
   @override
-  String get voiceTestProgressComplete => '完毕';
+  String get voiceTestProgressComplete => '完成';
 
   @override
-  String get voiceKokoroEngineReady => '发动机准备就绪——测试应该很快开始';
+  String get voiceKokoroEngineReady => '引擎已就绪 — 测试很快就会开始';
 
   @override
-  String get voiceKokoroEngineWarming => '正在预热设备上的引擎...';
+  String get voiceKokoroEngineWarming => '正在预热本机引擎…';
 
   @override
-  String get voiceAutoSend => '发言后自动发送';
+  String get voiceAutoSend => '说完自动发送';
 
   @override
-  String get voiceAutoSendSubtitle => '语音识别结束时自动发送消息';
+  String get voiceAutoSendSubtitle => '语音识别结束后自动发送消息';
 
   @override
-  String get voiceSttPauseFor => '发送前保持沉默';
+  String get voiceSttPauseFor => '发送前的静默时长';
 
   @override
   String get voiceSttPauseForSubtitle =>
-      '在您停止讲话后，在发送消息之前静默几秒钟。这与 iOS 麦克风会话限制（约 15 秒块，自动处理）是分开的。';
+      '停止说话后静默多少秒就发送消息。这与 iOS 麦克风会话限制（约 15 秒一段，自动处理）互不影响。';
 
   @override
-  String get voiceSttListenFor => '最长收听时间';
+  String get voiceSttListenFor => '最长聆听时间';
 
   @override
   String get voiceSttListenForSubtitle =>
-      '在应用程序重新打开麦克风之前，每个麦克风会话的硬上限。在 iOS 上，Apple 还在长演讲期间大约每 15 秒轮换一次会话。';
+      '每次麦克风会话的硬上限，达到后应用会重新开启麦克风。在 iOS 上，长时间讲话时 Apple 还会约每 15 秒轮换一次会话。';
 
   @override
   String voiceSttSeconds(int seconds) {
@@ -1665,22 +1666,22 @@ class AppLocalizationsZh extends AppLocalizations {
   String get voiceContinuousConversation => '持续对话';
 
   @override
-  String get voiceContinuousConversationSubtitle => '朗读响应后自动开始收听';
+  String get voiceContinuousConversationSubtitle => '回复朗读完后自动开始聆听';
 
   @override
-  String get voiceTapToSpeak => '点击即可说话';
+  String get voiceTapToSpeak => '点击说话';
 
   @override
-  String get voiceListening => '正在听……';
+  String get voiceListening => '正在聆听…';
 
   @override
-  String get voiceThinking => '一会儿……';
+  String get voiceThinking => '稍等…';
 
   @override
   String get voiceResponding => '正在回复…';
 
   @override
-  String get voiceSpeaking => '请讲…';
+  String get voiceSpeaking => '正在朗读…';
 
   @override
   String get voiceConvoHintIdle => '点击圆圈开始说话';
@@ -1692,7 +1693,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get voiceConvoHintStarting => '正在准备麦克风…';
 
   @override
-  String get voiceConvoHintProcessing => '思维…';
+  String get voiceConvoHintProcessing => '思考中…';
 
   @override
   String get voiceConvoHintSpeaking => '';
@@ -1723,7 +1724,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get voiceAboutDescription =>
-      '语音模式使用设备的本机语音引擎或设备上的 Kokoro 神经 TTS。文本转语音可以使用 iOS 上的 Apple AVSpeechSynthesizer、Android 上的 Google TTS 或设备上下载的 Kokoro-82M 神经模型。语音识别在 iOS 上使用 Apple Speech Framework，在 Android 上使用 Google Speech。所有处理都在设备上进行——没有数据发送到外部服务器。';
+      '语音模式可以使用手机内置语音，也可以使用本机下载的语音。聆听可以使用系统内置识别，也可以使用你下载的离线模型。语音始终留在本机 — 不会发送到外部服务器。';
 
   @override
   String get voiceExitMode => '切换到键盘';
@@ -1735,20 +1736,20 @@ class AppLocalizationsZh extends AppLocalizations {
   String get voiceTtsProviderNative => '设备（本机）';
 
   @override
-  String get voiceTtsProviderNativeSubtitle => '使用内置系统声音 — 离线工作';
+  String get voiceTtsProviderNativeSubtitle => '使用系统内置语音 — 可离线使用';
 
   @override
   String get voiceTtsProviderKokoro => '已下载的语音';
 
   @override
-  String get voiceTtsProviderKokoroSubtitle => '在此设备上运行的自然语音';
+  String get voiceTtsProviderKokoroSubtitle => '在本机运行的自然语音';
 
   @override
-  String get voiceTtsProviderKokoroRemote => '心 (PC)';
+  String get voiceTtsProviderKokoroRemote => 'Kokoro (PC)';
 
   @override
   String get voiceTtsProviderKokoroRemoteSubtitle =>
-      '在您的 PC 上运行 Kokoro 以获得更快、更高质量的语音';
+      '在 PC 上运行 Kokoro，语音更快、质量更高';
 
   @override
   String get voiceTtsProviderElevenLabs => 'ElevenLabs';
@@ -1760,16 +1761,16 @@ class AppLocalizationsZh extends AppLocalizations {
   String get voiceTtsElevenLabs => 'ElevenLabs';
 
   @override
-  String get voiceTtsElevenLabsHint => '你的密钥 · 来自 ElevenLabs 语音库';
+  String get voiceTtsElevenLabsHint => '你的密钥 · 来自你的 ElevenLabs 语音库';
 
   @override
   String get voiceElevenLabsApiKey => 'ElevenLabs API 密钥';
 
   @override
-  String get voiceElevenLabsApiKeyHint => '粘贴 elevenlabs.io 上的 xi-api-key';
+  String get voiceElevenLabsApiKeyHint => '粘贴你在 elevenlabs.io 获取的 xi-api-key';
 
   @override
-  String get voiceElevenLabsTestKey => '检查密钥';
+  String get voiceElevenLabsTestKey => '验证密钥';
 
   @override
   String get voiceElevenLabsKeyInvalid => '该密钥未被接受。请在 elevenlabs.io 核对。';
@@ -1829,7 +1830,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get premiumElevenLabsTtsDescription =>
-      '使用你的 ElevenLabs API 密钥，并为角色指定工作室级语音。语音聊天、自动朗读和气泡朗读使用同一引擎。';
+      '使用你的 ElevenLabs API 密钥，为角色指定录音室级语音。语音聊天、自动朗读和气泡朗读使用同一引擎。';
 
   @override
   String get voiceTtsProviderGrok => 'Grok';
@@ -1850,7 +1851,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get voiceGrokApiKeyHint => '粘贴 console.x.ai 上的 API 密钥';
 
   @override
-  String get voiceGrokTestKey => '检查密钥';
+  String get voiceGrokTestKey => '验证密钥';
 
   @override
   String get voiceGrokKeyInvalid => '该密钥未被接受。请在 console.x.ai 核对。';
@@ -1901,7 +1902,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get personaVoiceSection => '语音';
 
   @override
-  String get personaVoiceProviderLabel => '提供方';
+  String get personaVoiceProviderLabel => '提供商';
 
   @override
   String get personaVoiceProviderKokoro => 'Kokoro';
@@ -1910,7 +1911,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get personaVoiceProviderGlobal => '使用全局语音设置';
 
   @override
-  String get personaVoiceConfigureInSettings => '请在 设置 → 语音 中配置';
+  String get personaVoiceConfigureInSettings => '在“设置 → 语音”中配置';
 
   @override
   String get premiumGrokTts => 'Grok 语音';
@@ -1923,7 +1924,7 @@ class AppLocalizationsZh extends AppLocalizations {
       '使用你的 xAI API 密钥，并为角色指定 Grok 语音。语音聊天、自动朗读和气泡朗读使用同一引擎。';
 
   @override
-  String get voiceRemoteKokoroConnected => '连接至 PC 上的 Kokoro';
+  String get voiceRemoteKokoroConnected => '已连接到 PC 上的 Kokoro';
 
   @override
   String get voiceRemoteKokoroNotFound => '在 PC 上找不到 Kokoro TTS';
@@ -1933,28 +1934,28 @@ class AppLocalizationsZh extends AppLocalizations {
       '需要在 Mac 上开启“与手机共享”，或在 Windows/Linux 上运行 LM Mini Connect';
 
   @override
-  String get voiceKokoroVoice => '心的声音';
+  String get voiceKokoroVoice => 'Kokoro 语音';
 
   @override
   String get voiceKokoroSpeed => '语速';
 
   @override
-  String get voiceKokoroModelReady => 'Kokoro模型准备好了';
+  String get voiceKokoroModelReady => 'Kokoro 模型已就绪';
 
   @override
   String get voiceKokoroModelReadySubtitle => '已下载的语音已就绪';
 
   @override
-  String get voiceKokoroModelNotDownloaded => 'Kokoro模型未下载';
+  String get voiceKokoroModelNotDownloaded => 'Kokoro 模型未下载';
 
   @override
   String get voiceKokoroModelSize => '需要下载（~400 MB 共享包）';
 
   @override
-  String get voiceKokoroDownloading => '正在下载 Kokoro 模型...';
+  String get voiceKokoroDownloading => '正在下载 Kokoro 模型…';
 
   @override
-  String get voiceKokoroDownloadStarting => '开始下载...';
+  String get voiceKokoroDownloadStarting => '开始下载…';
 
   @override
   String get voiceKokoroDownloadButton => '下载';
@@ -1966,13 +1967,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get voiceKokoroFallback => '如果未下载 Kokoro 模型，将回退为原生语音';
 
   @override
-  String get voiceKokoroDeleteModel => '删除心模型';
+  String get voiceKokoroDeleteModel => '删除 Kokoro 模型';
 
   @override
-  String get voiceKokoroDeleteTitle => '删除Kokoro模型？';
+  String get voiceKokoroDeleteTitle => '删除 Kokoro 模型？';
 
   @override
-  String get voiceKokoroDeleteMessage => '这将删除所有已下载的 TTS 语言包。您可以稍后重新下载。';
+  String get voiceKokoroDeleteMessage => '这会删除所有已下载的 TTS 语言包，之后可以重新下载。';
 
   @override
   String get voiceKokoroDeleteConfirm => '删除';
@@ -2009,31 +2010,31 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get voiceTtsSharedPackDeleteMessage =>
-      '这将移除英语、西班牙语、法语和中文共用的下载。您可以稍后重新下载。';
+      '这会移除英语、西班牙语、法语和中文共用的下载，之后可以重新下载。';
 
   @override
-  String get connecting => '正在连接...';
+  String get connecting => '正在连接…';
 
   @override
   String get saveAndTestConnection => '保存并测试连接';
 
   @override
   String connectedTo(String provider) {
-    return '✅ 连接到 $provider';
+    return '✅ 已连接到 $provider';
   }
 
   @override
   String connectionToFailed(String provider) {
-    return '❌ 连接到 $provider 失败 — 检查您的 API 密钥';
+    return '❌ 连接 $provider 失败 — 请检查你的 API 密钥';
   }
 
   @override
   String errorGeneric(String error) {
-    return '❌错误：$error';
+    return '❌ 错误：$error';
   }
 
   @override
-  String get provider => '提供者';
+  String get provider => '提供商';
 
   @override
   String cloudApiKeyLabel(String provider) {
@@ -2041,7 +2042,7 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get enterApiKeyHint => '输入您的 API 密钥...';
+  String get enterApiKeyHint => '输入你的 API 密钥…';
 
   @override
   String getApiKey(String provider) {
@@ -2049,16 +2050,16 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get baseUrl => '基本网址';
+  String get baseUrl => '基础 URL';
 
   @override
-  String get customBaseUrlOptional => '自定义基本 URL（可选）';
+  String get customBaseUrlOptional => '自定义基础 URL（可选）';
 
   @override
-  String get accountSection => '帐户';
+  String get accountSection => '账户';
 
   @override
-  String get signIn => '登入';
+  String get signIn => '登录';
 
   @override
   String get signInSubtitle => '登录以启用云备份';
@@ -2072,10 +2073,10 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get lmMiniProSection => 'LM迷你PRO';
+  String get lmMiniProSection => 'LM MINI PRO';
 
   @override
-  String get proActive => '积极主动的';
+  String get proActive => 'Pro 已激活';
 
   @override
   String get allPremiumUnlocked => '所有高级功能已解锁';
@@ -2139,16 +2140,16 @@ class AppLocalizationsZh extends AppLocalizations {
   String get generatedImagesOpenChat => '在对话中打开';
 
   @override
-  String get saveToPhotos => 'Save to Photos';
+  String get saveToPhotos => '保存到相册';
 
   @override
-  String get savedToPhotos => 'Saved to Photos';
+  String get savedToPhotos => '已保存到相册';
 
   @override
-  String get couldNotSaveToPhotos => 'Could not save this file.';
+  String get couldNotSaveToPhotos => '无法保存此文件。';
 
   @override
-  String get share => 'Share';
+  String get share => '分享';
 
   @override
   String get generatedImagesMissingFile => '文件缺失';
@@ -2189,20 +2190,20 @@ class AppLocalizationsZh extends AppLocalizations {
   String get encryptedBackupRestore => '加密备份和恢复';
 
   @override
-  String get e2eBanner => '端到端加密 - 您的密码永远不会离开此设备';
+  String get e2eBanner => '端到端加密 — 你的密码永远不会离开本机';
 
   @override
   String get analytics => '分析';
 
   @override
-  String get analyticsSubtitle => '使用统计、代币和模型见解';
+  String get analyticsSubtitle => '使用统计、Token 和模型洞察';
 
   @override
-  String get memory => '回忆';
+  String get memory => '记忆';
 
   @override
   String memoryItemCount(int count) {
-    return '$count 项目 • 在聊天中持续存在';
+    return '$count 条 • 跨对话长期保留';
   }
 
   @override
@@ -2221,7 +2222,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get conversationBranching => '对话分支';
 
   @override
-  String get conversationBranchingSubtitle => '从任何消息中分叉对话';
+  String get conversationBranchingSubtitle => '可从任意消息分叉出对话';
 
   @override
   String get cloudBackupPro => '云备份';
@@ -2233,10 +2234,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get analyticsDashboard => '分析仪表板';
 
   @override
-  String get analyticsDashboardSubtitle => '使用统计、代币和模型见解';
+  String get analyticsDashboardSubtitle => '使用统计、Token 和模型洞察';
 
   @override
-  String get cloudApiProviders => '云API提供商';
+  String get cloudApiProviders => '云 API 提供商';
 
   @override
   String get cloudApiProvidersSubtitle => 'Mistral、DeepSeek 等';
@@ -2245,11 +2246,11 @@ class AppLocalizationsZh extends AppLocalizations {
   String get addProviderLabel => '添加提供商';
 
   @override
-  String get noCloudProvidersTitle => '没有云提供商';
+  String get noCloudProvidersTitle => '暂无云提供商';
 
   @override
   String get noCloudProvidersSubtitle =>
-      '点击 + 添加云 API 提供商。\n使用您自己的 Groq、DeepSeek 等 API 密钥。';
+      '点击 + 添加云 API 提供商。\n使用你自己的 Groq、DeepSeek 等 API 密钥。';
 
   @override
   String get editProviderTitle => '编辑提供商';
@@ -2258,49 +2259,49 @@ class AppLocalizationsZh extends AppLocalizations {
   String get addCloudProviderTitle => '添加云提供商';
 
   @override
-  String get providerLabel => '提供者';
+  String get providerLabel => '提供商';
 
   @override
-  String get apiKeyLabel => 'API密钥';
+  String get apiKeyLabel => 'API 密钥';
 
   @override
   String get pasteLabel => '粘贴';
 
   @override
-  String get baseUrlRequiredLabel => '基本 URL（必填）';
+  String get baseUrlRequiredLabel => '基础 URL（必填）';
 
   @override
-  String get customBaseUrlOptionalLabel => '自定义基本 URL（可选）';
+  String get customBaseUrlOptionalLabel => '自定义基础 URL（可选）';
 
   @override
-  String get advancedLabel => '先进的';
+  String get advancedLabel => '高级';
 
   @override
-  String get fetchingLabel => '正在获取...';
+  String get fetchingLabel => '正在获取…';
 
   @override
-  String get fetchAvailableModelsLabel => '获取可用型号';
+  String get fetchAvailableModelsLabel => '获取可用模型';
 
   @override
-  String get availableModelsLabel => '可用型号：';
+  String get availableModelsLabel => '可用模型：';
 
   @override
-  String get suggestedModelsLabel => '推荐型号：';
+  String get suggestedModelsLabel => '推荐模型：';
 
   @override
-  String get modelIdLabel => '型号编号';
+  String get modelIdLabel => '模型 ID';
 
   @override
-  String get disableCloudProviderSubtitle => '禁用保留配置但不使用它';
+  String get disableCloudProviderSubtitle => '禁用后保留配置但不再使用';
 
   @override
-  String get setAsActiveProviderLabel => '设置为主动提供者';
+  String get setAsActiveProviderLabel => '设为当前提供商';
 
   @override
   String get deactivateLabel => '停用';
 
   @override
-  String get switchedBackToLocalLmStudio => '切换回本地LM Studio';
+  String get switchedBackToLocalLmStudio => '已切换回本地 LM Studio';
 
   @override
   String get saveChangesLabel => '保存更改';
@@ -2312,10 +2313,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get enterApiKeyError => '请输入 API 密钥';
 
   @override
-  String get enterBaseUrlError => '请输入自定义提供商的基本 URL';
+  String get enterBaseUrlError => '请输入自定义提供商的基础 URL';
 
   @override
-  String get enterApiKeyFirst => '首先输入 API 密钥';
+  String get enterApiKeyFirst => '请先输入 API 密钥';
 
   @override
   String failedToFetchModels(String error) {
@@ -2337,24 +2338,24 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String activeProviderSet(String name) {
-    return '$name 设置为活动提供者';
+    return '$name 已设为当前提供商';
   }
 
   @override
-  String get memoryPro => '回忆';
+  String get memoryPro => '记忆';
 
   @override
-  String get memoryProSubtitle => '对话中的持久记忆';
+  String get memoryProSubtitle => '跨对话长期保留的记忆';
 
   @override
-  String get richExportShare => '丰富的导出和分享';
+  String get richExportShare => '完整导出与分享';
 
   @override
   String get richExportShareSubtitle => '导出到 Obsidian、Notes、Notion 等';
 
   @override
   String autoUnloadAfter(String value) {
-    return '$value后自动卸载';
+    return '$value 后自动卸载';
   }
 
   @override
@@ -2367,7 +2368,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get subscriptionPrivacy => '隐私';
 
   @override
-  String get secureYourAccount => '保护您的帐户';
+  String get secureYourAccount => '保护你的账户';
 
   @override
   String get signInWithApple => '使用 Apple 登录';
@@ -2376,7 +2377,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get signInWithGoogle => '使用 Google 登录';
 
   @override
-  String get subscriptionSecured => '您的订阅已受到保护';
+  String get subscriptionSecured => '你的订阅已受保护';
 
   @override
   String get packagesNotAvailable => '套餐尚未提供。';
@@ -2391,10 +2392,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get noActiveSubscription => '未找到有效订阅。';
 
   @override
-  String get accountLinked => '✅ 帐户已关联！';
+  String get accountLinked => '✅ 账户已关联！';
 
   @override
-  String get account => '帐户';
+  String get account => '账户';
 
   @override
   String get createAccount => '创建账户';
@@ -2409,7 +2410,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get forgotPassword => '忘记密码？';
 
   @override
-  String get forgotPasswordNeedEmail => '请先输入电子邮件，再点「忘记密码？」。';
+  String get forgotPasswordNeedEmail => '请先输入邮箱，再点击“忘记密码？”。';
 
   @override
   String get forgotPasswordSent => '如果该邮箱已有账户，我们已发送重置链接。请查看收件箱。';
@@ -2426,22 +2427,22 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get cloudBackupEnabled => '已启用 — 您的帐户支持加密备份';
+  String get cloudBackupEnabled => '已启用 — 你的账户支持加密备份';
 
   @override
   String get endToEndEncryption => '端到端加密';
 
   @override
-  String get e2eSubtitle => '使用您的密码加密的备份 - 我们无法读取它们';
+  String get e2eSubtitle => '备份用你的密码加密 — 我们无法读取';
 
   @override
   String get upgradeForCloudBackup => '升级到专业版以启用加密云备份';
 
   @override
-  String get signOut => '登出';
+  String get signOut => '退出登录';
 
   @override
-  String get signOutConfirm => '登出？';
+  String get signOutConfirm => '退出登录？';
 
   @override
   String get signedOut => '已退出。';
@@ -2465,40 +2466,40 @@ class AppLocalizationsZh extends AppLocalizations {
   String get backUpNow => '立即备份';
 
   @override
-  String get yourBackups => '您的备份';
+  String get yourBackups => '你的备份';
 
   @override
   String get e2eBackupBanner => '端到端加密。';
 
   @override
-  String get e2eBackupDetail => '在离开此设备之前，您的备份将使用您的密码进行加密。我们无法读取您的数据。';
+  String get e2eBackupDetail => '备份在离开本机前会用你的密码加密，我们无法读取你的数据。';
 
   @override
-  String get exportingData => '正在导出数据...';
+  String get exportingData => '正在导出数据…';
 
   @override
-  String get preparing => '正在准备...';
+  String get preparing => '正在准备…';
 
   @override
-  String get encrypting => '正在加密...';
+  String get encrypting => '正在加密…';
 
   @override
-  String get uploading => '正在上传...';
+  String get uploading => '正在上传…';
 
   @override
-  String get savingMetadata => '正在保存元数据...';
+  String get savingMetadata => '正在保存元数据…';
 
   @override
-  String get done => '完毕！';
+  String get done => '完成！';
 
   @override
   String get noBackupsYet => '还没有备份';
 
   @override
-  String get createFirstBackup => '在上面创建您的第一个加密备份';
+  String get createFirstBackup => '在上方创建你的第一个加密备份';
 
   @override
-  String get encrypted => '加密的';
+  String get encrypted => '已加密';
 
   @override
   String get restore => '恢复';
@@ -2507,51 +2508,50 @@ class AppLocalizationsZh extends AppLocalizations {
   String get encryptionPassphraseLabel => '加密密码';
 
   @override
-  String get enterStrongPassphrase => '输入强密码';
+  String get enterStrongPassphrase => '输入一个高强度密码';
 
   @override
   String get confirmPassphraseLabel => '确认密码';
 
   @override
-  String get passphraseRememberWarning =>
-      '记住这个密码！如果丢失，您的备份将无法恢复。我们不会将其存储在任何地方。';
+  String get passphraseRememberWarning => '记住这个密码！一旦丢失，备份将无法恢复，我们不会在任何地方保存它。';
 
   @override
-  String get passphraseRestoreHint => '输入您在创建此备份时使用的相同密码。';
+  String get passphraseRestoreHint => '输入创建此备份时使用的密码。';
 
   @override
   String get minCharsRequired => '至少需要 4 个字符。';
 
   @override
-  String get passphrasesDoNotMatch => '密码不匹配。';
+  String get passphrasesDoNotMatch => '两次输入的密码不一致。';
 
   @override
-  String get encryptAndBackUp => '加密和备份';
+  String get encryptAndBackUp => '加密并备份';
 
   @override
-  String get decryptAndRestore => '解密与恢复';
+  String get decryptAndRestore => '解密并恢复';
 
   @override
   String get encryptionPassphrase => '加密密码';
 
   @override
-  String get savedPassphrasePrompt => '您有以前备份中保存的密码。您想使用相同的密码还是设置新的密码？';
+  String get savedPassphrasePrompt => '你有之前备份保存的密码。要沿用它，还是设置新的密码？';
 
   @override
   String get newPassphrase => '新密码';
 
   @override
-  String get useSame => '使用相同';
+  String get useSame => '沿用';
 
   @override
   String get setEncryptionPassphrase => '设置加密密码';
 
   @override
-  String get choosePassphraseBackup => '选择一个密码来加密该备份。您需要它才能在任何设备上进行恢复。';
+  String get choosePassphraseBackup => '选择一个密码来加密此备份，之后在任何设备上恢复都需要用到它。';
 
   @override
   String get choosePassphraseDetail =>
-      '选择一个密码来加密您的备份。该密码保留在您的设备上 - 我们永远不会看到它。你需要它来恢复。';
+      '选择一个密码来加密备份。密码只保存在你的设备上 — 我们无法看到，恢复时需要用到它。';
 
   @override
   String backupFailed(String error) {
@@ -2562,7 +2562,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get restoreBackupConfirm => '恢复备份？';
 
   @override
-  String get restoreWarning => '这将使用此备份中的数据替换您当前的所有对话、消息和文件夹。\n\n此操作无法撤消。';
+  String get restoreWarning => '这会用此备份中的数据替换你当前的所有对话、消息和文件夹。\n\n此操作无法撤消。';
 
   @override
   String get continueAction => '继续';
@@ -2571,7 +2571,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get enterPassphrase => '输入密码';
 
   @override
-  String get passphraseDecryptHint => '该备份是端到端加密的。输入您在创建时使用的密码。';
+  String get passphraseDecryptHint => '此备份为端到端加密，输入创建时使用的密码。';
 
   @override
   String get wrongPassphrase => '密码错误或备份损坏。';
@@ -2599,63 +2599,63 @@ class AppLocalizationsZh extends AppLocalizations {
   String get overview => '概述';
 
   @override
-  String get messages => '留言';
+  String get messages => '消息';
 
   @override
   String get conversations => '对话';
 
   @override
-  String get totalTokens => '代币总数';
+  String get totalTokens => 'Token 总数';
 
   @override
-  String get avgResponse => '平均响应';
+  String get avgResponse => '平均回复';
 
   @override
-  String get modelUsage => '型号使用';
+  String get modelUsage => '模型使用情况';
 
   @override
-  String get noModelUsageData => '尚无模型使用数据。\n在这里开始聊天以查看统计数据。';
+  String get noModelUsageData => '还没有模型使用数据。\n开始对话即可在此查看统计。';
 
   @override
-  String get analyticsSync => '分析会同步到您的帐户，并在您退出时重置。';
+  String get analyticsSync => '分析数据会同步到你的账户，退出登录后会重置。';
 
   @override
   String get clearAllMemories => '清除所有记忆';
 
   @override
-  String get memoryOn => '在';
+  String get memoryOn => '开';
 
   @override
-  String get memoryOff => '离开';
+  String get memoryOff => '关';
 
   @override
-  String get memoryInfoText => '记忆被注入系统提示中，以便法学硕士在对话中记住您。';
+  String get memoryInfoText => '记忆会注入系统提示词，让 LLM 跨对话记住你。';
 
   @override
   String get noMemoriesYet => '还没有记忆';
 
   @override
   String noMemoriesInCategory(String category) {
-    return '没有$category记忆';
+    return '暂无$category记忆';
   }
 
   @override
-  String get memoryTapToAdd => '点击 + 添加新内存或选择不同的类别。';
+  String get memoryTapToAdd => '点击 + 添加新记忆，或选择其他类别。';
 
   @override
-  String get memoryAddHint => '添加您希望人工智能在所有对话中记住的有关您自己的事实。';
+  String get memoryAddHint => '添加你希望 AI 在所有对话中都记住的关于你的信息。';
 
   @override
-  String get addMemory => '添加内存';
+  String get addMemory => '添加记忆';
 
   @override
   String get category => '类别';
 
   @override
-  String get editMemory => '编辑内存';
+  String get editMemory => '编辑记忆';
 
   @override
-  String get deleteMemory => '删除内存';
+  String get deleteMemory => '删除记忆';
 
   @override
   String removeMemoryConfirm(String content) {
@@ -2667,35 +2667,35 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String clearAllMemoriesConfirm(int count) {
-    return '这将永久删除所有 $count 记忆。此操作无法撤消。';
+    return '这将永久删除全部 $count 条记忆。此操作无法撤消。';
   }
 
   @override
   String get clearAll => '全部清除';
 
   @override
-  String get justNow => '现在';
+  String get justNow => '刚刚';
 
   @override
-  String get categoryPersonal => '个人的';
+  String get categoryPersonal => '个人';
 
   @override
   String get categoryPreferences => '偏好设置';
 
   @override
-  String get categoryLifestyle => 'Lifestyle';
+  String get categoryLifestyle => '生活方式';
 
   @override
-  String get categoryEmotional => 'Emotional';
+  String get categoryEmotional => '情感';
 
   @override
-  String get categoryTechnical => '技术的';
+  String get categoryTechnical => '技术';
 
   @override
   String get categoryWork => '工作';
 
   @override
-  String get categoryGeneral => '一般的';
+  String get categoryGeneral => '通用';
 
   @override
   String get categoryAll => '全部';
@@ -2714,53 +2714,53 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String modelSelected(String name) {
-    return '已选择: $name';
+    return '已选择：$name';
   }
 
   @override
   String get unloadModelTooltip => '从内存中卸载模型';
 
   @override
-  String get modelInfoTooltip => '型号信息';
+  String get modelInfoTooltip => '模型信息';
 
   @override
   String get loadedBadge => '已加载';
 
   @override
-  String get visionBadge => '想象';
+  String get visionBadge => '视觉';
 
   @override
   String get toolsBadge => '工具';
 
   @override
-  String get selectedModel => '选定型号';
+  String get selectedModel => '已选模型';
 
   @override
-  String get unloading => '正在卸载...';
+  String get unloading => '正在卸载…';
 
   @override
-  String get unload => '卸下';
+  String get unload => '卸载';
 
   @override
   String get loaded => '已加载';
 
   @override
-  String get loadModel => '负载模型';
+  String get loadModel => '加载模型';
 
   @override
   String get enterModelIdOrUrl => '输入模型 ID 或 HuggingFace URL：';
 
   @override
-  String get modelIdHint => '微软/phi-4';
+  String get modelIdHint => 'microsoft/phi-4';
 
   @override
-  String get modelIdHelper => '型号 ID 或 https://huggingface.co/...';
+  String get modelIdHelper => '模型 ID 或 https://huggingface.co/…';
 
   @override
-  String get huggingFaceDetected => '检测到 HuggingFace URL - 您将选择量化';
+  String get huggingFaceDetected => '检测到 HuggingFace URL — 接下来选择量化';
 
   @override
-  String get starting => '开始...';
+  String get starting => '启动中…';
 
   @override
   String get download => '下载';
@@ -2769,7 +2769,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get selectQuantization => '选择量化';
 
   @override
-  String get loadingQuantizations => '正在加载量化...';
+  String get loadingQuantizations => '正在加载量化…';
 
   @override
   String get error => '错误';
@@ -2792,14 +2792,14 @@ class AppLocalizationsZh extends AppLocalizations {
   String get couldNotStartDownload => '无法开始下载。';
 
   @override
-  String get noQuantizations => '无量化';
+  String get noQuantizations => '暂无量化版本';
 
   @override
-  String get noGgufFiles => '在此存储库中找不到 GGUF 文件';
+  String get noGgufFiles => '该仓库中未找到 GGUF 文件';
 
   @override
   String foundQuantizations(int count) {
-    return '找到 $count GGUF 量化';
+    return '找到 $count 个 GGUF 量化版本';
   }
 
   @override
@@ -2807,7 +2807,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String downloadingModel(String quantization) {
-    return '正在下载 $quantization 量化模型...';
+    return '正在下载 $quantization 量化模型…';
   }
 
   @override
@@ -2819,7 +2819,7 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get enterModelIdentifier => '请输入型号标识符或 URL';
+  String get enterModelIdentifier => '请输入模型 ID 或 URL';
 
   @override
   String get modelAlreadyLoaded => '模型已加载';
@@ -2829,44 +2829,44 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String loadAlongsideWarning(String name) {
-    return '与现有模型一起加载“$name”将使用额外的内存。';
+    return '同时加载“$name”和现有模型会占用更多内存。';
   }
 
   @override
   String get unloadAllAndLoad => '全部卸载并加载';
 
   @override
-  String get swap => '交换';
+  String get swap => '替换';
 
   @override
-  String get loadAlongside => '并排装载';
+  String get loadAlongside => '同时加载';
 
   @override
-  String get loadParamsConflictTitle => '负载设置不同';
+  String get loadParamsConflictTitle => '加载设置不一致';
 
   @override
   String loadParamsConflictBody(String name) {
-    return '“$name”已加载到 LM Studio 中，其设置与 LM Mini 的模型加载配置不同。重新加载可能需要一分钟时间并使用额外的内存。';
+    return '“$name”已在 LM Studio 中加载，其设置与 LM Mini 的模型加载配置不同。重新加载可能需要一分钟，并占用额外内存。';
   }
 
   @override
   String get loadParamsConflictTableHeader => '参数不同：';
 
   @override
-  String get loadParamsLmStudio => 'LM工作室';
+  String get loadParamsLmStudio => 'LM Studio';
 
   @override
   String get loadParamsLmMini => 'LM Mini';
 
   @override
   String get loadParamsConflictHint =>
-      '使用 LM Studio 的加载设置可以避免重新加载。卸载和重新加载应用您的 LM Mini 设置。并行加载将两个实例保留在内存中。';
+      '沿用 LM Studio 的已加载设置可避免重新加载。卸载并重新加载会应用 LM Mini 的设置。同时加载则让两个实例都留在内存中。';
 
   @override
   String get loadParamsUseExisting => '使用 LM Studio 设置';
 
   @override
-  String get loadParamsReloadWithMini => '使用 LM Mini 设置卸载和加载';
+  String get loadParamsReloadWithMini => '卸载后按 LM Mini 设置加载';
 
   @override
   String get loadParamsLoadParallel => '使用 LM Mini 设置加载（并行）';
@@ -2876,14 +2876,14 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String reloadModelForContextBody(String name, String loaded, String desired) {
-    return '上下文长度在加载模型时生效。“$name”当前为 $loaded。要用 $desired 重新加载吗？';
+    return '上下文长度在加载模型时生效。“$name”当前加载为 $loaded。要用 $desired 重新加载吗？';
   }
 
   @override
   String get reloadModelForContextNow => '重新加载';
 
   @override
-  String get reloadModelForContextLater => '稍后';
+  String get reloadModelForContextLater => '暂不';
 
   @override
   String loadModelConfirm(String name) {
@@ -2891,7 +2891,7 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get unloadModelTip => '您可以使用弹出按钮或加载后从此屏幕卸载模型。';
+  String get unloadModelTip => '模型加载后，你可以用弹出按钮或在此页面卸载。';
 
   @override
   String get modelLoadedSuccess => '模型加载成功';
@@ -2900,19 +2900,19 @@ class AppLocalizationsZh extends AppLocalizations {
   String get failedToLoadModel => '加载模型失败';
 
   @override
-  String get modelInfo => '型号信息';
+  String get modelInfo => '模型信息';
 
   @override
-  String get infoName => '姓名';
+  String get infoName => '名称';
 
   @override
   String get infoType => '类型';
 
   @override
-  String get infoArchitecture => '建筑学';
+  String get infoArchitecture => '架构';
 
   @override
-  String get infoPublisher => '出版商';
+  String get infoPublisher => '发布者';
 
   @override
   String get infoQuantization => '量化';
@@ -2921,19 +2921,19 @@ class AppLocalizationsZh extends AppLocalizations {
   String get infoParameters => '参数';
 
   @override
-  String get infoSize => '尺寸';
+  String get infoSize => '大小';
 
   @override
   String get infoMaxContext => '最大上下文';
 
   @override
-  String get infoLoadedContext => '加载上下文';
+  String get infoLoadedContext => '已加载上下文';
 
   @override
-  String get infoStatus => '地位';
+  String get infoStatus => '状态';
 
   @override
-  String get available => '可用的';
+  String get available => '可用';
 
   @override
   String get capabilities => '能力';
@@ -2962,7 +2962,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get enableImageGeneration => '启用图像生成';
 
   @override
-  String get showImageButtons => '在聊天消息上显示图像按钮';
+  String get showImageButtons => '在对话消息上显示图像按钮';
 
   @override
   String get serverConnection => '服务器连接';
@@ -2980,19 +2980,19 @@ class AppLocalizationsZh extends AppLocalizations {
   String get model => '模型';
 
   @override
-  String get checkpoint => '检查站';
+  String get checkpoint => 'Checkpoint';
 
   @override
-  String get generationParameters => '发电参数';
+  String get generationParameters => '生成参数';
 
   @override
-  String get negativePrompt => '否定提示';
+  String get negativePrompt => '负面提示词';
 
   @override
-  String get steps => '步骤';
+  String get steps => '采样步数';
 
   @override
-  String get cfgScale => 'CFG规模';
+  String get cfgScale => 'CFG 系数';
 
   @override
   String get width => '宽度';
@@ -3004,13 +3004,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get sampler => '采样器';
 
   @override
-  String get scheduler => '调度程序';
+  String get scheduler => '调度器';
 
   @override
-  String get automatic => '自动的';
+  String get automatic => '自动';
 
   @override
-  String get seedLabel => '种子（-1 = 随机）';
+  String get seedLabel => '随机种子（-1 = 随机）';
 
   @override
   String get batchSize => '批量大小';
@@ -3019,7 +3019,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get options => '选项';
 
   @override
-  String get restoreFaces => '恢复面孔';
+  String get restoreFaces => '面部修复';
 
   @override
   String get restoreFacesSubtitle => '修复生成图像中的人脸';
@@ -3031,19 +3031,19 @@ class AppLocalizationsZh extends AppLocalizations {
   String get tilingSubtitle => '生成无缝的可平铺纹理';
 
   @override
-  String get promptOptions => '提示选项';
+  String get promptOptions => '提示词选项';
 
   @override
-  String get reviewPromptBeforeSending => '发送前查看提示';
+  String get reviewPromptBeforeSending => '发送前检查提示词';
 
   @override
-  String get reviewPromptSubtitle => '生成前编辑图片提示';
+  String get reviewPromptSubtitle => '生成前编辑图像提示词';
 
   @override
   String get autoGenerateImage => '自动生成图像';
 
   @override
-  String get autoGenerateSubtitle => '当AI提示时自动生成图像';
+  String get autoGenerateSubtitle => 'AI 提供提示词时自动生成图像';
 
   @override
   String get resetToDefaults => '重置为默认值';
@@ -3055,22 +3055,22 @@ class AppLocalizationsZh extends AppLocalizations {
   String get featureRequestsUnavailable => '功能请求不可用';
 
   @override
-  String get featureRequestsUnavailableDetail => '此功能需要互联网连接。请检查您的连接并稍后重试。';
+  String get featureRequestsUnavailableDetail => '此功能需要联网。请检查网络后重试。';
 
   @override
   String get tryAgain => '再试一次';
 
   @override
-  String get votesLeft => '左边';
+  String get votesLeft => '剩余';
 
   @override
-  String get popular => '受欢迎的';
+  String get popular => '热门';
 
   @override
-  String get myRequests => '我的要求';
+  String get myRequests => '我的请求';
 
   @override
-  String get completed => '完全的';
+  String get completed => '已完成';
 
   @override
   String get submitIdea => '提交想法';
@@ -3079,13 +3079,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get noFeatureRequests => '尚无功能请求';
 
   @override
-  String get beFirstToSubmit => '成为第一个提交想法的人！';
+  String get beFirstToSubmit => '快来第一个提交想法！';
 
   @override
   String get noRequestsSubmitted => '没有提交任何请求';
 
   @override
-  String get tapToSubmitFirst => '点击下面的按钮提交您的第一个想法！';
+  String get tapToSubmitFirst => '点击下方按钮，提交你的第一个想法！';
 
   @override
   String get noCompletedRequests => '没有已完成的请求';
@@ -3103,13 +3103,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get titleRequired => '标题 *';
 
   @override
-  String get titleHint => '简要概述您的想法';
+  String get titleHint => '简要概括你的想法';
 
   @override
   String get descriptionRequired => '描述 *';
 
   @override
-  String get descriptionHint => '详细描述您的功能请求';
+  String get descriptionHint => '详细描述你的功能请求';
 
   @override
   String get yourNameOptional => '你的名字（可选）';
@@ -3162,10 +3162,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get showLess => '显示较少';
 
   @override
-  String get deleteYourRequest => '删除您的请求';
+  String get deleteYourRequest => '删除你的请求';
 
   @override
-  String get anonymous => '匿名的';
+  String get anonymous => '匿名';
 
   @override
   String get officialResponse => '官方回应';
@@ -3174,16 +3174,16 @@ class AppLocalizationsZh extends AppLocalizations {
   String get noCommentsYet => '还没有评论';
 
   @override
-  String get beFirstToComment => '成为第一个分享您想法的人！';
+  String get beFirstToComment => '来第一个分享你的想法吧！';
 
   @override
-  String get adminBadge => '行政';
+  String get adminBadge => '管理员';
 
   @override
-  String get moderatorBadge => '模组';
+  String get moderatorBadge => '版主';
 
   @override
-  String get experiencedUserBadge => '经验值';
+  String get experiencedUserBadge => '资深';
 
   @override
   String get adminManageSubmitter => '管理提交者';
@@ -3192,22 +3192,22 @@ class AppLocalizationsZh extends AppLocalizations {
   String get adminManageUserTitle => '管理用户';
 
   @override
-  String get adminUserUpdated => '用户更新';
+  String get adminUserUpdated => '用户已更新';
 
   @override
   String get adminCommunityRoles => '社区角色';
 
   @override
-  String get adminModeratorRole => '主持人';
+  String get adminModeratorRole => '版主';
 
   @override
-  String get adminModeratorRoleSubtitle => '可以绕过垃圾评论限制并显示 Mod 徽章';
+  String get adminModeratorRoleSubtitle => '可绕过评论刷屏限制并显示 Mod 徽章';
 
   @override
-  String get adminExperiencedUserRole => '有经验的用户';
+  String get adminExperiencedUserRole => '资深用户';
 
   @override
-  String get adminExperiencedUserRoleSubtitle => '在功能请求评论中显示经验丰富的徽章';
+  String get adminExperiencedUserRoleSubtitle => '在功能请求评论中显示资深徽章';
 
   @override
   String get adminGrantPremiumTitle => '授予免费 Pro';
@@ -3216,22 +3216,22 @@ class AppLocalizationsZh extends AppLocalizations {
   String get adminGrantPremiumSubtitle => '限时免费赠送该用户 LM Mini Pro';
 
   @override
-  String get adminGrantPremiumAmountLabel => '期间';
+  String get adminGrantPremiumAmountLabel => '时长';
 
   @override
-  String get adminGrantPremiumAmountHint => '输入金额';
+  String get adminGrantPremiumAmountHint => '输入数量';
 
   @override
   String get adminGrantPremiumUnitDays => '天';
 
   @override
-  String get adminGrantPremiumUnitWeeks => '周数';
+  String get adminGrantPremiumUnitWeeks => '周';
 
   @override
-  String get adminGrantPremiumUnitMonths => '几个月';
+  String get adminGrantPremiumUnitMonths => '月';
 
   @override
-  String get adminGrantPremiumGrantButton => '格兰特·普罗';
+  String get adminGrantPremiumGrantButton => '授予 Pro';
 
   @override
   String get adminGrantPremiumInvalidAmount => '输入正数';
@@ -3240,7 +3240,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get adminGrantPremiumReasonLabel => '原因';
 
   @override
-  String get adminGrantPremiumReasonHint => '可选 — 向用户显示（例如，抱歉给您带来麻烦）';
+  String get adminGrantPremiumReasonHint => '可选——会展示给用户（例如：抱歉给你带来麻烦）';
 
   @override
   String adminGrantPremiumDurationDays(int count) {
@@ -3279,17 +3279,17 @@ class AppLocalizationsZh extends AppLocalizations {
   String get adminRevokePremiumTitle => '撤销免费 Pro';
 
   @override
-  String get adminRevokePremiumMessage => '删除该用户的活动管理员授予的 Pro 访问权限？';
+  String get adminRevokePremiumMessage => '要移除该用户由管理员授予的 Pro 权限吗？';
 
   @override
   String get adminRevokePremiumConfirm => '撤销';
 
   @override
-  String get premiumGrantBannerTitle => '您收到了免费的 Pro';
+  String get premiumGrantBannerTitle => '你获得了赠送的 Pro';
 
   @override
   String premiumGrantBannerBody(String duration) {
-    return '$duration 免费 LM Mini Pro。尽享高级功能。';
+    return '免费获得 $duration 的 LM Mini Pro，有效期内尽享高级功能。';
   }
 
   @override
@@ -3298,11 +3298,11 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get premiumGrantDialogTitle => '免费解锁专业版';
+  String get premiumGrantDialogTitle => '已解锁赠送的 Pro';
 
   @override
   String premiumGrantDialogBody(String duration) {
-    return '管理员以 $duration 的价格免费授予您 LM Mini Pro。云备份、内存、分析等现已可用。';
+    return '管理员向你赠送了 $duration 的 LM Mini Pro。云备份、记忆、分析等功能现已可用。';
   }
 
   @override
@@ -3311,27 +3311,27 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get premiumGrantDialogButton => '惊人的';
+  String get premiumGrantDialogButton => '太棒了';
 
   @override
   String get youBadge => '你';
 
   @override
-  String get deleteComment => '您确定要删除此评论吗？';
+  String get deleteComment => '确定要删除这条评论吗？';
 
   @override
   String maxCommentsReached(int max) {
-    return '您已连续发表$max条评论。等待其他用户回复。';
+    return '你已连续发表 $max 条评论，请等待其他用户回复。';
   }
 
   @override
-  String get addYourName => '添加您的名字';
+  String get addYourName => '添加你的名字';
 
   @override
-  String get replyAsAdmin => '以管理员身份回复...';
+  String get replyAsAdmin => '以管理员身份回复…';
 
   @override
-  String get writeComment => '写评论...';
+  String get writeComment => '写评论…';
 
   @override
   String get errorTryAgain => '错误：请重试。';
@@ -3342,13 +3342,13 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get addOfficialResponse => '添加官方回复...';
+  String get addOfficialResponse => '添加官方回复…';
 
   @override
   String get replySaved => '回复已保存';
 
   @override
-  String get deleteRequestConfirm => '您确定要删除此功能请求吗？此操作无法撤消。';
+  String get deleteRequestConfirm => '确定要删除这条功能请求吗？此操作无法撤销。';
 
   @override
   String get requestDeleted => '请求已删除';
@@ -3357,64 +3357,64 @@ class AppLocalizationsZh extends AppLocalizations {
   String get deleteCommentTitle => '删除评论';
 
   @override
-  String get deleteCommentConfirm => '您确定要删除此评论吗？';
+  String get deleteCommentConfirm => '确定要删除这条评论吗？';
 
   @override
   String get commentDeleted => '评论已删除';
 
   @override
-  String get generationParametersSection => '发电参数';
+  String get generationParametersSection => '生成参数';
 
   @override
   String get temperature => '温度';
 
   @override
-  String get temperatureSubtitle => '回复的创意与针对性如何。更低=更小心；更高=更多样。';
+  String get temperatureSubtitle => '决定回复有多发散还是多聚焦。越低越严谨；越高越多变。';
 
   @override
-  String get topP => '顶P';
+  String get topP => 'Top-p';
 
   @override
-  String get topPSubtitle => '允许的单词选择范围有多大。更低=更有针对性的回复。';
+  String get topPSubtitle => '允许的候选词范围有多广。越低，回复越聚焦。';
 
   @override
-  String get minP => '最小P';
+  String get minP => 'Min-p';
 
   @override
-  String get minPSubtitle => '忽略极不可能的单词选择。更高=更安全、更可预测的文本。';
+  String get minPSubtitle => '过滤掉概率极低的候选词。越高，文本越稳妥、越可预测。';
 
   @override
-  String get repeatPenalty => '重复处罚';
+  String get repeatPenalty => '重复惩罚';
 
   @override
-  String get repeatPenaltySubtitle => '阻止人工智能重复相同的短语。 1.0 = 关闭。';
+  String get repeatPenaltySubtitle => '降低模型重复相同说法的概率。1.0 = 关闭。';
 
   @override
   String get frequencyPenalty => '频率惩罚';
 
   @override
-  String get frequencyPenaltySubtitle => '减少人工智能经常使用的单词。';
+  String get frequencyPenaltySubtitle => '减少模型过于常用的词。';
 
   @override
-  String get presencePenalty => '出席处罚';
+  String get presencePenalty => '存在惩罚';
 
   @override
-  String get presencePenaltySubtitle => '推动人工智能提出新主题，而不是重复使用旧主题。';
+  String get presencePenaltySubtitle => '鼓励模型聊新话题，而不是反复围绕旧话题。';
 
   @override
-  String get tokenLimits => '代币限制';
+  String get tokenLimits => 'Token 限制';
 
   @override
-  String get maxOutputTokens => '最大输出代币';
+  String get maxOutputTokens => '最大输出 Token';
 
   @override
-  String get maxOutputTokensSubtitle => '单个回复可以多长时间。更高=更长的答案（以及更多的等待）。';
+  String get maxOutputTokensSubtitle => '单条回复最长能有多长。越高，回答越长（等待也越久）。';
 
   @override
   String get contextWindow => '上下文窗口';
 
   @override
-  String get contextWindowSubtitle => '人工智能一次可以记住多少聊天内容。更高使用更多内存。';
+  String get contextWindowSubtitle => '模型一次能记住多少对话内容。越高越占内存。';
 
   @override
   String get modelLoadingConfig => '模型加载配置';
@@ -3424,108 +3424,103 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get loadContextSubtitle =>
-      '模型在聊天和在 LM Studio 中加载时可使用的上下文大小。更高会占用更多内存 / 显存。';
+      '模型聊天时以及在 LM Studio 中加载时可用的上下文长度。越高越占内存/显存。';
 
   @override
-  String get contextFitTitle => 'When context is full';
+  String get contextFitTitle => '上下文用满时';
 
   @override
   String get contextFitSubtitle =>
-      'Keep chatting by fitting history into 90% of the loaded context. Compact writes a summary you can reuse if the server session is lost.';
+      '把历史压缩到已加载上下文的 90% 以内，让你继续聊天。压缩会生成一份摘要，服务器会话丢失时可以复用。';
 
   @override
-  String get contextFitOff => 'Stop';
+  String get contextFitOff => '停止';
 
   @override
-  String get contextFitRoll => 'Roll';
+  String get contextFitRoll => '滚动';
 
   @override
-  String get contextFitCutMiddle => 'Cut middle';
+  String get contextFitCutMiddle => '裁掉中间';
 
   @override
-  String get contextFitOffHelp =>
-      'Show an error when the prompt is larger than the model context.';
+  String get contextFitOffHelp => '提示词超出模型上下文时报错。';
 
   @override
-  String get contextFitRollHelp =>
-      'Drop the oldest messages and keep the recent ones.';
+  String get contextFitRollHelp => '丢弃最早的消息，保留最近的消息。';
 
   @override
-  String get contextFitCutMiddleHelp =>
-      'Keep the start of the chat and the latest turns; drop the middle.';
+  String get contextFitCutMiddleHelp => '保留对话开头和最近几轮，丢弃中间部分。';
 
   @override
-  String get compactChat => 'Compact';
+  String get compactChat => '压缩';
 
   @override
-  String get compactingChat => 'Compacting…';
+  String get compactingChat => '压缩中…';
 
   @override
-  String get compactChatHint =>
-      'Summarize older messages so you can keep chatting in this context window.';
+  String get compactChatHint => '总结较早的消息，让你能在这个上下文窗口继续聊天。';
 
   @override
-  String get compactChatDone =>
-      'Chat compacted. The next send uses the summary plus new messages.';
+  String get compactChatDone => '对话已压缩。下次发送将使用摘要加新消息。';
 
   @override
-  String get compactChatFailed => 'Couldn’t compact this chat. Try again.';
+  String get compactChatFailed => '无法压缩此对话，请重试。';
 
   @override
-  String get compactChatNeedModel => 'Select a model before compacting.';
+  String get compactChatNeedModel => '请先选择模型再压缩。';
 
   @override
-  String get evalBatchSize => '评估批量大小';
+  String get evalBatchSize => '评估批次大小';
 
   @override
-  String get evalBatchSubtitle => '加载时一次处理多少文本。更高可以更快，但使用更多内存。';
+  String get evalBatchSubtitle => '加载时一次处理多少文本。调高可能更快，但更占内存。';
 
   @override
-  String get numExperts => '专家人数';
+  String get numExperts => '专家数量';
 
   @override
-  String get numExpertsSubtitle => '仅适用于“专家混合”模型。保留空白，除非您知道需要它。';
+  String get numExpertsSubtitle => '仅适用于“专家混合”模型。不清楚需要时请留空。';
 
   @override
-  String get flashAttention => '闪光注意';
+  String get flashAttention => 'Flash Attention';
 
   @override
-  String get flashAttentionSubtitle => '加快模型速度并可以使用更少的内存。继续下去，除非有什么东西坏了。';
+  String get flashAttentionSubtitle => '加快模型速度，还能省内存。除非出问题，否则保持开启。';
 
   @override
   String get offloadKvCache => '将 KV 缓存卸载到 GPU';
 
   @override
-  String get offloadKvCacheSubtitle => '使用 GPU 更有效地记住聊天内容。如果您有 GPU，请继续。';
+  String get offloadKvCacheSubtitle => '用 GPU 更高效地保存对话上下文。有 GPU 就保持开启。';
 
   @override
-  String get resizeImageForPhysicalBatch => 'Resize images for physical batch';
+  String get resizeImageForPhysicalBatch => '按物理批次缩小图片';
 
   @override
   String get resizeImageForPhysicalBatchSubtitle =>
-      'Shrink a photo when it would use more tokens than the local server\'s physical batch, so the model doesn\'t crash.';
+      '当图片占用的 Token 超过本地服务器的物理批次时自动缩小，避免模型崩溃。';
 
   @override
   String get resizeImageForPhysicalBatchHelp =>
-      'LM Studio, Ollama, Jan, Unsloth, oMLX, and on-device models keep a physical batch of 512 tokens. A full-size photo can take 560 or more vision tokens. The server then aborts and the model unloads. When this is on, Mini measures the photo and shrinks it so it stays under that batch. Turn it off to send the original image.';
+      'LM Studio、Ollama、Jan、Unsloth、oMLX 以及端侧模型的物理批次固定为 512 Token，一张原图可能占用 560 个甚至更多视觉 Token，导致服务器中止、模型被卸载。开启后，Mini 会测量图片尺寸并缩小，让它保持在批次限制内。关闭则发送原始图片。';
 
   @override
-  String get chainOfThoughtSubtitle => '如果可用的话，展示人工智能的逐步思维。';
+  String get chainOfThoughtSubtitle => '可用时显示 AI 的分步思考过程。';
 
   @override
-  String get reasoningUnsupportedToast => '该模型不支持 LM Studio 中的推理。推理已被禁用。';
+  String get reasoningUnsupportedToast => '该模型在 LM Studio 中不支持思考，已关闭思考。';
 
   @override
-  String get reasoningNotExposedChatHint => 'LM Studio 不支持关闭此模型的推理。请换一个模型。';
+  String get reasoningNotExposedChatHint => 'LM Studio 无法关闭此模型的思考功能，请换一个模型。';
 
   @override
-  String get premiumSearchActive => '高级搜索活跃';
+  String get premiumSearchActive => '高级搜索已开启';
 
   @override
-  String get premiumSearchPlusSearxng => '+ 西尔XNG';
+  String get premiumSearchPlusSearxng => '+ SearXNG';
 
   @override
-  String get webSearchDisabledAll => '对所有聊天禁用网络搜索';
+  String get webSearchDisabledAll => '所有对话已关闭网络搜索';
 
   @override
   String get configureSearch => '配置搜索';
@@ -3534,22 +3529,22 @@ class AppLocalizationsZh extends AppLocalizations {
   String get advancedFeaturesSection => '高级功能';
 
   @override
-  String get howToolCallingWorks => '工具调用如何工作';
+  String get howToolCallingWorks => '工具调用的工作原理';
 
   @override
-  String get stepAskQuestion => '你问一个问题';
+  String get stepAskQuestion => '你提出问题';
 
   @override
   String get stepAskExample => '例如，“东京的天气怎么样？”';
 
   @override
-  String get stepAiRequestsTool => 'AI需要一个工具';
+  String get stepAiRequestsTool => 'AI 请求调用工具';
 
   @override
   String get stepAiRequestsExample => '模型决定需要网络搜索';
 
   @override
-  String get stepAppExecutes => '应用程序执行该工具';
+  String get stepAppExecutes => '应用执行工具';
 
   @override
   String get stepAppExecutesExample => '使用高级搜索或 SearXNG 进行搜索';
@@ -3561,10 +3556,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get stepResultsExample => '搜索结果已添加到对话中';
 
   @override
-  String get stepAiAnswers => 'AI生成答案';
+  String get stepAiAnswers => 'AI 生成回答';
 
   @override
-  String get stepAiAnswersExample => '模型综合了有用的响应';
+  String get stepAiAnswersExample => '模型综合生成有帮助的回答';
 
   @override
   String get toolCallingModelNote => '例如 Qwen、Llama 3.1+ 或 Mistral。';
@@ -3573,7 +3568,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get searxngSetup => 'SearXNG 设置';
 
   @override
-  String get searxngDescription => 'SearXNG 是一个免费、尊重隐私的元搜索引擎，您可以自行托管。';
+  String get searxngDescription => 'SearXNG 是一个免费、注重隐私的元搜索引擎，可以自行托管。';
 
   @override
   String get dockerRecommended => '选项 1：Docker（推荐）';
@@ -3585,22 +3580,22 @@ class AppLocalizationsZh extends AppLocalizations {
   String get findPublicInstances => '查找公共实例：';
 
   @override
-  String get selfHostRecommended => '为了可靠性，建议使用自托管。';
+  String get selfHostRecommended => '为保证可靠性，建议自托管。';
 
   @override
-  String get clipboardEmpty => '剪贴板是空的。首先复制您的 mcp.json 内容。';
+  String get clipboardEmpty => '剪贴板为空。请先复制你的 mcp.json 内容。';
 
   @override
-  String get clipboardAccessFailed => '无法访问剪贴板。请手动粘贴到下面的字段中。';
+  String get clipboardAccessFailed => '无法访问剪贴板。请手动粘贴到下方输入框。';
 
   @override
   String get pasteFromClipboard => '从剪贴板粘贴';
 
   @override
-  String get httpServersImportNote => 'HTTP 服务器 → 临时 MCP（根据请求发送到 LM Studio）';
+  String get httpServersImportNote => 'HTTP 服务器 → 临时 MCP（每次请求时发送给 LM Studio）';
 
   @override
-  String get localMcpsImportNote => '本地 MCP → 集成 MCP（使用“mcp/名称”格式）';
+  String get localMcpsImportNote => '本地 MCP → 集成 MCP（使用“mcp/name”格式）';
 
   @override
   String get noValidMcpServers => '未找到有效的 MCP 服务器';
@@ -3618,38 +3613,38 @@ class AppLocalizationsZh extends AppLocalizations {
   String get glassEffectsLabel => '玻璃效果';
 
   @override
-  String get glassEffectsSubtitle => '标题和菜单的磨砂模糊。关闭后更凉快、更省电。';
+  String get glassEffectsSubtitle => '标题和菜单的磨砂模糊效果。关闭后发热更少、更省电。';
 
   @override
   String get lowBatteryModeLabel => '低电量模式';
 
   @override
   String get lowBatteryModeSubtitle =>
-      '关闭玻璃效果，流式回复时只用纯文本，并在整条消息完成后再同步 Home/iCloud。回复结束前屏幕保持唤醒，以免连接被切断。';
+      '关闭玻璃效果，流式回复时只用纯文本，并在整条消息完成后再同步 Home/iCloud。回复结束前屏幕保持唤醒，以免流式输出被中断。';
 
   @override
   String get backgroundSection => '背景';
 
   @override
-  String get chatBackground => '墙纸';
+  String get chatBackground => '壁纸';
 
   @override
-  String get chatBackgroundSubtitle => '每次聊天背后的照片';
+  String get chatBackgroundSubtitle => '每段对话的背景照片';
 
   @override
   String get avatarsSection => '图片';
 
   @override
-  String get chatHeaderAvatarLabel => '脸在上面';
+  String get chatHeaderAvatarLabel => '顶部头像';
 
   @override
-  String get chatHeaderAvatarSubtitle => '在聊天标题中显示小图片';
+  String get chatHeaderAvatarSubtitle => '在对话顶部显示小头像';
 
   @override
-  String get avatarAboveMessageLabel => '消息上方图片';
+  String get avatarAboveMessageLabel => '消息上方头像';
 
   @override
-  String get avatarAboveMessageSubtitle => '将脸部放在气泡顶部';
+  String get avatarAboveMessageSubtitle => '把头像放在气泡上方';
 
   @override
   String get fullWidthAssistantLabel => '回复铺满宽度';
@@ -3673,7 +3668,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get streamingPhaseLoadingModel => '正在加载模型';
 
   @override
-  String get streamingPhaseProcessingPrompt => '正在处理提示';
+  String get streamingPhaseProcessingPrompt => '正在处理提示词';
 
   @override
   String get streamingPhaseThinking => '思考中';
@@ -3750,19 +3745,19 @@ class AppLocalizationsZh extends AppLocalizations {
   String get yourProfilePicture => '你在聊天中的样子';
 
   @override
-  String get assistantAvatarLabel => '人工智能';
+  String get assistantAvatarLabel => 'AI';
 
   @override
   String get aiAssistantPicture => 'AI 的默认外观';
 
   @override
-  String get chatBehaviorSection => '聊天文字';
+  String get chatBehaviorSection => '对话文字';
 
   @override
   String get fontSizeLabel => '文字大小';
 
   @override
-  String get iconSizeLabel => '纽扣尺寸';
+  String get iconSizeLabel => '按钮大小';
 
   @override
   String pointsValue(int value) {
@@ -3774,45 +3769,45 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get previewAssistantMessage =>
-      '你好！我是你的人工智能助手。今天我能为您提供什么帮助？这是一个**粗体**单词和一些“内联代码”。';
+      '你好！我是你的 AI 助手。今天有什么可以帮你的？这是一个**粗体**词和一些 `inline code`。';
 
   @override
   String get readAloud => '大声朗读';
 
   @override
   String appearanceActionTapped(String label) {
-    return '$label 点击';
+    return '$label 已点击';
   }
 
   @override
-  String get autoScrollStreaming => '关注新回复';
+  String get autoScrollStreaming => '自动跟随新回复';
 
   @override
-  String get autoScrollStreamingSubtitle => '保持聊天内容为最新出现的单词';
+  String get autoScrollStreamingSubtitle => '让对话始终滚动到最新内容';
 
   @override
-  String get showChatStarters => '新的聊天建议';
+  String get showChatStarters => '新对话建议';
 
   @override
-  String get showChatStartersSubtitle => '在空聊天中显示滚动提示药丸';
+  String get showChatStartersSubtitle => '在空对话中显示可滚动的提示词胶囊';
 
   @override
   String get useLegacyComposer => '经典消息输入框';
 
   @override
-  String get useLegacyComposerSubtitle => '使用经典紧凑输入框，而不是新的光泽输入框';
+  String get useLegacyComposerSubtitle => '使用经典的紧凑输入框，替代新版闪光输入框';
 
   @override
-  String get hideAvatarsLabel => '隐藏图片';
+  String get hideAvatarsLabel => '隐藏头像';
 
   @override
-  String get moreSpaceForContent => '给消息更多的空间';
+  String get moreSpaceForContent => '给消息更多空间';
 
   @override
-  String get enterKeyBehaviorLabel => '输入键';
+  String get enterKeyBehaviorLabel => '回车键';
 
   @override
-  String get enterKeyAutoDescription => '在电脑键盘上发送，在电话上换行';
+  String get enterKeyAutoDescription => '电脑键盘上回车发送，手机上换行';
 
   @override
   String get enterKeySendDescription => 'Enter 发送 · Shift+Enter 换行';
@@ -3824,19 +3819,19 @@ class AppLocalizationsZh extends AppLocalizations {
   String get sendLabel => '发送';
 
   @override
-  String get newLineLabel => '新线';
+  String get newLineLabel => '换行';
 
   @override
   String get themeSystem => '系统';
 
   @override
-  String get themeLight => '光';
+  String get themeLight => '浅色';
 
   @override
-  String get themeDark => '黑暗的';
+  String get themeDark => '深色';
 
   @override
-  String get backLabel => '后退';
+  String get backLabel => '返回';
 
   @override
   String get nextLabel => '下一个';
@@ -3851,14 +3846,14 @@ class AppLocalizationsZh extends AppLocalizations {
   String get connectionFailedMessage => '连接失败';
 
   @override
-  String get lmStudioServerFoundNeedsKey => '服务器已找到！在上面添加您的 API 密钥，然后点击“测试连接”。';
+  String get lmStudioServerFoundNeedsKey => '找到服务器！在上方输入你的 API 密钥，然后点按“测试连接”。';
 
   @override
-  String get lmStudioScanServerNeedsKey => '找到 — 添加 API 密钥以进行连接';
+  String get lmStudioScanServerNeedsKey => '已找到——添加 API 密钥即可连接';
 
   @override
   String lmStudioUsingServerNeedsKey(String url) {
-    return '使用$url。在下面添加您的 API 密钥，然后测试连接。';
+    return '正在使用 $url。在下方输入 API 密钥后测试连接。';
   }
 
   @override
@@ -3866,54 +3861,53 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get lmStudioAuthDialogMessage =>
-      '该服务器需要 API 密钥。将您的 LM Studio 令牌粘贴到下面以进行连接。';
+      '该服务器需要 API 密钥。在下方粘贴你的 LM Studio API Token 以连接。';
 
   @override
   String get lmStudioAuthHelpHint =>
-      '在 LM Studio 中，打开开发人员模式 → 服务器设置 → 管理令牌以创建或复制您的 API 密钥。';
+      '在 LM Studio 中打开 开发者模式 → 服务器设置 → 管理 Token，创建或复制你的 API 密钥。';
 
   @override
-  String get welcomeWizardThemeTitle => '选择您的主题';
+  String get welcomeWizardThemeTitle => '选择主题';
 
   @override
   String get welcomeWizardAppearanceTitle => '自定义外观';
 
   @override
-  String get welcomeWizardAppearancePreviewMessage => '你好！这就是您的聊天消息的外观。';
+  String get welcomeWizardAppearancePreviewMessage => '你好！你的聊天消息会是这个样子。';
 
   @override
-  String get apiTokenOptionalLabel => 'API 令牌（可选）';
+  String get apiTokenOptionalLabel => 'API Token（可选）';
 
   @override
-  String get welcomeWizardExperienceTitle => '你如何使用人工智能？';
+  String get welcomeWizardExperienceTitle => '你平时怎么用 AI？';
 
   @override
-  String get welcomeWizardExperienceSubtitle => '我们将量身定制建议。您可以稍后更改一切。';
+  String get welcomeWizardExperienceSubtitle => '我们会据此给出推荐，之后随时可以更改。';
 
   @override
   String get welcomeWizardBeginnerTitle => '初学者';
 
   @override
-  String get welcomeWizardBeginnerSubtitle => '保持简单 - 更清晰的设置，我们将为您的手机推荐可靠的型号。';
+  String get welcomeWizardBeginnerSubtitle => '保持简单——更精简的设置，并为你的手机推荐合适的模型。';
 
   @override
   String get welcomeWizardPowerTitle => '高级用户';
 
   @override
-  String get welcomeWizardPowerSubtitle =>
-      '完整设置以及选项 - 设备上模型和桌面服务器（例如 LM Studio）。';
+  String get welcomeWizardPowerSubtitle => '完整设置加更多选择——端侧模型和 LM Studio 等桌面服务器。';
 
   @override
   String get welcomeWizardSetupTitleBeginner => '选择模型';
 
   @override
-  String get welcomeWizardSetupTitlePower => '选择您的设置';
+  String get welcomeWizardSetupTitlePower => '选择你的配置';
 
   @override
   String get welcomeWizardSetupSubtitleBeginner => '点选模型即可下载。也可以通过 Wi‑Fi 连接电脑。';
 
   @override
-  String get welcomeWizardSetupSubtitlePower => '选择型号或连接桌面服务器。';
+  String get welcomeWizardSetupSubtitlePower => '选择模型，或连接桌面服务器。';
 
   @override
   String get welcomeWizardModelFasterBlurb => '快速回复。非常适合日常聊天。';
@@ -3922,19 +3916,19 @@ class AppLocalizationsZh extends AppLocalizations {
   String get welcomeWizardModelBalancedBlurb => '速度和质量的良好平衡。';
 
   @override
-  String get welcomeWizardModelBestBlurb => '适合您设备的最强品质。';
+  String get welcomeWizardModelBestBlurb => '与你设备匹配的最强质量。';
 
   @override
   String get welcomeWizardNameTitle => 'AI 应该怎么称呼你？';
 
   @override
-  String get welcomeWizardNameSubtitle => '名字或昵称是完美的。你可以跳过这个。';
+  String get welcomeWizardNameSubtitle => '名字或昵称就好，也可以跳过。';
 
   @override
   String get welcomeWizardNameHint => '例如亚历克斯';
 
   @override
-  String get welcomeWizardFinish => '结束';
+  String get welcomeWizardFinish => '完成';
 
   @override
   String get welcomeWizardContinue => '继续';
@@ -3943,7 +3937,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get welcomeWizardSkip => '跳过';
 
   @override
-  String get welcomeWizardConnectLmStudio => '连接LM工作室';
+  String get welcomeWizardConnectLmStudio => '连接 LM Studio';
 
   @override
   String get pickColor => '选择颜色';
@@ -3952,13 +3946,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get hueLabel => '色调';
 
   @override
-  String get saturationLabel => '饱和';
+  String get saturationLabel => '饱和度';
 
   @override
   String get lightnessLabel => '亮度';
 
   @override
-  String get alphaLabel => '阿尔法';
+  String get alphaLabel => '透明度';
 
   @override
   String get hexLabel => '十六进制';
@@ -3967,13 +3961,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get personaModeLabel => '角色模式';
 
   @override
-  String get personaModeSubtitle => '添加头像、强调色、声音和群聊首选模型';
+  String get personaModeSubtitle => '为群聊设置头像、强调色、语音和首选模型';
 
   @override
-  String get avatarLabel => '阿凡达';
+  String get avatarLabel => '头像';
 
   @override
-  String get customAvatarSet => '自定义头像集';
+  String get customAvatarSet => '已设置自定义头像';
 
   @override
   String get noAvatar => '无头像';
@@ -3985,22 +3979,22 @@ class AppLocalizationsZh extends AppLocalizations {
   String get defaultLabel => '默认';
 
   @override
-  String get preferredModelLabel => '首选型号';
+  String get preferredModelLabel => '首选模型';
 
   @override
-  String get preferredModelAny => '无（使用任何）';
+  String get preferredModelAny => '无（不限）';
 
   @override
-  String get personaChooseProviderTitle => '选择提供方';
+  String get personaChooseProviderTitle => '选择提供商';
 
   @override
-  String get personaChooseProviderSubtitle => '已配置的提供方。可在设置中添加更多。';
+  String get personaChooseProviderSubtitle => '已配置的提供商。可在设置中添加更多。';
 
   @override
-  String get personaCloudProvidersSection => '云提供方';
+  String get personaCloudProvidersSection => '云端提供商';
 
   @override
-  String get personaKokoroVoiceLabel => '心的声音';
+  String get personaKokoroVoiceLabel => 'Kokoro 语音';
 
   @override
   String get personaKokoroVoiceSubtitle => '该角色说话时使用的语音（语音聊天/朗读）';
@@ -4009,13 +4003,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get personaKokoroVoiceGlobal => '使用全局语音设置';
 
   @override
-  String get personaKokoroVoicePickerTitle => '角色声音';
+  String get personaKokoroVoicePickerTitle => '角色语音';
 
   @override
   String get personaKokoroSpeedLabel => '语速';
 
   @override
-  String get personaKokoroSpeedGlobal => '使用全球速度';
+  String get personaKokoroSpeedGlobal => '使用全局语速';
 
   @override
   String personaKokoroSpeedValue(String speed) {
@@ -4023,17 +4017,17 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get voiceWhisperModelLabel => '耳语模型';
+  String get voiceWhisperModelLabel => 'Whisper 模型';
 
   @override
-  String get voiceWhisperModelTapToChoose => '点击选择尺寸并下载';
+  String get voiceWhisperModelTapToChoose => '点按选择模型大小并下载';
 
   @override
-  String get imageGenSeedLabel => '图像生成种子';
+  String get imageGenSeedLabel => '图像生成随机种子';
 
   @override
   String imageGenSeedFixed(int seed) {
-    return '固定种子：$seed';
+    return '固定随机种子：$seed';
   }
 
   @override
@@ -4052,10 +4046,10 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get personaComfyWorkflowHelper =>
-      '当图像生成提供程序是 ComfyUI 时使用。保留为全局以使用“设置”→“图像生成”。';
+      '仅在图像生成提供商为 ComfyUI 时生效。保持“全局”则使用 设置 → 图像生成。';
 
   @override
-  String get personaComfyWorkflowNotComfy => '仅当 ComfyUI 是活动图像提供程序时，此分配才适用。';
+  String get personaComfyWorkflowNotComfy => '此设置仅在 ComfyUI 是当前图像提供商时生效。';
 
   @override
   String get personaComfyWorkflowRefresh => '刷新工作流程';
@@ -4071,7 +4065,7 @@ class AppLocalizationsZh extends AppLocalizations {
       '粘贴 API 格式工作流。支持 %PROMPT%、%LORA%、%LORA_WEIGHT% 等占位符。';
 
   @override
-  String get personaComfyWorkflowJsonIgnored => '已选择已保存工作流时忽略';
+  String get personaComfyWorkflowJsonIgnored => '选择了已保存的工作流时忽略此项';
 
   @override
   String personaComfyWorkflowJsonActive(int count) {
@@ -4097,55 +4091,55 @@ class AppLocalizationsZh extends AppLocalizations {
   String get resetToGlobal => '重置为全局';
 
   @override
-  String get setSeed => '设定种子';
+  String get setSeed => '设置随机种子';
 
   @override
   String get pickAccentColor => '选择强调色';
 
   @override
-  String get imageGenSeedDialogDescription => '设置固定种子，以便该角色始终生成一致的图像。留空为随机。';
+  String get imageGenSeedDialogDescription => '设置固定的随机种子，让该角色始终生成一致的图像。留空则随机。';
 
   @override
-  String get seedValueLabel => '种子价值';
+  String get seedValueLabel => '随机种子值';
 
   @override
-  String get seedValueHint => '例如42（空白=随机）';
+  String get seedValueHint => '例如 42（留空 = 随机）';
 
   @override
-  String get setLabel => '放';
+  String get setLabel => '设定';
 
   @override
-  String get selectPreferredModelTitle => '选择首选型号';
+  String get selectPreferredModelTitle => '选择首选模型';
 
   @override
   String get branchCreated => '🔀 分支已创建';
 
   @override
-  String get yamlFrontmatter => 'YAML 前沿问题';
+  String get yamlFrontmatter => 'YAML 前置元数据';
 
   @override
-  String get markdownFormat => '降价';
+  String get markdownFormat => 'Markdown';
 
   @override
   String get localNetworkBlocked => '本地网络访问可能被阻止';
 
   @override
-  String get localNetworkFix => '进入设置 → LM Mini → 本地网络并启用它。';
+  String get localNetworkFix => '打开 设置 → LM Mini → 本地网络 并开启该权限。';
 
   @override
-  String get openAppSettings => '打开应用程序设置';
+  String get openAppSettings => '打开系统设置';
 
   @override
-  String get memorySaved => '内存已保存';
+  String get memorySaved => '记忆已保存';
 
   @override
   String get proSearch => '专业搜索';
 
   @override
-  String get webSearchLabel => '网页搜索';
+  String get webSearchLabel => '网络搜索';
 
   @override
-  String get readUrl => '读取网址';
+  String get readUrl => '读取 URL';
 
   @override
   String get code => '代码';
@@ -4156,7 +4150,7 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get tapOpenExternal => '点击“使用外部应用程序打开”即可查看该文件';
+  String get tapOpenExternal => '点按“使用外部应用打开”即可查看此文件';
 
   @override
   String get proSearchEnabled => '专业搜索已启用';
@@ -4165,10 +4159,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get proSearchDisabled => '专业搜索已禁用';
 
   @override
-  String get thinkingEnabled => '此聊天已开启思维';
+  String get thinkingEnabled => '此对话已开启思考';
 
   @override
-  String get thinkingDisabled => '此聊天已关闭思维';
+  String get thinkingDisabled => '此对话已关闭思考';
 
   @override
   String get codeSandbox => '代码沙箱';
@@ -4177,16 +4171,16 @@ class AppLocalizationsZh extends AppLocalizations {
   String get codeSandboxSubtitle => '在安全沙箱中运行 Python 或 JavaScript';
 
   @override
-  String get codeSandboxEnabled => '代码沙盒已启用';
+  String get codeSandboxEnabled => '代码沙箱已启用';
 
   @override
-  String get codeSandboxDisabled => '代码沙盒已禁用';
+  String get codeSandboxDisabled => '代码沙箱已禁用';
 
   @override
   String get searxngNotConfigured => '添加 SearXNG URL 以启用';
 
   @override
-  String get searxngConfiguredOff => '已配置 — 点击即可使用而不是 Pro Search';
+  String get searxngConfiguredOff => '已配置——点按可改用 SearXNG，替代 Pro Search';
 
   @override
   String get searxngConfigureFirst => '启用前配置 SearXNG URL';
@@ -4198,78 +4192,78 @@ class AppLocalizationsZh extends AppLocalizations {
   String get toolCallingLabel => '工具调用';
 
   @override
-  String get on => '在';
+  String get on => '开';
 
   @override
-  String get off => '离开';
+  String get off => '关';
 
   @override
-  String get aiCanUseTools => 'AI可以在这次聊天中使用工具';
+  String get aiCanUseTools => 'AI 可以在此对话中使用工具';
 
   @override
-  String get toolsDisabledChat => '此聊天已禁用工具';
+  String get toolsDisabledChat => '此对话已禁用工具';
 
   @override
-  String get webSearchChat => '网页搜索';
+  String get webSearchChat => '网络搜索';
 
   @override
-  String get aiCanSearchWeb => 'AI可以在这个聊天中搜索网络';
+  String get aiCanSearchWeb => 'AI 可以在此对话中搜索网络';
 
   @override
-  String get webSearchDisabledChat => '此聊天已禁用网络搜索';
+  String get webSearchDisabledChat => '此对话已禁用网络搜索';
 
   @override
-  String get disableMemory => '禁用记忆';
+  String get disableMemory => '停用记忆';
 
   @override
   String memoryItemsActive(int count) {
-    return '$count 记忆活跃';
+    return '$count 条记忆生效';
   }
 
   @override
-  String get memoryDisabledChat => '此聊天的记忆被禁用。 AI 不会看到您保存的项目。';
+  String get memoryDisabledChat => '此对话已停用记忆，AI 不会看到你保存的条目。';
 
   @override
   String get lmStudioLocal => 'LM Studio（本地）';
 
   @override
-  String get modelNoLongerAvailable => '之前选择的型号不再可用。请选择新型号。';
+  String get modelNoLongerAvailable => '之前选择的模型已不可用，请选择新的模型。';
 
   @override
-  String get noModelsForProvider => '没有找到该提供商的型号。检查 API 密钥。';
+  String get noModelsForProvider => '未找到该提供商的模型，请检查 API 密钥。';
 
   @override
-  String get noModelsCheckConnection => '没有找到型号。检查 LM Studio 连接。';
+  String get noModelsCheckConnection => '未找到模型。请检查 LM Studio 连接。';
 
   @override
-  String get selectModel => '选择型号';
+  String get selectModel => '选择模型';
 
   @override
-  String get goToModels => '前往型号';
+  String get goToModels => '前往模型列表';
 
   @override
-  String get reviewImagePrompt => '查看图像提示';
+  String get reviewImagePrompt => '检查图像提示词';
 
   @override
-  String get editImagePromptHint => '编辑图像提示...';
+  String get editImagePromptHint => '编辑图像提示词…';
 
   @override
-  String get generate => '产生';
+  String get generate => '生成';
 
   @override
   String get imageNotFound => '找不到图片';
 
   @override
-  String get cameraPermissionNeeded => '需要相机许可';
+  String get cameraPermissionNeeded => '需要相机权限';
 
   @override
-  String get cameraPermissionExplain => '请允许相机访问以拍摄照片以进行视觉分析。';
+  String get cameraPermissionExplain => '请允许使用相机来拍照，用于视觉分析。';
 
   @override
-  String get photosPermissionNeeded => '需要照片许可';
+  String get photosPermissionNeeded => '需要照片权限';
 
   @override
-  String get photosPermissionExplain => '请允许访问您的图像以进行视觉分析。';
+  String get photosPermissionExplain => '请允许访问你的照片，以便进行视觉分析。';
 
   @override
   String couldNotOpenFilePicker(String error) {
@@ -4280,13 +4274,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get filePickerCouldNotCopy => '无法复制该文件。请先保存到本机（不要用网盘或最近项目），然后再选一次。';
 
   @override
-  String get signInToUseCloudBackup => '登录使用云备份';
+  String get signInToUseCloudBackup => '登录后使用云备份';
 
   @override
-  String get cloudBackupRequiresAccount => '云备份需要一个帐户，以便您的加密备份以您的身份安全地存储。';
+  String get cloudBackupRequiresAccount => '云备份需要账户，你的加密备份将以你的身份安全存储。';
 
   @override
-  String get arguments => '论点';
+  String get arguments => '参数';
 
   @override
   String get selectLanguage => '选择语言';
@@ -4295,13 +4289,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get connectionPopupTitle => '选择提供商';
 
   @override
-  String get connectionPopupBody => '连接 LM Studio、选择设备上模型或在“设置”中登录云提供商。';
+  String get connectionPopupBody => '连接 LM Studio、选择端侧模型，或在设置中登录云端提供商。';
 
   @override
-  String get connectionPopupDismiss => '之后';
+  String get connectionPopupDismiss => '稍后';
 
   @override
-  String get connectionPopupGoToSettings => '前往“设置”';
+  String get connectionPopupGoToSettings => '打开设置';
 
   @override
   String get remoteAccess => '远程访问';
@@ -4336,7 +4330,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get usingLocalServer => '使用本地服务器';
 
   @override
-  String get testing => '测试...';
+  String get testing => '测试中…';
 
   @override
   String connectedLatency(int ms) {
@@ -4348,21 +4342,21 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get scanQrDescription =>
-      '从 Mac 上的 LM Mini（与手机共享）或旧版 LM Mini Connect 扫描二维码，即可从任何地方访问您的桌面模型。';
+      '在 Mac 上的 LM Mini（与手机共享）或旧版 LM Mini Connect 扫描二维码，即可在任何地方连接你的桌面模型。';
 
   @override
   String get remotePaired => '远程配对';
 
   @override
   String lastConnected(String time) {
-    return '最后连接：$time';
+    return '上次连接：$time';
   }
 
   @override
   String get reScanQrCode => '重新扫描二维码';
 
   @override
-  String get qrRequiresPro => '二维码扫描需要LM Mini Pro';
+  String get qrRequiresPro => '二维码扫描需要 LM Mini Pro';
 
   @override
   String get enterUrlManually => '手动输入网址';
@@ -4374,7 +4368,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get relayUrlHint => 'https://relay.lmmini.com/s/…';
 
   @override
-  String get connectWithUrl => '使用网址连接';
+  String get connectWithUrl => '使用 URL 连接';
 
   @override
   String get invalidRelayUrl => '这不是有效的 LM Mini 配对链接。请从 Mac 上的“与手机共享”复制。';
@@ -4394,10 +4388,10 @@ class AppLocalizationsZh extends AppLocalizations {
       '连接失败。确保 Mac 上的 LM Mini 已启用与手机共享（或旧版 Connect 正在运行）。';
 
   @override
-  String get unpairRemote => '取消遥控器配对';
+  String get unpairRemote => '解除配对';
 
   @override
-  String get unpairRemoteDescription => '这将删除已保存的远程连接。您可以通过扫描新的二维码重新配对。';
+  String get unpairRemoteDescription => '这会删除已保存的远程连接。扫描新的二维码即可重新配对。';
 
   @override
   String get setupGuide => '设置指南';
@@ -4416,30 +4410,30 @@ class AppLocalizationsZh extends AppLocalizations {
       '从 lmmini.com 下载 Mac 版 LM Mini Home。Windows 和 Linux 仍可使用 LM Mini Connect。';
 
   @override
-  String get setupStep2Title => '与手机分享';
+  String get setupStep2Title => '与手机共享';
 
   @override
-  String get setupStep2Desc => '在 Mac 上的 LM Mini Home 中打开“与手机共享”并开启。它会立即连接到中继。';
+  String get setupStep2Desc => '在 Mac 上打开 LM Mini Home 的“与手机共享”并开启，即可立即连接到中继。';
 
   @override
   String get setupStep3Title => '扫描二维码';
 
   @override
-  String get setupStep3Desc => '扫描 Mac 上显示的二维码。就是这样！';
+  String get setupStep3Desc => '扫描 Mac 上显示的二维码。搞定！';
 
   @override
   String minutesAgo(int count) {
-    return '${count}m 前';
+    return '$count 分钟前';
   }
 
   @override
   String hoursAgo(int count) {
-    return '$count小时前';
+    return '$count 小时前';
   }
 
   @override
   String daysAgo(int count) {
-    return '$count天前';
+    return '$count 天前';
   }
 
   @override
@@ -4452,7 +4446,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get select => '选择';
 
   @override
-  String get dismissAction => '解雇';
+  String get dismissAction => '忽略';
 
   @override
   String get createNewFolder => '创建新文件夹';
@@ -4466,29 +4460,29 @@ class AppLocalizationsZh extends AppLocalizations {
   String get averages => '平均值';
 
   @override
-  String get tokensPerChat => '代币/聊天';
+  String get tokensPerChat => 'Token/对话';
 
   @override
-  String get msgsPerChat => '消息/聊天';
+  String get msgsPerChat => '消息/对话';
 
   @override
-  String get tokensPerMsg => '代币/消息';
+  String get tokensPerMsg => 'Token/消息';
 
   @override
-  String get topModel => '顶级模特';
+  String get topModel => '最常用模型';
 
   @override
-  String get liveActivityTitle => '现场活动';
+  String get liveActivityTitle => '实时活动';
 
   @override
-  String get liveActivityTitleAndroid => '背景生成';
+  String get liveActivityTitleAndroid => '后台生成';
 
   @override
-  String get liveActivityDescription => '处理你的人工智能即使您退出应用程序或锁定应用程序也可以请求';
+  String get liveActivityDescription => '即使退出或锁定应用，也能继续处理 AI 请求。';
 
   @override
   String get liveActivityDescriptionAndroid =>
-      '当您离开应用程序时继续生成 - 设备上模型、LM Studio 和云提供商。显示带有进度的静默持续通知，并使 HTTP 流在 Android 上保持活动状态。';
+      '离开应用后继续生成——支持设备上模型、LM Studio 和云服务商。会显示一条带进度的静默常驻通知，并在 Android 上保持 HTTP 流不中断。';
 
   @override
   String get liveActivityAndroidOnDeviceOnly =>
@@ -4505,24 +4499,24 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get premiumRemoteAccessDescription =>
-      '从任何地方访问您的 Mac 或 PC 模型。在 Mac 上，使用 LM Mini → 与手机共享。无端口转发或 VPN — 扫描二维码以获取加密中继。';
+      '随时随地访问你的 Mac 或 PC 上的模型。在 Mac 上使用 LM Mini → 与手机共享。无需端口转发或 VPN，扫描二维码即可通过加密中继连接。';
 
   @override
-  String get premiumLiveActivity => '现场活动';
+  String get premiumLiveActivity => '实时活动';
 
   @override
-  String get premiumLiveActivityTagline => '人工智能。在后台运行';
+  String get premiumLiveActivityTagline => 'AI 在后台运行';
 
   @override
   String get premiumLiveActivityDescription =>
-      '处理你的人工智能即使您退出应用程序或锁定手机时也会发出请求。在锁定屏幕和动态岛上查看实时生成进度 - 无需切换即可查看代币计数和生成速度。';
+      '即使退出应用或锁定手机，也能继续处理 AI 请求。在锁定屏幕和动态岛上实时查看生成进度——不用切回应用，就能看到 Token 不断增加和生成速度。';
 
   @override
   String get premiumWebSearchTagline => '无需服务器设置';
 
   @override
   String get premiumWebSearchDescription =>
-      '在对话期间立即搜索网络。由云搜索 API 提供支持 — 无需自行托管 SearXNG 或配置任何内容。只需询问，您的模型就会从互联网上获取新鲜的实时信息。';
+      '对话中随时搜索网页。由云搜索 API 驱动——无需自建 SearXNG，也不用任何配置。直接提问，模型就能从互联网获取最新的实时信息。';
 
   @override
   String get premiumCloudBackup => '加密云备份';
@@ -4532,17 +4526,17 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get premiumCloudBackupDescription =>
-      '使用军用级加密将所有对话备份到云端。您的密码永远不会离开您的设备 - 即使我们也无法读取您的数据。一键在任何设备上恢复。';
+      '使用军用级加密把所有对话备份到云端。你的口令不会离开设备——连我们也无法读取你的数据。在任何设备上一键恢复。';
 
   @override
-  String get premiumUrlReader => '网址阅读器';
+  String get premiumUrlReader => 'URL 阅读器';
 
   @override
   String get premiumUrlReaderTagline => '分析任何网页';
 
   @override
   String get premiumUrlReaderDescription =>
-      '粘贴任何 URL，您的模型就会读取整个页面内容。总结文章、分析文档、从表格中提取数据——所有这些都无需离开对话。';
+      '粘贴任意 URL，模型会读取整个页面内容。总结文章、分析文档、从表格提取数据——全程无需离开对话。';
 
   @override
   String get premiumBranching => '对话分支';
@@ -4552,154 +4546,146 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get premiumBranchingDescription =>
-      '从任何消息中分叉任何对话，以探索“假设”场景。比较不同的提示，尝试不同的方法，并保留最好的线索 - 所有这些都不会丢失原始线索。';
+      '从任意消息处分叉对话，探索各种“假设”场景。比较不同的提示词、尝试不同方案，保留最满意的分支——原始对话不会丢失。';
 
   @override
-  String get premiumMemory => '回忆';
+  String get premiumMemory => '记忆';
 
   @override
-  String get premiumMemoryTagline => '在聊天中记住你';
+  String get premiumMemoryTagline => '跨对话记住你';
 
   @override
   String get premiumMemoryDescription =>
-      '保存所有对话中持续存在的事实、偏好和背景。每次你开始新的聊天时，你的模型都会知道你的名字、编码风格、首选语言以及你教给它的任何其他内容。';
+      '保存跨对话保留的事实、偏好和上下文。每次开启新对话，模型都记得你的名字、代码风格、常用语言，以及你教给它的一切。';
 
   @override
-  String get premiumAnalytics => '分析仪表板';
+  String get premiumAnalytics => '分析仪表盘';
 
   @override
-  String get premiumAnalyticsTagline => '了解您的使用情况';
+  String get premiumAnalyticsTagline => '了解你的使用情况';
 
   @override
   String get premiumAnalyticsDescription =>
-      '跟踪使用的令牌、发送的消息、模型使用细分和平均响应时间。了解您的 AI 使用模式并通过精美的图表优化您的工作流程。';
+      '跟踪 Token 用量、发送消息数、各模型使用占比和平均响应时间。用精美图表了解你的 AI 使用习惯，优化工作流。';
 
   @override
-  String get premiumCloudApi => '云API提供商';
+  String get premiumCloudApi => '云 API 提供商';
 
   @override
   String get premiumCloudApiTagline => 'Mistral、Anthropic 等';
 
   @override
   String get premiumCloudApiDescription =>
-      '连接到云 LLM 提供商以及您的本地模型。当您需要尖端性能时，请使用 Claude、Gemini 和 Mistral — 在本地和云之间无缝切换。';
+      '在本地模型之外接入云端 LLM 提供商。需要顶级性能时可用 Claude、Gemini 和 Mistral——本地与云端无缝切换。';
 
   @override
-  String get premiumExport => '丰富的导出和分享';
+  String get premiumExport => '多格式导出与分享';
 
   @override
-  String get premiumExportTagline => '黑曜石、笔记、概念等';
+  String get premiumExportTagline => 'Obsidian、Apple Notes、Notion 等';
 
   @override
   String get premiumExportDescription =>
       '将对话导出为格式精美的 Markdown、PDF 或纯文本。直接分享到 Obsidian、Apple Notes、Notion 或任何应用程序。非常适合保存研究和见解。';
 
   @override
-  String get premiumCompactContext => 'Compact context';
+  String get premiumCompactContext => '压缩上下文';
 
   @override
-  String get premiumCompactContextTagline =>
-      'Keep chatting when the window is full';
+  String get premiumCompactContextTagline => '上下文满了也能继续聊';
 
   @override
   String get premiumCompactContextDescription =>
-      'Roll older messages, cut the middle, or compact a long chat into a summary on the same loaded model so a full context window doesn’t stop the conversation.';
+      '滚动淘汰旧消息、裁掉中段，或把长对话压缩成摘要——都由当前加载的模型完成，上下文窗口满了也不会中断对话。';
 
   @override
-  String get premiumParamPresets => 'Param presets';
+  String get premiumParamPresets => '参数预设';
 
   @override
-  String get premiumParamPresetsTagline =>
-      'Per-model and persona generation settings';
+  String get premiumParamPresetsTagline => '按模型和角色保存生成设置';
 
   @override
   String get premiumParamPresetsDescription =>
-      'Save sampler and load settings per model, and optional custom params on a persona. Free stays on the Global defaults that ship with the app.';
+      '可按模型保存采样器和加载设置，也可在角色上选用自定义参数。免费版只使用应用内置的全局默认值。';
 
   @override
-  String get paramPresetSetFor => 'Set params for';
+  String get paramPresetSetFor => '参数设置范围';
 
   @override
-  String get paramPresetGlobalTab => 'Global';
+  String get paramPresetGlobalTab => '全局';
 
   @override
-  String get paramPresetScopeHelpTitle => 'How params apply';
+  String get paramPresetScopeHelpTitle => '参数如何生效';
 
   @override
-  String get paramPresetScopeHelpIntro =>
-      'The most specific layer that is on wins. Chat-level overrides (if you set them in a conversation) still sit on top.';
+  String get paramPresetScopeHelpIntro => '层级越具体，优先级越高。在某个对话里单独设置的参数仍然排在最上层。';
 
   @override
-  String get paramPresetScopeHelpGlobal =>
-      'Defaults for every model that does not have its own preset. This is what the app ships with.';
+  String get paramPresetScopeHelpGlobal => '所有没有专属预设的模型都用这里的默认值，也就是应用自带的设置。';
 
   @override
   String get paramPresetScopeHelpModel =>
-      'Changing knobs on the selected-model tab saves a preset for that model only. Use Global params removes it so the model follows Global again.';
+      '在“当前模型”标签页调整参数，只会保存为该模型的预设。点“使用全局参数”即可删除预设，让模型重新跟随全局设置。';
 
   @override
-  String get paramPresetScopeHelpPersonaTitle => 'Persona';
+  String get paramPresetScopeHelpPersonaTitle => '角色';
 
   @override
   String get paramPresetScopeHelpPersona =>
-      'If a persona has a preferred model, turn on Use custom params to override that model’s preset (or Global) while the persona is active.';
+      '如果角色指定了首选模型，开启“使用自定义参数”后，该角色活跃时会覆盖该模型的预设（或全局设置）。';
 
   @override
-  String get paramPresetSelectedModelTab => 'Selected model';
+  String get paramPresetSelectedModelTab => '当前模型';
 
   @override
-  String get paramPresetNoModel => 'Select a model to save a preset for it.';
+  String get paramPresetNoModel => '选择一个模型后即可为其保存预设。';
 
   @override
-  String get paramPresetUsingGlobal => 'This model uses Global params.';
+  String get paramPresetUsingGlobal => '此模型使用全局参数。';
 
   @override
-  String get paramPresetUsingCustom => 'This model has a custom preset.';
+  String get paramPresetUsingCustom => '此模型有自定义预设。';
 
   @override
-  String get paramPresetUseGlobal => 'Use Global params';
+  String get paramPresetUseGlobal => '使用全局参数';
 
   @override
-  String get paramPresetUseGlobalSubtitle =>
-      'Remove this model’s preset and fall back to Global.';
+  String get paramPresetUseGlobalSubtitle => '删除此模型的预设，恢复使用全局参数。';
 
   @override
-  String get paramPresetModelLocked =>
-      'Model presets are Pro. Global params still apply to every model.';
+  String get paramPresetModelLocked => '模型预设是 Pro 功能。全局参数仍适用于每个模型。';
 
   @override
-  String get personaUseCustomParams => 'Use custom params';
+  String get personaUseCustomParams => '使用自定义参数';
 
   @override
-  String get personaUseCustomParamsSubtitle =>
-      'Override this model’s params while the persona is active';
+  String get personaUseCustomParamsSubtitle => '角色启用时覆盖此模型的参数';
 
   @override
-  String get personaAdjustParams => 'Adjust params';
+  String get personaAdjustParams => '调整参数';
 
   @override
-  String get personaAdjustParamsSubtitle =>
-      'Temperature, context, and other generation settings';
+  String get personaAdjustParamsSubtitle => '温度、上下文等生成设置';
 
   @override
-  String get premiumOnDeviceLlm => '设备上专业版';
+  String get premiumOnDeviceLlm => '设备上 Pro';
 
   @override
-  String get premiumOnDeviceLlmTagline => '更大的目录型号和高频进口';
+  String get premiumOnDeviceLlmTagline => '更大的目录模型和 Hugging Face 导入';
 
   @override
   String get premiumOnDeviceLlmDescription =>
-      '通过精选的入门模型，可以免费进行设备上聊天。 Pro 解锁超过 3B 参数的目录下载，并从 Hugging Face 导入您自己的 GGUF 或 MLX 模型 - 浏览、选择量化并完全离线运行。';
+      '设备上对话免费使用精选的入门模型。Pro 解锁目录中 3B 参数以上的模型，并支持从 Hugging Face 导入你自己的 GGUF 或 MLX 模型——浏览、挑选量化版本，全程离线运行。';
 
   @override
-  String get premiumHfBrowse => '拥抱脸部导入';
+  String get premiumHfBrowse => 'Hugging Face 导入';
 
   @override
-  String get premiumHfBrowseTagline => '将任何 GGUF 模型带上车';
+  String get premiumHfBrowseTagline => '导入任意 GGUF 模型';
 
   @override
   String get premiumHfBrowseDescription =>
-      '搜索 Hugging Face，将 GGUF 模型下载到您的设备或 LM Studio 服务器，并在 LM Mini 中运行它们。过滤兼容性、跟踪后台下载并扩展到免费目录之外 - 无需 API 密钥。';
+      '在 Hugging Face 搜索，把 GGUF 模型下载到设备或 LM Studio 服务器，再在 LM Mini 中运行。可按兼容性筛选、查看后台下载进度，突破免费目录的限制——无需 API 密钥。';
 
   @override
   String get onDeviceProviderLabel => '设备上';
@@ -4708,7 +4694,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get onDeviceManageModels => '管理设备上模型';
 
   @override
-  String get onDeviceGeneratingHint => '在设备上生成...';
+  String get onDeviceGeneratingHint => '正在设备上生成…';
 
   @override
   String get onDeviceEngineUnavailable => '设备上的引擎不可用';
@@ -4717,11 +4703,11 @@ class AppLocalizationsZh extends AppLocalizations {
   String get onDeviceOpenBrowser => '打开设备上的模型';
 
   @override
-  String get onDeviceManagedHere => '设备上的模型在专用浏览器中进行管理，您可以在其中下载、删除和激活它们。';
+  String get onDeviceManagedHere => '设备上的模型在专属页面中管理，可在此下载、移除和启用。';
 
   @override
   String get onDeviceRemoteImageOnly =>
-      '选择设备上的 AI — 远程访问仅支持图像生成和 Kokoro 语音（如果已配置）。聊天保留在此设备上。';
+      '已选择设备上 AI——远程访问只用于图像生成和 Kokoro 语音（如已配置）。对话仍在此设备上进行。';
 
   @override
   String get onDeviceProOnly => '仅限专业版';
@@ -4733,34 +4719,34 @@ class AppLocalizationsZh extends AppLocalizations {
   String get onDeviceUseModel => '使用';
 
   @override
-  String get onDeviceRemoveModel => '消除';
+  String get onDeviceRemoveModel => '移除';
 
   @override
-  String get onDeviceDownloadAnyway => '无论如何下载';
+  String get onDeviceDownloadAnyway => '仍要下载';
 
   @override
   String onDeviceNowUsing(String name) {
-    return '现在在设备上使用 $name';
+    return '正在使用设备上的 $name';
   }
 
   @override
-  String get onDeviceEngineFllamaLabel => '羊驼 (GGUF)';
+  String get onDeviceEngineFllamaLabel => 'fllama (GGUF)';
 
   @override
   String onDeviceEngineSwitched(String engine) {
-    return '切换到$engine。以前的模型被卸载了。';
+    return '已切换到 $engine，之前的模型已卸载。';
   }
 
   @override
   String onDeviceEngineSwitchedCleared(String engine) {
-    return '切换到$engine。您之前的型号与此引擎不兼容，已被取消选择 - 在设备上型号中选择一个。';
+    return '已切换到 $engine。之前的模型与此引擎不兼容，已被取消选择——请在“设备上模型”中重新选择。';
   }
 
   @override
-  String get onDeviceImportedLabel => '进口';
+  String get onDeviceImportedLabel => '已导入';
 
   @override
-  String get onDeviceFreeLabel => '自由的';
+  String get onDeviceFreeLabel => '免费';
 
   @override
   String get onDeviceProLabel => '专业版';
@@ -4774,47 +4760,47 @@ class AppLocalizationsZh extends AppLocalizations {
   @override
   String onDeviceModelMayCrashMessage(
       String name, String runtimeGb, String deviceRamGb) {
-    return '运行时$name大约需要${runtimeGb}GB内存。您的设备大约有 $deviceRamGb GB 可用于应用程序。无论如何加载可能会冻结或崩溃应用程序。';
+    return '$name 运行时大约需要 $runtimeGb GB 内存，而设备可用的应用内存约为 $deviceRamGb GB。仍要加载可能导致应用卡死或崩溃。';
   }
 
   @override
   String get onDeviceContinueLoading => '继续加载';
 
   @override
-  String get yearly => '每年';
+  String get yearly => '年付';
 
   @override
-  String get monthly => '每月';
+  String get monthly => '月付';
 
   @override
-  String get lifetime => '寿命';
+  String get lifetime => '终身';
 
   @override
-  String get subscriptionLifetimeBadge => '支付一次';
+  String get subscriptionLifetimeBadge => '一次付费';
 
   @override
   String get subscriptionLifetimeDisclaimer =>
-      '一次性购买。在提供和维护 LM Mini 的同时，您的帐户上还可以使用 Pro 功能。不包括第三方 API 费用，并可能不包括单独托管的服务 - 请参阅条款。';
+      '一次性购买。只要 LM Mini 仍在提供和维护，你的账号就能使用 Pro 功能。不含第三方 API 费用，部分单独托管的服务可能不在此列——详见条款。';
 
   @override
   String subscriptionLifetimeUpgradeDisclaimer(String store) {
-    return '终身是单独的一次性购买。您当前的订阅不会自动取消，我们也无法退还过去的订阅费用。购买后，在$store取消订阅。';
+    return '终身版是单独的一次性购买。当前订阅不会自动取消，已产生的订阅费用也无法退还。购买后请在$store取消订阅。';
   }
 
   @override
-  String get subscriptionUpgradeToLifetime => '升级至终身';
+  String get subscriptionUpgradeToLifetime => '升级到终身版';
 
   @override
   String subscriptionUpgradeToLifetimeSubtitle(String price) {
-    return '支付一次 — $price';
+    return '一次付费 — $price';
   }
 
   @override
-  String get duplicateSubscriptionDialogTitle => '取消您的订阅';
+  String get duplicateSubscriptionDialogTitle => '取消你的订阅';
 
   @override
   String duplicateSubscriptionDialogBody(String store) {
-    return '您拥有 Lifetime Pro 和有效的订阅。终身不会自动替换您的订阅，并且我们无法退还订阅费用。请在$store取消订阅，以避免进一步计费。';
+    return '你同时拥有 Lifetime Pro 和有效订阅。终身版不会自动取代订阅，我们也无法退还订阅费用。请在$store取消订阅，避免继续扣费。';
   }
 
   @override
@@ -4826,7 +4812,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get duplicateSubscriptionDialogDismiss => '知道了';
 
   @override
-  String get duplicateSubscriptionNoManageUrl => '打开您的设备订阅设置以取消。';
+  String get duplicateSubscriptionNoManageUrl => '前往设备的订阅设置取消订阅。';
 
   @override
   String supportLifetime(String price) {
@@ -4844,7 +4830,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get encryptionKeyDescription =>
-      '用于远程访问的端到端加密密钥。必须与 LM Mini Connect 中的密钥匹配。';
+      '用于远程访问的端到端加密密钥。必须与 Mac 上 LM Mini Home 中的密钥一致。';
 
   @override
   String get editEncryptionKey => '编辑加密密钥';
@@ -4856,17 +4842,17 @@ class AppLocalizationsZh extends AppLocalizations {
   String get encryptionKeyUpdated => '加密密钥已更新';
 
   @override
-  String get thankYouSupport => '感谢您的支持！';
+  String get thankYouSupport => '感谢你的支持！';
 
   @override
-  String get helpingKeepAlive => '你正在帮助 LM Mini 生存';
+  String get helpingKeepAlive => '有你的支持，LM Mini 得以持续';
 
   @override
-  String get linkSignInMethod => '链接登录方法以在您切换设备时保留您的订阅。';
+  String get linkSignInMethod => '绑定登录方式，换设备后订阅也不丢。';
 
   @override
   String get paywallLinkAccountBody =>
-      '您使用的是匿名帐户。在购买前链接 Apple 或 Google，以便 Pro 可以跨设备同步并在重新安装后继续存在。';
+      '你使用的是匿名账号。购买前先绑定 Apple 或 Google，Pro 才能跨设备同步，重装后也不会丢失。';
 
   @override
   String get continueAnonymously => '匿名继续';
@@ -4877,7 +4863,7 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get yourSubscriptionSecured => '您的订阅已受到保护';
+  String get yourSubscriptionSecured => '你的订阅已受保护';
 
   @override
   String subscriptionManagedThrough(String store) {
@@ -4888,7 +4874,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get subscriptionsComingSoon => '订阅即将推出';
 
   @override
-  String get premiumPreview => '高级功能正在最终确定中。\n您可以启用下面的开发者模式来预览它们。';
+  String get premiumPreview => '高级功能仍在完善中。\n可在下方启用开发者模式先行预览。';
 
   @override
   String get enableDeveloperPremium => '启用开发者高级版';
@@ -4903,7 +4889,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get premiumDisabled => '高级版已禁用';
 
   @override
-  String get welcomeToLmMiniPro => '欢迎来到LM Mini Pro！';
+  String get welcomeToLmMiniPro => '欢迎使用 LM Mini Pro！';
 
   @override
   String get connectedRemotely => '远程连接';
@@ -4918,10 +4904,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get appStore => '应用商店';
 
   @override
-  String get googlePlayStore => '谷歌应用商店';
+  String get googlePlayStore => 'Google Play 商店';
 
   @override
-  String get starterAttach => '附';
+  String get starterAttach => '附件';
 
   @override
   String get starterImages => '图片';
@@ -4936,34 +4922,34 @@ class AppLocalizationsZh extends AppLocalizations {
   String get groupChat => '群聊';
 
   @override
-  String get groupChatMultipleModels => '与多个模特聊天';
+  String get groupChatMultipleModels => '与多个模型对话';
 
   @override
-  String get groupChatParticipants => '参加者';
+  String get groupChatParticipants => '参与者';
 
   @override
-  String get groupChatTurnMode => '转弯模式';
+  String get groupChatTurnMode => '发言模式';
 
   @override
-  String get groupChatRoundRobin => '循环赛';
+  String get groupChatRoundRobin => '轮流';
 
   @override
-  String get groupChatManual => '手动的';
+  String get groupChatManual => '手动';
 
   @override
-  String get groupChatParallelStreaming => '并行流';
+  String get groupChatParallelStreaming => '并行流式';
 
   @override
   String get groupChatAutoLoadUnload => '自动加载/卸载';
 
   @override
-  String get groupChatStreamAllSimultaneously => '同时直播所有参与者';
+  String get groupChatStreamAllSimultaneously => '所有参与者同时流式输出';
 
   @override
   String get groupChatAutoLoadModels => '需要时自动加载模型';
 
   @override
-  String get groupChatAsk => '问：';
+  String get groupChatAsk => '提问：';
 
   @override
   String get groupChatTapToReplyNudge => '点选要回复的人';
@@ -4973,7 +4959,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get groupChatTrialBannerBody =>
-      '免费试用最多 2 个 AI 角色的群聊 7 天。升级到 LM Mini Pro 即可获得无限制的参与者和永久访问权限。';
+      '群聊免费试用 7 天，最多可添加 2 个 AI 角色。升级到 LM Mini Pro 解锁无限参与者和永久使用。';
 
   @override
   String groupChatTrialDaysLeft(int days) {
@@ -4981,7 +4967,7 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get groupChatTrialExpired => '您的 7 天群聊试用期已结束。升级到专业版以继续。';
+  String get groupChatTrialExpired => '7 天群聊试用已结束。升级到专业版继续使用。';
 
   @override
   String get groupChatTrialGetPro => '获取专业版';
@@ -4993,26 +4979,25 @@ class AppLocalizationsZh extends AppLocalizations {
   String get groupChatBetaTitle => '群聊';
 
   @override
-  String get groupChatBetaSubtitle => '一次谈话。多个人工智能头脑。';
+  String get groupChatBetaSubtitle => '一场对话，多个 AI 大脑。';
 
   @override
-  String get groupChatBetaPremiumNote => '群聊目前处于测试阶段，所有人都可以免费预览';
+  String get groupChatBetaPremiumNote => '群聊目前处于测试阶段，所有人都能免费体验';
 
   @override
-  String get groupChatBetaBugReport => '发现错误？转到“设置”→“功能请求和支持”来报告问题并获得优先帮助。';
+  String get groupChatBetaBugReport => '发现了 Bug？前往“设置”→“功能请求与支持”反馈，可获得优先帮助。';
 
   @override
-  String get groupChatBetaFreeNote =>
-      '您可以免费访问最多 2 个角色 7 天。升级到专业版以获得无限的角色和永久访问权限。';
+  String get groupChatBetaFreeNote => '你可以免费体验 7 天，最多 2 个角色。升级到专业版解锁无限角色和永久使用。';
 
   @override
   String get groupChatBetaFeaturePersona => '每个角色都有自己的模型';
 
   @override
-  String get groupChatBetaFeatureSystem => '每个系统提示都有独特的个性';
+  String get groupChatBetaFeatureSystem => '独立系统提示词，个性各不同';
 
   @override
-  String get groupChatBetaFeatureConvo => '多合一共享对话';
+  String get groupChatBetaFeatureConvo => '全部在同一个共享对话中';
 
   @override
   String get groupChatBetaStartFree => '开始免费试用';
@@ -5027,24 +5012,24 @@ class AppLocalizationsZh extends AppLocalizations {
   String get premiumGroupChat => '群聊';
 
   @override
-  String get premiumGroupChatTagline => '多人对话';
+  String get premiumGroupChatTagline => '多角色对话';
 
   @override
   String get premiumGroupChatDescription =>
-      '在一个线程中与多个人工智能角色聊天——每个角色都有自己的模型、头像和个性。自由设置；发送消息需要LM Mini Pro。';
+      '在同一个对话里与多个 AI 角色聊天——每个角色都有自己的模型、头像和个性。可自由创建设置，发送消息需要 LM Mini Pro。';
 
   @override
   String get groupChatProRequiredTitle => '群聊需要专业版';
 
   @override
   String get groupChatProRequiredBody =>
-      '您可以免费设置群聊。升级到 LM Mini Pro 即可使用多个 AI 角色开始聊天和发送消息。';
+      '群聊可以免费创建。升级到 LM Mini Pro 即可用多个 AI 角色开始对话、发送消息。';
 
   @override
   String get groupChatProRequiredUpgrade => '升级到专业版';
 
   @override
-  String get groupChatLockedBanner => '群聊在没有 Pro 的情况下是只读的。升级以发送新消息。';
+  String get groupChatLockedBanner => '没有 Pro 时群聊为只读。升级后才能发送新消息。';
 
   @override
   String get premiumArena => 'Arena Pro';
@@ -5054,21 +5039,21 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get premiumArenaDescription =>
-      '寻找您的模型是免费的。 Pro 可以解锁自定义提示比赛、竞技场中的云模型以及带有图表的私人比赛历史记录。';
+      '寻找模型免费。Pro 可解锁自定义提示词比赛、竞技场云端模型，以及带图表的私人比赛历史。';
 
   @override
   String get startLabel => '开始';
 
   @override
   String groupChatInviteUpTo(int count) {
-    return '邀请最多$count位AI模特一起聊天。每个人都可以有自己的角色、头像和系统提示。';
+    return '邀请最多 $count 个 AI 模型一起对话，每个都可以有自己的角色、头像和系统提示词。';
   }
 
   @override
   String get groupChatPremiumParticipantsNote => 'Premium 允许每个群聊最多 5 名参与者。';
 
   @override
-  String get groupChatUserNameHint => 'AI 将如何称呼您（例如 Alex）';
+  String get groupChatUserNameHint => 'AI 将如何称呼你（例如 Alex）';
 
   @override
   String get groupChatScenarioLabel => '场景/关于你自己（可选）';
@@ -5077,31 +5062,31 @@ class AppLocalizationsZh extends AppLocalizations {
   String get groupChatScenarioHint => '例如“我们是一家科技初创公司的同事。我是一名产品经理，向团队寻求建议。”';
 
   @override
-  String get groupChatTurnModeRoundRobinDescription => '循环法——所有模型按顺序响应';
+  String get groupChatTurnModeRoundRobinDescription => '轮流——所有模型依次回答';
 
   @override
   String get groupChatTurnModeManualDescription => '手动 — 输入 @Name 以选择回复者';
 
   @override
-  String get groupChatReplyToUserOnlyLabel => '只回复你一个';
+  String get groupChatReplyToUserOnlyLabel => '只回复你';
 
   @override
-  String get groupChatReplyToUserOnlySubtitle => '每个人工智能都会忽略其他人工智能——最适合较小的模型';
+  String get groupChatReplyToUserOnlySubtitle => '每个 AI 都忽略其他 AI——最适合较小的模型';
 
   @override
   String get groupChatWhosInChat => '谁在聊天？';
 
   @override
-  String get groupChatTapToInvite => '点按下面的人员即可邀请他们';
+  String get groupChatTapToInvite => '点按下方成员发出邀请';
 
   @override
-  String get groupChatAddPeople => '添加人员';
+  String get groupChatAddPeople => '添加成员';
 
   @override
-  String get groupChatInTheRoom => '在房间里';
+  String get groupChatInTheRoom => '房间内';
 
   @override
-  String get groupChatNeedTwo => '至少添加 2 个以开始';
+  String get groupChatNeedTwo => '至少添加 2 个才能开始';
 
   @override
   String get groupChatTakeTurnsTitle => '轮流';
@@ -5110,19 +5095,19 @@ class AppLocalizationsZh extends AppLocalizations {
   String get groupChatTakeTurnsSubtitle => '大家按顺序依次回答';
 
   @override
-  String get groupChatTalkMentionedTitle => '提及时说话';
+  String get groupChatTalkMentionedTitle => '被提及时发言';
 
   @override
-  String get groupChatTalkMentionedSubtitle => '如果一个人工智能命名另一个人工智能，那个人就可以加入';
+  String get groupChatTalkMentionedSubtitle => '如果一个 AI 点名了另一个，它就可以插话';
 
   @override
   String get groupChatIChooseTitle => '我选择谁发言';
 
   @override
-  String get groupChatIChooseSubtitle => '只有您@提及的人回复';
+  String get groupChatIChooseSubtitle => '只有你 @ 提及的人才会回复';
 
   @override
-  String get groupChatHowTheyTalk => '他们如何说话';
+  String get groupChatHowTheyTalk => '它们的说话方式';
 
   @override
   String get groupChatAboutYou => '关于你';
@@ -5131,17 +5116,17 @@ class AppLocalizationsZh extends AppLocalizations {
   String get groupChatSceneLabel => '场景（可选）';
 
   @override
-  String get groupChatSceneHint => '例如我们是同事集思广益的产品创意';
+  String get groupChatSceneHint => '例如：我们是同事，正在头脑风暴一个产品创意';
 
   @override
   String get groupChatAutoLoadTitle => '节省本地模型的内存';
 
   @override
   String get groupChatAutoLoadSubtitle =>
-      '在加载下一个模型之前卸载一个模型 - 当人们使用不同的 LM Studio、Ollama 或设备上模型时很有帮助';
+      '加载下一个模型前先卸载上一个——当成员各自使用不同的 LM Studio、Ollama 或设备上模型时很实用';
 
   @override
-  String get groupChatMoreOptions => '更多选择';
+  String get groupChatMoreOptions => '更多选项';
 
   @override
   String get groupChatHelpTooltip => '群聊的工作原理';
@@ -5150,66 +5135,65 @@ class AppLocalizationsZh extends AppLocalizations {
   String get groupChatHelpTitle => '群聊的工作原理';
 
   @override
-  String get groupChatHelpIntro => '邀请至少两名 AI 人员参与一场对话。每个人都可以使用不同的模型和个性。';
+  String get groupChatHelpIntro => '邀请至少两个 AI 成员进入同一场对话，每个成员可以用不同的模型和个性。';
 
   @override
-  String get groupChatHelpTakeTurns => '轮流：每个人工智能按顺序回答你的消息。';
+  String get groupChatHelpTakeTurns => '轮流：每个 AI 按顺序回答你的消息。';
 
   @override
-  String get groupChatHelpMentioned => '提及时说话：有人回复后，如果被点名，另一个人工智能可以继续。';
+  String get groupChatHelpMentioned => '被提及时发言：一个 AI 回复后，被点名的 AI 可以接着说。';
 
   @override
-  String get groupChatHelpManual => '我选择谁发言：使用@Name，这样只有那个人回复。';
+  String get groupChatHelpManual => '我选择谁发言：用 @Name 指定，就只有它回复。';
 
   @override
-  String get groupChatHelpMemory =>
-      '节省内存：对于本地模型，请先卸载前一个模型，然后再加载下一个模型，这样 RAM 较少的手机和 PC 仍然可以运行组。';
+  String get groupChatHelpMemory => '节省内存：本地模型先卸载上一个再加载下一个，让内存较小的手机和 PC 也能开群聊。';
 
   @override
-  String get groupChatHelpProvider => '点击房间中的某个人即可随时更改其提供商和型号。';
+  String get groupChatHelpProvider => '随时点按房间里的成员，更换其提供商和模型。';
 
   @override
   String get groupChatStartProGate => '需要专业版才能启动';
 
   @override
-  String get groupChatFixBeforeStart => '在开始之前修复突出显示的人物。';
+  String get groupChatFixBeforeStart => '开始前请先修正标红的成员。';
 
   @override
-  String get groupChatEditPerson => '编辑人物';
+  String get groupChatEditPerson => '编辑成员';
 
   @override
-  String get groupChatProviderAndModel => '供应商和型号';
+  String get groupChatProviderAndModel => '提供商和模型';
 
   @override
-  String get groupChatChooseProviderModel => '选择提供商和型号';
+  String get groupChatChooseProviderModel => '选择提供商和模型';
 
   @override
   String get groupChatParallelEasy => '同时回复';
 
   @override
-  String get groupChatParallelEasySubtitle => '当多个人工智能需要回答时，将它们集中在一起';
+  String get groupChatParallelEasySubtitle => '需要多个 AI 一起回答时，让它们同时流式输出';
 
   @override
-  String get noModelsAvailableConnectLmStudio => '无可用型号。首先连接到 LM Studio。';
+  String get noModelsAvailableConnectLmStudio => '没有可用模型。请先连接 LM Studio。';
 
   @override
-  String get addModelLabel => '添加型号';
+  String get addModelLabel => '添加模型';
 
   @override
   String modelNumber(int number) {
-    return '型号$number';
+    return '模型 $number';
   }
 
   @override
   String groupChatParticipantInfo(String name, String model) {
-    return '$name\n型号：$model';
+    return '$name\n模型：$model';
   }
 
   @override
-  String get customPromptSet => '自定义提示设置';
+  String get customPromptSet => '自定义提示词设置';
 
   @override
-  String get removeLabel => '消除';
+  String get removeLabel => '移除';
 
   @override
   String get displayNameLabel => '显示名称';
@@ -5221,30 +5205,30 @@ class AppLocalizationsZh extends AppLocalizations {
   String get customRequestHeaders => '自定义请求标头';
 
   @override
-  String get customRequestHeadersSubtitle => '添加到每个 LM Studio 请求的可选标头';
+  String get customRequestHeadersSubtitle => '可选的标头，会附加到每个 LM Studio 请求上';
 
   @override
   String get customRequestHeadersHelp =>
-      '将此用于需要额外标头的反向代理或身份验证网关（例如 Cloudflare Access 服务令牌、自定义标头名称下的内部令牌等）。每个请求的标头都会发送到 LM Studio 服务器。';
+      '适用于需要额外标头的反向代理或身份验证网关（如 Cloudflare Access 服务 Token、自定义标头名下的内部 Token 等）。这些标头会随每个请求发送到你的 LM Studio 服务器。';
 
   @override
-  String get cloudflareAccessSection => 'Cloudflare 访问（服务令牌）';
+  String get cloudflareAccessSection => 'Cloudflare Access（服务 Token）';
 
   @override
   String get cloudflareAccessHelp =>
-      '如果您的 LM Studio 采用 Cloudflare 访问策略，请将服务令牌客户端 ID 和密钥粘贴到此处。它们在每次请求时作为 CF-Access-Client-Id 和 CF-Access-Client-Secret 发送，因此应用程序无需交互式浏览器 SSO 登录即可进行身份验证。';
+      '如果你的 LM Studio 处于 Cloudflare Access 策略之后，在此粘贴服务 Token 的 Client ID 和 Secret。它们会作为 CF-Access-Client-Id 和 CF-Access-Client-Secret 随每个请求发送，应用无需浏览器 SSO 登录即可完成身份验证。';
 
   @override
-  String get cfAccessClientIdLabel => 'CF-Access-客户端 ID';
+  String get cfAccessClientIdLabel => 'CF-Access-Client-Id';
 
   @override
-  String get cfAccessClientSecretLabel => 'CF-访问-客户端秘密';
+  String get cfAccessClientSecretLabel => 'CF-Access-Client-Secret';
 
   @override
-  String get addHeader => '添加标题';
+  String get addHeader => '添加标头';
 
   @override
-  String get removeHeader => '删除标题';
+  String get removeHeader => '删除标头';
 
   @override
   String get headerNameLabel => '标头名称';
@@ -5257,8 +5241,8 @@ class AppLocalizationsZh extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '已配置 $count 个请求头',
-      one: '已配置 1 个请求头',
+      other: '已配置 $count 个标头',
+      one: '已配置 1 个标头',
     );
     return '$_temp0';
   }
@@ -5267,11 +5251,11 @@ class AppLocalizationsZh extends AppLocalizations {
   String get noCustomHeaders => '没有自定义标头';
 
   @override
-  String get comfyUiUseNegativePromptTitle => '使用否定提示';
+  String get comfyUiUseNegativePromptTitle => '使用负面提示词';
 
   @override
   String get comfyUiUseNegativePromptSubtitle =>
-      'ComfyUI 默认关闭。关闭时，不会向工作流程发送否定提示。';
+      'ComfyUI 默认关闭。关闭时不会向工作流发送负面提示词。';
 
   @override
   String get documentationTitle => '文档';
@@ -5293,7 +5277,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String deleteMemoriesCount(int count) {
-    return '删除$count条记忆？';
+    return '删除 $count 条记忆？';
   }
 
   @override
@@ -5304,7 +5288,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String nSelected(int count) {
-    return '$count 已选择';
+    return '已选择 $count 项';
   }
 
   @override
@@ -5316,80 +5300,76 @@ class AppLocalizationsZh extends AppLocalizations {
   String get moveCategoryTooltip => '移动类别';
 
   @override
-  String get memoryScreenSubtitle => '人工智能会在聊天过程中记住有关您的事实。';
+  String get memoryScreenSubtitle => 'AI 在各对话中记住的关于你的信息。';
 
   @override
-  String get rememberMe => '记住账号';
+  String get rememberMe => '记住我';
 
   @override
   String get rememberMeSubtitle => '在以后的对话中使用保存的笔记';
 
   @override
-  String get memoryPerPersona => '每个角色';
+  String get memoryPerPersona => '私密笔记各自独立';
 
   @override
-  String get memoryPerPersonaSubtitle => '仅共享活跃角色（和全局角色）的注释';
+  String get memoryPerPersonaSubtitle => '标记为私密的笔记只保留在对应角色下。角色笔记始终相互独立。';
 
   @override
-  String get memoryOnDeviceExtraction => 'Learn memories on-device';
+  String get memoryOnDeviceExtraction => '在设备上提取记忆';
 
   @override
-  String get memoryOnDeviceExtractionSubtitle =>
-      'Let the local model extract facts too. Uses extra battery.';
+  String get memoryOnDeviceExtractionSubtitle => '让本地模型也来提取信息，会额外耗电。';
 
   @override
-  String get memoryScopeGlobal => 'Everyone';
+  String get memoryScopeGlobal => '所有人';
 
   @override
-  String get memoryScopeGlobalSubtitle => 'Available in every chat';
+  String get memoryScopeGlobalSubtitle => '在所有对话中可用';
 
   @override
-  String get memoryScopePrivate => 'Private to persona';
+  String get memoryScopePrivate => '仅此角色可见';
 
   @override
-  String get memoryScopePrivateSubtitle =>
-      'Facts about you that only this persona sees. It won\'t see your shared memories';
+  String get memoryScopePrivateSubtitle => '只有这个角色能看到的个人信息。它看不到你的共享记忆';
 
   @override
-  String get memoryScopeLore => 'Character notes';
+  String get memoryScopeLore => '角色设定';
 
   @override
-  String get memoryScopeLoreSubtitle =>
-      'Roleplay details for this character, never treated as facts about you. It won\'t see your shared memories';
+  String get memoryScopeLoreSubtitle => '这个角色的扮演设定，不会被视为关于你的信息。它看不到你的共享记忆';
 
   @override
-  String get memoryVisibility => 'Visibility';
+  String get memoryVisibility => '可见范围';
 
   @override
-  String get memoryChangeVisibility => 'Change visibility';
+  String get memoryChangeVisibility => '更改可见范围';
 
   @override
-  String get memoryScopeFilterAll => 'All';
+  String get memoryScopeFilterAll => '全部';
 
   @override
-  String get memoryOrphaned => 'Orphaned';
+  String get memoryOrphaned => '已失效';
 
   @override
-  String get memoryOrphanedHint =>
-      'These notes belong to a persona that no longer exists, so no chat can see them. Repair them to bring them back.';
+  String get memoryOrphanedHint => '这些笔记所属的角色已不存在，任何对话都看不到它们。修复后即可恢复。';
 
   @override
-  String get memoryMakeGlobal => 'Make available to everyone';
+  String get memoryMakeGlobal => '设为所有人可见';
 
   @override
-  String get memorySearchHint => 'Search notes';
+  String get memorySearchHint => '搜索笔记';
 
   @override
   String memoryNoSearchResults(String query) {
-    return 'No notes match \"$query\"';
+    return '没有匹配“$query”的笔记';
   }
 
   @override
-  String get memoryPickPersona => 'Choose a persona';
+  String get memoryPickPersona => '选择一个角色';
 
   @override
   String memoryMovedToScope(String scope) {
-    return 'Moved to $scope';
+    return '已移至 $scope';
   }
 
   @override
@@ -5397,60 +5377,59 @@ class AppLocalizationsZh extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '$count memories',
-      one: '1 memory',
-      zero: 'No memories',
+      other: '$count 条记忆',
+      one: '1 条记忆',
+      zero: '没有记忆',
     );
     return '$_temp0';
   }
 
   @override
-  String get personaMemoryWriteScope => 'Save new memories as';
+  String get personaMemoryWriteScope => '将新记忆保存为';
 
   @override
-  String get personaMemoryWriteScopeSubtitle =>
-      'Where facts learned in this persona\'s chats are filed';
+  String get personaMemoryWriteScopeSubtitle => '在此角色对话中学到的信息归入哪里';
 
   @override
   String get memoryBrowseSection => '浏览';
 
   @override
-  String get memoryMultiSelectTip => '提示：长按一个音符可以选择多个。';
+  String get memoryMultiSelectTip => '提示：长按笔记可多选。';
 
   @override
-  String get memoryEmptyFilteredHint => '添加注释，或选择其他类别。';
+  String get memoryEmptyFilteredHint => '添加一条笔记，或选择其他分类。';
 
   @override
-  String get memoryEmptyHint => '保存一些关于你自己的信息——姓名、偏好、项目——这样聊天就会感觉很私人。';
+  String get memoryEmptyHint => '记下关于你自己的几点信息——姓名、偏好、项目，对话会更贴心。';
 
   @override
   String get memoryShareWith => '分享给';
 
   @override
-  String get memoryEveryone => '每个人';
+  String get memoryEveryone => '所有人';
 
   @override
   String get memoryEveryoneSubtitle => '在每个聊天中都可用';
 
   @override
-  String get memoryNoPersonasHint => '还没有人物角色。在“设置”→“角色”中创建一个。';
+  String get memoryNoPersonasHint => '还没有角色。前往“设置”→“角色”创建一个。';
 
   @override
   String get memoryNewNote => '新笔记';
 
   @override
-  String get memoryNoteHint => '例如我更喜欢简短的答案并且住在柏林';
+  String get memoryNoteHint => '例如：我偏好简短的回答，住在柏林';
 
   @override
   String get memoryEditNote => '编辑备注';
 
   @override
   String monthsAgo(int count) {
-    return '$count前';
+    return '$count 个月前';
   }
 
   @override
-  String get moreTooltip => '更多的';
+  String get moreTooltip => '更多';
 
   @override
   String get closeSearch => '关闭搜索';
@@ -5459,10 +5438,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get moveTooltip => '移动';
 
   @override
-  String get chatsTab => '聊天记录';
+  String get chatsTab => '对话';
 
   @override
-  String get groupsTab => '团体';
+  String get groupsTab => '群聊';
 
   @override
   String get foldersTooltip => '文件夹';
@@ -5486,41 +5465,41 @@ class AppLocalizationsZh extends AppLocalizations {
   String get noGroupChatsSubtitle => '启动多人对话，与多个 AI 一起聊天。';
 
   @override
-  String get newPersonaShort => '新的';
+  String get newPersonaShort => '新建';
 
   @override
   String get downloadOnDeviceModelTitle => '下载设备上的模型';
 
   @override
   String get downloadOnDeviceModelBody =>
-      '下载模型无需 PC 即可聊天，或连接 LM Studio / Ollama。';
+      '下载模型即可脱离电脑聊天，也可以连接 LM Studio / Ollama。';
 
   @override
-  String get browseModels => '浏览型号';
+  String get browseModels => '浏览模型';
 
   @override
-  String get waitingForMac => '等待Mac';
+  String get waitingForMac => '等待 Mac';
 
   @override
   String get waitingForMacBody =>
-      '使用 USB 线将 iPhone 连接到 Mac，然后在 Mac 上打开 LM Mini 并启用与手机共享（USB 桥接器）。';
+      '用 USB 线把 iPhone 连到 Mac，然后在 Mac 上打开 LM Mini 并启用“与手机共享”（USB 桥接）。';
 
   @override
   String get arenaMode => '竞技场模式';
 
   @override
-  String get voiceWhisperSizeInfoTitle => '型号越大听得越好';
+  String get voiceWhisperSizeInfoTitle => '模型越大，听得越准';
 
   @override
   String get voiceWhisperSizeInfoBody =>
-      '较大的聆听模型通常更准确，尤其是对于口音和背景噪音。它们还使用更多存储空间，并且加载速度可能会慢一些。';
+      '更大的听写模型通常更准确，尤其是带口音或有背景噪音时。它们也更占存储，加载可能稍慢。';
 
   @override
   String get voiceRemoveListeningModelTitle => '删除监听模型？';
 
   @override
   String get voiceRemoveListeningModelBody =>
-      '这可以释放存储空间。在离线收听之前，语音通话和麦克风将再次需要该模型。';
+      '这会释放存储空间。但语音通话和麦克风要离线听写时，还需要用到这个模型。';
 
   @override
   String get voiceTtsOnDeviceNeural => '已下载的语音';
@@ -5529,7 +5508,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get voiceTtsPcVoice => '电脑语音';
 
   @override
-  String get voiceTtsSystemVoice => '系统声音';
+  String get voiceTtsSystemVoice => '系统语音';
 
   @override
   String get voiceTtsOnDeviceHint => '需要下载的自然语音。无需联网也能用。';
@@ -5563,25 +5542,25 @@ class AppLocalizationsZh extends AppLocalizations {
   String get voiceSttMacosDownloadWhisper => '下载 Whisper 以启用听写';
 
   @override
-  String get voiceSettingsIntro => '如何回复，以及如何理解您的声音。';
+  String get voiceSettingsIntro => '回复如何朗读，以及你的语音如何被识别。';
 
   @override
   String get voiceSectionReady => '准备好';
 
   @override
-  String get voiceSectionSpeaking => '请讲';
+  String get voiceSectionSpeaking => '朗读中';
 
   @override
-  String get voiceSectionListening => '听力';
+  String get voiceSectionListening => '聆听中';
 
   @override
   String get voiceSectionConversation => '对话';
 
   @override
-  String get voiceStatusSpeaking => '请讲';
+  String get voiceStatusSpeaking => '朗读中';
 
   @override
-  String get voiceStatusListening => '听力';
+  String get voiceStatusListening => '聆听中';
 
   @override
   String get voiceHowISpeak => '我如何说话';
@@ -5590,19 +5569,19 @@ class AppLocalizationsZh extends AppLocalizations {
   String get voiceImportPack => '导入语音包';
 
   @override
-  String get voiceImportPackSubtitle => '将 GitHub URL 粘贴到语音包';
+  String get voiceImportPackSubtitle => '粘贴语音包的 GitHub URL';
 
   @override
-  String get voiceHowIHearYou => '我怎么听到你的声音';
+  String get voiceHowIHearYou => '我怎么听你说话';
 
   @override
-  String get voiceHowIHearYouSubtitle => '选择如何将您的语音转换为文本。';
+  String get voiceHowIHearYouSubtitle => '选择你的语音如何转成文字。';
 
   @override
-  String get voiceListeningModel => '听力模型';
+  String get voiceListeningModel => '听写模型';
 
   @override
-  String get voiceAboutModelSizes => '关于型号尺寸';
+  String get voiceAboutModelSizes => '关于模型大小';
 
   @override
   String get voicePauseBeforeSend => '发送前暂停';
@@ -5611,10 +5590,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get voicePauseBeforeSendSubtitle => '停止说话后要等多久';
 
   @override
-  String get voiceListeningLimit => '听力限制';
+  String get voiceListeningLimit => '听写时长上限';
 
   @override
-  String get voiceListeningLimitSubtitle => '麦克风重新启动前最长的一段时间';
+  String get voiceListeningLimitSubtitle => '麦克风重启前可连续听写的最长时间';
 
   @override
   String get voiceQuickTip => '快速提示';
@@ -5623,13 +5602,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get voiceQuickTipBody => '想要更自然的声音，请在语音包里下载一种语言。系统语音可以马上使用。';
 
   @override
-  String get voiceTestSampleHint => '聆听您当前设置的简短样本';
+  String get voiceTestSampleHint => '用当前设置试听一段短样例';
 
   @override
-  String get voiceTestNoPackReady => '请先在语音包中下载一种语言，然后再试 Test Voice。';
+  String get voiceTestNoPackReady => '先在语音包中下载一种语言，再试“测试语音”。';
 
   @override
-  String get voiceChooseListeningModel => '点击选择聆听模式';
+  String get voiceChooseListeningModel => '点按选择听写模型';
 
   @override
   String get voiceModelReady => '准备好';
@@ -5644,55 +5623,55 @@ class AppLocalizationsZh extends AppLocalizations {
   String get voiceDownloadFailed => '下载失败';
 
   @override
-  String get voiceFinishingSetup => '正在完成设置...';
+  String get voiceFinishingSetup => '正在完成设置…';
 
   @override
-  String get voiceDownloadingListeningModel => '正在下载听力模型...';
+  String get voiceDownloadingListeningModel => '正在下载听写模型…';
 
   @override
-  String get voiceDownloadingVoice => '正在下载语音...';
+  String get voiceDownloadingVoice => '正在下载语音…';
 
   @override
-  String get voiceStartingDownload => '开始下载...';
+  String get voiceStartingDownload => '开始下载…';
 
   @override
   String get voiceReady => '语音就绪';
 
   @override
-  String get voiceWarmingUp => '正在热身……';
+  String get voiceWarmingUp => '正在预热…';
 
   @override
-  String get voiceReadyToSpeak => '准备发言';
+  String get voiceReadyToSpeak => '准备朗读';
 
   @override
   String get voiceDownloadOnDevice => '下载设备上的语音';
 
   @override
-  String get voiceDownloadFailedRetry => '下载失败 — 点击重试';
+  String get voiceDownloadFailedRetry => '下载失败——点按重试';
 
   @override
-  String get voiceSpokenReplyLanguage => '口头回复语言';
+  String get voiceSpokenReplyLanguage => '回复朗读语言';
 
   @override
-  String get voiceSpokenReplyLanguageSubtitle => '助理大声朗读消息时使用的语言。';
+  String get voiceSpokenReplyLanguageSubtitle => '助手朗读回复时使用的语言。';
 
   @override
   String get voiceRecognitionLanguage => '识别语言';
 
   @override
-  String get voiceRecognitionLanguageSubtitle => '用于文本麦克风和语音通话 — 可能与口头回复不同。';
+  String get voiceRecognitionLanguageSubtitle => '用于语音输入和语音通话——可以与朗读回复的语言不同。';
 
   @override
-  String get voiceEngineTitle => '说话的声音';
+  String get voiceEngineTitle => '朗读语音';
 
   @override
-  String get voiceEngineSubtitle => '选择语音从哪里来。';
+  String get voiceEngineSubtitle => '选择朗读使用的声音来源。';
 
   @override
   String get voiceChooseAVoice => '选择声音';
 
   @override
-  String get voiceChooseAVoiceSubtitle => '设备上语音的预览友好名称。';
+  String get voiceChooseAVoiceSubtitle => '适合试听的设备端语音名称。';
 
   @override
   String get voiceUseSystemDefault => '使用系统默认语音';
@@ -5704,7 +5683,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get welcomeWizardTitleYourSetup => '你的设置';
 
   @override
-  String get welcomeWizardTitleLookAndFeel => '外观和感觉';
+  String get welcomeWizardTitleLookAndFeel => '外观';
 
   @override
   String get welcomeWizardTitleAlmostDone => '快完成了';
@@ -5716,7 +5695,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get welcomeWizardLmStudioSubtitle => '在 Mac 或 PC 上运行模型';
 
   @override
-  String get welcomeWizardOllamaSubtitle => '流行的本地服务器';
+  String get welcomeWizardOllamaSubtitle => '常用的本地服务器';
 
   @override
   String get welcomeWizardOmlxSubtitle => 'Apple Silicon 桌面服务器';
@@ -5728,7 +5707,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get welcomeWizardUnslothSubtitle => '电脑上的 Unsloth Desktop';
 
   @override
-  String get welcomeWizardThemeSubtitle => '选择您喜欢的外观。您可以随时更改此设置。';
+  String get welcomeWizardThemeSubtitle => '选择你喜欢的外观，随时可以更换。';
 
   @override
   String get welcomeWizardModelReady => '准备好';
@@ -5744,7 +5723,13 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String welcomeWizardModelsFound(int count) {
-    return '$count 个模型';
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '找到 $count 个模型',
+      one: '找到 1 个模型',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -5788,13 +5773,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get shareArenaSpeedResults => '分享 Arena 速度结果';
 
   @override
-  String get browseOnDeviceModels => '浏览设备上的型号';
+  String get browseOnDeviceModels => '浏览设备上的模型';
 
   @override
   String get homeDownloadModel => '下载模型';
 
   @override
-  String get usbMode => 'USB模式';
+  String get usbMode => 'USB 模式';
 
   @override
   String get usbModeHowItWorks => 'USB 模式的工作原理';
@@ -5803,7 +5788,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get switchToUsbTitle => '从远程切换到 USB？';
 
   @override
-  String get switchLabel => '转变';
+  String get switchLabel => '切换';
 
   @override
   String usbModeStartFailed(String error) {
@@ -5820,13 +5805,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get tapToUseServer => '点击即可使用该服务器';
 
   @override
-  String get memoryPersonaFallback => '人格面具';
+  String get memoryPersonaFallback => '角色';
 
   @override
   String get voicePickSystemVoiceSubtitle => '选择内置语音进行语音回复。';
 
   @override
-  String get chooseFromGallery => '从画廊中选择';
+  String get chooseFromGallery => '从相册中选择';
 
   @override
   String get galleryLimitsSubtitle => '照片最大 10 MB · 视频最大 200 MB';
@@ -5843,7 +5828,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get viewProfile => '查看个人资料';
 
   @override
-  String get personaAndModel => '人物与模型';
+  String get personaAndModel => '角色与模型';
 
   @override
   String get chatOptions => '聊天选项';
@@ -5852,10 +5837,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get chatTab => '聊天';
 
   @override
-  String get voiceTab => '嗓音';
+  String get voiceTab => '语音';
 
   @override
-  String get craftingPersona => '塑造人物形象……';
+  String get craftingPersona => '正在生成角色…';
 
   @override
   String get randomPersona => '随机角色';
@@ -5873,7 +5858,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get downloadCancelFailed => '无法在 LM Studio 中取消。请在 LM Studio 的下载列表里停止。';
 
   @override
-  String get newsBriefing => '新闻发布会';
+  String get newsBriefing => '新闻简报';
 
   @override
   String get refreshNow => '立即刷新';
@@ -5882,10 +5867,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get noBriefingYet => '还没有简报';
 
   @override
-  String get newsSetPromptFirst => '首先在小部件设置中设置新闻小部件提示。';
+  String get newsSetPromptFirst => '请先在小部件设置中设置新闻小部件的提示词。';
 
   @override
-  String get newsRefreshed => '新闻刷新了。';
+  String get newsRefreshed => '新闻已刷新。';
 
   @override
   String newsRefreshFailed(String error) {
@@ -5896,7 +5881,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get themesTitle => '主题';
 
   @override
-  String get createLabel => '创造';
+  String get createLabel => '创建';
 
   @override
   String get browseLabel => '浏览';
@@ -5919,10 +5904,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get installedLabel => '已安装';
 
   @override
-  String get getLabel => '得到';
+  String get getLabel => '获取';
 
   @override
-  String get bestForYou => '最适合你的';
+  String get bestForYou => '为你推荐';
 
   @override
   String get loadingLabel => '加载中';
@@ -5934,22 +5919,22 @@ class AppLocalizationsZh extends AppLocalizations {
   String get notLoadedLabel => '未加载';
 
   @override
-  String get reasoningLabel => '推理';
+  String get reasoningLabel => '思考';
 
   @override
   String get imagesLabel => '图片';
 
   @override
-  String get detailsTooltip => '细节';
+  String get detailsTooltip => '详情';
 
   @override
   String get transcribeAudio => '转录音频';
 
   @override
-  String get transcribeAudioSubtitle => '上传音频并向 AI 询问文字记录';
+  String get transcribeAudioSubtitle => '上传音频，就转录内容向 AI 提问';
 
   @override
-  String get trimSection => '修剪部分';
+  String get trimSection => '裁剪片段';
 
   @override
   String get includeTimestamps => '包括时间戳';
@@ -5958,23 +5943,23 @@ class AppLocalizationsZh extends AppLocalizations {
   String get phrasesLabel => '短语';
 
   @override
-  String get wordsLabel => '字';
+  String get wordsLabel => '单词';
 
   @override
   String get transcriptionLanguage => '转录语言';
 
   @override
-  String get searchLanguages => '搜索语言...';
+  String get searchLanguages => '搜索语言…';
 
   @override
-  String get transcribe => '录制';
+  String get transcribe => '转录';
 
   @override
-  String get shareTranscript => '分享成绩单';
+  String get shareTranscript => '分享转录文本';
 
   @override
   String get transcriptionContextLargeToast =>
-      '这些转录本对于模型的上下文来说可能太大。如果答案不完整，则从较早的消息中分支。';
+      '这些转录文本可能超出模型的上下文长度。如果回答不完整，可以从更早的消息分支。';
 
   @override
   String get transcriptionSubtitlesOn => '字幕开启';
@@ -5986,31 +5971,31 @@ class AppLocalizationsZh extends AppLocalizations {
   String get transcriptionFullClip => '完整剪辑';
 
   @override
-  String get transcriptionJobRunning => '正在抄写…';
+  String get transcriptionJobRunning => '正在转录…';
 
   @override
-  String get transcriptionJobDone => '转录';
+  String get transcriptionJobDone => '已转录';
 
   @override
   String get transcriptionJobFailed => '转录失败';
 
   @override
-  String get branchFromHere => '分支从这里开始';
+  String get branchFromHere => '从这里分支';
 
   @override
-  String get memoryUpdates => '内存更新';
+  String get memoryUpdates => '记忆更新';
 
   @override
   String get promptWriteEmail => '写一封电子邮件';
 
   @override
-  String get promptWriteEmailBody => '帮我写一封清晰、友好的电子邮件至';
+  String get promptWriteEmailBody => '帮我写一封清晰、友好的邮件给';
 
   @override
-  String get promptGiveIdeas => '给我想法';
+  String get promptGiveIdeas => '帮我想点子';
 
   @override
-  String get promptGiveIdeasBody => '与我一起集思广益创意想法';
+  String get promptGiveIdeasBody => '和我一起头脑风暴：';
 
   @override
   String get promptExplainSimply => '简单解释一下';
@@ -6019,22 +6004,22 @@ class AppLocalizationsZh extends AppLocalizations {
   String get promptExplainSimplyBody => '用简单的话解释一下：';
 
   @override
-  String get promptFixWriting => '修正我的写作';
+  String get promptFixWriting => '帮我润色文稿';
 
   @override
-  String get promptFixWritingBody => '改进这篇文章的清晰度和语气：';
+  String get promptFixWritingBody => '帮我提升这段文字的清晰度和语气：\n\n';
 
   @override
   String get promptHelpStudy => '帮我学习';
 
   @override
-  String get promptHelpStudyBody => '帮我研究一下这个话题：';
+  String get promptHelpStudyBody => '帮我学习这个主题：';
 
   @override
   String get promptPlanTrip => '计划一次旅行';
 
   @override
-  String get promptPlanTripBody => '帮我计划一次旅行';
+  String get promptPlanTripBody => '帮我规划一次旅行：';
 
   @override
   String get promptSummarize => '总结一下这个';
@@ -6043,25 +6028,25 @@ class AppLocalizationsZh extends AppLocalizations {
   String get promptSummarizeBody => '总结清楚：';
 
   @override
-  String get promptChecklist => '制定清单';
+  String get promptChecklist => '列个清单';
 
   @override
-  String get promptChecklistBody => '制定一份实用的清单';
+  String get promptChecklistBody => '列一份实用的清单：';
 
   @override
   String get promptFunFact => '告诉我一个有趣的事实';
 
   @override
-  String get promptFunFactBody => '告诉我一个有趣的事实';
+  String get promptFunFactBody => '告诉我一个有趣的事实：';
 
   @override
-  String get promptQuizMe => '测验我';
+  String get promptQuizMe => '考考我';
 
   @override
-  String get promptQuizMeBody => '测验我';
+  String get promptQuizMeBody => '就以下内容考考我：';
 
   @override
-  String get promptRoleplay => '和我一起角色扮演';
+  String get promptRoleplay => '来一场角色扮演';
 
   @override
   String get promptRoleplayBody => '我们来角色扮演吧。你是';
@@ -6076,61 +6061,61 @@ class AppLocalizationsZh extends AppLocalizations {
   String get promptDraftReply => '起草回复';
 
   @override
-  String get promptDraftReplyBody => '对此起草一份礼貌的答复：';
+  String get promptDraftReplyBody => '帮我礼貌地回复以下内容：\n\n';
 
   @override
   String get promptPracticeInterview => '练习面试';
 
   @override
-  String get promptPracticeInterviewBody => '练习面试问题';
+  String get promptPracticeInterviewBody => '针对以下内容练习面试问题：';
 
   @override
-  String get promptMealIdeas => '膳食创意';
+  String get promptMealIdeas => '餐食建议';
 
   @override
-  String get promptMealIdeasBody => '使用建议膳食想法';
+  String get promptMealIdeasBody => '根据以下内容给我餐食建议：';
 
   @override
   String get promptWorkoutPlan => '锻炼计划';
 
   @override
-  String get promptWorkoutPlanBody => '制定一个简单的锻炼计划';
+  String get promptWorkoutPlanBody => '制定一份简单的锻炼计划：';
 
   @override
-  String get promptTranslateCasually => '随便翻译一下';
+  String get promptTranslateCasually => '口语化翻译';
 
   @override
-  String get promptTranslateCasuallyBody => '随便翻译一下：';
+  String get promptTranslateCasuallyBody => '把下面这段翻成口语：\n\n';
 
   @override
   String get promptNameIdeas => '命名创意';
 
   @override
-  String get promptNameIdeasBody => '集思广益的名字想法';
+  String get promptNameIdeasBody => '为以下内容想一些名字：';
 
   @override
   String get promptProsCons => '优点和缺点';
 
   @override
-  String get promptProsConsBody => '列出优点和缺点';
+  String get promptProsConsBody => '列出以下内容的优缺点：';
 
   @override
-  String get promptRewriteShorter => '重写更短';
+  String get promptRewriteShorter => '改短一点';
 
   @override
-  String get promptRewriteShorterBody => '重写这个更短更清晰的：';
+  String get promptRewriteShorterBody => '帮我改得更短更清晰：\n\n';
 
   @override
-  String get promptTeachVocab => '教我生字';
+  String get promptTeachVocab => '教我词汇';
 
   @override
-  String get promptTeachVocabBody => '教我一些有用的词汇';
+  String get promptTeachVocabBody => '教我以下主题的实用词汇：';
 
   @override
   String get promptStoryTime => '故事时间';
 
   @override
-  String get promptStoryTimeBody => '讲一个关于';
+  String get promptStoryTimeBody => '围绕以下主题讲一个短故事：';
 
   @override
   String get promptDebugWithMe => '和我一起调试';
@@ -6142,19 +6127,19 @@ class AppLocalizationsZh extends AppLocalizations {
   String get promptDailyMotivation => '每日动力';
 
   @override
-  String get promptDailyMotivationBody => '给我一个简短的激励推动';
+  String get promptDailyMotivationBody => '给我一点关于以下话题的简短鼓励：';
 
   @override
-  String get promptPlayDnd => '玩免打扰';
+  String get promptPlayDnd => '玩 D&D';
 
   @override
   String get promptPlayDndBody => '让我们来玩一段简短的 D&D 冒险吧。我是';
 
   @override
-  String get promptWordChain => '字链';
+  String get promptWordChain => '词语接龙';
 
   @override
-  String get promptWordChainBody => '我们来玩单词链吧。从以下开始：';
+  String get promptWordChainBody => '我们来玩词语接龙，从这个词开始：';
 
   @override
   String get promptRiddleDuel => '谜语决斗';
@@ -6172,19 +6157,19 @@ class AppLocalizationsZh extends AppLocalizations {
   String get promptEscapeRoom => '密室逃脱';
 
   @override
-  String get promptEscapeRoomBody => '为我开始一个简短的文字密室逃脱游戏。';
+  String get promptEscapeRoomBody => '来玩一个简短的文字密室逃脱。';
 
   @override
   String get promptTriviaBattle => '问答大战';
 
   @override
-  String get promptTriviaBattleBody => '用一些琐事来测验我';
+  String get promptTriviaBattleBody => '用以下主题的冷知识考考我：';
 
   @override
   String get promptStoryRpg => '故事角色扮演游戏';
 
   @override
-  String get promptStoryRpgBody => '开始一个短篇故事角色扮演游戏。我的性格是';
+  String get promptStoryRpgBody => '开始一段短篇故事 RPG，我的角色是';
 
   @override
   String get promptGuessNumber => '猜数字';
@@ -6193,16 +6178,16 @@ class AppLocalizationsZh extends AppLocalizations {
   String get promptGuessNumberBody => '我们来玩猜数字吧。想一个 1 到 100 之间的数字。';
 
   @override
-  String get promptTwoTruths => '两个真理一个谎言';
+  String get promptTwoTruths => '两真一假';
 
   @override
-  String get promptTwoTruthsBody => '让我们玩两个真理和一个谎言。你先走吧。';
+  String get promptTwoTruthsBody => '我们来玩两真一假，你先说。';
 
   @override
   String get promptReadMyFile => '阅读我的文件';
 
   @override
-  String get promptWhatIsImage => '这是什么图像';
+  String get promptWhatIsImage => '这是什么图片';
 
   @override
   String get promptTakePhoto => '拍张照片';
@@ -6220,7 +6205,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get personaShareMemoryCategoriesSubtitle => '选择该角色可以在聊天中使用哪些类型的记忆。';
 
   @override
-  String get chooseFaceForBubbles => '选择气泡的面';
+  String get chooseFaceForBubbles => '选择气泡头像';
 
   @override
   String get moveMemories => '移动记忆';
@@ -6229,14 +6214,14 @@ class AppLocalizationsZh extends AppLocalizations {
   String get deletePersonaAndMemories => '删除角色+记忆';
 
   @override
-  String get moveMemoriesTo => '将记忆移至...';
+  String get moveMemoriesTo => '将记忆移至…';
 
   @override
   String get globalSharedMemories => '全局（与所有角色共享）';
 
   @override
   String personaMemoriesAssignedHint(int count, String name) {
-    return '$count 内存项被分配给“$name”。\n选择他们应该发生什么：';
+    return '$count 条记忆属于“$name”。\n请选择如何处理：';
   }
 
   @override
@@ -6253,7 +6238,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get homeSyncBodyMacOnly =>
-      '把 LM Mini Home 上的聊天和文件夹带到这台手机，之后通过加密中继保持同步。';
+      '把 LM Mini Home 上的聊天和文件夹传到这台手机，之后通过加密中继保持同步。';
 
   @override
   String get homeSyncBodyGeneric =>
@@ -6269,7 +6254,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get homeSyncSettingsTitle => '与 Home 同步聊天';
 
   @override
-  String get homeSyncSettingsSubtitle => '通过加密中继合并对话和文件夹';
+  String get homeSyncSettingsSubtitle => '在这台手机和 Mac 之间同步聊天和文件夹';
 
   @override
   String get homeSyncMergedToast => '聊天和文件夹已同步';
@@ -6328,18 +6313,18 @@ class AppLocalizationsZh extends AppLocalizations {
   String get homeSyncPersonasNoMemories => '还没有记忆';
 
   @override
-  String get reportToSupport => '发送给支持';
+  String get reportToSupport => '发送给客服';
 
   @override
   String get localhostConnectionHelp =>
-      '无法连接到 localhost。在手机上，localhost 指的是这台设备，不是电脑。请在设置中填写电脑的 IP 地址（例如 http://192.168.1.10:1234），并保持同一 Wi‑Fi。';
+      '无法连接到 localhost。在手机上，localhost 指的是这台设备，不是电脑。请在设置中改用电脑的 IP 地址（例如 http://192.168.1.10:1234），并让两台设备连接同一个 Wi-Fi。';
 
   @override
   String get lmStudioPcNotAllowingTitle => '电脑未允许连接';
 
   @override
   String get lmStudioPcNotAllowingBody =>
-      '在电脑上的 LM Studio 打开 Developer → Server Settings，打开 Serve on Local Network。';
+      '在电脑上的 LM Studio 中打开 Developer → Server Settings，开启 Serve on Local Network。';
 
   @override
   String get lmStudioHostDownTitle => '无法连到电脑';
@@ -6349,7 +6334,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get lmStudioHostDownStep2 =>
-      '在 LM Studio 打开 Developer → Server Settings，打开 Serve on Local Network。';
+      '在 LM Studio 中打开 Developer → Server Settings，开启 Serve on Local Network。';
 
   @override
   String get cantReachMacTitle => '无法连到 Mac';
@@ -6372,29 +6357,29 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String modelMissingBodyNamed(String model) {
-    return '电脑上没有 “$model”。请到模型选择里换一个。';
+    return '电脑上没有“$model”。请到模型选择里换一个。';
   }
 
   @override
-  String get outputTokensExhaustedTitle => '模型输出 token 已用尽';
+  String get outputTokensExhaustedTitle => '模型的输出 Token 已用尽';
 
   @override
   String get outputTokensExhaustedBody =>
-      '工具已跑完，但没有剩余 token 写回复。请提高最大 token 后再试。';
+      '剩余输出 Token 不足，无法生成回复。请调高最大 Token 后重试。';
 
   @override
-  String get thinkingBudgetRetryTitle => 'Thinking used the output limit';
+  String get thinkingBudgetRetryTitle => '思考占满了输出上限';
 
   @override
   String get thinkingBudgetRetryBody =>
-      'High thinking filled the output limit, so this reply uses low thinking. Raise max tokens to keep high thinking.';
+      '高强度思考占满了输出上限，这条回复已改用低强度思考。调高最大 Token 即可保留高强度思考。';
 
   @override
-  String get adjustMaxTokens => '调整最大 token';
+  String get adjustMaxTokens => '调整最大 Token';
 
   @override
   String get ggmlSchedulerCrashBody =>
-      '模型服务器崩溃了（llama.cpp 调度器）。这不是 Mini 的问题。请调低上下文长度和最大 token——过大的值（例如 128k 上下文）经常导致这种情况。';
+      '模型服务器崩溃了（llama.cpp 调度器）。这不是 Mini 的问题。请调低上下文长度和最大 Token——过大的数值（例如 128k 上下文）经常导致这种情况。';
 
   @override
   String get generationTerminatedBody => 'LM Studio 已在你的电脑上停止生成（进程被终止）。';
@@ -6412,7 +6397,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get droppedChatBodyHelp =>
-      'Mini 已发出这条聊天，但从未到达 LM Studio。如果 LM Studio 前面有代理、隧道或额外网址，请先去掉它们——或让 Mini 直连 LM Studio（电脑 IP、USB 或 Connect）。';
+      'Mini 已发送这条聊天，但它从未到达 LM Studio。如果你在 LM Studio 前面用了代理、隧道或额外的 URL，请先去掉——或让 Mini 直连 LM Studio（电脑的 IP、USB 或 Connect）。';
 
   @override
   String get comfyUiNoCheckpointsTitle => 'ComfyUI 没有图像模型';
@@ -6475,7 +6460,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get sharedHostUpdateConfirm => '更新并测试';
 
   @override
-  String get sharedHostUpdateSkip => '保持当前';
+  String get sharedHostUpdateSkip => '保持不变';
 
   @override
   String sharedHostTesting(String name) {
@@ -6517,7 +6502,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get supportTicketAlreadySending => '正在提交同一错误的反馈。';
 
   @override
-  String get supportUnavailable => '目前无法联系支持。请在联网后再试。';
+  String get supportUnavailable => '暂时无法联系客服，请联网后再试。';
 
   @override
   String get somethingWentWrong => '出了点问题';
@@ -6536,7 +6521,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String appLockSubtitleOn(String duration) {
-    return '$duration后再次要求验证';
+    return '$duration 后再次要求验证';
   }
 
   @override
@@ -6846,10 +6831,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get spriteGenerateAppearanceHint => '发型、眼睛、服装和画风';
 
   @override
-  String get spriteGenerateSeed => '种子';
+  String get spriteGenerateSeed => '随机种子';
 
   @override
-  String get spriteGenerateSeedHelp => '使用相同种子可让角色在各表情中保持一致。';
+  String get spriteGenerateSeedHelp => '使用相同的随机种子，可让角色在各表情中保持一致。';
 
   @override
   String get spriteGenerateCore => '8 个常用';
@@ -6942,7 +6927,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get appleIntelligenceTurnOn => '在“设置”中打开 Apple Intelligence 即可使用';
 
   @override
-  String get appleIntelligenceGettingReady => 'Apple Intelligence 仍在此设备上准备中';
+  String get appleIntelligenceGettingReady => 'Apple Intelligence 仍在准备中';
 
   @override
   String get appleIntelligenceNowUsing => '现在与 Apple Intelligence 聊天';
@@ -6951,7 +6936,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get onboardingOrDownloadModel => '或下载一个模型';
 
   @override
-  String get homeRunOnboarding => '运行引导';
+  String get homeRunOnboarding => '运行引导流程';
 
   @override
   String get onboardingDownloadModelTitle => '下载模型';
@@ -6970,7 +6955,7 @@ class AppLocalizationsZh extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       count,
       locale: localeName,
-      other: '在 Wi‑Fi 中找到 $count 台服务器',
+      other: '在你的 Wi-Fi 上找到 $count 台服务器',
     );
     return '$_temp0';
   }
@@ -7028,7 +7013,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String paywallFeatureIsPro(String feature) {
-    return '$feature是 Pro 功能';
+    return '$feature 是 Pro 功能';
   }
 
   @override
@@ -7297,7 +7282,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get biometricFingerprint => '指纹';
 
   @override
-  String get biometricFaceUnlock => '人脸解锁';
+  String get biometricFaceUnlock => '面容解锁';
 
   @override
   String get teaserBranchTitle => '换条路试试，原来的也不会丢';
@@ -7330,7 +7315,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get teaserStatsTitle => '看看模型的真实表现';
 
   @override
-  String get teaserStatsPoint1 => '每个模型的速度、首个 token 时间和 token 数量。';
+  String get teaserStatsPoint1 => '每个模型的速度、首个 Token 时间和 Token 数量。';
 
   @override
   String get teaserStatsPoint2 => '一眼找出手机或电脑上最快的模型。';
@@ -7342,7 +7327,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get teaserStatsDemoMessages => '条消息';
 
   @override
-  String get teaserStatsDemoFirstToken => '首个 token';
+  String get teaserStatsDemoFirstToken => '首个 Token';
 
   @override
   String get teaserBackupTitle => '私密备份你的聊天';
@@ -7425,4 +7410,46 @@ class AppLocalizationsZh extends AppLocalizations {
   @override
   String get connectionSecuritySubtitle =>
       '传输过程中已加密（HTTPS）。聊天会经过 LM Mini 中继，并非端到端加密。';
+
+  @override
+  String nudgeProPitch(int count) {
+    return 'Pro 新增 $count 项功能，包括网页搜索、记忆，以及在手机上使用 Mac 的模型。其余功能仍然免费。';
+  }
+
+  @override
+  String get nudgeProPitchShort => 'Pro 新增网页搜索、记忆，以及在手机上使用 Mac 的模型。其余功能仍然免费。';
+
+  @override
+  String nudgeFromPrice(String price) {
+    return '按年付费，每月 $price 起';
+  }
+
+  @override
+  String get imagePromptStyleTitle => '图像提示词风格';
+
+  @override
+  String imagePromptStyleHelp(String server) {
+    return 'AI 为 $server 编写图像提示词的方式。留空则使用逗号分隔的标签。对于 Flux 或 Krea，可以试试：用一句自然的英文描述画面。';
+  }
+
+  @override
+  String get aboutYouTitle => '关于你';
+
+  @override
+  String get aboutYouSubtitle => '你的名字，以及 AI 应该了解你的内容';
+
+  @override
+  String get aboutYouIntro => '保存在这台设备上，并随每次聊天发送，不用每次都自我介绍。';
+
+  @override
+  String get aboutYouNameLabel => '你的名字';
+
+  @override
+  String get aboutYouNameHint => 'AI 应该怎么称呼你';
+
+  @override
+  String get aboutYouAboutLabel => '关于你';
+
+  @override
+  String get aboutYouAboutHint => '例如：你做什么、喜欢什么、想要怎样的回答。';
 }

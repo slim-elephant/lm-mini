@@ -17,6 +17,7 @@ import '../services/chat_import_service.dart';
 import '../services/local_network_service.dart';
 import '../services/review_service.dart';
 import '../services/builtin_persona_service.dart';
+import 'about_you_screen.dart';
 import 'appearance_settings_screen.dart';
 import '../widgets/feature_request_settings_tile.dart';
 import 'feature_requests_screen.dart';
@@ -889,6 +890,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   : () =>
                       showProFeatureTeaser(context, PaywallFeature.analytics),
             ),
+          // About you — free; sent with every chat.
+          ListTile(
+            leading: const Icon(Icons.person_outline),
+            title: Text(l10n.aboutYouTitle),
+            subtitle: Text(l10n.aboutYouSubtitle),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => _openSettingsScreen(
+              SettingsNavId.dataAboutYou,
+              (_) => const AboutYouScreen(),
+            ),
+          ),
           // Memory — Pro; free users see it locked (explainer).
           if (ProFeatures.isPro || ProFeatures.showUpsell)
             ListTile(
@@ -2888,6 +2900,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
         return const CloudBackupScreen(embedded: true);
       case SettingsNavId.dataAnalytics:
         return const AnalyticsScreen(embedded: true);
+      case SettingsNavId.dataAboutYou:
+        return const AboutYouScreen(embedded: true);
       case SettingsNavId.dataMemory:
         return const MemoryScreen(embedded: true);
       case SettingsNavId.dataAppLock:

@@ -9,6 +9,7 @@ import '../utils/chat_title.dart';
 import '../utils/chat_image_payload.dart';
 import '../utils/chat_image_compress.dart';
 import '../utils/host_inference_error.dart';
+import '../utils/about_user_prompt.dart';
 import '../utils/chat_message_normalizer.dart';
 import '../utils/pro_search_result_logger.dart';
 import '../utils/remote_host_backends.dart';
@@ -1980,8 +1981,27 @@ class ChatProvider with ChangeNotifier {
   /// logic at six call sites and two of them (regenerate, edit-and-regenerate)
   /// silently dropped memory entirely.
   ///
+  /// Also carries Settings → About you, which is free and goes with every
+  /// chat whether or not Memory is on.
+  ///
   /// Returns null when nothing should be injected.
   Future<String?> _buildMemoryContextForChat(
+    AppSettings settings, {
+    String? personaIdOverride,
+  }) async {
+    final about = aboutUserPromptBlock(
+      name: settings.preferredUserName,
+      about: settings.aboutUser,
+    );
+    final memory = await _buildMemoryOnlyContext(
+      settings,
+      personaIdOverride: personaIdOverride,
+    );
+    final parts = [about, memory].whereType<String>();
+    return parts.isEmpty ? null : parts.join('\n\n');
+  }
+
+  Future<String?> _buildMemoryOnlyContext(
     AppSettings settings, {
     String? personaIdOverride,
   }) async {
@@ -3411,13 +3431,18 @@ class ChatProvider with ChangeNotifier {
     return shrunk ?? imageUrls;
   }
 
+  /// Servers whose `/api/v1/chat` returned 404 this session (not LM Studio's
+  /// native API); plain sends go straight to `/v1/chat/completions`.
+  final Set<String> _v1ChatUnavailableServers = {};
+
   /// Send message using v1/chat stateful API (no tools)
   Future<void> _sendMessageStateful(
       String content, AppSettings settings, List<String>? imageUrls,
       {String? userDisplayContent, String? memoryContext}) async {
     if (!_usesLmStudioChatApi(settings) ||
         isHomeHost(settings) ||
-        _usesCloudOrLocalOpenAiBackend(settings)) {
+        _usesCloudOrLocalOpenAiBackend(settings) ||
+        _v1ChatUnavailableServers.contains(settings.serverUrl)) {
       await _sendMessageWithTools(
         content,
         settings,
@@ -3468,6 +3493,7 @@ class ChatProvider with ChangeNotifier {
       effectiveInput = appendImageGenTurnReminder(
         effectiveInput,
         enabled: settings.imageGenEnabled,
+        style: settings.imageGenPromptStyle,
       );
       // Stateful sessions only send the system prompt once.
       if (previousResponseId != null) {
@@ -3521,6 +3547,9 @@ class ChatProvider with ChangeNotifier {
               final err = event['error'];
               final msg = ReasoningSupportService.extractMessage(err) ??
                   'Unknown error';
+              if (LMStudioService.isV1ChatUnavailable(event)) {
+                throw _V1ChatUnavailable();
+              }
               if (!staleRetried &&
                   LMStudioService.isStalePreviousResponseId(event)) {
                 staleRetried = true;
@@ -3877,6 +3906,22 @@ class ChatProvider with ChangeNotifier {
           _currentMessages.isNotEmpty &&
           _currentMessages.last.id == tempMessageId) {
         _currentMessages.removeLast();
+      }
+      if (e is _V1ChatUnavailable &&
+          _currentConversation?.id == originConversationId) {
+        // Not LM Studio's native chat API (another OpenAI-compatible server
+        // picked as LM Studio): resend over /v1/chat/completions, and skip
+        // /api/v1/chat for this server for the rest of the session.
+        debugPrint('⚠️ /api/v1/chat returned 404 — resending via OpenAI API');
+        _v1ChatUnavailableServers.add(settings.serverUrl);
+        await _sendMessageWithTools(
+          content,
+          settings,
+          imageUrls,
+          userDisplayContent: userDisplayContent,
+          memoryContext: memoryContext,
+        );
+        return;
       }
       rethrow;
     }
@@ -4335,6 +4380,7 @@ class ChatProvider with ChangeNotifier {
       sysPrompt = applyImageGenInstructionToSystem(
         sysPrompt,
         enabled: settings.imageGenEnabled,
+        style: settings.imageGenPromptStyle,
       );
       messages.add({
         'role': 'system',
@@ -4345,6 +4391,7 @@ class ChatProvider with ChangeNotifier {
       final sysPrompt = applyImageGenInstructionToSystem(
         dateTimeLine,
         enabled: true,
+        style: settings.imageGenPromptStyle,
       );
       messages.add({
         'role': 'system',
@@ -4412,6 +4459,7 @@ class ChatProvider with ChangeNotifier {
     final userApiContent = appendImageGenTurnReminder(
       content,
       enabled: settings.imageGenEnabled,
+      style: settings.imageGenPromptStyle,
     );
     if (imageUrls != null && imageUrls.isNotEmpty) {
       messages.add({
@@ -7722,6 +7770,7 @@ class ChatProvider with ChangeNotifier {
     final userApiContent = appendImageGenTurnReminder(
       content,
       enabled: settings.imageGenEnabled,
+      style: settings.imageGenPromptStyle,
     );
     final packedHistory = _packedHistoryMessages(
       history,
@@ -7742,6 +7791,7 @@ class ChatProvider with ChangeNotifier {
           applyImageGenInstructionToSystem(
             settings.effectiveSystemPrompt,
             enabled: settings.imageGenEnabled,
+            style: settings.imageGenPromptStyle,
           ),
           settings.expressionLabels,
         ),
@@ -9105,6 +9155,9 @@ class _LowThinkingRetry implements Exception {}
 
 /// Internal signal to retry V1 chat after LM Studio dropped previous_response_id.
 class _StalePreviousResponseRetry implements Exception {}
+
+/// `/api/v1/chat` answered 404: resend over the OpenAI-compatible API.
+class _V1ChatUnavailable implements Exception {}
 
 /// Internal signal to retry the same backend without a tools array.
 class _RetryWithoutTools implements Exception {}

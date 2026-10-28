@@ -154,3 +154,8 @@ Privacy policy: [privacy_policy.html](privacy_policy.html).
 
 The code is MIT licensed, see [LICENSE](LICENSE). The LM Mini name and app
 icon are not covered by that license, see [TRADEMARK.md](TRADEMARK.md).
+
+## Special thanks
+
+- [@illava](https://github.com/illava) for reviewing and polishing the
+  Chinese translation ([#1](https://github.com/slim-elephant/lm-mini/pull/1)).

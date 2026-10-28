@@ -339,6 +339,14 @@ class LMStudioService {
 
   /// True when [value] is LM Studio's "stored response not found" error.
   /// Accepts HTTP bodies, error maps, stream chunks, or message strings.
+  /// Error type when `/api/v1/chat` itself answers 404 (not a missing
+  /// model): the server is not LM Studio, or an LM Studio without the native
+  /// chat API. Callers can resend over `/v1/chat/completions`.
+  static const v1ChatUnavailableType = 'v1_chat_unavailable';
+
+  static bool isV1ChatUnavailable(Map<String, dynamic> event) =>
+      event['error_type'] == v1ChatUnavailableType;
+
   static bool isStalePreviousResponseId(Object? value) {
     if (value == null) return false;
     if (value is String) {
@@ -1331,6 +1339,7 @@ class LMStudioService {
       userInput = withImageGenTurnReminder(
         userInput,
         enabled: settings.imageGenEnabled,
+        style: settings.imageGenPromptStyle,
       );
     }
 
@@ -1342,11 +1351,13 @@ class LMStudioService {
       if (settings.imageGenEnabled &&
           !systemPrompts.any((s) => s.contains('[IMAGE_GEN_INSTRUCTION]'))) {
         if (systemPrompts.isEmpty) {
-          systemPrompts.add(kImageGenSystemInstruction.trim());
+          systemPrompts.add(
+              imageGenSystemInstruction(settings.imageGenPromptStyle).trim());
         } else {
           systemPrompts[0] = applyImageGenInstructionToSystem(
             systemPrompts[0],
             enabled: true,
+            style: settings.imageGenPromptStyle,
           );
         }
       }
@@ -2262,6 +2273,7 @@ class LMStudioService {
       chatInput = withImageGenTurnReminder(
         chatInput,
         enabled: settings?.imageGenEnabled == true,
+        style: settings?.imageGenPromptStyle,
       );
 
       // Build integrations array for MCP servers
@@ -2314,6 +2326,7 @@ class LMStudioService {
           combinedSystemPrompt = applyImageGenInstructionToSystem(
             combinedSystemPrompt ?? '',
             enabled: true,
+            style: settings.imageGenPromptStyle,
           );
         }
         if (memoryContext != null && memoryContext.isNotEmpty) {
@@ -2399,6 +2412,14 @@ class LMStudioService {
           final overflow =
               isContextOverflowError(body) || isContextOverflowError(parsed);
           final missing = modelNotFoundErrorFromHttpBody(body);
+          if (streamedResponse.statusCode == 404 && missing == null) {
+            yield {
+              'type': 'error',
+              'error': {'message': parsed},
+              'error_type': v1ChatUnavailableType,
+            };
+            return;
+          }
           yield {
             'type': 'error',
             'error': {
@@ -3207,6 +3228,11 @@ class LMStudioService {
     String? apiToken,
   }) async {
     final root = UnslothLoad.apiRoot(baseUrl);
+    final target = await _resolveUnslothLoadTarget(
+      root: root,
+      modelId: modelId,
+      apiToken: apiToken,
+    );
     final response = await http
         .post(
           Uri.parse('$root/api/inference/load'),
@@ -3216,7 +3242,14 @@ class LMStudioService {
             cloudProviderType: CloudApiType.unsloth,
           ),
           body: jsonEncode(
-            UnslothLoad.loadBody(modelId: modelId, maxSeqLength: maxSeqLength),
+            target == null
+                ? UnslothLoad.loadBody(
+                    modelId: modelId, maxSeqLength: maxSeqLength)
+                : UnslothLoad.resolvedLoadBody(
+                    modelPath: target.modelPath,
+                    variant: target.variant,
+                    maxSeqLength: maxSeqLength,
+                  ),
           ),
         )
         .timeout(const Duration(minutes: 10));
@@ -3231,6 +3264,55 @@ class LMStudioService {
     throw Exception('Failed to load model: ${response.statusCode}');
   }
 
+  /// Where on the server to load [modelId] from, using only files already on
+  /// disk. Without a `gguf_variant`, Unsloth loads (and downloads) its default
+  /// quant, Q4_K_M, whatever the user has. Null when this Unsloth build lacks
+  /// the listing routes or the model is not a GGUF, so the plain request is
+  /// sent. Throws when it is a GGUF with no matching quant on disk.
+  Future<({String modelPath, String? variant})?> _resolveUnslothLoadTarget({
+    required String root,
+    required String modelId,
+    String? apiToken,
+  }) async {
+    final headers = _buildHeaders(
+      requestUrl: root,
+      apiToken: apiToken,
+      cloudProviderType: CloudApiType.unsloth,
+    );
+    Future<Map<String, dynamic>?> getJson(String path,
+        [Map<String, String>? query]) async {
+      try {
+        final response = await http
+            .get(Uri.parse('$root$path').replace(queryParameters: query),
+                headers: headers)
+            .timeout(const Duration(seconds: 30));
+        if (response.statusCode != 200 || response.body.isEmpty) return null;
+        final decoded = jsonDecode(response.body);
+        return decoded is Map ? Map<String, dynamic>.from(decoded) : null;
+      } catch (e) {
+        debugPrint('Unsloth $path: $e');
+        return null;
+      }
+    }
+
+    final wanted = UnslothLoad.quantFromModelId(modelId);
+    final local = await getJson('/api/models/local');
+    var sawGguf = false;
+    for (final candidate in UnslothLoad.localCandidates(local, modelId)) {
+      final variants = await getJson('/api/models/gguf-variants', {
+        'repo_id': candidate,
+        'prefer_local_cache': 'true',
+        'offline': 'true',
+      });
+      if (variants == null) continue;
+      if ((variants['variants'] as List?)?.isNotEmpty ?? false) sawGguf = true;
+      final variant = UnslothLoad.downloadedVariant(variants, wanted);
+      if (variant != null) return (modelPath: candidate, variant: variant);
+    }
+    if (sawGguf) throw Exception(UnslothLoad.notOnDiskMessage(modelId));
+    return null;
+  }
+
   /// Take an Unsloth model out of memory.
   Future<void> unloadUnslothModel({
     required String baseUrl,
@@ -3238,6 +3320,19 @@ class LMStudioService {
     String? apiToken,
   }) async {
     final root = UnslothLoad.apiRoot(baseUrl);
+    // A model loaded from LM Studio's folder unloads only by its `ref:`
+    // handle. The repo id answers "unloaded" and leaves it in memory.
+    var modelPath = UnslothLoad.modelPath(modelId);
+    try {
+      final status =
+          await fetchUnslothInferenceStatus(baseUrl: baseUrl, apiToken: apiToken);
+      final ident = (status?['model_identifier'] ?? '').toString().trim();
+      if (ident.isNotEmpty && UnslothLoad.statusIsModel(status, modelId)) {
+        modelPath = ident;
+      }
+    } catch (e) {
+      debugPrint('Unsloth status before unload: $e');
+    }
     final response = await http
         .post(
           Uri.parse('$root/api/inference/unload'),
@@ -3246,9 +3341,7 @@ class LMStudioService {
             apiToken: apiToken,
             cloudProviderType: CloudApiType.unsloth,
           ),
-          body: jsonEncode({
-            'model_path': UnslothLoad.modelPath(modelId),
-          }),
+          body: jsonEncode({'model_path': modelPath}),
         )
         .timeout(const Duration(minutes: 5));
     if (response.statusCode >= 200 && response.statusCode < 300) return;

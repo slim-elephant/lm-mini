@@ -2479,5 +2479,17 @@
   "chatUnavailable": "Dieser Chat ist nicht mehr verfügbar.",
   "chatUnavailableBack": "Zurück zu den Chats",
   "connectionSecurity": "Verbindungssicherheit",
-  "connectionSecuritySubtitle": "Bei der Übertragung verschlüsselt (HTTPS). Chats laufen über das LM-Mini-Relay und sind nicht Ende-zu-Ende-verschlüsselt."
+  "connectionSecuritySubtitle": "Bei der Übertragung verschlüsselt (HTTPS). Chats laufen über das LM-Mini-Relay und sind nicht Ende-zu-Ende-verschlüsselt.",
+  "nudgeProPitch": "Pro bringt {count} Funktionen, etwa Websuche, Erinnerungen und die Modelle deines Macs auf dem Handy. Alles andere bleibt kostenlos.",
+  "nudgeProPitchShort": "Pro bringt Websuche, Erinnerungen und die Modelle deines Macs aufs Handy. Alles andere bleibt kostenlos.",
+  "nudgeFromPrice": "Ab {price} im Monat bei jährlicher Zahlung",
+  "imagePromptStyleTitle": "Stil der Bild-Prompts",
+  "imagePromptStyleHelp": "So schreibt die KI Bild-Prompts für {server}. Leer lassen für kommagetrennte Tags. Für Flux oder Krea etwa: ein natürlicher englischer Satz, der die Szene beschreibt.",
+  "aboutYouTitle": "Über dich",
+  "aboutYouSubtitle": "Dein Name und was die KI über dich wissen soll",
+  "aboutYouIntro": "Wird auf diesem Gerät gespeichert und mit jedem Chat gesendet, damit du dich nicht jedes Mal vorstellen musst.",
+  "aboutYouNameLabel": "Dein Name",
+  "aboutYouNameHint": "Wie die KI dich nennen soll",
+  "aboutYouAboutLabel": "Über dich",
+  "aboutYouAboutHint": "Zum Beispiel: was du machst, was du magst, wie du Antworten möchtest."
 }

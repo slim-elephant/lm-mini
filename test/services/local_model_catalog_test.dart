@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:lm_mini/models/local_model_spec.dart';
 import 'package:lm_mini/services/device_capability_service.dart';
 import 'package:lm_mini/services/local_model_catalog.dart';
 import 'package:lm_mini/services/lm_studio_discovery_service.dart';
@@ -135,5 +136,21 @@ void main() {
     expect(LocalModelCatalog.isFreeTier(byId['qwen/qwen3.5-2b/Q4_K_M']!),
         isTrue);
   });
-}
 
+  test('Apple chips get free MLX builds around 3B', () {
+    final freeMlx = LocalModelCatalog.entries
+        .where((e) => e.engine == LocalEngine.mlx && e.isFreeSlot)
+        .toList();
+    expect(freeMlx.map((e) => e.id), containsAll([
+      'mlx-community/lfm2.5-2.6b-4bit/mlx',
+      'mlx-community/smollm3-3b-4bit/mlx',
+      'ibm-granite/granite-4.2-3b-q4-mlx/mlx',
+    ]));
+    for (final e in freeMlx) {
+      expect(e.tier, LocalModelTier.free);
+      expect(LocalModelCatalog.isFreeTier(e), isTrue);
+    }
+    // The first free slot (the default free download) stays the GGUF pick.
+    expect(LocalModelCatalog.freeSlot.engine, LocalEngine.fllama);
+  });
+}

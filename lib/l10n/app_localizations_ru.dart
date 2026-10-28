@@ -7837,4 +7837,49 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get connectionSecuritySubtitle =>
       'Шифруется при передаче (HTTPS). Чаты проходят через ретранслятор LM Mini и не защищены сквозным шифрованием.';
+
+  @override
+  String nudgeProPitch(int count) {
+    return 'Pro добавляет $count функций, в том числе веб-поиск, память и модели вашего Mac на телефоне. Всё остальное остаётся бесплатным.';
+  }
+
+  @override
+  String get nudgeProPitchShort =>
+      'Pro добавляет веб-поиск, память и модели вашего Mac на телефоне. Всё остальное остаётся бесплатным.';
+
+  @override
+  String nudgeFromPrice(String price) {
+    return 'От $price в месяц при оплате за год';
+  }
+
+  @override
+  String get imagePromptStyleTitle => 'Стиль промптов для изображений';
+
+  @override
+  String imagePromptStyleHelp(String server) {
+    return 'Как ИИ пишет промпты изображений для $server. Оставьте пустым для тегов через запятую. Для Flux или Krea попробуйте: одно естественное предложение на английском, описывающее сцену.';
+  }
+
+  @override
+  String get aboutYouTitle => 'О себе';
+
+  @override
+  String get aboutYouSubtitle => 'Ваше имя и то, что ИИ стоит о вас знать';
+
+  @override
+  String get aboutYouIntro =>
+      'Хранится на этом устройстве и отправляется с каждым чатом, чтобы не представляться каждый раз.';
+
+  @override
+  String get aboutYouNameLabel => 'Ваше имя';
+
+  @override
+  String get aboutYouNameHint => 'Как ИИ должен к вам обращаться';
+
+  @override
+  String get aboutYouAboutLabel => 'О себе';
+
+  @override
+  String get aboutYouAboutHint =>
+      'Например: чем вы занимаетесь, что любите, какие ответы предпочитаете.';
 }

@@ -89,4 +89,26 @@ void main() {
       );
     });
   });
+
+  group('per-server prompt style', () {
+    test('default style keeps the original instruction exactly', () {
+      expect(imageGenSystemInstruction(null), kImageGenSystemInstruction);
+      expect(imageGenTurnReminder('  '), kImageGenTurnReminder);
+    });
+
+    test('custom style goes inside the IMG_PROMPT tag', () {
+      const style = 'one natural English sentence describing the scene';
+      final sys = applyImageGenInstructionToSystem('You are helpful.',
+          enabled: true, style: style);
+      expect(sys, contains('[IMG_PROMPT: $style]'));
+      final turn = appendImageGenTurnReminder('Draw a cat', enabled: true, style: style);
+      expect(turn, contains('[IMG_PROMPT: $style]'));
+    });
+
+    test('brackets and new lines cannot break the tag; length is capped', () {
+      expect(normalizeImagePromptStyle('a [bold]\nsentence'), 'a bold sentence');
+      expect(normalizeImagePromptStyle('x' * 400).length, 300);
+    });
+  });
 }
+

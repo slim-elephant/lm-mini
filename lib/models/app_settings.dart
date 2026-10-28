@@ -426,6 +426,18 @@ class AppSettings {
   /// `'onDevice'` (iOS Core ML Stable Diffusion).
   final String imageGenProvider;
 
+  /// How the chat model should write image prompts, per image server
+  /// (`a1111`, `comfyui`, `onDevice`): the text inside `[IMG_PROMPT: …]`.
+  /// Empty / missing → [kDefaultImagePromptStyle] (comma-separated tags).
+  final Map<String, String> imageGenPromptStyles;
+
+  /// The prompt style for the selected image server (raw; the instruction
+  /// builder normalizes it).
+  String? get imageGenPromptStyle {
+    final s = imageGenPromptStyles[imageGenProvider]?.trim();
+    return (s == null || s.isEmpty) ? null : s;
+  }
+
   /// Selected on-device Core ML checkpoint id ([LocalSdAssetSpec.id]).
   /// Used when [imageGenProvider] is `'onDevice'`.
   final String? selectedLocalSdCheckpointId;
@@ -546,6 +558,10 @@ class AppSettings {
 
   /// Preferred name for the AI to call the user. Null if not set.
   final String? preferredUserName;
+
+  /// What the user wrote about themselves in Settings → About you. Sent with
+  /// every chat, next to [preferredUserName]. Null if not set.
+  final String? aboutUser;
 
   /// How persona expression sprites appear in chat:
   /// `'off'`, `'panel'` (large sprite above the composer), `'avatar'`
@@ -735,6 +751,7 @@ class AppSettings {
     this.imageGenAutoGenerate = false,
     // Image gen provider & ComfyUI
     this.imageGenProvider = 'a1111',
+    this.imageGenPromptStyles = const {},
     this.selectedLocalSdCheckpointId,
     this.comfyUiWorkflowJson,
     this.comfyUiWorkflowPath,
@@ -770,6 +787,7 @@ class AppSettings {
     this.hasCompletedOnboarding = false,
     this.aiExperienceLevel,
     this.preferredUserName,
+    this.aboutUser,
     this.expressionSpriteMode = 'both',
     this.spritePanelCollapsed = false,
     this.expressionLabels,
@@ -1141,6 +1159,7 @@ class AppSettings {
     bool? imageGenReviewPrompt,
     bool? imageGenAutoGenerate,
     String? imageGenProvider,
+    Map<String, String>? imageGenPromptStyles,
     Object? selectedLocalSdCheckpointId = _unset,
     Object? comfyUiWorkflowJson = _unset,
     Object? comfyUiWorkflowPath = _unset,
@@ -1174,6 +1193,7 @@ class AppSettings {
     bool? hasCompletedOnboarding,
     Object? aiExperienceLevel = _unset,
     Object? preferredUserName = _unset,
+    Object? aboutUser = _unset,
     String? expressionSpriteMode,
     bool? spritePanelCollapsed,
     Object? expressionLabels = _unset,
@@ -1375,6 +1395,7 @@ class AppSettings {
       imageGenReviewPrompt: imageGenReviewPrompt ?? this.imageGenReviewPrompt,
       imageGenAutoGenerate: imageGenAutoGenerate ?? this.imageGenAutoGenerate,
       imageGenProvider: imageGenProvider ?? this.imageGenProvider,
+      imageGenPromptStyles: imageGenPromptStyles ?? this.imageGenPromptStyles,
       selectedLocalSdCheckpointId:
           identical(selectedLocalSdCheckpointId, _unset)
               ? this.selectedLocalSdCheckpointId
@@ -1449,6 +1470,8 @@ class AppSettings {
       preferredUserName: identical(preferredUserName, _unset)
           ? this.preferredUserName
           : preferredUserName as String?,
+      aboutUser:
+          identical(aboutUser, _unset) ? this.aboutUser : aboutUser as String?,
       expressionSpriteMode: expressionSpriteMode ?? this.expressionSpriteMode,
       spritePanelCollapsed: spritePanelCollapsed ?? this.spritePanelCollapsed,
       expressionLabels: identical(expressionLabels, _unset)
@@ -1595,6 +1618,7 @@ class AppSettings {
       'imageGenReviewPrompt': imageGenReviewPrompt,
       'imageGenAutoGenerate': imageGenAutoGenerate,
       'imageGenProvider': imageGenProvider,
+      'imageGenPromptStyles': imageGenPromptStyles,
       'selectedLocalSdCheckpointId': selectedLocalSdCheckpointId,
       'comfyUiWorkflowJson': comfyUiWorkflowJson,
       'comfyUiWorkflowPath': comfyUiWorkflowPath,
@@ -1627,6 +1651,7 @@ class AppSettings {
       'hasCompletedOnboarding': hasCompletedOnboarding,
       'aiExperienceLevel': aiExperienceLevel,
       'preferredUserName': preferredUserName,
+      'aboutUser': aboutUser,
       'expressionSpriteMode': expressionSpriteMode,
       'spritePanelCollapsed': spritePanelCollapsed,
       'hasCompletedAudioSetup': hasCompletedAudioSetup,
@@ -1796,6 +1821,7 @@ class AppSettings {
       imageGenReviewPrompt: json['imageGenReviewPrompt'] ?? false,
       imageGenAutoGenerate: json['imageGenAutoGenerate'] ?? false,
       imageGenProvider: (json['imageGenProvider'] as String?) ?? 'a1111',
+      imageGenPromptStyles: _parseStringMap(json['imageGenPromptStyles']),
       selectedLocalSdCheckpointId:
           json['selectedLocalSdCheckpointId'] as String?,
       comfyUiWorkflowJson: json['comfyUiWorkflowJson'] as String?,
@@ -1844,6 +1870,7 @@ class AppSettings {
       hasCompletedOnboarding: json['hasCompletedOnboarding'] ?? false,
       aiExperienceLevel: json['aiExperienceLevel'] as String?,
       preferredUserName: json['preferredUserName'] as String?,
+      aboutUser: json['aboutUser'] as String?,
       expressionSpriteMode: const ['off', 'panel', 'avatar', 'both']
               .contains(json['expressionSpriteMode'])
           ? json['expressionSpriteMode'] as String

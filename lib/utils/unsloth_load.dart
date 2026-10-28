@@ -49,6 +49,86 @@ class UnslothLoad {
     };
   }
 
+  /// Load body for a target already resolved to files on the server.
+  static Map<String, dynamic> resolvedLoadBody({
+    required String modelPath,
+    required String? variant,
+    required int maxSeqLength,
+  }) {
+    return {
+      'model_path': modelPath,
+      if (variant != null && variant.isNotEmpty) 'gguf_variant': variant,
+      'max_seq_length': maxSeqLength,
+    };
+  }
+
+  /// Places Unsloth may hold [modelId]'s files, from `GET /api/models/local`:
+  /// the repo id (its Hugging Face cache) first, then the `ref:` handles of
+  /// copies in LM Studio, Ollama or a models folder. Loading the repo id only
+  /// looks in the Hugging Face cache and downloads whatever is missing there,
+  /// even when the same file sits in the LM Studio folder.
+  static List<String> localCandidates(
+    Map<String, dynamic>? local,
+    String modelId,
+  ) {
+    final repo = modelPath(modelId);
+    final out = <String>[repo];
+    final models = local?['models'];
+    if (models is! List) return out;
+    for (final m in models) {
+      if (m is! Map) continue;
+      final id = (m['id'] ?? '').toString().trim();
+      final mid = (m['model_id'] ?? '').toString().trim();
+      if (id.isEmpty || m['partial'] == true) continue;
+      if (m['source'] == 'hf_cache') continue;
+      if (mid.toLowerCase() != repo.toLowerCase()) continue;
+      if (!out.contains(id)) out.add(id);
+    }
+    return out;
+  }
+
+  /// The quant to load from a `GET /api/models/gguf-variants` answer, taken
+  /// only from files already on disk: [wantedQuant] when given, else the
+  /// repo's default when downloaded, else the first downloaded one. Null when
+  /// none of them is on disk.
+  static String? downloadedVariant(
+    Map<String, dynamic>? variants,
+    String wantedQuant,
+  ) {
+    final list = variants?['variants'];
+    if (list is! List) return null;
+    final onDisk = <String>[];
+    for (final v in list) {
+      if (v is! Map) continue;
+      if (v['downloaded'] != true || v['partial'] == true) continue;
+      final quant = (v['quant'] ?? '').toString().trim();
+      if (quant.isNotEmpty) onDisk.add(quant);
+    }
+    if (onDisk.isEmpty) return null;
+    final wanted = wantedQuant.trim().toLowerCase();
+    if (wanted.isNotEmpty) {
+      for (final q in onDisk) {
+        if (q.toLowerCase() == wanted) return q;
+      }
+      return null;
+    }
+    final fallback = (variants?['default_variant'] ?? '').toString().trim();
+    for (final q in onDisk) {
+      if (q.toLowerCase() == fallback.toLowerCase()) return q;
+    }
+    return onDisk.first;
+  }
+
+  static String notOnDiskMessage(String modelId) {
+    final quant = quantFromModelId(modelId);
+    final name = modelPath(modelId);
+    return quant.isEmpty
+        ? 'No downloaded quant of $name was found on this Unsloth server. '
+            'Download one in Unsloth first.'
+        : '$name $quant was not found on this Unsloth server. '
+            'Download it in Unsloth first, or pick a quant you have.';
+  }
+
   static int? loadedContextLength(Map<String, dynamic>? status) {
     if (status == null) return null;
     if (status['loaded'] == false) return null;
@@ -89,13 +169,17 @@ class UnslothLoad {
   /// True when [status] is the same repo and quant Mini has selected.
   static bool statusIsModel(Map<String, dynamic>? status, String modelId) {
     if (status == null || status['loaded'] == false) return false;
-    final ident = (status['model_identifier'] ?? status['active_model'] ?? '')
-        .toString()
-        .trim();
-    if (ident.isEmpty) return false;
     final path = modelPath(modelId);
-    final identMatches =
-        ident == modelId || ident == path || ident.endsWith('/$path');
+    // A model loaded from LM Studio's folder has a `ref:` handle as its
+    // identifier and only the bare repo name as `active_model`.
+    final identMatches = [status['model_identifier'], status['active_model']]
+        .map((v) => (v ?? '').toString().trim())
+        .where((ident) => ident.isNotEmpty && !ident.startsWith('ref:'))
+        .any((ident) =>
+            ident == modelId ||
+            ident == path ||
+            ident.endsWith('/$path') ||
+            (!ident.contains('/') && path.endsWith('/$ident')));
     if (!identMatches) return false;
     final quant = quantFromModelId(modelId);
     final variant = (status['gguf_variant'] ?? '').toString().trim();

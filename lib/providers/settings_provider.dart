@@ -3723,6 +3723,15 @@ class SettingsProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  void updateAboutUser(String? about) {
+    final trimmed = about?.trim();
+    _settings = _settings.copyWith(
+      aboutUser: (trimmed == null || trimmed.isEmpty) ? null : trimmed,
+    );
+    _settingsService.saveSettings(_settings);
+    notifyListeners();
+  }
+
   void completeAudioSetup() {
     _settings = _settings.copyWith(hasCompletedAudioSetup: true);
     _settingsService.saveSettings(_settings);

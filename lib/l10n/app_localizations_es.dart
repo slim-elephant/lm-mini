@@ -7858,4 +7858,49 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get connectionSecuritySubtitle =>
       'Cifrado en tránsito (HTTPS). Los chats pasan por el relay de LM Mini y no tienen cifrado de extremo a extremo.';
+
+  @override
+  String nudgeProPitch(int count) {
+    return 'Pro añade $count funciones, como búsqueda web, recuerdos y los modelos de tu Mac en tu teléfono. Todo lo demás sigue siendo gratis.';
+  }
+
+  @override
+  String get nudgeProPitchShort =>
+      'Pro añade búsqueda web, recuerdos y los modelos de tu Mac en tu teléfono. Todo lo demás sigue siendo gratis.';
+
+  @override
+  String nudgeFromPrice(String price) {
+    return 'Desde $price al mes con pago anual';
+  }
+
+  @override
+  String get imagePromptStyleTitle => 'Estilo de los prompts de imagen';
+
+  @override
+  String imagePromptStyleHelp(String server) {
+    return 'Cómo escribe la IA los prompts de imagen para $server. Déjalo vacío para usar etiquetas separadas por comas. Para Flux o Krea, prueba: una frase natural en inglés que describa la escena.';
+  }
+
+  @override
+  String get aboutYouTitle => 'Sobre ti';
+
+  @override
+  String get aboutYouSubtitle => 'Tu nombre y lo que la IA debe saber de ti';
+
+  @override
+  String get aboutYouIntro =>
+      'Se guarda en este dispositivo y se envía con cada chat, así no tienes que presentarte cada vez.';
+
+  @override
+  String get aboutYouNameLabel => 'Tu nombre';
+
+  @override
+  String get aboutYouNameHint => 'Cómo debe llamarte la IA';
+
+  @override
+  String get aboutYouAboutLabel => 'Sobre ti';
+
+  @override
+  String get aboutYouAboutHint =>
+      'Por ejemplo: a qué te dedicas, qué te gusta, cómo quieres las respuestas.';
 }

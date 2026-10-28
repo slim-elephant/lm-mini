@@ -117,11 +117,18 @@ class SupportNudgeDialog extends StatelessWidget {
                   ),
                   child: Row(
                     children: [
-                      Icon(Icons.favorite, color: cs.primary, size: 20),
+                      Icon(Icons.workspace_premium_outlined,
+                          color: cs.primary, size: 20),
                       const SizedBox(width: 12),
                       Expanded(
                         child: Text(
-                          'Most features are free. Your support keeps development going and servers running.',
+                          // What Pro adds, counted from the paywall's list.
+                          () {
+                            final count = SubscriptionScreen.featureCount(l10n);
+                            return count > 0
+                                ? l10n.nudgeProPitch(count)
+                                : l10n.nudgeProPitchShort;
+                          }(),
                           style: TextStyle(
                             fontSize: 13,
                             color: cs.onSurface.withOpacity(0.8),
@@ -156,7 +163,29 @@ class SupportNudgeDialog extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 10),
+                // Lowest plan price per month (yearly plan), instead of the
+                // lifetime total, which made Pro read as a $120 purchase.
+                ListenableBuilder(
+                  listenable: sub,
+                  builder: (context, _) {
+                    final perMonth =
+                        SubscriptionScreen.perMonthFromAnnual(sub.displayAnnualPrice);
+                    if (perMonth == null) return const SizedBox.shrink();
+                    return Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
+                      child: Text(
+                        l10n.nudgeFromPrice(perMonth),
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 13,
+                          color: cs.onSurfaceVariant,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+                // Lifetime stays as the second option (people asked for it).
+                const SizedBox(height: 12),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: ListenableBuilder(

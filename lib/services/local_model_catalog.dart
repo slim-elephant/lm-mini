@@ -438,6 +438,7 @@ class LocalModelCatalog {
     ),
 
     // ─── MLX (Apple Silicon; only families the bundled MLX supports) ───
+    // The ~3B builds are free, like the free GGUF models above.
     LocalModelSpec(
       id: 'mlx-community/lfm2.5-1.2b-instruct-4bit/mlx',
       displayName: 'LFM 2.5 1.2B (MLX)',
@@ -463,10 +464,11 @@ class LocalModelCatalog {
       paramsB: 2.6,
       quantization: '',
       engine: LocalEngine.mlx,
-      tier: LocalModelTier.pro,
+      tier: LocalModelTier.free,
       chatTemplate: 'auto',
       supportsToolCalls: true,
       minRamGb: 3.0,
+      isFreeSlot: true,
     ),
     LocalModelSpec(
       id: 'mlx-community/lfm2.5-8b-a1b-4bit/mlx',
@@ -493,10 +495,11 @@ class LocalModelCatalog {
       paramsB: 3.0,
       quantization: '',
       engine: LocalEngine.mlx,
-      tier: LocalModelTier.pro,
+      tier: LocalModelTier.free,
       chatTemplate: 'auto',
       supportsToolCalls: true,
       minRamGb: 3.0,
+      isFreeSlot: true,
     ),
     LocalModelSpec(
       id: 'mlx-community/granite-4.0-h-1b-4bit/mlx',
@@ -523,10 +526,11 @@ class LocalModelCatalog {
       paramsB: 3.0,
       quantization: '',
       engine: LocalEngine.mlx,
-      tier: LocalModelTier.pro,
+      tier: LocalModelTier.free,
       chatTemplate: 'auto',
       supportsToolCalls: true,
       minRamGb: 4.0,
+      isFreeSlot: true,
     ),
     LocalModelSpec(
       id: 'ibm-granite/granite-4.2-8b-q4-mlx/mlx',
