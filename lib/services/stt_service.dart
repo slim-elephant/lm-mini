@@ -1,3 +1,4 @@
+import 'app_audio_session.dart';
 import 'dart:async';
 import 'dart:io' show Platform;
 
@@ -17,7 +18,12 @@ import 'whisper_stt_service.dart';
 class SttService {
   static final SttService _instance = SttService._internal();
   factory SttService() => _instance;
-  SttService._internal();
+  SttService._internal() {
+    // Read aloud must not switch the audio session to listening-only while
+    // the mic is capturing.
+    AppAudioSession.instance.isMicActive =
+        () => _isListening || _whisper.isListening;
+  }
 
   final SpeechToText _speech = SpeechToText();
   final WhisperSttService _whisper = WhisperSttService.instance;

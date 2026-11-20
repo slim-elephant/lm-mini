@@ -257,7 +257,11 @@ class WatchBridge {
     if (id.isEmpty) {
       throw PlatformException(code: 'missing', message: 'Missing chat.');
     }
-    final messages = await DatabaseService().getMessagesForConversation(id);
+    // Only the end of the thread: the watch shows the last few messages.
+    final messages = await DatabaseService().getRecentChatMessages(
+      id,
+      limit: WatchPayload.messageWindow,
+    );
     ChatConversation? conversation;
     for (final item in _chat().conversations) {
       if (item.id == id) {
@@ -975,12 +979,15 @@ class WatchPayload {
   static const messageBody = 3500;
   static const transcriptBudget = 40000;
 
+  /// How many of a chat's newest messages the watch shows.
+  static const messageWindow = 20;
+
   static List<Map<String, Object>> messageRows(List<ChatMessage> messages) {
     final visible =
         messages.where((m) => m.role == 'user' || m.role == 'assistant');
-    final tail = visible.length <= 20
+    final tail = visible.length <= messageWindow
         ? visible.toList()
-        : visible.skip(visible.length - 20).toList();
+        : visible.skip(visible.length - messageWindow).toList();
     final rows = <Map<String, Object>>[];
     var budget = transcriptBudget;
     for (final message in tail.reversed) {

@@ -3683,6 +3683,13 @@ class AppLocalizationsFr extends AppLocalizations {
       'Utilise le GPU pour mémoriser le chat plus efficacement. Gardez activé si vous avez un GPU.';
 
   @override
+  String get keepThinkingInContext => 'Garder la réflexion dans le contexte';
+
+  @override
+  String get keepThinkingInContextSubtitle =>
+      'Désactivé : LM Studio ne reçoit que les réponses précédentes, pour que les longues réflexions ne remplissent pas le contexte. Les réponses peuvent démarrer un peu plus lentement.';
+
+  @override
   String get resizeImageForPhysicalBatch => 'Resize images for physical batch';
 
   @override
@@ -7883,16 +7890,21 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String nudgeProPitch(int count) {
-    return 'Pro ajoute $count fonctionnalités, dont la recherche web, les souvenirs et les modèles de ton Mac sur ton téléphone. Tout le reste reste gratuit.';
+    return 'Pro ajoute $count fonctionnalités, dont la recherche web, les souvenirs et l\'accès à distance à tes modèles depuis n\'importe où, pas seulement sur le wifi de la maison. Tout le reste reste gratuit.';
   }
 
   @override
   String get nudgeProPitchShort =>
-      'Pro ajoute la recherche web, les souvenirs et les modèles de ton Mac sur ton téléphone. Tout le reste reste gratuit.';
+      'Pro ajoute la recherche web, les souvenirs et l\'accès à distance à tes modèles depuis n\'importe où, pas seulement sur le wifi de la maison. Tout le reste reste gratuit.';
 
   @override
-  String nudgeFromPrice(String price) {
-    return 'À partir de $price par mois, facturé à l\'année';
+  String nudgeGetProPerMonth(String price) {
+    return 'Pro pour $price/mois';
+  }
+
+  @override
+  String nudgeBilledYearly(String price) {
+    return 'Facturé à l\'année : $price';
   }
 
   @override
@@ -7926,4 +7938,196 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get aboutYouAboutHint =>
       'Par exemple : ce que vous faites, ce que vous aimez, comment vous voulez les réponses.';
+
+  @override
+  String get storage => 'Stockage';
+
+  @override
+  String get storageSettingsSubtitle =>
+      'Voyez ce qui prend de la place et faites le ménage';
+
+  @override
+  String get storageUsedByApp => 'Utilisé par LM Mini sur cet appareil';
+
+  @override
+  String get storageMeasuring => 'Mesure en cours…';
+
+  @override
+  String storageFreeUpTitle(String size) {
+    return 'Libérer $size';
+  }
+
+  @override
+  String get storageFreeUpBody =>
+      'Restes de discussions supprimées, fichiers inutilisés et fichiers temporaires. Vos discussions, modèles et personas ne changent pas.';
+
+  @override
+  String get storageCleanUp => 'Nettoyer';
+
+  @override
+  String storageFreed(String size) {
+    return '$size libérés';
+  }
+
+  @override
+  String get storageAllClean => 'Rien à nettoyer';
+
+  @override
+  String get storageWhatTakesSpace => 'Ce qui prend de la place';
+
+  @override
+  String get storageSectionChats => 'Discussions';
+
+  @override
+  String get storageSectionModels => 'Modèles sur l’appareil';
+
+  @override
+  String get storageSectionImageModels => 'Modèles d’image';
+
+  @override
+  String get storageSectionVoices => 'Voix';
+
+  @override
+  String get storageSectionSpeech => 'Reconnaissance vocale';
+
+  @override
+  String get storageSectionGeneratedImages => 'Images générées';
+
+  @override
+  String get storageSectionAttachments => 'Fichiers joints';
+
+  @override
+  String get storageSectionTranscriptions => 'Enregistrements de transcription';
+
+  @override
+  String get storageSectionLeftovers => 'Restes';
+
+  @override
+  String get storageSectionTemporary => 'Fichiers temporaires';
+
+  @override
+  String get storageAboutChats =>
+      'Les messages et les photos envoyées. Supprimer une discussion l’efface définitivement de cet appareil.';
+
+  @override
+  String get storageAboutModels =>
+      'Modèles d’IA téléchargés pour fonctionner sur cet appareil. Vous pourrez les retélécharger.';
+
+  @override
+  String get storageAboutImageModels =>
+      'Modèles servant à créer des images sur cet appareil. Vous pourrez les retélécharger.';
+
+  @override
+  String get storageAboutVoices =>
+      'Packs de voix pour lire les réponses à voix haute. Vous pourrez les retélécharger dans les réglages de la voix.';
+
+  @override
+  String get storageAboutSpeech =>
+      'Modèles qui transforment votre voix en texte. Vous pourrez les retélécharger dans les réglages de la voix.';
+
+  @override
+  String get storageAboutGeneratedImages =>
+      'Images et vidéos créées dans vos discussions. La suppression retire l’image ; le texte reste.';
+
+  @override
+  String get storageAboutAttachments =>
+      'Documents joints à vos messages. La discussion garde le texte qui en a été lu.';
+
+  @override
+  String get storageAboutTranscriptions =>
+      'Audio enregistré avec vos transcriptions. La suppression retire aussi la transcription.';
+
+  @override
+  String get storageAboutLeftovers =>
+      'Données que plus rien n’utilise dans l’app. Vous pouvez les supprimer sans risque.';
+
+  @override
+  String get storageAboutTemporary =>
+      'Fichiers créés lors des exports, de la lecture des réponses ou des rapports d’erreur. Vous pouvez les supprimer sans risque.';
+
+  @override
+  String get storageItemDeletedChatMessages =>
+      'Messages de discussions supprimées';
+
+  @override
+  String get storageItemUnusedAttachments => 'Fichiers de messages supprimés';
+
+  @override
+  String get storageItemUnusedImages => 'Images qui ne servent plus';
+
+  @override
+  String get storageItemModelLeftovers => 'Fichiers de modèles supprimés';
+
+  @override
+  String get storageItemExports => 'Discussions exportées';
+
+  @override
+  String get storageItemErrorLogs => 'Journaux d’erreurs';
+
+  @override
+  String get storageItemSpeechAudio => 'Audio des réponses lues';
+
+  @override
+  String get storageItemOtherTemp => 'Autres fichiers temporaires';
+
+  @override
+  String get storageUnfinishedDownload => 'Téléchargement inachevé';
+
+  @override
+  String storageMessageCount(int count) {
+    return 'Messages : $count';
+  }
+
+  @override
+  String storageFileCount(int count) {
+    return 'Fichiers : $count';
+  }
+
+  @override
+  String storageItemCount(int count) {
+    return 'Éléments : $count';
+  }
+
+  @override
+  String storageDeleteSelected(String size) {
+    return 'Supprimer $size';
+  }
+
+  @override
+  String storageDeleteConfirmTitle(int count) {
+    return 'Supprimer $count éléments ?';
+  }
+
+  @override
+  String storageDeleteConfirmBody(String size) {
+    return 'Cela libère $size. Cette action est irréversible.';
+  }
+
+  @override
+  String get storageEmptySection => 'Rien ici';
+
+  @override
+  String get premiumStorage => 'Stockage';
+
+  @override
+  String get premiumStorageTagline => 'Voir et libérer de l’espace';
+
+  @override
+  String get premiumStorageDescription =>
+      'Voyez la place prise par vos discussions, modèles, images et fichiers, et supprimez tout ou seulement votre sélection.';
+
+  @override
+  String get teaserStorageTitle => 'Sachez ce qui remplit votre appareil';
+
+  @override
+  String get teaserStoragePoint1 =>
+      'Voyez l’espace pris par les discussions, modèles, images et fichiers';
+
+  @override
+  String get teaserStoragePoint2 =>
+      'Nettoyez les restes et fichiers temporaires d’un seul geste';
+
+  @override
+  String get teaserStoragePoint3 =>
+      'Choisissez précisément quoi supprimer, le plus gros d’abord';
 }

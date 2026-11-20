@@ -20,6 +20,7 @@ import '../widgets/desktop_shortcuts.dart';
 import '../widgets/streaming_thinking_indicator.dart';
 import '../widgets/full_width_nudge_dialog.dart';
 import '../widgets/compact_error_banner.dart';
+import '../utils/context_window_error.dart';
 import '../utils/connect_host_error.dart';
 import '../utils/lan_server_error.dart';
 import '../utils/model_not_found_error.dart';
@@ -1412,6 +1413,16 @@ class _ChatScreenState extends State<ChatScreen> with WidgetsBindingObserver {
                                               ? chatProvider
                                                   .latestLargeUserImageBytes
                                               : null,
+                                          onReloadModel: fromChat &&
+                                                  settingsProvider
+                                                          .selectedModelContextMismatch !=
+                                                      null
+                                              ? () => settingsProvider
+                                                  .reloadSelectedModelWithMiniParams()
+                                              : null,
+                                          reloadContextTokens: settingsProvider
+                                              .selectedModelContextMismatch
+                                              ?.wanted,
                                         );
                                       },
                                     ),
@@ -3820,6 +3831,11 @@ class _ErrorBanner extends StatelessWidget {
   final VoidCallback? onCompressAndResend;
   final int? largeImageBytes;
 
+  /// Reload the model in LM Studio with LM Mini's context length; set only
+  /// when the loaded window differs from the setting.
+  final VoidCallback? onReloadModel;
+  final int? reloadContextTokens;
+
   const _ErrorBanner({
     required this.issue,
     required this.error,
@@ -3837,6 +3853,8 @@ class _ErrorBanner extends StatelessWidget {
     this.onAdjustMaxTokens,
     this.onOpenImageSettings,
     this.onCompressAndResend,
+    this.onReloadModel,
+    this.reloadContextTokens,
     this.largeImageBytes,
   });
 
@@ -4030,6 +4048,15 @@ class _ErrorBanner extends StatelessWidget {
     }
 
     final chips = <Widget>[
+      if (onReloadModel != null &&
+          reloadContextTokens != null &&
+          ContextWindowError.matches(detailBlob))
+        _ErrorActionChip(
+          label: 'Reload model with $reloadContextTokens tokens',
+          icon: Icons.refresh_rounded,
+          color: textColor,
+          onTap: onReloadModel!,
+        ),
       if (_isModelRelatedError(error) && onSelectModel != null)
         _ErrorActionChip(
           label: l10n.selectModel,

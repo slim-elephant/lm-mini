@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../l10n/app_localizations.dart';
 import '../utils/biometric_label.dart';
 import '../screens/subscription_screen.dart';
+import 'pro_price_button.dart';
 
 /// Short looping animation that shows what a Pro feature does, for the
 /// locked chips in the composer and the top of the paywall. Null when a
@@ -129,6 +130,12 @@ _TeaserCopy _copyFor(AppLocalizations l10n, PaywallFeature f) {
         l10n.teaserMemoryPoint2,
         l10n.teaserMemoryPoint3,
       ]);
+    case PaywallFeature.storage:
+      return _TeaserCopy(l10n.teaserStorageTitle, [
+        l10n.teaserStoragePoint1,
+        l10n.teaserStoragePoint2,
+        l10n.teaserStoragePoint3,
+      ]);
     case PaywallFeature.webSearch:
     default:
       return _TeaserCopy(l10n.teaserSearchTitle, [
@@ -186,13 +193,8 @@ class _TeaserSheet extends StatelessWidget {
               ),
             ),
           const SizedBox(height: 10),
-          FilledButton(
-            style: FilledButton.styleFrom(
-              minimumSize: const Size.fromHeight(50),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(14),
-              ),
-            ),
+          ProPriceButton(
+            height: 50,
             onPressed: () {
               Navigator.of(context).pop();
               Navigator.of(context).push(
@@ -201,7 +203,6 @@ class _TeaserSheet extends StatelessWidget {
                 ),
               );
             },
-            child: Text(l10n.paywallGetPro),
           ),
           TextButton(
             onPressed: () => Navigator.of(context).pop(),

@@ -26,6 +26,7 @@ class ParamPreset {
   final int? loadNumExperts;
   final bool loadOffloadKvCache;
   final bool resizeImageForPhysicalBatch;
+  final bool keepThinkingInContext;
 
   const ParamPreset({
     required this.temperature,
@@ -46,6 +47,7 @@ class ParamPreset {
     this.loadNumExperts,
     required this.loadOffloadKvCache,
     this.resizeImageForPhysicalBatch = true,
+    this.keepThinkingInContext = true,
   });
 
   factory ParamPreset.fromSettings(AppSettings s) {
@@ -68,6 +70,7 @@ class ParamPreset {
       loadNumExperts: s.loadNumExperts,
       loadOffloadKvCache: s.loadOffloadKvCache,
       resizeImageForPhysicalBatch: s.resizeImageForPhysicalBatch,
+      keepThinkingInContext: s.keepThinkingInContext,
     );
   }
 
@@ -94,6 +97,7 @@ class ParamPreset {
       loadNumExperts: loadNumExperts,
       loadOffloadKvCache: loadOffloadKvCache,
       resizeImageForPhysicalBatch: resizeImageForPhysicalBatch,
+      keepThinkingInContext: keepThinkingInContext,
     );
   }
 
@@ -116,6 +120,7 @@ class ParamPreset {
     Object? loadNumExperts = _unset,
     bool? loadOffloadKvCache,
     bool? resizeImageForPhysicalBatch,
+    bool? keepThinkingInContext,
   }) {
     final nextContext = contextWindow ?? this.contextWindow;
     int? nextLoadCtx;
@@ -149,6 +154,8 @@ class ParamPreset {
       loadOffloadKvCache: loadOffloadKvCache ?? this.loadOffloadKvCache,
       resizeImageForPhysicalBatch:
           resizeImageForPhysicalBatch ?? this.resizeImageForPhysicalBatch,
+      keepThinkingInContext:
+          keepThinkingInContext ?? this.keepThinkingInContext,
     );
   }
 
@@ -171,6 +178,7 @@ class ParamPreset {
         'loadNumExperts': loadNumExperts,
         'loadOffloadKvCache': loadOffloadKvCache,
         'resizeImageForPhysicalBatch': resizeImageForPhysicalBatch,
+        'keepThinkingInContext': keepThinkingInContext,
       };
 
   factory ParamPreset.fromJson(Map<String, dynamic> json) {
@@ -195,6 +203,7 @@ class ParamPreset {
       loadOffloadKvCache: json['loadOffloadKvCache'] as bool? ?? true,
       resizeImageForPhysicalBatch:
           json['resizeImageForPhysicalBatch'] as bool? ?? true,
+      keepThinkingInContext: json['keepThinkingInContext'] as bool? ?? true,
     );
   }
 
@@ -218,7 +227,8 @@ class ParamPreset {
         other.loadFlashAttention == loadFlashAttention &&
         other.loadNumExperts == loadNumExperts &&
         other.loadOffloadKvCache == loadOffloadKvCache &&
-        other.resizeImageForPhysicalBatch == resizeImageForPhysicalBatch;
+        other.resizeImageForPhysicalBatch == resizeImageForPhysicalBatch &&
+        other.keepThinkingInContext == keepThinkingInContext;
   }
 
   @override
@@ -241,5 +251,6 @@ class ParamPreset {
         loadNumExperts,
         loadOffloadKvCache,
         resizeImageForPhysicalBatch,
+        keepThinkingInContext,
       ]);
 }

@@ -95,7 +95,7 @@ void main() {
       ],
       draft: 'zzzz',
     );
-    // 290 + 10 thinking tokens + 1 draft token
-    expect(used, 301);
+    // 290 + 11 thinking tokens + 2 draft tokens (letters cost 0.26 each)
+    expect(used, 303);
   });
 }

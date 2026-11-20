@@ -253,6 +253,12 @@ class AppSettings {
   /// Shrink photos that would exceed a local server's physical batch.
   final bool resizeImageForPhysicalBatch;
 
+  /// LM Studio: continue chats on LM Studio's stored conversation, which
+  /// keeps each reply's thinking. Some chat templates (e.g. Qwen 3.8
+  /// fine-tunes) feed that thinking back on every turn. Off sends answer-only
+  /// history instead, like every other backend.
+  final bool keepThinkingInContext;
+
   /// Model IDs for which the user chose to keep LM Studio's loaded instance
   /// params instead of LM Mini's Model Loading Config.
   final List<String> modelsPreferLoadedParams;
@@ -657,6 +663,7 @@ class AppSettings {
     this.loadNumExperts,
     this.loadOffloadKvCache = true,
     this.resizeImageForPhysicalBatch = true,
+    this.keepThinkingInContext = true,
     this.modelsPreferLoadedParams = const [],
     Map<String, ParamPreset>? modelParamPresets,
     this.userAvatarPath,
@@ -1068,6 +1075,7 @@ class AppSettings {
     Object? loadNumExperts = _unset,
     bool? loadOffloadKvCache,
     bool? resizeImageForPhysicalBatch,
+    bool? keepThinkingInContext,
     List<String>? modelsPreferLoadedParams,
     Map<String, ParamPreset>? modelParamPresets,
     Object? userAvatarPath = _unset,
@@ -1253,6 +1261,8 @@ class AppSettings {
       loadOffloadKvCache: loadOffloadKvCache ?? this.loadOffloadKvCache,
       resizeImageForPhysicalBatch:
           resizeImageForPhysicalBatch ?? this.resizeImageForPhysicalBatch,
+      keepThinkingInContext:
+          keepThinkingInContext ?? this.keepThinkingInContext,
       modelsPreferLoadedParams: modelsPreferLoadedParams ??
           _readStringList(() => this.modelsPreferLoadedParams),
       modelParamPresets: modelParamPresets ??
@@ -1524,6 +1534,7 @@ class AppSettings {
       'loadNumExperts': loadNumExperts,
       'loadOffloadKvCache': loadOffloadKvCache,
       'resizeImageForPhysicalBatch': resizeImageForPhysicalBatch,
+      'keepThinkingInContext': keepThinkingInContext,
       'modelsPreferLoadedParams':
           _readStringList(() => modelsPreferLoadedParams),
       'modelParamPresets': {
@@ -1703,6 +1714,7 @@ class AppSettings {
       loadNumExperts: json['loadNumExperts'],
       loadOffloadKvCache: json['loadOffloadKvCache'] ?? true,
       resizeImageForPhysicalBatch: json['resizeImageForPhysicalBatch'] ?? true,
+      keepThinkingInContext: json['keepThinkingInContext'] as bool? ?? true,
       modelsPreferLoadedParams: (json['modelsPreferLoadedParams'] as List?)
               ?.map((e) => e.toString())
               .toList() ??

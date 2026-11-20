@@ -8,6 +8,7 @@ import '../models/model_load_config.dart';
 import '../models/app_settings.dart';
 import '../models/message_stats.dart';
 import '../utils/chat_message_normalizer.dart';
+import '../utils/wrong_server_type_error.dart';
 import '../utils/log_redaction.dart';
 import '../utils/ollama_tool_support.dart';
 import '../utils/relay_url.dart';
@@ -131,6 +132,10 @@ class OllamaService {
             headers: _headers(requestUrl: base, apiToken: apiToken))
         .timeout(const Duration(seconds: 15));
     if (response.statusCode != 200) {
+      if (WrongServerTypeError.isBareNotFound(
+          response.statusCode, response.body)) {
+        throw Exception(WrongServerTypeError.userMessageFor('Ollama'));
+      }
       throw Exception(
           'Failed to list Ollama models (HTTP ${response.statusCode})');
     }
@@ -410,7 +415,12 @@ class OllamaService {
       final streamedResponse = await client.send(request);
       if (streamedResponse.statusCode != 200) {
         final body = await streamedResponse.stream.bytesToString();
-        yield {'error': _parseError(body, streamedResponse.statusCode)};
+        yield {
+          'error': WrongServerTypeError.isBareNotFound(
+                  streamedResponse.statusCode, body)
+              ? WrongServerTypeError.userMessageFor('Ollama')
+              : _parseError(body, streamedResponse.statusCode),
+        };
         return;
       }
 

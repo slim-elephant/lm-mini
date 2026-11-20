@@ -468,6 +468,13 @@ class LMStudioModel {
       'e5-small',
       'e5-base',
       'e5-mistral',
+      // Jan ships `sentence-transformer-mini`; picked as a chat model it
+      // fails with "context does not support logits computation".
+      'sentence-transformer',
+      'sentence_transformer',
+      'minilm',
+      'paraphrase-multilingual',
+      'rerank',
     ];
     if (families.any(s.contains)) return true;
     return RegExp(r'(^|[^a-z0-9])(bge|gte)[-_.]').hasMatch(s);

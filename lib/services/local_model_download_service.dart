@@ -10,6 +10,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/local_model_spec.dart';
 import '../models/model_download_job.dart';
+import '../utils/mlx_model_types.dart';
 import 'local_model_catalog.dart';
 import 'model_download_service.dart';
 import 'download_progress_activity.dart';
@@ -374,6 +375,9 @@ class LocalModelDownloadService extends ChangeNotifier {
     entry.errorMessage = null;
     _speedSamples.remove(spec.id);
     _entries[spec.id] = entry;
+    // Save now: if the app is closed while Android keeps downloading, the
+    // next launch needs this entry to finish (or resume) the download.
+    await _persist();
     notifyListeners();
 
     final url = _hfResolveUrl(spec.hfRepo, spec.hfFile!);
@@ -451,6 +455,7 @@ class LocalModelDownloadService extends ChangeNotifier {
     entry.errorMessage = null;
     _speedSamples.remove(spec.id);
     _entries[spec.id] = entry;
+    await _persist();
     notifyListeners();
 
     if (Platform.isAndroid) {
@@ -766,6 +771,164 @@ class LocalModelDownloadService extends ChangeNotifier {
   int get importedModelCount => _entries.values
       .where((e) => e.spec.isImported)
       .length;
+
+  /// Import an MLX model folder (config.json + *.safetensors) from device
+  /// storage. Copies only MLX-native files (same filter as HF MLX downloads).
+  /// Free (one import on the free plan, like GGUF); iOS / iPadOS / macOS.
+  ///
+  /// [moveFiles] moves instead of copying, for a staging folder the iOS
+  /// picker already copied into the app (see MlxFolderImport).
+  Future<LocalModelSpec> importMlxFromDirectory(
+    String sourceDirPath, {
+    String? displayName,
+    bool moveFiles = false,
+  }) async {
+    await init();
+    if (!Platform.isIOS && !Platform.isMacOS) {
+      throw UnsupportedError('MLX import is only available on Apple devices.');
+    }
+
+    final sourceDir = Directory(sourceDirPath);
+    if (!await sourceDir.exists()) {
+      throw StateError('Selected folder no longer exists.');
+    }
+    if (!await _validateMlxLayout(sourceDir)) {
+      throw ArgumentError(
+        'Folder must contain config.json and at least one *.safetensors file.',
+      );
+    }
+    final problem = mlxConfigProblem(await _readMlxConfig(sourceDir));
+    if (problem != null) throw StateError(problem);
+
+    final folderName = p.basename(p.normalize(sourceDirPath));
+    final id = _uniqueImportId(folderName);
+    final label = displayName ?? folderName.replaceAll('_', ' ');
+
+    final spec = LocalModelSpec(
+      id: id,
+      displayName: label,
+      description: 'Imported MLX model from device storage',
+      hfRepo: 'local/import',
+      hfFile: null,
+      sizeMb: 0, // filled after copy
+      paramsB: 0,
+      quantization: '',
+      engine: LocalEngine.mlx,
+      tier: LocalModelTier.free,
+      chatTemplate: 'auto',
+      supportsToolCalls: false,
+      minRamGb: 3.0,
+      isImported: true,
+    );
+
+    final destDir = Directory(await targetPathFor(spec));
+    if (await destDir.exists()) {
+      await destDir.delete(recursive: true);
+    }
+    final sizeBytes =
+        await _copyMlxTree(sourceDir, destDir, moveFiles: moveFiles);
+
+    if (!await _validateMlxLayout(destDir)) {
+      await destDir.delete(recursive: true);
+      throw StateError(
+        'Import failed: copied folder is missing config.json or weights.',
+      );
+    }
+
+    if (Platform.isIOS || Platform.isMacOS) {
+      await _excludeFromBackup(destDir.path);
+    }
+
+    final sizeMb = (sizeBytes / (1024 * 1024)).round().clamp(1, 999999);
+    final specWithSize = LocalModelSpec(
+      id: spec.id,
+      displayName: spec.displayName,
+      description: spec.description,
+      hfRepo: spec.hfRepo,
+      hfFile: spec.hfFile,
+      sizeMb: sizeMb,
+      paramsB: spec.paramsB,
+      quantization: spec.quantization,
+      engine: spec.engine,
+      tier: spec.tier,
+      chatTemplate: spec.chatTemplate,
+      supportsToolCalls: spec.supportsToolCalls,
+      minRamGb: spec.minRamGb,
+      isImported: spec.isImported,
+    );
+
+    final entry = LocalModelEntry(spec: specWithSize)
+      ..status = LocalModelStatus.ready
+      ..localPath = destDir.path
+      ..progress = 1.0
+      ..completedAt = DateTime.now().toUtc().toIso8601String();
+    _entries[id] = entry;
+    await _persist();
+    notifyListeners();
+    return specWithSize;
+  }
+
+  /// Text of the folder's config.json (top level first, else the first one
+  /// found below it), or null.
+  Future<String?> _readMlxConfig(Directory dir) async {
+    final top = File(p.join(dir.path, 'config.json'));
+    if (await top.exists()) return top.readAsString();
+    await for (final entity in dir.list(recursive: true, followLinks: false)) {
+      if (entity is File && p.basename(entity.path).toLowerCase() == 'config.json') {
+        return entity.readAsString();
+      }
+    }
+    return null;
+  }
+
+  Future<bool> _validateMlxLayout(Directory dir) async {
+    var hasConfig = false;
+    var hasWeights = false;
+    await for (final entity in dir.list(recursive: true, followLinks: false)) {
+      if (entity is! File) continue;
+      final base = p.basename(entity.path).toLowerCase();
+      if (base == 'config.json') hasConfig = true;
+      if (base.endsWith('.safetensors')) hasWeights = true;
+      if (hasConfig && hasWeights) return true;
+    }
+    return false;
+  }
+
+  /// Copy MLX-native files from [source] into [dest], preserving relative
+  /// paths. Returns total bytes copied.
+  Future<int> _copyMlxTree(
+    Directory source,
+    Directory dest, {
+    bool moveFiles = false,
+  }) async {
+    await dest.create(recursive: true);
+    final sourceRoot = p.normalize(source.absolute.path);
+    var totalBytes = 0;
+
+    await for (final entity in source.list(recursive: true, followLinks: false)) {
+      if (entity is! File) continue;
+      final rel = p.relative(entity.path, from: sourceRoot);
+      if (!_shouldIncludeMlxRelativePath(rel)) continue;
+
+      final target = File(p.join(dest.path, rel));
+      await target.parent.create(recursive: true);
+      if (moveFiles) {
+        try {
+          await entity.rename(target.path);
+        } on FileSystemException {
+          await entity.copy(target.path);
+        }
+      } else {
+        await entity.copy(target.path);
+      }
+      totalBytes += await target.length();
+    }
+
+    if (totalBytes == 0) {
+      throw StateError('No MLX-compatible files found in the selected folder.');
+    }
+    return totalBytes;
+  }
 
   /// Import a `.gguf` file from the device file picker into
   /// `<documents>/local_models/`. Returns the registered spec.

@@ -1,5 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:lm_mini/services/error_report_service.dart';
 import 'package:lm_mini/services/lm_studio_service.dart';
+import 'package:lm_mini/utils/context_window_error.dart';
 
 const _lmStudio500Body = r'''
 {
@@ -157,6 +159,23 @@ void main() {
       expect(msg, contains('32768 tokens'));
       expect(msg.toLowerCase(), isNot(contains('without a response')));
       expect(msg, isNot(contains('608')));
+    });
+
+    test('resent history that did not fit: says so and promises less', () {
+      final msg = LMStudioService.resendOverflowUserMessage(
+        contextTokens: 65536,
+      );
+      expect(msg, contains('65536 tokens'));
+      expect(msg.toLowerCase(), contains('shorter history'));
+      // The advice that could not work while the model stayed loaded.
+      expect(msg.toLowerCase(), isNot(contains('increase context length')));
+      // Still treated as a context problem (banner chips, no support ticket).
+      expect(ContextWindowError.matches(msg), isTrue);
+      expect(ErrorReportService.isIgnorable(msg), isTrue);
+      expect(
+        LMStudioService.resendOverflowUserMessage(),
+        isNot(contains('tokens')),
+      );
     });
 
     test('user message blames a large attached image', () {

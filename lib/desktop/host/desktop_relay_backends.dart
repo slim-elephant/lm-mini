@@ -23,6 +23,7 @@ class DesktopRelayBackends {
     this.kokoroHost = '127.0.0.1',
     this.kokoroPort = 9998,
     this.kokoroEnabled = false,
+    this.allowComfyUiInstall = false,
     this.advertiseBuiltin = true,
     this.advertiseLmStudio = true,
     this.advertiseOllama = false,
@@ -56,6 +57,11 @@ class DesktopRelayBackends {
   final String kokoroHost;
   final int kokoroPort;
   final bool kokoroEnabled;
+
+  /// Whether a paired phone may install custom nodes / models and restart
+  /// ComfyUI through ComfyUI-Manager. Off by default: anyone holding the
+  /// pairing token could otherwise run code on this computer.
+  final bool allowComfyUiInstall;
   final bool advertiseBuiltin;
   final bool advertiseLmStudio;
   final bool advertiseOllama;
@@ -99,6 +105,7 @@ class DesktopRelayBackends {
     String? kokoroHost,
     int? kokoroPort,
     bool? kokoroEnabled,
+    bool? allowComfyUiInstall,
     bool? advertiseBuiltin,
     bool? advertiseLmStudio,
     bool? advertiseOllama,
@@ -132,6 +139,7 @@ class DesktopRelayBackends {
       kokoroHost: kokoroHost ?? this.kokoroHost,
       kokoroPort: kokoroPort ?? this.kokoroPort,
       kokoroEnabled: kokoroEnabled ?? this.kokoroEnabled,
+      allowComfyUiInstall: allowComfyUiInstall ?? this.allowComfyUiInstall,
       advertiseBuiltin: advertiseBuiltin ?? this.advertiseBuiltin,
       advertiseLmStudio: advertiseLmStudio ?? this.advertiseLmStudio,
       advertiseOllama: advertiseOllama ?? this.advertiseOllama,

@@ -3623,6 +3623,13 @@ class AppLocalizationsEn extends AppLocalizations {
       'Uses the GPU to remember the chat more efficiently. Keep on if you have a GPU.';
 
   @override
+  String get keepThinkingInContext => 'Keep thinking in context';
+
+  @override
+  String get keepThinkingInContextSubtitle =>
+      'Off sends LM Studio only the earlier answers, so long thinking doesn\'t fill the context. Replies may start a little slower.';
+
+  @override
   String get resizeImageForPhysicalBatch => 'Resize images for physical batch';
 
   @override
@@ -7773,16 +7780,21 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String nudgeProPitch(int count) {
-    return 'Pro adds $count features, including web search, memories and your Mac\'s models on your phone. Everything else stays free.';
+    return 'Pro adds $count features, including web search, memories and remote access to your models from anywhere, not just on home Wi-Fi. Everything else stays free.';
   }
 
   @override
   String get nudgeProPitchShort =>
-      'Pro adds web search, memories and your Mac\'s models on your phone. Everything else stays free.';
+      'Pro adds web search, memories and remote access to your models from anywhere, not just on home Wi-Fi. Everything else stays free.';
 
   @override
-  String nudgeFromPrice(String price) {
-    return 'From $price a month, billed yearly';
+  String nudgeGetProPerMonth(String price) {
+    return 'Get Pro for $price/mo';
+  }
+
+  @override
+  String nudgeBilledYearly(String price) {
+    return 'Billed yearly at $price';
   }
 
   @override
@@ -7816,4 +7828,195 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get aboutYouAboutHint =>
       'For example: what you do, what you like, how you want answers.';
+
+  @override
+  String get storage => 'Storage';
+
+  @override
+  String get storageSettingsSubtitle =>
+      'See what takes up space and clean it up';
+
+  @override
+  String get storageUsedByApp => 'Used by LM Mini on this device';
+
+  @override
+  String get storageMeasuring => 'Measuring…';
+
+  @override
+  String storageFreeUpTitle(String size) {
+    return 'Free up $size';
+  }
+
+  @override
+  String get storageFreeUpBody =>
+      'Leftovers from deleted chats, unused files and temporary files. Your chats, models and personas stay as they are.';
+
+  @override
+  String get storageCleanUp => 'Clean up';
+
+  @override
+  String storageFreed(String size) {
+    return 'Freed $size';
+  }
+
+  @override
+  String get storageAllClean => 'Nothing to clean up';
+
+  @override
+  String get storageWhatTakesSpace => 'What takes up space';
+
+  @override
+  String get storageSectionChats => 'Chats';
+
+  @override
+  String get storageSectionModels => 'On-device models';
+
+  @override
+  String get storageSectionImageModels => 'Image models';
+
+  @override
+  String get storageSectionVoices => 'Voices';
+
+  @override
+  String get storageSectionSpeech => 'Speech recognition';
+
+  @override
+  String get storageSectionGeneratedImages => 'Generated images';
+
+  @override
+  String get storageSectionAttachments => 'Attached files';
+
+  @override
+  String get storageSectionTranscriptions => 'Transcription recordings';
+
+  @override
+  String get storageSectionLeftovers => 'Leftovers';
+
+  @override
+  String get storageSectionTemporary => 'Temporary files';
+
+  @override
+  String get storageAboutChats =>
+      'Messages and the photos sent in them. Deleting a chat removes it from this device for good.';
+
+  @override
+  String get storageAboutModels =>
+      'AI models downloaded to run on this device. You can download them again later.';
+
+  @override
+  String get storageAboutImageModels =>
+      'Models used to create images on this device. You can download them again later.';
+
+  @override
+  String get storageAboutVoices =>
+      'Voice packs for reading replies aloud. You can download them again in Voice settings.';
+
+  @override
+  String get storageAboutSpeech =>
+      'Models that turn your speech into text. You can download them again in Voice settings.';
+
+  @override
+  String get storageAboutGeneratedImages =>
+      'Images and videos created in your chats. Deleting one removes the picture; the chat text stays.';
+
+  @override
+  String get storageAboutAttachments =>
+      'Documents you attached to messages. The chat keeps the text it read from them.';
+
+  @override
+  String get storageAboutTranscriptions =>
+      'Audio saved with your transcriptions. Deleting one also removes its transcription.';
+
+  @override
+  String get storageAboutLeftovers =>
+      'Data nothing in the app uses any more. It is safe to delete.';
+
+  @override
+  String get storageAboutTemporary =>
+      'Files made while exporting, speaking replies or reporting errors. It is safe to delete.';
+
+  @override
+  String get storageItemDeletedChatMessages => 'Messages from deleted chats';
+
+  @override
+  String get storageItemUnusedAttachments => 'Files from deleted messages';
+
+  @override
+  String get storageItemUnusedImages => 'Pictures no longer used';
+
+  @override
+  String get storageItemModelLeftovers => 'Files from removed models';
+
+  @override
+  String get storageItemExports => 'Exported chats';
+
+  @override
+  String get storageItemErrorLogs => 'Error logs';
+
+  @override
+  String get storageItemSpeechAudio => 'Audio of spoken replies';
+
+  @override
+  String get storageItemOtherTemp => 'Other temporary files';
+
+  @override
+  String get storageUnfinishedDownload => 'Unfinished download';
+
+  @override
+  String storageMessageCount(int count) {
+    return 'Messages: $count';
+  }
+
+  @override
+  String storageFileCount(int count) {
+    return 'Files: $count';
+  }
+
+  @override
+  String storageItemCount(int count) {
+    return 'Items: $count';
+  }
+
+  @override
+  String storageDeleteSelected(String size) {
+    return 'Delete $size';
+  }
+
+  @override
+  String storageDeleteConfirmTitle(int count) {
+    return 'Delete $count items?';
+  }
+
+  @override
+  String storageDeleteConfirmBody(String size) {
+    return 'This frees $size. It can’t be undone.';
+  }
+
+  @override
+  String get storageEmptySection => 'Nothing here';
+
+  @override
+  String get premiumStorage => 'Storage';
+
+  @override
+  String get premiumStorageTagline => 'See and free up space';
+
+  @override
+  String get premiumStorageDescription =>
+      'See how much space your chats, models, images and files take, and delete all or just what you pick.';
+
+  @override
+  String get teaserStorageTitle => 'Know what fills your device';
+
+  @override
+  String get teaserStoragePoint1 =>
+      'See the space used by chats, models, images and files';
+
+  @override
+  String get teaserStoragePoint2 =>
+      'Clean up leftovers and temporary files in one tap';
+
+  @override
+  String get teaserStoragePoint3 =>
+      'Pick exactly what to delete, biggest first';
 }

@@ -4,6 +4,9 @@ import 'package:provider/provider.dart';
 import 'package:lm_mini_premium/lm_mini_premium.dart';
 import '../l10n/app_localizations.dart';
 import '../models/group_chat_participant.dart';
+import '../utils/server_busy_error.dart';
+import '../utils/unknown_tool_error.dart';
+import '../utils/lm_studio_session.dart';
 import '../utils/response_parser.dart';
 import '../utils/chat_title.dart';
 import '../utils/chat_image_payload.dart';
@@ -173,6 +176,10 @@ class ChatProvider with ChangeNotifier {
   String? _errorDetail; // Technical error details for advanced users
   ChatToast? _pendingToast;
   int? _actualModelContextLength; // Actual context length from model_info
+
+  /// Chat whose last resend of history overflowed the model's window; its
+  /// next send packs half the history. Cleared when a reply arrives.
+  String? _shrinkHistoryForConversationId;
   DateTime? _streamStartAt; // For measuring thinking/response duration
   DateTime? _thinkingEndAt; // Marks when </think> is seen
   final Map<String, int> _thinkingDurationsMs = {}; // messageId -> ms
@@ -718,13 +725,43 @@ class ChatProvider with ChangeNotifier {
 
   bool _setStreamClosedAfterStartError(Object? error, AppSettings settings) {
     if (!LMStudioService.isStreamClosedAfterStart(error)) return false;
-    final ctx = LMStudioService.contextOverflowTokens(error).contextTokens ??
-        _loadedContextTokens(settings);
-    _error = LMStudioService.streamClosedAfterStartUserMessage(
-      contextTokens: ctx > 0 ? ctx : null,
-      largeImageBytes:
-          ChatImagePayload.largeBytesOrNull(_latestUserImageUrls()),
-    );
+    // The window LM Studio really has loaded, not the app's setting: chat
+    // reuses the copy already in memory.
+    final loaded = _activeSettingsProvider?.selectedModelLoadedContextLength;
+    final ctx = (loaded != null && loaded > 0)
+        ? loaded
+        : (LMStudioService.contextOverflowTokens(error).contextTokens ??
+            _loadedContextTokens(settings));
+    final largeImage =
+        ChatImagePayload.largeBytesOrNull(_latestUserImageUrls());
+    // No stored session → this send carried the history as text. LM Studio
+    // closing it means that text was too long: halve it on the retry.
+    final resend = _continuableResponseId(settings) == null &&
+        _currentConversation?.settings['isGroupChat'] != true &&
+        largeImage == null;
+    var message = resend
+        ? LMStudioService.resendOverflowUserMessage(
+            contextTokens: ctx > 0 ? ctx : null,
+          )
+        : LMStudioService.streamClosedAfterStartUserMessage(
+            contextTokens: ctx > 0 ? ctx : null,
+            largeImageBytes: largeImage,
+          );
+    final mismatch = _activeSettingsProvider?.selectedModelContextMismatch;
+    if (mismatch != null) {
+      message += ' LM Studio has this model loaded with ${mismatch.loaded} '
+          'tokens; your setting of ${mismatch.wanted} applies after the '
+          'model is reloaded.';
+    }
+    if (resend) _shrinkHistoryForConversationId = _currentConversation?.id;
+    debugPrint('📏 Stream closed after chat.start: resend=$resend '
+        'loadedCtx=$loaded settingCtx=${settings.loadContextLength ?? settings.contextWindow} '
+        'budget=${_historyBudget(settings, extraTokens: 0)} '
+        'fitMode=${_contextFitMode(settings).name} '
+        'messages=${_currentMessages.length} '
+        'historyEstTokens=${_currentMessages.fold<int>(0, (n, m) => n + ContextFit.estimateTokens(m.content))} '
+        'lastReplyTokens=${_lastReplyTotalTokens()}');
+    _error = message;
     final detail = error is Map
         ? (error['error']?.toString() ?? error.toString())
         : error.toString();
@@ -760,6 +797,11 @@ class ChatProvider with ChangeNotifier {
     final clean = raw.startsWith('Exception: ') ? raw.substring(11) : raw;
     if (clean.isEmpty) return false;
 
+    if (ServerBusyError.matches(clean)) {
+      _error = ServerBusyError.userMessage;
+      _errorDetail = clean;
+      return true;
+    }
     if (LocalhostConnectionError.matches(
       clean,
       serverUrl: settings.serverUrl,
@@ -880,7 +922,22 @@ class ChatProvider with ChangeNotifier {
       budget -= ContextFit.estimateTokens(sys);
     }
     if (budget < 0) return 0;
+    // The last resend of this chat overflowed the real window: send half.
+    final shrink = _shrinkHistoryForConversationId;
+    if (shrink != null && shrink == _currentConversation?.id) {
+      return budget ~/ 2;
+    }
     return budget;
+  }
+
+  /// Total tokens LM Studio reported for the newest reply, for diagnostics.
+  int? _lastReplyTotalTokens() {
+    for (final m in _currentMessages.reversed) {
+      if (m.role != 'assistant') continue;
+      final total = m.usage?.totalTokens;
+      if (total != null && total > 0) return total;
+    }
+    return null;
   }
 
   bool _isContextNoise(ChatMessage msg) {
@@ -1026,6 +1083,17 @@ class ChatProvider with ChangeNotifier {
   /// [history] overrides the prior turns (group chats pass the turns before
   /// the latest user message; that message and the replies after it are
   /// already in [content]).
+  /// LM Studio session to continue, or null to send the history instead.
+  /// "Keep thinking in context" off skips LM Studio's stored conversation:
+  /// it keeps each reply's thinking, and some chat templates feed that back
+  /// every turn. The history the app sends is answer-only.
+  String? _continuableResponseId(AppSettings settings) =>
+      LmStudioSession.continuableResponseId(
+        _currentConversation?.lastResponseId,
+        providerKind: settings.activeProviderKind,
+        keepThinkingInContext: settings.keepThinkingInContext,
+      );
+
   String _injectedHistoryInput(
     String content,
     AppSettings settings, {
@@ -3479,7 +3547,7 @@ class ChatProvider with ChangeNotifier {
     // a model switch when response_id was missing, leaving only the prior
     // model's server memory (or nothing).
     dynamic effectiveInput = content;
-    var previousResponseId = _currentConversation!.lastResponseId;
+    var previousResponseId = _continuableResponseId(settings);
     final hasCompact =
         compactSummary != null && compactSummary!.trim().isNotEmpty;
     if (previousResponseId == null &&
@@ -4780,7 +4848,7 @@ class ChatProvider with ChangeNotifier {
           } else if (proSearchIntegrations != null) {
             // V1 API — Pro Search via ephemeral MCP (server handles tool loop)
             // This gives us stateful chats + server-side search execution.
-            final proSearchRespId = _currentConversation!.lastResponseId;
+            final proSearchRespId = _continuableResponseId(settings);
             debugPrint(
                 '🔍 Using V1 API (Pro Search MCP + ${hasMcpIntegrations ? "user MCP integrations" : "no other MCPs"}, respId=${proSearchRespId != null ? "yes" : "null"})');
             streamMethod = _lmStudioService.streamChatCompletionV1(
@@ -4797,7 +4865,7 @@ class ChatProvider with ChangeNotifier {
             );
           } else if (hasMcpIntegrations) {
             // V1 API — MCP integrations handle tool calls server-side
-            final mcpRespId = _currentConversation!.lastResponseId;
+            final mcpRespId = _continuableResponseId(settings);
             debugPrint(
                 '🔌 Using V1 API (MCP integrations active, respId=${mcpRespId != null ? "yes" : "null"})');
             streamMethod = _lmStudioService.streamChatCompletionV1(
@@ -4853,7 +4921,7 @@ class ChatProvider with ChangeNotifier {
             // V1 stateful — no user-facing tools needed (memory tools
             // are handled by background extraction). This saves tokens by
             // leveraging previous_response_id instead of resending history.
-            final statefulRespId = _currentConversation!.lastResponseId;
+            final statefulRespId = _continuableResponseId(settings);
             debugPrint(
                 '📡 Using V1 API (stateful${hasLocalTools ? ", background-only tools skipped" : ""}, respId=${statefulRespId != null ? "yes" : "null"})');
             streamMethod = _lmStudioService.streamChatCompletionV1(
@@ -6697,6 +6765,11 @@ class ChatProvider with ChangeNotifier {
     required String toolResult,
   }) {
     final lower = toolResult.toLowerCase();
+    if (UnknownToolError.matches(toolResult)) {
+      return UnknownToolError.userMessageFor(
+        UnknownToolError.toolName(toolResult) ?? toolName,
+      );
+    }
     if (toolName == 'web_search' || lower.contains('searxng')) {
       if (lower.contains('connection refused') ||
           lower.contains('socketexception')) {
@@ -7085,7 +7158,7 @@ class ChatProvider with ChangeNotifier {
         legacyV1:
         for (var attempt = 0; attempt < 2; attempt++) {
           final legacyRespId =
-              staleRetried ? null : _currentConversation!.lastResponseId;
+              staleRetried ? null : _continuableResponseId(settings);
           final streamMethod = _lmStudioService.streamChatCompletionV1(
             baseUrl: settings.serverUrl,
             messages: messagesForAPI,

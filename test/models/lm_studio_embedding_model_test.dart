@@ -30,7 +30,36 @@ void main() {
       expect(LMStudioModel.looksLikeEmbeddingModel('gte-Qwen2-7B-instruct'), isTrue);
     });
 
+    test('matches sentence-transformer and reranker models', () {
+      for (final id in [
+        'sentence-transformer-mini',
+        'sentence-transformers/all-MiniLM-L6-v2',
+        'paraphrase-multilingual-MiniLM-L12-v2',
+        'bge-reranker-v2-m3',
+        'jina-reranker-v2-base-multilingual',
+      ]) {
+        expect(LMStudioModel.looksLikeEmbeddingModel(id), isTrue, reason: id);
+      }
+      expect(
+        LMStudioModel.chatModelIds([
+          'sentence-transformer-mini',
+          'gpt-oss-20b-Q4_K_M',
+          'Qwen/Qwen3VL-2B-Instruct-Q4_K_M',
+        ]),
+        ['gpt-oss-20b-Q4_K_M', 'Qwen/Qwen3VL-2B-Instruct-Q4_K_M'],
+      );
+    });
+
     test('does not match chat models', () {
+      for (final id in [
+        'MiniCPM-V-4_5',
+        'minicpm5:latest',
+        'transformer-xl-chat',
+        'mistral-small-3.2',
+        'gemma-4-12b-it',
+      ]) {
+        expect(LMStudioModel.looksLikeEmbeddingModel(id), isFalse, reason: id);
+      }
       expect(LMStudioModel.looksLikeEmbeddingModel('qwen2.5-7b-instruct'), isFalse);
       expect(LMStudioModel.looksLikeEmbeddingModel('llama-3.1-8b-instruct'), isFalse);
       expect(LMStudioModel.looksLikeEmbeddingModel('gpt-4o'), isFalse);

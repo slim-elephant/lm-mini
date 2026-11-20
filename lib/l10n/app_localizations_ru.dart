@@ -3664,6 +3664,13 @@ class AppLocalizationsRu extends AppLocalizations {
       'Использует GPU, чтобы эффективнее помнить чат. Включите, если есть GPU.';
 
   @override
+  String get keepThinkingInContext => 'Сохранять размышления в контексте';
+
+  @override
+  String get keepThinkingInContextSubtitle =>
+      'Выкл.: LM Studio получает только прошлые ответы, чтобы длинные размышления не заполняли контекст. Ответы могут начинаться чуть медленнее.';
+
+  @override
   String get resizeImageForPhysicalBatch => 'Resize images for physical batch';
 
   @override
@@ -7840,16 +7847,21 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String nudgeProPitch(int count) {
-    return 'Pro добавляет $count функций, в том числе веб-поиск, память и модели вашего Mac на телефоне. Всё остальное остаётся бесплатным.';
+    return 'Pro добавляет $count функций, в том числе веб-поиск, память и удалённый доступ к вашим моделям откуда угодно, а не только по домашнему Wi-Fi. Всё остальное остаётся бесплатным.';
   }
 
   @override
   String get nudgeProPitchShort =>
-      'Pro добавляет веб-поиск, память и модели вашего Mac на телефоне. Всё остальное остаётся бесплатным.';
+      'Pro добавляет веб-поиск, память и удалённый доступ к вашим моделям откуда угодно, а не только по домашнему Wi-Fi. Всё остальное остаётся бесплатным.';
 
   @override
-  String nudgeFromPrice(String price) {
-    return 'От $price в месяц при оплате за год';
+  String nudgeGetProPerMonth(String price) {
+    return 'Pro за $price/мес';
+  }
+
+  @override
+  String nudgeBilledYearly(String price) {
+    return 'Оплата за год: $price';
   }
 
   @override
@@ -7882,4 +7894,196 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get aboutYouAboutHint =>
       'Например: чем вы занимаетесь, что любите, какие ответы предпочитаете.';
+
+  @override
+  String get storage => 'Хранилище';
+
+  @override
+  String get storageSettingsSubtitle =>
+      'Что занимает место и как его освободить';
+
+  @override
+  String get storageUsedByApp => 'Занято LM Mini на этом устройстве';
+
+  @override
+  String get storageMeasuring => 'Подсчёт…';
+
+  @override
+  String storageFreeUpTitle(String size) {
+    return 'Освободить $size';
+  }
+
+  @override
+  String get storageFreeUpBody =>
+      'Остатки удалённых чатов, неиспользуемые и временные файлы. Чаты, модели и персоны не затрагиваются.';
+
+  @override
+  String get storageCleanUp => 'Очистить';
+
+  @override
+  String storageFreed(String size) {
+    return 'Освобождено $size';
+  }
+
+  @override
+  String get storageAllClean => 'Очищать нечего';
+
+  @override
+  String get storageWhatTakesSpace => 'Что занимает место';
+
+  @override
+  String get storageSectionChats => 'Чаты';
+
+  @override
+  String get storageSectionModels => 'Модели на устройстве';
+
+  @override
+  String get storageSectionImageModels => 'Модели изображений';
+
+  @override
+  String get storageSectionVoices => 'Голоса';
+
+  @override
+  String get storageSectionSpeech => 'Распознавание речи';
+
+  @override
+  String get storageSectionGeneratedImages => 'Созданные изображения';
+
+  @override
+  String get storageSectionAttachments => 'Вложенные файлы';
+
+  @override
+  String get storageSectionTranscriptions => 'Записи для расшифровки';
+
+  @override
+  String get storageSectionLeftovers => 'Остатки';
+
+  @override
+  String get storageSectionTemporary => 'Временные файлы';
+
+  @override
+  String get storageAboutChats =>
+      'Сообщения и отправленные в них фото. Удалённый чат исчезает с устройства навсегда.';
+
+  @override
+  String get storageAboutModels =>
+      'Модели ИИ, загруженные для работы на этом устройстве. Их можно скачать снова.';
+
+  @override
+  String get storageAboutImageModels =>
+      'Модели для создания изображений на этом устройстве. Их можно скачать снова.';
+
+  @override
+  String get storageAboutVoices =>
+      'Голосовые пакеты для озвучивания ответов. Их можно скачать снова в настройках голоса.';
+
+  @override
+  String get storageAboutSpeech =>
+      'Модели, превращающие речь в текст. Их можно скачать снова в настройках голоса.';
+
+  @override
+  String get storageAboutGeneratedImages =>
+      'Изображения и видео, созданные в чатах. При удалении исчезает картинка, текст чата остаётся.';
+
+  @override
+  String get storageAboutAttachments =>
+      'Документы, прикреплённые к сообщениям. Прочитанный из них текст остаётся в чате.';
+
+  @override
+  String get storageAboutTranscriptions =>
+      'Аудио, сохранённое с расшифровками. При удалении исчезает и сама расшифровка.';
+
+  @override
+  String get storageAboutLeftovers =>
+      'Данные, которые больше ничем в приложении не используются. Их можно смело удалить.';
+
+  @override
+  String get storageAboutTemporary =>
+      'Файлы, созданные при экспорте, озвучивании ответов и отправке отчётов об ошибках. Их можно смело удалить.';
+
+  @override
+  String get storageItemDeletedChatMessages => 'Сообщения из удалённых чатов';
+
+  @override
+  String get storageItemUnusedAttachments => 'Файлы из удалённых сообщений';
+
+  @override
+  String get storageItemUnusedImages =>
+      'Изображения, которые больше не используются';
+
+  @override
+  String get storageItemModelLeftovers => 'Файлы удалённых моделей';
+
+  @override
+  String get storageItemExports => 'Экспортированные чаты';
+
+  @override
+  String get storageItemErrorLogs => 'Журналы ошибок';
+
+  @override
+  String get storageItemSpeechAudio => 'Аудио озвученных ответов';
+
+  @override
+  String get storageItemOtherTemp => 'Другие временные файлы';
+
+  @override
+  String get storageUnfinishedDownload => 'Незавершённая загрузка';
+
+  @override
+  String storageMessageCount(int count) {
+    return 'Сообщений: $count';
+  }
+
+  @override
+  String storageFileCount(int count) {
+    return 'Файлов: $count';
+  }
+
+  @override
+  String storageItemCount(int count) {
+    return 'Элементов: $count';
+  }
+
+  @override
+  String storageDeleteSelected(String size) {
+    return 'Удалить $size';
+  }
+
+  @override
+  String storageDeleteConfirmTitle(int count) {
+    return 'Удалить элементы: $count?';
+  }
+
+  @override
+  String storageDeleteConfirmBody(String size) {
+    return 'Освободится $size. Это действие нельзя отменить.';
+  }
+
+  @override
+  String get storageEmptySection => 'Здесь пусто';
+
+  @override
+  String get premiumStorage => 'Хранилище';
+
+  @override
+  String get premiumStorageTagline => 'Смотрите и освобождайте место';
+
+  @override
+  String get premiumStorageDescription =>
+      'Узнайте, сколько места занимают чаты, модели, изображения и файлы, и удаляйте всё или только выбранное.';
+
+  @override
+  String get teaserStorageTitle => 'Узнайте, чем занято устройство';
+
+  @override
+  String get teaserStoragePoint1 =>
+      'Сколько места занимают чаты, модели, изображения и файлы';
+
+  @override
+  String get teaserStoragePoint2 =>
+      'Очистка остатков и временных файлов одним касанием';
+
+  @override
+  String get teaserStoragePoint3 =>
+      'Выбирайте, что удалить: самое большое — сверху';
 }

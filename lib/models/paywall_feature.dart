@@ -21,4 +21,5 @@ enum PaywallFeature {
   export,
   appLock,
   urlReader,
+  storage,
 }

@@ -520,6 +520,17 @@ class LMStudioService {
     );
   }
 
+  /// The chat history LM Mini resent (no stored session to continue) did
+  /// not fit. The next attempt sends a shorter history.
+  static String resendOverflowUserMessage({int? contextTokens}) {
+    final window = contextTokens != null && contextTokens > 0
+        ? ' ($contextTokens tokens)'
+        : '';
+    return 'Context ran out. The chat history did not fit the model’s '
+        'window$window. Tap your message to retry: LM Mini will send a '
+        'shorter history.';
+  }
+
   /// SSE never produced a token — only ingest events. LM Studio often dies
   /// this way when the prompt (or a large image) exceeds `n_ctx`.
   static bool isIngestOnlyStream(Iterable<String> chunkLog) {

@@ -28,6 +28,7 @@
 		C0D1FEFC2F1443E2005C0415 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0D1FEFB2F1443E2005C0415 /* SwiftUI.framework */; };
 		C0D1FF0B2F1443E3005C0415 /* LMWidgetExtensionExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C0D1FEF82F1443E2005C0415 /* LMWidgetExtensionExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C1A2B3C4D5E6F70809101113 /* LanHostnameLookup.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A2B3C4D5E6F70809101112 /* LanHostnameLookup.swift */; };
+		C1A2B3C4D5E6F70809101213 /* MlxFolderImport.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A2B3C4D5E6F70809101212 /* MlxFolderImport.swift */; };
 		C5275DF8E4EBCE3C79A08EDC /* MLX in Frameworks */ = {isa = PBXBuildFile; productRef = AADE0367C8757AD700303DB1 /* MLX */; };
 		D20B12C4DD213790C429E6BC /* CoreMLStableDiffusion in Frameworks */ = {isa = PBXBuildFile; productRef = 0F1EA3167C56A84574F9B876 /* CoreMLStableDiffusion */; };
 		D7B2E8A91C3344F0B1A90002 /* LMMiniSiriBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B2E8A91C3344F0B1A90001 /* LMMiniSiriBridge.swift */; };
@@ -135,6 +136,7 @@
 		C0D1FF1C2F1445A6005C0415 /* Runner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Runner.entitlements; sourceTree = "<group>"; };
 		C0D1FF1D2F1445D6005C0415 /* LMWidgetExtensionExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LMWidgetExtensionExtension.entitlements; sourceTree = "<group>"; };
 		C1A2B3C4D5E6F70809101112 /* LanHostnameLookup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanHostnameLookup.swift; sourceTree = "<group>"; };
+		C1A2B3C4D5E6F70809101212 /* MlxFolderImport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MlxFolderImport.swift; sourceTree = "<group>"; };
 		D05A924477DC39AC3E51B97E /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
 		D7B2E8A91C3344F0B1A90001 /* LMMiniSiriBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LMMiniSiriBridge.swift; sourceTree = "<group>"; };
 		E4DF95BF2D5EC43CC4419853 /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -304,6 +306,7 @@
 				74858FAE1ED2DC5600515810 /* AppDelegate.swift */,
 				B2C3D4E5F600000000000000 /* BackgroundDownloadManager.swift */,
 				C1A2B3C4D5E6F70809101112 /* LanHostnameLookup.swift */,
+				C1A2B3C4D5E6F70809101212 /* MlxFolderImport.swift */,
 				A1B2C3D4E5F600000000A000 /* MLXBridge.swift */,
 				74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */,
 				4B790B2FBD2656B40A3FFF2E /* LMMiniAppIntents.swift */,
@@ -684,6 +687,7 @@
 				74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */,
 				B2C3D4E5F600000000000001 /* BackgroundDownloadManager.swift in Sources */,
 				C1A2B3C4D5E6F70809101113 /* LanHostnameLookup.swift in Sources */,
+				C1A2B3C4D5E6F70809101213 /* MlxFolderImport.swift in Sources */,
 				A1B2C3D4E5F600000000A001 /* MLXBridge.swift in Sources */,
 				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,
 				55DB17426CA39E2BF1865232 /* LMMiniAppIntents.swift in Sources */,

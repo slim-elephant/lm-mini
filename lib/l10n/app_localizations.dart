@@ -6658,6 +6658,18 @@ abstract class AppLocalizations {
   /// **'Uses the GPU to remember the chat more efficiently. Keep on if you have a GPU.'**
   String get offloadKvCacheSubtitle;
 
+  /// No description provided for @keepThinkingInContext.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep thinking in context'**
+  String get keepThinkingInContext;
+
+  /// No description provided for @keepThinkingInContextSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Off sends LM Studio only the earlier answers, so long thinking doesn\'t fill the context. Replies may start a little slower.'**
+  String get keepThinkingInContextSubtitle;
+
   /// No description provided for @resizeImageForPhysicalBatch.
   ///
   /// In en, this message translates to:
@@ -13851,20 +13863,26 @@ abstract class AppLocalizations {
   /// No description provided for @nudgeProPitch.
   ///
   /// In en, this message translates to:
-  /// **'Pro adds {count} features, including web search, memories and your Mac\'s models on your phone. Everything else stays free.'**
+  /// **'Pro adds {count} features, including web search, memories and remote access to your models from anywhere, not just on home Wi-Fi. Everything else stays free.'**
   String nudgeProPitch(int count);
 
   /// No description provided for @nudgeProPitchShort.
   ///
   /// In en, this message translates to:
-  /// **'Pro adds web search, memories and your Mac\'s models on your phone. Everything else stays free.'**
+  /// **'Pro adds web search, memories and remote access to your models from anywhere, not just on home Wi-Fi. Everything else stays free.'**
   String get nudgeProPitchShort;
 
-  /// No description provided for @nudgeFromPrice.
+  /// No description provided for @nudgeGetProPerMonth.
   ///
   /// In en, this message translates to:
-  /// **'From {price} a month, billed yearly'**
-  String nudgeFromPrice(String price);
+  /// **'Get Pro for {price}/mo'**
+  String nudgeGetProPerMonth(String price);
+
+  /// No description provided for @nudgeBilledYearly.
+  ///
+  /// In en, this message translates to:
+  /// **'Billed yearly at {price}'**
+  String nudgeBilledYearly(String price);
 
   /// No description provided for @imagePromptStyleTitle.
   ///
@@ -13919,6 +13937,324 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'For example: what you do, what you like, how you want answers.'**
   String get aboutYouAboutHint;
+
+  /// No description provided for @storage.
+  ///
+  /// In en, this message translates to:
+  /// **'Storage'**
+  String get storage;
+
+  /// No description provided for @storageSettingsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'See what takes up space and clean it up'**
+  String get storageSettingsSubtitle;
+
+  /// No description provided for @storageUsedByApp.
+  ///
+  /// In en, this message translates to:
+  /// **'Used by LM Mini on this device'**
+  String get storageUsedByApp;
+
+  /// No description provided for @storageMeasuring.
+  ///
+  /// In en, this message translates to:
+  /// **'Measuring…'**
+  String get storageMeasuring;
+
+  /// No description provided for @storageFreeUpTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Free up {size}'**
+  String storageFreeUpTitle(String size);
+
+  /// No description provided for @storageFreeUpBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Leftovers from deleted chats, unused files and temporary files. Your chats, models and personas stay as they are.'**
+  String get storageFreeUpBody;
+
+  /// No description provided for @storageCleanUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Clean up'**
+  String get storageCleanUp;
+
+  /// No description provided for @storageFreed.
+  ///
+  /// In en, this message translates to:
+  /// **'Freed {size}'**
+  String storageFreed(String size);
+
+  /// No description provided for @storageAllClean.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing to clean up'**
+  String get storageAllClean;
+
+  /// No description provided for @storageWhatTakesSpace.
+  ///
+  /// In en, this message translates to:
+  /// **'What takes up space'**
+  String get storageWhatTakesSpace;
+
+  /// No description provided for @storageSectionChats.
+  ///
+  /// In en, this message translates to:
+  /// **'Chats'**
+  String get storageSectionChats;
+
+  /// No description provided for @storageSectionModels.
+  ///
+  /// In en, this message translates to:
+  /// **'On-device models'**
+  String get storageSectionModels;
+
+  /// No description provided for @storageSectionImageModels.
+  ///
+  /// In en, this message translates to:
+  /// **'Image models'**
+  String get storageSectionImageModels;
+
+  /// No description provided for @storageSectionVoices.
+  ///
+  /// In en, this message translates to:
+  /// **'Voices'**
+  String get storageSectionVoices;
+
+  /// No description provided for @storageSectionSpeech.
+  ///
+  /// In en, this message translates to:
+  /// **'Speech recognition'**
+  String get storageSectionSpeech;
+
+  /// No description provided for @storageSectionGeneratedImages.
+  ///
+  /// In en, this message translates to:
+  /// **'Generated images'**
+  String get storageSectionGeneratedImages;
+
+  /// No description provided for @storageSectionAttachments.
+  ///
+  /// In en, this message translates to:
+  /// **'Attached files'**
+  String get storageSectionAttachments;
+
+  /// No description provided for @storageSectionTranscriptions.
+  ///
+  /// In en, this message translates to:
+  /// **'Transcription recordings'**
+  String get storageSectionTranscriptions;
+
+  /// No description provided for @storageSectionLeftovers.
+  ///
+  /// In en, this message translates to:
+  /// **'Leftovers'**
+  String get storageSectionLeftovers;
+
+  /// No description provided for @storageSectionTemporary.
+  ///
+  /// In en, this message translates to:
+  /// **'Temporary files'**
+  String get storageSectionTemporary;
+
+  /// No description provided for @storageAboutChats.
+  ///
+  /// In en, this message translates to:
+  /// **'Messages and the photos sent in them. Deleting a chat removes it from this device for good.'**
+  String get storageAboutChats;
+
+  /// No description provided for @storageAboutModels.
+  ///
+  /// In en, this message translates to:
+  /// **'AI models downloaded to run on this device. You can download them again later.'**
+  String get storageAboutModels;
+
+  /// No description provided for @storageAboutImageModels.
+  ///
+  /// In en, this message translates to:
+  /// **'Models used to create images on this device. You can download them again later.'**
+  String get storageAboutImageModels;
+
+  /// No description provided for @storageAboutVoices.
+  ///
+  /// In en, this message translates to:
+  /// **'Voice packs for reading replies aloud. You can download them again in Voice settings.'**
+  String get storageAboutVoices;
+
+  /// No description provided for @storageAboutSpeech.
+  ///
+  /// In en, this message translates to:
+  /// **'Models that turn your speech into text. You can download them again in Voice settings.'**
+  String get storageAboutSpeech;
+
+  /// No description provided for @storageAboutGeneratedImages.
+  ///
+  /// In en, this message translates to:
+  /// **'Images and videos created in your chats. Deleting one removes the picture; the chat text stays.'**
+  String get storageAboutGeneratedImages;
+
+  /// No description provided for @storageAboutAttachments.
+  ///
+  /// In en, this message translates to:
+  /// **'Documents you attached to messages. The chat keeps the text it read from them.'**
+  String get storageAboutAttachments;
+
+  /// No description provided for @storageAboutTranscriptions.
+  ///
+  /// In en, this message translates to:
+  /// **'Audio saved with your transcriptions. Deleting one also removes its transcription.'**
+  String get storageAboutTranscriptions;
+
+  /// No description provided for @storageAboutLeftovers.
+  ///
+  /// In en, this message translates to:
+  /// **'Data nothing in the app uses any more. It is safe to delete.'**
+  String get storageAboutLeftovers;
+
+  /// No description provided for @storageAboutTemporary.
+  ///
+  /// In en, this message translates to:
+  /// **'Files made while exporting, speaking replies or reporting errors. It is safe to delete.'**
+  String get storageAboutTemporary;
+
+  /// No description provided for @storageItemDeletedChatMessages.
+  ///
+  /// In en, this message translates to:
+  /// **'Messages from deleted chats'**
+  String get storageItemDeletedChatMessages;
+
+  /// No description provided for @storageItemUnusedAttachments.
+  ///
+  /// In en, this message translates to:
+  /// **'Files from deleted messages'**
+  String get storageItemUnusedAttachments;
+
+  /// No description provided for @storageItemUnusedImages.
+  ///
+  /// In en, this message translates to:
+  /// **'Pictures no longer used'**
+  String get storageItemUnusedImages;
+
+  /// No description provided for @storageItemModelLeftovers.
+  ///
+  /// In en, this message translates to:
+  /// **'Files from removed models'**
+  String get storageItemModelLeftovers;
+
+  /// No description provided for @storageItemExports.
+  ///
+  /// In en, this message translates to:
+  /// **'Exported chats'**
+  String get storageItemExports;
+
+  /// No description provided for @storageItemErrorLogs.
+  ///
+  /// In en, this message translates to:
+  /// **'Error logs'**
+  String get storageItemErrorLogs;
+
+  /// No description provided for @storageItemSpeechAudio.
+  ///
+  /// In en, this message translates to:
+  /// **'Audio of spoken replies'**
+  String get storageItemSpeechAudio;
+
+  /// No description provided for @storageItemOtherTemp.
+  ///
+  /// In en, this message translates to:
+  /// **'Other temporary files'**
+  String get storageItemOtherTemp;
+
+  /// No description provided for @storageUnfinishedDownload.
+  ///
+  /// In en, this message translates to:
+  /// **'Unfinished download'**
+  String get storageUnfinishedDownload;
+
+  /// No description provided for @storageMessageCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Messages: {count}'**
+  String storageMessageCount(int count);
+
+  /// No description provided for @storageFileCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Files: {count}'**
+  String storageFileCount(int count);
+
+  /// No description provided for @storageItemCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Items: {count}'**
+  String storageItemCount(int count);
+
+  /// No description provided for @storageDeleteSelected.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete {size}'**
+  String storageDeleteSelected(String size);
+
+  /// No description provided for @storageDeleteConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete {count} items?'**
+  String storageDeleteConfirmTitle(int count);
+
+  /// No description provided for @storageDeleteConfirmBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This frees {size}. It can’t be undone.'**
+  String storageDeleteConfirmBody(String size);
+
+  /// No description provided for @storageEmptySection.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing here'**
+  String get storageEmptySection;
+
+  /// No description provided for @premiumStorage.
+  ///
+  /// In en, this message translates to:
+  /// **'Storage'**
+  String get premiumStorage;
+
+  /// No description provided for @premiumStorageTagline.
+  ///
+  /// In en, this message translates to:
+  /// **'See and free up space'**
+  String get premiumStorageTagline;
+
+  /// No description provided for @premiumStorageDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'See how much space your chats, models, images and files take, and delete all or just what you pick.'**
+  String get premiumStorageDescription;
+
+  /// No description provided for @teaserStorageTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Know what fills your device'**
+  String get teaserStorageTitle;
+
+  /// No description provided for @teaserStoragePoint1.
+  ///
+  /// In en, this message translates to:
+  /// **'See the space used by chats, models, images and files'**
+  String get teaserStoragePoint1;
+
+  /// No description provided for @teaserStoragePoint2.
+  ///
+  /// In en, this message translates to:
+  /// **'Clean up leftovers and temporary files in one tap'**
+  String get teaserStoragePoint2;
+
+  /// No description provided for @teaserStoragePoint3.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick exactly what to delete, biggest first'**
+  String get teaserStoragePoint3;
 }
 
 class _AppLocalizationsDelegate

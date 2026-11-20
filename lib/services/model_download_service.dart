@@ -250,6 +250,10 @@ class ModelDownloadService extends ChangeNotifier {
     final partialBytes =
         partialExists ? await partial.length() : 0;
     final isResume = partialBytes > 0;
+    // Android finished this file while the app was closed, so its
+    // onComplete never arrived: skip straight to the rename.
+    final finishedWhileAway =
+        isResume && await _nativeMarkedComplete(job.partialPath, partialBytes);
 
     job.status = ModelDownloadJobStatus.downloading;
     if (!isResume) {
@@ -283,12 +287,21 @@ class ModelDownloadService extends ChangeNotifier {
           await partial.delete();
         }
 
-        await _downloadUrlToFile(
-          job: job,
-          target: partial,
-          progressScale: downloadProgressWeight,
-          onProgress: onProgress,
-        );
+        if (finishedWhileAway) {
+          job.bytesDownloaded = partialBytes;
+          job.bytesTotal = partialBytes;
+          job.progress = downloadProgressWeight;
+          notifyListeners();
+          onProgress?.call(job);
+        } else {
+          await _downloadUrlToFile(
+            job: job,
+            target: partial,
+            progressScale: downloadProgressWeight,
+            onProgress: onProgress,
+          );
+        }
+        await _deleteCompleteMarker(job.partialPath);
 
         if (job.kind == ModelDownloadJobKind.singleFile) {
           if (await destFile.exists()) await destFile.delete();
@@ -393,6 +406,7 @@ class ModelDownloadService extends ChangeNotifier {
           onProgress?.call(job);
         },
       );
+      await _deleteCompleteMarker(target.path);
       return;
     }
 
@@ -453,7 +467,10 @@ class ModelDownloadService extends ChangeNotifier {
     var uri = Uri.parse(job.sourceUrl);
     HttpClientResponse? response;
 
-    for (var redirects = 0; redirects < 6; redirects++) {
+    for (var redirects = 0; redirects < 8; redirects++) {
+      // Re-read on every hop: the Range must survive the redirect
+      // (Hugging Face → CDN), or a resume restarts from zero.
+      existingBytes = await target.exists() ? await target.length() : 0;
       final request = await client.getUrl(uri);
       if (existingBytes > 0) {
         request.headers.set(HttpHeaders.rangeHeader, 'bytes=$existingBytes-');
@@ -462,8 +479,23 @@ class ModelDownloadService extends ChangeNotifier {
       if (res.statusCode >= 300 &&
           res.statusCode < 400 &&
           res.headers.value('location') != null) {
-        uri = Uri.parse(res.headers.value('location')!);
-        existingBytes = 0;
+        await res.drain<void>();
+        uri = uri.resolve(res.headers.value('location')!);
+        continue;
+      }
+      if (res.statusCode == HttpStatus.requestedRangeNotSatisfiable &&
+          existingBytes > 0) {
+        // Range starts at the end: the partial may already be complete.
+        await res.drain<void>();
+        final total = await _probeTotalBytes(client, uri);
+        if (total != null && total == existingBytes) {
+          job.bytesDownloaded = existingBytes;
+          job.bytesTotal = existingBytes;
+          job.progress = progressScale;
+          onProgress?.call(job);
+          return;
+        }
+        await target.delete();
         continue;
       }
       if (res.statusCode == HttpStatus.partialContent ||
@@ -518,6 +550,47 @@ class ModelDownloadService extends ChangeNotifier {
     } finally {
       await sink.close();
     }
+  }
+
+  /// Total size of [uri] from a one-byte ranged request, or null.
+  Future<int?> _probeTotalBytes(HttpClient client, Uri uri) async {
+    try {
+      final request = await client.getUrl(uri);
+      request.headers.set(HttpHeaders.rangeHeader, 'bytes=0-0');
+      final res = await request.close();
+      await res.drain<void>();
+      if (res.statusCode == HttpStatus.partialContent) {
+        final range = res.headers.value(HttpHeaders.contentRangeHeader);
+        return int.tryParse(range?.split('/').last.trim() ?? '');
+      }
+      if (res.statusCode == HttpStatus.ok && res.contentLength > 0) {
+        return res.contentLength;
+      }
+    } catch (_) {}
+    return null;
+  }
+
+  /// Marker the Android download service writes next to a finished partial
+  /// file, holding its size (ModelDownloadForegroundService).
+  static String completeMarkerPath(String partialPath) =>
+      '$partialPath.complete';
+
+  Future<bool> _nativeMarkedComplete(String partialPath, int partialBytes) async {
+    try {
+      final marker = File(completeMarkerPath(partialPath));
+      if (!await marker.exists()) return false;
+      final size = int.tryParse((await marker.readAsString()).trim());
+      return size != null && size == partialBytes;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  Future<void> _deleteCompleteMarker(String partialPath) async {
+    try {
+      final marker = File(completeMarkerPath(partialPath));
+      if (await marker.exists()) await marker.delete();
+    } catch (_) {}
   }
 
   void _touchSpeed(ModelDownloadJob job) {

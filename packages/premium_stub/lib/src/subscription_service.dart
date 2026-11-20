@@ -89,6 +89,9 @@ class SubscriptionService extends ChangeNotifier {
   /// No-op in stub.
   Future<bool> restorePurchases() async => false;
 
+  /// Re-reads Pro status from the store. No store in the open-source build.
+  Future<void> refreshCustomerInfo() async {}
+
   /// No-op in stub.
   Future<String?> getAuthToken() async => null;
 
@@ -115,10 +118,10 @@ class SubscriptionService extends ChangeNotifier {
 
   /// Monthly price shown on the paywall (win-back when churned, else standard).
   String get displayMonthlyPrice {
-    if (isChurnedUser) {
-      return winBackMonthlyPackage?.priceString ??
-          SubscriptionPricing.fallbackWinBackMonthlyUsd;
-    }
+    // No comeback offer from the store: show the normal local price, not a
+    // hard-coded USD one.
+    final winBack = winBackMonthlyPackage;
+    if (isChurnedUser && winBack != null) return winBack.priceString;
     return monthlyPackage?.priceString ??
         SubscriptionPricing.fallbackMonthlyUsd;
   }
@@ -132,6 +135,13 @@ class SubscriptionService extends ChangeNotifier {
       annualPackage?.priceString ?? SubscriptionPricing.fallbackAnnualUsd;
 
   /// Lifetime one-time price for the paywall.
+  /// The yearly plan as a monthly price in the store's currency, e.g.
+  /// "$2.50" or "Rs 742". The lowest per-month price Pro has.
+  String? get displayAnnualPerMonthPrice => SubscriptionPricing.perMonth(
+        displayAnnualPrice,
+        amount: annualPackage?.price,
+      );
+
   String get displayLifetimePrice =>
       lifetimePackage?.priceString ?? SubscriptionPricing.fallbackLifetimeUsd;
 

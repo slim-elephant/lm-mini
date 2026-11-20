@@ -3,6 +3,7 @@ import 'package:lm_mini_premium/lm_mini_premium.dart';
 import '../l10n/app_localizations.dart';
 import '../services/support_nudge_service.dart';
 import '../screens/subscription_screen.dart';
+import 'pro_price_button.dart';
 
 /// A dialog shown at usage milestones to encourage supporting development.
 /// Shows conversation count, days using, and an emotional appeal.
@@ -98,7 +99,7 @@ class SupportNudgeDialog extends StatelessWidget {
                       Expanded(
                         child: _StatCard(
                           icon: Icons.calendar_today_outlined,
-                          value: _formatDays(nudge.daysUsing),
+                          value: SupportNudgeService.usageSpan(nudge.daysUsing),
                           label: 'Using LM Mini',
                           color: cs.tertiary,
                         ),
@@ -140,49 +141,21 @@ class SupportNudgeDialog extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 24),
-                // CTA button
+                // CTA: the yearly plan as a monthly price. Lifetime is
+                // the second option below.
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: SizedBox(
-                    width: double.infinity,
-                    height: 48,
-                    child: FilledButton.icon(
-                      onPressed: () {
-                        Navigator.pop(context);
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (_) => const SubscriptionScreen()),
-                        );
-                      },
-                      icon: const Icon(Icons.workspace_premium, size: 18),
-                      label: Text(
-                        AppLocalizations.of(context).paywallGetPro,
-                        style: const TextStyle(
-                            fontWeight: FontWeight.w600, fontSize: 15),
-                      ),
-                    ),
+                  child: ProPriceButton(
+                    radius: 12,
+                    onPressed: () {
+                      Navigator.pop(context);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (_) => const SubscriptionScreen()),
+                      );
+                    },
                   ),
-                ),
-                // Lowest plan price per month (yearly plan), instead of the
-                // lifetime total, which made Pro read as a $120 purchase.
-                ListenableBuilder(
-                  listenable: sub,
-                  builder: (context, _) {
-                    final perMonth =
-                        SubscriptionScreen.perMonthFromAnnual(sub.displayAnnualPrice);
-                    if (perMonth == null) return const SizedBox.shrink();
-                    return Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
-                      child: Text(
-                        l10n.nudgeFromPrice(perMonth),
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 13,
-                          color: cs.onSurfaceVariant,
-                        ),
-                      ),
-                    );
-                  },
                 ),
                 // Lifetime stays as the second option (people asked for it).
                 const SizedBox(height: 12),
@@ -243,13 +216,6 @@ class SupportNudgeDialog extends StatelessWidget {
     );
   }
 
-  String _formatDays(int days) {
-    if (days >= 365) return '${(days / 365).floor()}y ${(days % 365 ~/ 30)}m';
-    if (days >= 30) return '${(days / 30).floor()} months';
-    if (days >= 7) return '${(days / 7).floor()} weeks';
-    if (days == 1) return '1 day';
-    return '$days days';
-  }
 }
 
 class _StatCard extends StatelessWidget {

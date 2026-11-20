@@ -100,6 +100,9 @@ extension _FailedMessageTracking on ChatProvider {
       if (!messages.any((m) => m.id == userMessageId)) {
         next = FailedMessages.withRemoved(conv.settings, [userMessageId]);
       } else if (FailedMessages.hasReplyAfter(messages, userMessageId)) {
+        if (_shrinkHistoryForConversationId == conversationId) {
+          _shrinkHistoryForConversationId = null;
+        }
         next = FailedMessages.withRemoved(
           conv.settings,
           FailedMessages.deliveredWith(messages, failed, userMessageId),

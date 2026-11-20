@@ -87,6 +87,7 @@ import '../desktop/ui/desktop_host_screen.dart';
 import '../desktop/runtime/desktop_runtime_manager.dart';
 import 'settings_nav.dart';
 import '../pro/pro_features.dart';
+import '../pro/storage/storage_screen.dart';
 import '../utils/share_helper.dart';
 import 'package:share_plus/share_plus.dart' show ShareResultStatus;
 
@@ -949,6 +950,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           ),
                 );
               },
+            ),
+          // Storage — Pro; free users see it locked (explainer).
+          if (ProFeatures.isPro || ProFeatures.showUpsell)
+            ListTile(
+              leading: const Icon(Icons.pie_chart_outline_rounded),
+              title: _proTitle(l10n.storage),
+              subtitle: Text(l10n.storageSettingsSubtitle),
+              trailing: const Icon(Icons.chevron_right),
+              onTap: ProFeatures.isPro
+                  ? () => _openSettingsScreen(
+                        SettingsNavId.dataStorage,
+                        (_) => const StorageScreen(),
+                      )
+                  : () => showProFeatureTeaser(context, PaywallFeature.storage),
             ),
           if (isAdvanced) ...[
             Builder(
@@ -2906,6 +2921,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
         return const MemoryScreen(embedded: true);
       case SettingsNavId.dataAppLock:
         return const AppLockSettingsScreen(embedded: true);
+      case SettingsNavId.dataStorage:
+        return const StorageScreen(embedded: true);
       case SettingsNavId.advancedTools:
         return const ToolSettingsScreen(embedded: true);
       case SettingsNavId.supportFeatureRequests:

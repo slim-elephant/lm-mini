@@ -373,11 +373,13 @@ class _AppInitializerState extends State<AppInitializer>
   Timer? _syncDownTimer;
   VoidCallback? _premiumGrantListener;
   bool _desktopHostWasSuspended = false;
+  late bool _wasPremium = SubscriptionService().isPremium;
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
+    SubscriptionService().addListener(_onPremiumMaybeChanged);
 
     // Initial sync down when app opens natively
     _performSyncDown();
@@ -451,8 +453,26 @@ class _AppInitializerState extends State<AppInitializer>
     });
   }
 
+  /// Most screens read `SubscriptionService().isPremium` while building
+  /// instead of listening to it, so after a purchase they stayed locked until
+  /// the app restarted. Redraw every screen once when Pro turns on or off.
+  void _onPremiumMaybeChanged() {
+    final premium = SubscriptionService().isPremium;
+    if (premium == _wasPremium) return;
+    _wasPremium = premium;
+    final root = WidgetsBinding.instance.rootElement;
+    if (root == null) return;
+    void rebuild(Element e) {
+      e.markNeedsBuild();
+      e.visitChildren(rebuild);
+    }
+
+    root.visitChildren(rebuild);
+  }
+
   @override
   void dispose() {
+    SubscriptionService().removeListener(_onPremiumMaybeChanged);
     if (_premiumGrantListener != null) {
       PromotionalPremiumService.instance.removeListener(_premiumGrantListener!);
     }
@@ -475,6 +495,9 @@ class _AppInitializerState extends State<AppInitializer>
       _startSyncTimer();
       unawaited(PromotionalPremiumService.instance.initialize());
       _handlePremiumGrantUpdates();
+      // A purchase made outside the app (Apple's win-back sheet) or on
+      // another device unlocks Pro without a restart.
+      unawaited(SubscriptionService().refreshCustomerInfo());
       // Refresh the Pro news widget content if stale (no-op for free users
       // or when no prompt is configured).
       unawaited(NewsWidgetService.instance.refreshIfPossible());

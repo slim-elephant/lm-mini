@@ -33,6 +33,10 @@ class ModelParametersVisibility {
   final bool showLoadingConfig;
   final bool showResizeImagesForPhysicalBatch;
   final bool showReasoning;
+
+  /// LM Studio only: "Keep thinking in context" (stored session vs
+  /// answer-only history).
+  final bool showKeepThinking;
   final bool showVerbosity;
   final bool omitCloudSampling;
   final bool isCloudReasoning;
@@ -54,6 +58,7 @@ class ModelParametersVisibility {
     required this.showLoadingConfig,
     required this.showResizeImagesForPhysicalBatch,
     required this.showReasoning,
+    this.showKeepThinking = false,
     required this.showVerbosity,
     required this.omitCloudSampling,
     required this.isCloudReasoning,
@@ -121,6 +126,7 @@ class ModelParametersVisibility {
           (!isCloudRouted ||
               isCloudReasoning ||
               (isLocalServerThink && looksReasoning)),
+      showKeepThinking: providerKind == 'lmStudio' && !isCloudRouted,
       showVerbosity:
           isCloudRouted && (providerType?.supportsVerbosity ?? false),
       omitCloudSampling: isCloudRouted && openAiOmitsSamplingParams(modelId),
@@ -192,14 +198,29 @@ class ModelParametersForm extends StatelessWidget {
           ),
           const SizedBox(height: 14),
         ],
-        if (v.showReasoning) ...[
+        if (v.showReasoning || v.showKeepThinking) ...[
           _sectionLabel(context, l10n.reasoningMode),
           const SizedBox(height: 10),
           _card(
             context,
             child: Padding(
               padding: EdgeInsets.all(desktop ? 8 : 0),
-              child: _reasoningRow(context),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  if (v.showReasoning) _reasoningRow(context),
+                  if (v.showKeepThinking)
+                    _toggleRow(
+                      context,
+                      icon: Icons.history_toggle_off_rounded,
+                      title: l10n.keepThinkingInContext,
+                      subtitle: l10n.keepThinkingInContextSubtitle,
+                      value: s.keepThinkingInContext,
+                      onChanged: (n) =>
+                          onChanged(s.copyWith(keepThinkingInContext: n)),
+                    ),
+                ],
+              ),
             ),
           ),
           const SizedBox(height: 22),

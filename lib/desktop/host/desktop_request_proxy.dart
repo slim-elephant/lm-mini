@@ -186,6 +186,16 @@ class DesktopRequestProxy {
       return;
     }
 
+    // Installing node packs / models and restarting ComfyUI run code on this
+    // computer: only when the user turned it on. Answered here, without
+    // contacting ComfyUI; the phone shows `error` as is.
+    if (target.kind == 'comfyui' &&
+        !backends.allowComfyUiInstall &&
+        isComfyUiInstallPath(method, pathOnly)) {
+      _sendJson(send, id, 403, {'error': comfyUiInstallBlockedMessage});
+      return;
+    }
+
     // Registered before any wait (the built-in runtime can take 15 s+ to
     // boot) so a Stop during that wait is not lost.
     final key = _key(channel, id);
@@ -502,12 +512,7 @@ class DesktopRequestProxy {
 
       final contentType =
           (res.headers.contentType?.mimeType ?? '').toLowerCase();
-      final isBinary = contentType.startsWith('audio/') ||
-          contentType.startsWith('image/') ||
-          contentType.startsWith('video/') ||
-          contentType == 'application/octet-stream' ||
-          path.startsWith('/view') ||
-          path.startsWith('/tts/');
+      final isBinary = isBinaryResponse(contentType, pathOnly);
 
       if (isBinary) {
         await _pipe<List<int>>(res, entry, (chunk) {
@@ -755,6 +760,36 @@ class DesktopRequestProxy {
       );
     }
 
+    final header = (fwdHeaders['x-lm-mini-backend'] ??
+            fwdHeaders['X-LM-Mini-Backend'] ??
+            '')
+        .trim()
+        .toLowerCase();
+
+    // An image backend named by the phone gets every path (ComfyUI-Manager,
+    // ControlNet, … have no shared prefix), same as LM Mini Connect. The
+    // path heuristics below stay as the fallback for phones that send no
+    // header.
+    if (header == 'comfyui') {
+      if (!backends.hasComfyUi) return null;
+      return DesktopProxyTarget(
+        kind: 'comfyui',
+        host: backends.comfyUiHost,
+        port: backends.comfyUiPort,
+        apiToken: '',
+      );
+    }
+
+    if (header == 'a1111') {
+      if (!backends.hasA1111) return null;
+      return DesktopProxyTarget(
+        kind: 'a1111',
+        host: backends.a1111Host,
+        port: backends.a1111Port,
+        apiToken: '',
+      );
+    }
+
     if (path.startsWith('/sdapi/')) {
       if (!backends.hasA1111) return null;
       return DesktopProxyTarget(
@@ -774,12 +809,6 @@ class DesktopRequestProxy {
         apiToken: '',
       );
     }
-
-    final header = (fwdHeaders['x-lm-mini-backend'] ??
-            fwdHeaders['X-LM-Mini-Backend'] ??
-            '')
-        .trim()
-        .toLowerCase();
 
     final isOllamaPath = path.startsWith('/api/chat') ||
         path.startsWith('/api/tags') ||
@@ -880,6 +909,60 @@ class DesktopRequestProxy {
         p == '/ws' ||
         p.startsWith('/ws?') ||
         p.startsWith('/upload/');
+  }
+
+  /// Shown by the phone (Comfy Mini prints a 403's `error` as is).
+  static const comfyUiInstallBlockedMessage =
+      'Installing from your phone is turned off. On your computer, open '
+      'LM Mini Home > Share with phone and turn on '
+      "'Let my phone install nodes and models'.";
+
+  static const _comfyUiInstallPaths = {
+    '/manager/queue/task',
+    '/manager/queue/install_model',
+    '/manager/queue/batch',
+    '/manager/queue/update_all',
+    '/manager/queue/update_comfyui',
+    '/manager/reboot',
+    '/customnode/install/git_url',
+    '/customnode/install/pip',
+    '/comfyui_manager/comfyui_switch_version',
+    '/snapshot/restore',
+    '/snapshot/remove',
+  };
+
+  /// ComfyUI-Manager routes that install code or models on this computer or
+  /// restart ComfyUI. Matched with or without the `/api` and `/v2` prefixes
+  /// (older Manager versions serve the same routes without `/v2`). Read-only
+  /// Manager routes and `/free` are never gated.
+  static bool isComfyUiInstallPath(String method, String path) {
+    if (_isSafeMethod(method.toUpperCase())) return false;
+    var p = pathOnlyOf(path);
+    if (p.startsWith('/api/')) p = p.substring(4);
+    if (p.startsWith('/v2/')) p = p.substring(3);
+    return _comfyUiInstallPaths.contains(p);
+  }
+
+  /// Whether a backend reply must travel as base64 frames. Text (JSON, SSE,
+  /// HTML, XML, …) is streamed decoded; everything else — images, video,
+  /// audio, model previews, downloads — byte-exact.
+  static bool isBinaryResponse(String contentType, String path) {
+    final ct = contentType.toLowerCase();
+    final p = pathOnlyOf(path);
+    final pNoApi = p.startsWith('/api/') ? p.substring(4) : p;
+    if (pNoApi.startsWith('/view') ||
+        pNoApi.startsWith('/experiment/models/preview') ||
+        p.startsWith('/tts/')) {
+      return true;
+    }
+    if (ct.isEmpty) return false;
+    final isText = ct.startsWith('text/') ||
+        ct.contains('json') ||
+        ct.contains('xml') ||
+        ct.contains('javascript') ||
+        ct.contains('event-stream') ||
+        ct.contains('x-www-form-urlencoded');
+    return !isText;
   }
 
   static bool _isSafeMethod(String method) =>

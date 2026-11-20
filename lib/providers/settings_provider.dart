@@ -1060,6 +1060,38 @@ class SettingsProvider with ChangeNotifier {
     return null;
   }
 
+  /// LM Studio has the selected model in memory with a different context
+  /// window than Model Loading asks for. Chat reuses the loaded copy, so a
+  /// new context length only applies after a reload.
+  ({int loaded, int wanted})? get selectedModelContextMismatch {
+    if (_settings.activeProviderKind != 'lmStudio') return null;
+    final id = _settings.selectedModel;
+    if (id == null || id.isEmpty) return null;
+    final loaded = selectedModelLoadedContextLength;
+    if (loaded == null || loaded <= 0) return null;
+    final wanted = ModelLoadConfigHelper.buildConfig(settingsForModelLoad(id))[
+        'context_length'];
+    if (wanted is! int || wanted <= 0 || wanted == loaded) return null;
+    return (loaded: loaded, wanted: wanted);
+  }
+
+  /// Unload the selected model in LM Studio and load it again with LM Mini's
+  /// Model Loading settings (context length included).
+  Future<bool> reloadSelectedModelWithMiniParams() async {
+    final id = _settings.selectedModel;
+    final model = id == null ? null : resolveLmStudioModel(id);
+    if (model == null) return false;
+    final ok = await _applyLoadConflictAction(
+      ModelLoadConflictAction.reloadWithMiniParams,
+      model,
+    );
+    try {
+      await loadAvailableModels();
+    } catch (_) {}
+    notifyListeners();
+    return ok;
+  }
+
   bool shouldOmitLoadParamsInChat(String modelId) {
     if (modelId.isEmpty) return false;
     if (_useLoadedParamsInChat.contains(modelId)) return true;

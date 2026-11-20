@@ -40,7 +40,19 @@ class ModelDownloadForegroundService : Service() {
         @Volatile
         private var activeJobId: String? = null
 
-        private val cancelFlags = mutableMapOf<String, AtomicBoolean>()
+        private val cancelFlags = java.util.concurrent.ConcurrentHashMap<String, AtomicBoolean>()
+
+        /// Jobs with a download thread in this process. The service outlives
+        /// the Flutter UI: reopening the app re-sends startDownload for a job
+        /// that is still running, which must re-attach instead of starting a
+        /// second writer on the same file.
+        private val runningJobs: MutableSet<String> =
+            java.util.Collections.synchronizedSet(mutableSetOf())
+
+        /// Written next to the partial file once every byte is on disk, so the
+        /// app can finish the job on its next launch when the Flutter UI was
+        /// gone (onComplete lost) — even offline. Holds the file size.
+        fun completeMarkerPath(partialPath: String) = "$partialPath.complete"
 
         fun start(
             context: Context,
@@ -49,7 +61,11 @@ class ModelDownloadForegroundService : Service() {
             url: String,
             partialPath: String,
         ) {
-            cancelFlags[jobId] = AtomicBoolean(false)
+            // Keep a running job's flag: replacing it would make cancel miss
+            // the thread that is still writing.
+            if (!runningJobs.contains(jobId)) {
+                cancelFlags[jobId] = AtomicBoolean(false)
+            }
             activeJobId = jobId
             val intent = Intent(context, ModelDownloadForegroundService::class.java).apply {
                 action = ACTION_START
@@ -107,6 +123,11 @@ class ModelDownloadForegroundService : Service() {
                 promoteToForeground(buildNotification("Starting…", 0))
                 acquireLocks()
 
+                // Already downloading (app reopened mid-download): keep the
+                // running thread; its events reach the new Flutter UI.
+                if (!runningJobs.add(jobId)) {
+                    return START_NOT_STICKY
+                }
                 thread(name = "ModelDownload-$jobId") {
                     runDownload(jobId, displayName, url, partialPath)
                 }
@@ -140,12 +161,18 @@ class ModelDownloadForegroundService : Service() {
         try {
             val partialFile = File(partialPath)
             partialFile.parentFile?.mkdirs()
+            val completeMarker = File(completeMarkerPath(partialPath))
+            completeMarker.delete()
 
             var resolvedUrl = urlString
-            var existingBytes = if (partialFile.exists()) partialFile.length() else 0L
+            var finished = false
 
-            for (redirect in 0 until 6) {
+            for (hop in 0 until 8) {
                 if (cancelFlag.get()) throw CancelledException()
+                // Re-read on every hop: the Range must survive the redirect
+                // (Hugging Face → CDN). Resetting it here used to restart every
+                // resume from zero, over the bytes already downloaded.
+                var existingBytes = if (partialFile.exists()) partialFile.length() else 0L
                 val url = URL(resolvedUrl)
                 val connection = (url.openConnection() as HttpURLConnection).apply {
                     connectTimeout = 30_000
@@ -159,10 +186,24 @@ class ModelDownloadForegroundService : Service() {
                 val code = connection.responseCode
                 when {
                     code in 300..399 -> {
-                        resolvedUrl = connection.getHeaderField("Location")
+                        val location = connection.getHeaderField("Location")
                             ?: throw IllegalStateException("Redirect without location")
+                        resolvedUrl = URL(url, location).toString()
                         connection.disconnect()
-                        existingBytes = 0
+                        continue
+                    }
+
+                    code == 416 && existingBytes > 0 -> {
+                        // Range starts at or past the end: the partial file may
+                        // already be complete (finished while the app was away).
+                        connection.disconnect()
+                        val total = probeTotalBytes(resolvedUrl)
+                        if (total != null && total == existingBytes) {
+                            finished = true
+                            break
+                        }
+                        // Bigger than the file, or size unknown: start over.
+                        partialFile.delete()
                         continue
                     }
 
@@ -238,26 +279,63 @@ class ModelDownloadForegroundService : Service() {
                     }
                 }
                 connection.disconnect()
-                // Final progress tick so UI reaches 100% before complete.
-                ModelDownloadNotifier.notifyProgress(
-                    jobId,
-                    partialFile.length(),
-                    if (bytesTotal > 0) bytesTotal else partialFile.length(),
-                    bytesPerSecond,
-                )
-                ModelDownloadNotifier.notifyComplete(jobId)
+                // A dropped connection also ends the read loop: only a file of
+                // the announced size is finished. The partial stays for resume.
+                if (bytesTotal > 0 && partialFile.length() != bytesTotal) {
+                    throw IllegalStateException(
+                        "Download incomplete (${partialFile.length()} of $bytesTotal bytes)",
+                    )
+                }
+                finished = true
                 break
             }
+
+            if (!finished) throw IllegalStateException("Too many redirects")
+
+            val size = partialFile.length()
+            completeMarker.writeText(size.toString())
+            // Final progress tick so UI reaches 100% before complete.
+            ModelDownloadNotifier.notifyProgress(jobId, size, size, bytesPerSecond)
+            ModelDownloadNotifier.notifyComplete(jobId)
         } catch (e: CancelledException) {
             ModelDownloadNotifier.notifyCancelled(jobId)
         } catch (e: Exception) {
             ModelDownloadNotifier.notifyError(jobId, e.message ?: e.toString())
         } finally {
             cancelFlags.remove(jobId)
+            runningJobs.remove(jobId)
             if (activeJobId == jobId) activeJobId = null
-            releaseLocks()
-            stopForeground(STOP_FOREGROUND_REMOVE)
-            stopSelf()
+            // Another job may still be writing: only the last one stops us.
+            if (runningJobs.isEmpty()) {
+                releaseLocks()
+                stopForeground(STOP_FOREGROUND_REMOVE)
+                stopSelf()
+            }
+        }
+    }
+
+    /// Total size of [urlString] from a one-byte ranged request, or null.
+    private fun probeTotalBytes(urlString: String): Long? {
+        var connection: HttpURLConnection? = null
+        return try {
+            connection = (URL(urlString).openConnection() as HttpURLConnection).apply {
+                connectTimeout = 30_000
+                readTimeout = 30_000
+                instanceFollowRedirects = true
+                setRequestProperty("Range", "bytes=0-0")
+            }
+            when (connection.responseCode) {
+                HttpURLConnection.HTTP_PARTIAL ->
+                    connection.getHeaderField("Content-Range")
+                        ?.substringAfter('/')?.trim()?.toLongOrNull()
+                HttpURLConnection.HTTP_OK ->
+                    connection.contentLengthLong.takeIf { it > 0 }
+                else -> null
+            }
+        } catch (_: Exception) {
+            null
+        } finally {
+            connection?.disconnect()
         }
     }
 

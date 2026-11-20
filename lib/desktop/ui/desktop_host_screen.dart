@@ -761,6 +761,20 @@ class _DesktopHostScreenState extends State<DesktopHostScreen> {
             ),
           ),
         ),
+        const SizedBox(height: 8),
+        GlassSettingsCard(
+          child: _toggleRow(
+            icon: Icons.extension_rounded,
+            title: 'Let my phone install nodes and models and restart ComfyUI',
+            subtitle: _host.allowComfyUiInstall
+                ? 'Anyone with this pairing can install custom-node code on '
+                    'this computer through ComfyUI-Manager.'
+                : 'Off: the phone can generate and browse, but installs and '
+                    'restarts are refused.',
+            value: _host.allowComfyUiInstall,
+            onChanged: _host.setAllowComfyUiInstall,
+          ),
+        ),
       ],
     );
 

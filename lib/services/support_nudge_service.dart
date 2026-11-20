@@ -93,19 +93,24 @@ class SupportNudgeService {
 
       // Check day milestones
       final shownDayMilestones = prefs.getStringList(_shownDayMilestonesKey) ?? [];
-      for (final dayTarget in _dayMilestones) {
-        if (daysUsing >= dayTarget && !shownDayMilestones.contains(dayTarget.toString())) {
-          shownDayMilestones.add(dayTarget.toString());
-          await prefs.setStringList(_shownDayMilestonesKey, shownDayMilestones);
-          await prefs.setString(_lastNudgeDateKey, DateTime.now().toIso8601String());
-          return MilestoneNudge(
-            headline: _dayHeadline(dayTarget),
-            subtitle: _daySubtitle(dayTarget),
-            totalChats: currentChatCount,
-            daysUsing: daysUsing,
-            isDayMilestone: true,
-          );
+      // The nudge can come days after the milestone (one nudge a week, only
+      // after a chat), so the headline names the real time, like the card.
+      final due = _dayMilestones
+          .where((d) => daysUsing >= d && !shownDayMilestones.contains('$d'));
+      if (due.isNotEmpty) {
+        // Passed milestones are spent too, so 30 days doesn't follow 31.
+        for (final d in _dayMilestones.where((d) => daysUsing >= d)) {
+          if (!shownDayMilestones.contains('$d')) shownDayMilestones.add('$d');
         }
+        await prefs.setStringList(_shownDayMilestonesKey, shownDayMilestones);
+        await prefs.setString(_lastNudgeDateKey, DateTime.now().toIso8601String());
+        return MilestoneNudge(
+          headline: dayHeadline(daysUsing),
+          subtitle: _daySubtitle(daysUsing),
+          totalChats: currentChatCount,
+          daysUsing: daysUsing,
+          isDayMilestone: true,
+        );
       }
 
       return null;
@@ -137,12 +142,28 @@ class SupportNudgeService {
     return "You've been putting LM Mini to work!";
   }
 
-  String _dayHeadline(int days) {
-    if (days >= 365) return '🎂 1 year with LM Mini!';
-    if (days >= 180) return '✨ 6 months with LM Mini!';
-    if (days >= 90) return '🌟 3 months with LM Mini!';
-    if (days >= 30) return '🎉 1 month with LM Mini!';
-    return '👋 1 week with LM Mini!';
+  @visibleForTesting
+  static String dayHeadline(int days) {
+    final emoji = days >= 365
+        ? '🎂'
+        : days >= 180
+            ? '✨'
+            : days >= 90
+                ? '🌟'
+                : days >= 30
+                    ? '🎉'
+                    : '👋';
+    return '$emoji ${usageSpan(days)} with LM Mini!';
+  }
+
+  /// "1 week", "2 weeks", "3 months", "1 year": how long someone has used
+  /// the app, for the headline and the dialog's card alike.
+  static String usageSpan(int days) {
+    String unit(int n, String one) => n == 1 ? '1 $one' : '$n ${one}s';
+    if (days >= 365) return unit(days ~/ 365, 'year');
+    if (days >= 30) return unit(days ~/ 30, 'month');
+    if (days >= 7) return unit(days ~/ 7, 'week');
+    return unit(days, 'day');
   }
 
   String _daySubtitle(int days) {

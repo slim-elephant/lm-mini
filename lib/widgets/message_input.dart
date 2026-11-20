@@ -855,6 +855,7 @@ class _MessageInputState extends State<MessageInput> {
   }
 
   Future<void> _pickImage() async {
+    if (!mounted) return;
     final files = await ImagePickerHelper.pickMultipleFromGallery(context);
     if (files.isNotEmpty && mounted) {
       setState(() {
@@ -864,6 +865,8 @@ class _MessageInputState extends State<MessageInput> {
   }
 
   Future<void> _captureImage() async {
+    // The composer can be rebuilt while the attach sheet is open.
+    if (!mounted) return;
     final file = await ImagePickerHelper.captureFromCamera(context);
     if (!mounted) {
       final recovered = file ?? await _firstLostCameraImage();
@@ -883,6 +886,7 @@ class _MessageInputState extends State<MessageInput> {
   }
 
   Future<void> _pickImageFromFiles() async {
+    if (!mounted) return;
     final files = await ImagePickerHelper.pickMultipleFromFiles(context);
     if (files.isNotEmpty && mounted) {
       setState(() {
@@ -892,6 +896,7 @@ class _MessageInputState extends State<MessageInput> {
   }
 
   Future<void> _pickDocument([List<String>? extensions]) async {
+    if (!mounted) return;
     final attachments = await FilePickerHelper.pickDocuments(
       context,
       allowedExtensions: extensions,

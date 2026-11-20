@@ -2,6 +2,40 @@
 
 All notable changes to LM Mini will be documented in this file.
 
+## [1.10.12] - 2026-11-20
+
+**Storage, steadier voice audio, clearer errors**
+
+- Added Storage in Settings (Pro): see how much space chats, models, images and files use, free up leftovers in one tap, or pick exactly what to delete
+- Fixes deleted chats leaving their messages on the device
+- Improved audio in voice chat and read aloud: the app no longer re-configures audio on every turn, which could move the sound from AirPods or headphones to the phone speaker
+- Fixes "Context ran out" on long LM Studio chats that still had room. The message now shows the context LM Studio really has loaded, and can reload the model with your setting
+- Fixes the server address you typed being replaced by one found on your network, and adds Save anyway for a server that is off right now
+- Fixes a model downloaded in the background on Android not showing up when you reopen the app
+- Improved: embedding models are hidden from the chat model list
+- Improved: clearer messages when a server is not the type you picked, when a model asks for a tool it does not have, and when your server is still busy with the previous message
+- Improved: long chats open faster on Apple Watch
+- LM Mini Home: forwards every ComfyUI and A1111 request from Comfy Mini, with a switch for installing nodes and models from your phone
+
+## [1.10.11] - 2026-11-14
+
+**Keep thinking in context**
+
+- Added Keep thinking in context in Model Parameters for LM Studio: turn it off so the thinking from earlier replies isn't sent back with every message, which saves context with models that re-read old thinking
+
+## [1.10.10] - 2026-11-05
+
+**MLX folder import, Pro pricing and unlock fixes**
+
+- Fixes importing an MLX model folder, which failed for every folder outside the app
+- Changed: importing your own model (GGUF or MLX) is free for one model
+- Fixes Pro staying locked after buying until you restarted the app
+- Improved every upgrade dialog shows the same lowest price, the yearly plan per month, in your local currency
+- Fixes the monthly price showing in US dollars outside the US
+- Fixes the usage popup showing a different time in its title and its card
+- Fixes Take photo in the attach menu sometimes crashing
+- Improved Chinese translation, thanks to illava
+
 ## [1.10.8] - 2026-10-28
 
 **About you, image prompt styles, LM Studio and Unsloth fixes**

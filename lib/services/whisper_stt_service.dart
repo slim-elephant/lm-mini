@@ -354,6 +354,17 @@ class WhisperSttService {
         autoGain: useVoiceProcessing,
         echoCancel: useVoiceProcessing,
         noiseSuppress: useVoiceProcessing,
+        // Same options LM Mini's voice mode and the system speech plugin
+        // use (AppDelegate `voiceOptions`), so starting the mic does not
+        // change the session and renegotiate the Bluetooth route.
+        iosConfig: const IosRecordConfig(
+          categoryOptions: [
+            IosAudioCategoryOption.defaultToSpeaker,
+            IosAudioCategoryOption.allowBluetooth,
+            IosAudioCategoryOption.allowBluetoothA2DP,
+            IosAudioCategoryOption.mixWithOthers,
+          ],
+        ),
       ),
     );
     var chunks = 0;

@@ -3669,6 +3669,13 @@ class AppLocalizationsEs extends AppLocalizations {
       'Usa la GPU para recordar el chat de forma más eficiente. Actívalo si tienes GPU.';
 
   @override
+  String get keepThinkingInContext => 'Mantener el pensamiento en el contexto';
+
+  @override
+  String get keepThinkingInContextSubtitle =>
+      'Desactivado: LM Studio solo recibe las respuestas anteriores, así el pensamiento largo no llena el contexto. Las respuestas pueden tardar un poco más en empezar.';
+
+  @override
   String get resizeImageForPhysicalBatch => 'Resize images for physical batch';
 
   @override
@@ -7861,16 +7868,21 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String nudgeProPitch(int count) {
-    return 'Pro añade $count funciones, como búsqueda web, recuerdos y los modelos de tu Mac en tu teléfono. Todo lo demás sigue siendo gratis.';
+    return 'Pro añade $count funciones, como búsqueda web, recuerdos y acceso remoto a tus modelos desde cualquier lugar, no solo en el wifi de casa. Todo lo demás sigue siendo gratis.';
   }
 
   @override
   String get nudgeProPitchShort =>
-      'Pro añade búsqueda web, recuerdos y los modelos de tu Mac en tu teléfono. Todo lo demás sigue siendo gratis.';
+      'Pro añade búsqueda web, recuerdos y acceso remoto a tus modelos desde cualquier lugar, no solo en el wifi de casa. Todo lo demás sigue siendo gratis.';
 
   @override
-  String nudgeFromPrice(String price) {
-    return 'Desde $price al mes con pago anual';
+  String nudgeGetProPerMonth(String price) {
+    return 'Pro por $price/mes';
+  }
+
+  @override
+  String nudgeBilledYearly(String price) {
+    return 'Facturación anual: $price';
   }
 
   @override
@@ -7903,4 +7915,194 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get aboutYouAboutHint =>
       'Por ejemplo: a qué te dedicas, qué te gusta, cómo quieres las respuestas.';
+
+  @override
+  String get storage => 'Almacenamiento';
+
+  @override
+  String get storageSettingsSubtitle => 'Mira qué ocupa espacio y límpialo';
+
+  @override
+  String get storageUsedByApp => 'Usado por LM Mini en este dispositivo';
+
+  @override
+  String get storageMeasuring => 'Midiendo…';
+
+  @override
+  String storageFreeUpTitle(String size) {
+    return 'Liberar $size';
+  }
+
+  @override
+  String get storageFreeUpBody =>
+      'Restos de chats eliminados, archivos sin usar y archivos temporales. Tus chats, modelos y personas no cambian.';
+
+  @override
+  String get storageCleanUp => 'Limpiar';
+
+  @override
+  String storageFreed(String size) {
+    return 'Se liberaron $size';
+  }
+
+  @override
+  String get storageAllClean => 'No hay nada que limpiar';
+
+  @override
+  String get storageWhatTakesSpace => 'Qué ocupa espacio';
+
+  @override
+  String get storageSectionChats => 'Chats';
+
+  @override
+  String get storageSectionModels => 'Modelos en el dispositivo';
+
+  @override
+  String get storageSectionImageModels => 'Modelos de imagen';
+
+  @override
+  String get storageSectionVoices => 'Voces';
+
+  @override
+  String get storageSectionSpeech => 'Reconocimiento de voz';
+
+  @override
+  String get storageSectionGeneratedImages => 'Imágenes generadas';
+
+  @override
+  String get storageSectionAttachments => 'Archivos adjuntos';
+
+  @override
+  String get storageSectionTranscriptions => 'Grabaciones de transcripción';
+
+  @override
+  String get storageSectionLeftovers => 'Restos';
+
+  @override
+  String get storageSectionTemporary => 'Archivos temporales';
+
+  @override
+  String get storageAboutChats =>
+      'Mensajes y las fotos enviadas en ellos. Al eliminar un chat se borra de este dispositivo para siempre.';
+
+  @override
+  String get storageAboutModels =>
+      'Modelos de IA descargados para usarse en este dispositivo. Puedes volver a descargarlos.';
+
+  @override
+  String get storageAboutImageModels =>
+      'Modelos para crear imágenes en este dispositivo. Puedes volver a descargarlos.';
+
+  @override
+  String get storageAboutVoices =>
+      'Paquetes de voz para leer respuestas en voz alta. Puedes volver a descargarlos en Ajustes de voz.';
+
+  @override
+  String get storageAboutSpeech =>
+      'Modelos que convierten tu voz en texto. Puedes volver a descargarlos en Ajustes de voz.';
+
+  @override
+  String get storageAboutGeneratedImages =>
+      'Imágenes y vídeos creados en tus chats. Al eliminar uno se borra la imagen; el texto del chat se queda.';
+
+  @override
+  String get storageAboutAttachments =>
+      'Documentos que adjuntaste a los mensajes. El chat conserva el texto leído de ellos.';
+
+  @override
+  String get storageAboutTranscriptions =>
+      'Audio guardado con tus transcripciones. Al eliminar uno también se borra su transcripción.';
+
+  @override
+  String get storageAboutLeftovers =>
+      'Datos que ya no usa nada en la app. Se pueden eliminar sin riesgo.';
+
+  @override
+  String get storageAboutTemporary =>
+      'Archivos creados al exportar, leer respuestas o informar de errores. Se pueden eliminar sin riesgo.';
+
+  @override
+  String get storageItemDeletedChatMessages => 'Mensajes de chats eliminados';
+
+  @override
+  String get storageItemUnusedAttachments => 'Archivos de mensajes eliminados';
+
+  @override
+  String get storageItemUnusedImages => 'Imágenes que ya no se usan';
+
+  @override
+  String get storageItemModelLeftovers => 'Archivos de modelos eliminados';
+
+  @override
+  String get storageItemExports => 'Chats exportados';
+
+  @override
+  String get storageItemErrorLogs => 'Registros de errores';
+
+  @override
+  String get storageItemSpeechAudio => 'Audio de respuestas leídas';
+
+  @override
+  String get storageItemOtherTemp => 'Otros archivos temporales';
+
+  @override
+  String get storageUnfinishedDownload => 'Descarga sin terminar';
+
+  @override
+  String storageMessageCount(int count) {
+    return 'Mensajes: $count';
+  }
+
+  @override
+  String storageFileCount(int count) {
+    return 'Archivos: $count';
+  }
+
+  @override
+  String storageItemCount(int count) {
+    return 'Elementos: $count';
+  }
+
+  @override
+  String storageDeleteSelected(String size) {
+    return 'Eliminar $size';
+  }
+
+  @override
+  String storageDeleteConfirmTitle(int count) {
+    return '¿Eliminar $count elementos?';
+  }
+
+  @override
+  String storageDeleteConfirmBody(String size) {
+    return 'Esto libera $size. No se puede deshacer.';
+  }
+
+  @override
+  String get storageEmptySection => 'Aquí no hay nada';
+
+  @override
+  String get premiumStorage => 'Almacenamiento';
+
+  @override
+  String get premiumStorageTagline => 'Mira y libera espacio';
+
+  @override
+  String get premiumStorageDescription =>
+      'Mira cuánto ocupan tus chats, modelos, imágenes y archivos, y elimina todo o solo lo que elijas.';
+
+  @override
+  String get teaserStorageTitle => 'Descubre qué llena tu dispositivo';
+
+  @override
+  String get teaserStoragePoint1 =>
+      'Mira el espacio que usan chats, modelos, imágenes y archivos';
+
+  @override
+  String get teaserStoragePoint2 =>
+      'Limpia restos y archivos temporales con un toque';
+
+  @override
+  String get teaserStoragePoint3 =>
+      'Elige exactamente qué eliminar, lo más grande primero';
 }

@@ -31,16 +31,53 @@ class ContextTurn {
   const ContextTurn({required this.role, required this.text});
 }
 
-/// Client-side packing so a cold V1 send stays under ~90% of loaded context.
+/// Client-side packing so a cold V1 send stays under ~80% of loaded context.
 class ContextFit {
   ContextFit._();
 
-  /// Leave 10% of the window for the new user turn + a short reply.
-  static const double fitFraction = 0.90;
+  /// Leave 20% of the window: room for the new user turn and a short
+  /// reply, and for [estimateTokens] being up to ~1.2× low.
+  static const double fitFraction = 0.80;
 
+  /// Tokens [text] is likely to cost, without a tokenizer.
+  ///
+  /// Weighted by kind of character, calibrated against LM Studio's own
+  /// counts (Qwen and Gemma tokenizers) on prose, Markdown, code, JSON,
+  /// numbers, URLs, emoji and eight languages. Plain "characters ÷ 4" was
+  /// right for English prose but up to 3.4× too low for digits, Markdown,
+  /// emoji and CJK, so history packed "to 90%" could overflow the window.
+  /// This stays within about 1.2× of the real count, erring high.
   static int estimateTokens(String text) {
     if (text.isEmpty) return 0;
-    return (text.length / 4).ceil();
+    var total = 0.0;
+    for (final cu in text.codeUnits) {
+      if (cu < 0x80) {
+        if ((cu >= 0x61 && cu <= 0x7A) || (cu >= 0x41 && cu <= 0x5A)) {
+          total += 0.26; // ASCII letters
+        } else if (cu == 0x20 || (cu >= 0x09 && cu <= 0x0D)) {
+          total += 0.20; // whitespace
+        } else if (cu >= 0x30 && cu <= 0x39) {
+          total += 1.0; // digits tokenise almost one by one
+        } else {
+          total += 0.85; // punctuation and symbols
+        }
+      } else if (cu >= 0xD800 && cu <= 0xDFFF) {
+        total += 1.0; // half of an emoji / astral character
+      } else if (cu < 0x250) {
+        total += 0.65; // accented Latin
+      } else if ((cu >= 0x2000 && cu <= 0x2BFF) ||
+          (cu >= 0xFE00 && cu <= 0xFE0F)) {
+        total += 1.0; // dashes, arrows, symbols, emoji modifiers
+      } else if ((cu >= 0x2E80 && cu <= 0x9FFF) ||
+          (cu >= 0xAC00 && cu <= 0xD7AF) ||
+          (cu >= 0xF900 && cu <= 0xFAFF) ||
+          (cu >= 0xFF00 && cu <= 0xFFEF)) {
+        total += 0.75; // Chinese, Japanese, Korean
+      } else {
+        total += 0.45; // Cyrillic, Greek, Arabic, Hebrew, …
+      }
+    }
+    return total.ceil();
   }
 
   static int budgetFor(int loadedContextTokens) {

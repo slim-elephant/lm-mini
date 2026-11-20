@@ -3,6 +3,8 @@ import 'dart:ui' show Locale, PlatformDispatcher;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
+import 'app_audio_session.dart';
+
 /// Voice-call session helper (CallKit on iOS when restored).
 ///
 /// **Disabled for App Store / China MIIT:** `flutter_callkit_incoming` is not
@@ -17,8 +19,6 @@ import 'package:flutter/services.dart';
 class CallService {
   CallService._();
   static final CallService instance = CallService._();
-
-  static const _audioChannel = MethodChannel('net.neuro9.lmmini/audio_session');
 
   /// Master switch. Keep `false` until native CallKit is restored.
   static const bool callKitFeatureEnabled = false;
@@ -70,52 +70,19 @@ class CallService {
     _currentCallId = null;
   }
 
-  /// Configure the native AVAudioSession for voice chat.
-  Future<bool> configureAudioSessionForVoiceChat() async {
-    if (!Platform.isIOS) return true;
-    try {
-      final result =
-          await _audioChannel.invokeMethod<bool>('configureForVoiceChat');
-      return result ?? false;
-    } catch (e) {
-      debugPrint('CallService: configureAudioSession error: $e');
-      return false;
-    }
-  }
+  /// Configure the native AVAudioSession for voice chat (call mode).
+  Future<bool> configureAudioSessionForVoiceChat() =>
+      AppAudioSession.instance.enterVoiceMode(callMode: true);
 
   /// Dictation-quality recognition (`.default` mode, not `.voiceChat`).
-  Future<bool> configureAudioSessionForDictation() async {
-    if (!Platform.isIOS) return true;
-    try {
-      final result =
-          await _audioChannel.invokeMethod<bool>('configureForDictation');
-      return result ?? false;
-    } catch (e) {
-      debugPrint('CallService: configureForDictation error: $e');
-      return false;
-    }
-  }
+  Future<bool> configureAudioSessionForDictation() =>
+      AppAudioSession.instance.enterVoiceMode(callMode: false);
 
-  Future<bool> activateAudioSessionForRecording() async {
-    if (!Platform.isIOS) return true;
-    try {
-      final result =
-          await _audioChannel.invokeMethod<bool>('activateForRecording');
-      return result ?? false;
-    } catch (e) {
-      debugPrint('CallService: activateForRecording error: $e');
-      return false;
-    }
-  }
+  Future<bool> activateAudioSessionForRecording() =>
+      AppAudioSession.instance.prepareForRecording();
 
-  Future<void> deactivateAudioSession() async {
-    if (!Platform.isIOS) return;
-    try {
-      await _audioChannel.invokeMethod<bool>('deactivate');
-    } catch (e) {
-      debugPrint('CallService: deactivateAudioSession error: $e');
-    }
-  }
+  Future<void> deactivateAudioSession() =>
+      AppAudioSession.instance.leaveVoiceMode();
 
   void dispose() {
     _currentCallId = null;

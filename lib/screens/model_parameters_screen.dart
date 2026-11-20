@@ -37,6 +37,7 @@ class _ModelParametersScreenState extends State<ModelParametersScreen> {
     final cs = Theme.of(context).colorScheme;
     final entries = <(String, String)>[
       (l10n.reasoningMode, l10n.reasoningHelp),
+      (l10n.keepThinkingInContext, l10n.keepThinkingInContextSubtitle),
       (l10n.maxOutputTokens, l10n.maxOutputTokensSubtitle),
       (l10n.loadContextLength, l10n.loadContextSubtitle),
       if (ProFeatures.included)

@@ -12,18 +12,64 @@ class SubscriptionPricing {
   /// Default annual for new subscribers.
   static const fallbackAnnualUsd = r'$29.99';
 
-  /// Win-back / comeback monthly (one promotional period in ASC / Play offers).
-  static const fallbackWinBackMonthlyUsd = r'$1.99';
-
   /// One-time lifetime unlock for new subscribers.
   static const fallbackLifetimeUsd = r'$119.99';
 
-  /// Best-effort parse of a leading decimal amount from a localized price string.
+  static final _number = RegExp(r"\d(?:[\d.,'\u00a0\u202f ]*\d)?");
+
+  /// Amount in a store price string: "$29.99", "29,99 €", "Rs 8,900",
+  /// "1.299,00 kr", "¥4,500". A separator followed by exactly two digits at
+  /// the end is the decimal point; every other separator groups thousands.
   static double? parseAmount(String? priceString) {
-    if (priceString == null || priceString.isEmpty) return null;
-    final match = RegExp(r'(\d+[.,]\d{2})').firstMatch(priceString);
-    if (match == null) return null;
-    return double.tryParse(match.group(1)!.replaceAll(',', '.'));
+    final m = _number.firstMatch(priceString ?? '');
+    if (m == null) return null;
+    final (whole, cents, _, _) = _split(m[0]!);
+    return double.tryParse('$whole.${cents ?? '0'}');
+  }
+
+  /// The yearly price as a monthly amount in the same currency and style:
+  /// "$29.99" → "$2.50", "Rs 8,900" → "Rs 742", "29,99 €" → "2,50 €".
+  /// [amount] is the store's numeric price, used when it's known.
+  static String? perMonth(String annualPrice, {double? amount}) {
+    final m = _number.firstMatch(annualPrice);
+    if (m == null) return null;
+    final (_, cents, decimalSep, groupSep) = _split(m[0]!);
+    final annual = amount ?? parseAmount(annualPrice);
+    if (annual == null || annual <= 0) return null;
+    final monthly = annual / 12;
+    final String text;
+    if (cents != null) {
+      final fixed = ((monthly * 100).round() / 100).toStringAsFixed(2);
+      final parts = fixed.split('.');
+      text = '${_group(parts[0], groupSep)}$decimalSep${parts[1]}';
+    } else {
+      text = _group(monthly.round().toString(), groupSep);
+    }
+    return annualPrice.replaceRange(m.start, m.end, text);
+  }
+
+  /// (whole digits, cents or null, decimal separator, grouping separator).
+  static (String, String?, String, String) _split(String number) {
+    final dec = RegExp(r'[.,](\d{2})$').firstMatch(number);
+    final wholePart = dec == null ? number : number.substring(0, dec.start);
+    final groupMatch = RegExp(r"[.,'\u00a0\u202f ]").firstMatch(wholePart);
+    final decimalSep = dec == null ? '.' : number[dec.start];
+    final groupSep = groupMatch?[0] ?? (decimalSep == ',' ? '.' : ',');
+    return (
+      wholePart.replaceAll(RegExp(r'\D'), ''),
+      dec?[1],
+      decimalSep,
+      groupSep,
+    );
+  }
+
+  static String _group(String digits, String sep) {
+    final out = StringBuffer();
+    for (var i = 0; i < digits.length; i++) {
+      if (i > 0 && (digits.length - i) % 3 == 0) out.write(sep);
+      out.write(digits[i]);
+    }
+    return out.toString();
   }
 
   /// e.g. monthly \$4.99 × 12 vs annual \$29.99 → "-50%".

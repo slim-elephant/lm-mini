@@ -83,6 +83,11 @@ class _ServerConnectSheetState extends State<_ServerConnectSheet> {
   bool _scanning = false;
   List<DiscoveredLmStudioServer> _discovered = const [];
   bool _fromDiscovery = false;
+  bool _urlEdited = false;
+
+  /// Set when the connection test fails: the user may store the address
+  /// anyway (server off, asleep or off the VPN right now).
+  bool _offerSaveAnyway = false;
 
   static const _uuid = Uuid();
 
@@ -341,9 +346,11 @@ class _ServerConnectSheetState extends State<_ServerConnectSheet> {
       _discovered = matches;
       _scanning = scanning;
       if (matches.isNotEmpty &&
-          (widget.existing == null ||
-              _urlController.text.trim().isEmpty ||
-              _urlController.text == _defaultUrl)) {
+          shouldAutofillDiscoveredUrl(
+            userEdited: _urlEdited,
+            current: _urlController.text,
+            defaultUrl: _defaultUrl,
+          )) {
         _urlController.text = matches.first.url;
         _fromDiscovery = true;
       }
@@ -379,7 +386,7 @@ class _ServerConnectSheetState extends State<_ServerConnectSheet> {
     );
   }
 
-  Future<void> _connect() async {
+  Future<void> _connect({bool skipTest = false}) async {
     final urlRaw = _urlController.text.trim();
     final url = _needsUrl ? _normalizeUrl(urlRaw) : urlRaw;
     final key = _keyController.text.trim();
@@ -403,6 +410,7 @@ class _ServerConnectSheetState extends State<_ServerConnectSheet> {
       _saving = true;
       _status = null;
       _success = false;
+      _offerSaveAnyway = false;
     });
 
     final settings = context.read<SettingsProvider>();
@@ -411,11 +419,12 @@ class _ServerConnectSheetState extends State<_ServerConnectSheet> {
         settings.settings.serverUrl;
     final previousImageUrl = settings.settings.imageGenServerUrl;
     try {
-      final ok = await _testConnection(url: url, key: key);
+      final ok = skipTest || await _testConnection(url: url, key: key);
       if (!mounted) return;
       if (!ok) {
         setState(() {
           _success = false;
+          _offerSaveAnyway = true;
           _status ??=
               'Couldn’t connect. Check the details and that the server is running.';
         });
@@ -430,6 +439,11 @@ class _ServerConnectSheetState extends State<_ServerConnectSheet> {
       final activated = await settings.saveAndActivateServerProfile(profile);
       if (!mounted) return;
 
+      if (skipTest) {
+        // Stored without a test; nothing to verify or offer to sync.
+        Navigator.pop(context, true);
+        return;
+      }
       if (activated) {
         setState(() {
           _success = true;
@@ -460,6 +474,7 @@ class _ServerConnectSheetState extends State<_ServerConnectSheet> {
       if (!mounted) return;
       setState(() {
         _success = false;
+        _offerSaveAnyway = true;
         _status = 'Couldn’t connect. $e';
       });
     } finally {
@@ -692,6 +707,9 @@ class _ServerConnectSheetState extends State<_ServerConnectSheet> {
                         keyboardType: TextInputType.url,
                         autocorrect: false,
                         onChanged: (_) {
+                          // What the user types is theirs: scan results
+                          // that arrive later must not replace it.
+                          _urlEdited = true;
                           if (_fromDiscovery) {
                             setState(() => _fromDiscovery = false);
                           }
@@ -865,7 +883,7 @@ class _ServerConnectSheetState extends State<_ServerConnectSheet> {
                   ],
                   const SizedBox(height: 20),
                   FilledButton(
-                    onPressed: _saving ? null : _connect,
+                    onPressed: _saving ? null : () => _connect(),
                     style: FilledButton.styleFrom(
                       minimumSize: const Size.fromHeight(48),
                       shape: RoundedRectangleBorder(
@@ -882,6 +900,17 @@ class _ServerConnectSheetState extends State<_ServerConnectSheet> {
                             widget.existing != null ? 'Save' : 'Connect',
                           ),
                   ),
+                  if (_offerSaveAnyway) ...[
+                    const SizedBox(height: 8),
+                    TextButton(
+                      onPressed:
+                          _saving ? null : () => _connect(skipTest: true),
+                      style: TextButton.styleFrom(
+                        minimumSize: const Size.fromHeight(44),
+                      ),
+                      child: const Text('Save anyway'),
+                    ),
+                  ],
                   if (widget.existing != null) ...[
                     const SizedBox(height: 8),
                     TextButton(
@@ -1193,4 +1222,19 @@ class _DiscoverySection extends StatelessWidget {
       ),
     );
   }
+}
+
+/// Whether a server found by the network scan may be written into the
+/// address field. Only while the field is untouched: empty or still the
+/// placeholder default. The scan reports several times as it runs, and it
+/// used to replace an address the user had already typed (for example a
+/// Tailscale IP) with the first LAN server it found.
+bool shouldAutofillDiscoveredUrl({
+  required bool userEdited,
+  required String current,
+  required String defaultUrl,
+}) {
+  if (userEdited) return false;
+  final text = current.trim();
+  return text.isEmpty || text == defaultUrl;
 }

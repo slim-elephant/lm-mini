@@ -32,6 +32,7 @@ abstract final class SettingsNavId {
   static const dataAboutYou = 'data.aboutYou';
   static const dataMemory = 'data.memory';
   static const dataAppLock = 'data.appLock';
+  static const dataStorage = 'data.storage';
   static const advanced = 'advanced';
   static const advancedTools = 'advanced.tools';
   static const legal = 'legal';
@@ -287,6 +288,12 @@ List<SettingsNavGroup> buildSettingsNavTree(
           SettingsNavLeaf(
             id: SettingsNavId.dataAppLock,
             label: l10n.appLock,
+            kind: SettingsNavKind.screen,
+          ),
+        if (isPremium)
+          SettingsNavLeaf(
+            id: SettingsNavId.dataStorage,
+            label: l10n.storage,
             kind: SettingsNavKind.screen,
           ),
       ],

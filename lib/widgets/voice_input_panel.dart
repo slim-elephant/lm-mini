@@ -5,6 +5,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:provider/provider.dart';
+import '../services/app_audio_session.dart';
 import '../providers/chat_provider.dart';
 import '../providers/settings_provider.dart';
 import '../models/app_settings.dart';
@@ -280,8 +281,10 @@ class _VoiceInputPanelState extends State<VoiceInputPanel>
       // the session in playback-only mode before the first listen attempt.
       // Use dictation mode (not .voiceChat) for best recognition accuracy;
       // call mode reconfigures to .voiceChat via _toggleCallMode.
-      if (Platform.isIOS && settings.voiceSttProvider == 'system') {
-        if (settings.voiceCallMode) {
+      if (Platform.isIOS) {
+        // One audio setup for the whole voice chat, whichever speech
+        // recognition is used; replies play in it too.
+        if (settings.voiceSttProvider == 'system' && settings.voiceCallMode) {
           await _callService.configureAudioSessionForVoiceChat();
         } else {
           await _callService.configureAudioSessionForDictation();
@@ -792,6 +795,9 @@ class _VoiceInputPanelState extends State<VoiceInputPanel>
     // Stop mic after unsubscribing so status events don't hit this State.
     _stt.stopListening();
     _beepPlayer?.dispose();
+    // Voice chat over: back to listening mode so read aloud is not left
+    // running in mic mode.
+    unawaited(AppAudioSession.instance.leaveVoiceMode());
 
     // Clear voice mode flag so auto image generation resumes normally.
     // Do not use context.read here — the element is deactivated during dispose.
@@ -855,6 +861,10 @@ class _VoiceInputPanelState extends State<VoiceInputPanel>
       chatProvider.setVoiceCallConversationId(null);
       await _callService.endCall();
       await _callService.deactivateAudioSession();
+      // Still in the voice chat: stay in (non-call) voice mode.
+      if (Platform.isIOS) {
+        await _callService.configureAudioSessionForDictation();
+      }
       if (!mounted) return;
       settingsProvider.updateVoiceCallMode(false);
       _sttConsecutiveFailures = 0;

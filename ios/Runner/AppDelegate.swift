@@ -32,6 +32,7 @@ struct LMChatActivityAttributes: ActivityAttributes {
   private var moeStreamBridge: MoeStreamBridge?
   private var onDeviceSdBridge: OnDeviceSdBridge?
   private var lanHostnameLookup: LanHostnameLookup?
+  private var mlxFolderImport: MlxFolderImport?
   
   override func application(
     _ application: UIApplication,
@@ -96,6 +97,8 @@ struct LMChatActivityAttributes: ActivityAttributes {
       onDeviceSdBridge = OnDeviceSdBridge(messenger: controller.binaryMessenger)
 
       lanHostnameLookup = LanHostnameLookup(messenger: controller.binaryMessenger)
+      mlxFolderImport = MlxFolderImport(
+        messenger: controller.binaryMessenger, presenter: controller)
 
       BackgroundDownloadManager.shared.bind(messenger: controller.binaryMessenger)
 
@@ -376,100 +379,189 @@ struct LMChatActivityAttributes: ActivityAttributes {
     }
   }
   
-  // MARK: - Audio Session Management for CallKit Voice Chat
-  
+  // MARK: - Audio session (single owner)
+  //
+  // LM Mini is the only code that decides how the shared AVAudioSession is
+  // set up. Two modes:
+  //   - listening (read aloud): `.playback`
+  //   - voice (mic + replies): `.playAndRecord`
+  // The speech-recognition and recorder plugins set `.playAndRecord` with
+  // the same options as `voiceOptions` on every listen, so nothing flips
+  // between turns. Flipping made iOS renegotiate the Bluetooth profile each
+  // turn, and with `.defaultToSpeaker` a missed negotiation sent the reply
+  // to the loudspeaker while AirPods stayed connected.
+
+  private enum AudioMode: String { case listening, dictation, voiceChat }
+
+  /// What Dart last asked for. Re-applied by `reassert`.
+  private var desiredAudioMode: AudioMode = .listening
+  private var routeObserverInstalled = false
+  private var lastRouteRecovery = Date.distantPast
+  private var routeRecoveries = 0
+
+  /// Same set the speech_to_text plugin uses, so a listen changes nothing.
+  private let voiceOptions: AVAudioSession.CategoryOptions = [
+    .defaultToSpeaker, .allowBluetooth, .allowBluetoothA2DP, .mixWithOthers,
+  ]
+
   private func handleAudioSessionCall(call: FlutterMethodCall, result: @escaping FlutterResult) {
+    installRouteObserverIfNeeded()
     switch call.method {
     case "configureForVoiceChat":
-      configureAudioSessionForVoiceChat(result: result)
+      applyAudioMode(.voiceChat, activate: true, result: result)
     case "configureForDictation":
-      configureAudioSessionForDictation(result: result)
-    case "activateForRecording":
-      activateAudioSessionForRecording(result: result)
+      applyAudioMode(.dictation, activate: true, result: result)
+    case "configureForPlayback":
+      applyAudioMode(.listening, activate: true, result: result)
+    case "activateForRecording", "reassert":
+      // Recording needs a voice mode; keep call mode if that is what is on.
+      let mode: AudioMode =
+        desiredAudioMode == .listening ? .dictation : desiredAudioMode
+      applyAudioMode(mode, activate: true, result: result)
     case "deactivate":
       deactivateAudioSession(result: result)
     default:
       result(FlutterMethodNotImplemented)
     }
   }
-  
-  /// Configure AVAudioSession for voice chat with CallKit.
-  /// Sets .playAndRecord category with .voiceChat mode so both
-  /// TTS playback and STT recording work, including in background.
-  private func configureAudioSessionForVoiceChat(result: @escaping FlutterResult) {
-    let session = AVAudioSession.sharedInstance()
-    do {
-      try session.setCategory(
-        .playAndRecord,
-        mode: .voiceChat,
-        options: [.defaultToSpeaker, .allowBluetooth, .mixWithOthers]
-      )
-      try session.setActive(true, options: [])
-      debugPrint("AudioSession: Configured for voice chat (playAndRecord + voiceChat)")
-      result(true)
-    } catch {
-      debugPrint("AudioSession: Failed to configure: \(error)")
-      result(FlutterError(code: "AUDIO_SESSION_ERROR", message: error.localizedDescription, details: nil))
-    }
-  }
-  
-  /// Configure AVAudioSession for dictation-quality speech recognition.
-  ///
-  /// Unlike `.voiceChat` (which applies VoIP-grade AEC/AGC tuned for a phone
-  /// call and noticeably degrades on-device dictation), this uses `.default`
-  /// mode — the same processing profile Apple's Dictation keyboard relies on —
-  /// so system speech recognition is as accurate inside the app as it is
-  /// system-wide. Used for plain voice mode (non–call-mode).
-  private func configureAudioSessionForDictation(result: @escaping FlutterResult) {
-    let session = AVAudioSession.sharedInstance()
-    do {
-      try session.setCategory(
-        .playAndRecord,
-        mode: .default,
-        options: [.defaultToSpeaker, .allowBluetooth, .allowBluetoothA2DP]
-      )
-      try session.setActive(true, options: [])
-      debugPrint("AudioSession: Configured for dictation (playAndRecord + default)")
-      result(true)
-    } catch {
-      debugPrint("AudioSession: Failed to configure for dictation: \(error)")
-      result(FlutterError(code: "AUDIO_SESSION_ERROR", message: error.localizedDescription, details: nil))
+
+  private func audioSettings(for mode: AudioMode)
+    -> (AVAudioSession.Category, AVAudioSession.Mode, AVAudioSession.CategoryOptions)
+  {
+    switch mode {
+    case .listening:
+      return (.playback, .default, [.mixWithOthers])
+    case .dictation:
+      // `.default` mode: the processing Apple's Dictation uses, for accuracy.
+      return (.playAndRecord, .default, voiceOptions)
+    case .voiceChat:
+      // `.voiceChat`: echo cancellation so the mic does not hear the reply.
+      return (.playAndRecord, .voiceChat, voiceOptions)
     }
   }
 
-  /// Re-activate the audio session for recording (STT).
-  /// Call this before starting speech recognition, especially after
-  /// TTS playback finishes which may have changed the session state.
-  private func activateAudioSessionForRecording(result: @escaping FlutterResult) {
+  /// Sets the session for [mode]. Does nothing when it is already set that
+  /// way, so the Bluetooth route is not renegotiated for no reason.
+  private func applyAudioMode(_ mode: AudioMode, activate: Bool, result: FlutterResult?) {
     let session = AVAudioSession.sharedInstance()
+    let (category, sessionMode, options) = audioSettings(for: mode)
+    desiredAudioMode = mode
     do {
-      // Re-set category to ensure it's in playAndRecord mode
-      // (TTS plugins sometimes switch to .playback)
-      try session.setCategory(
-        .playAndRecord,
-        mode: .voiceChat,
-        options: [.defaultToSpeaker, .allowBluetooth, .mixWithOthers]
-      )
-      try session.setActive(true, options: [])
-      debugPrint("AudioSession: Activated for recording")
-      result(true)
+      let same =
+        session.category == category && session.mode == sessionMode
+        && session.categoryOptions == options
+      if !same {
+        try session.setCategory(category, mode: sessionMode, options: options)
+        reportAudio("set \(mode.rawValue)")
+      }
+      if activate {
+        try session.setActive(true, options: [])
+      }
+      result?(true)
     } catch {
-      debugPrint("AudioSession: Failed to activate for recording: \(error)")
-      result(FlutterError(code: "AUDIO_SESSION_ERROR", message: error.localizedDescription, details: nil))
+      reportAudio("failed to set \(mode.rawValue): \(error.localizedDescription)")
+      result?(
+        FlutterError(
+          code: "AUDIO_SESSION_ERROR", message: error.localizedDescription, details: nil))
     }
   }
-  
-  /// Deactivate the audio session (when leaving call mode).
+
+  /// Voice mode ended: let other apps resume, and go back to listening mode
+  /// so read aloud does not keep running in mic mode.
   private func deactivateAudioSession(result: @escaping FlutterResult) {
     let session = AVAudioSession.sharedInstance()
     do {
       try session.setActive(false, options: [.notifyOthersOnDeactivation])
-      debugPrint("AudioSession: Deactivated")
-      result(true)
     } catch {
-      debugPrint("AudioSession: Failed to deactivate: \(error)")
-      // Don't fail — deactivation errors are non-critical
-      result(true)
+      // Still playing or recording: not critical.
+      reportAudio("deactivate skipped: \(error.localizedDescription)")
+    }
+    applyAudioMode(.listening, activate: false, result: nil)
+    result(true)
+  }
+
+  private func installRouteObserverIfNeeded() {
+    if routeObserverInstalled { return }
+    routeObserverInstalled = true
+    NotificationCenter.default.addObserver(
+      self,
+      selector: #selector(audioRouteChanged(_:)),
+      name: AVAudioSession.routeChangeNotification,
+      object: nil
+    )
+  }
+
+  private func portNames(_ ports: [AVAudioSessionPortDescription]) -> String {
+    if ports.isEmpty { return "none" }
+    return ports.map { $0.portType.rawValue }.joined(separator: "+")
+  }
+
+  private func routeReasonName(_ raw: UInt?) -> String {
+    guard let raw = raw, let reason = AVAudioSession.RouteChangeReason(rawValue: raw) else {
+      return "unknown"
+    }
+    switch reason {
+    case .newDeviceAvailable: return "newDevice"
+    case .oldDeviceUnavailable: return "deviceGone"
+    case .categoryChange: return "categoryChange"
+    case .override: return "override"
+    case .wakeFromSleep: return "wake"
+    case .noSuitableRouteForCategory: return "noRoute"
+    case .routeConfigurationChange: return "configChange"
+    default: return "unknown"
+    }
+  }
+
+  /// Sends one line to the Dart log, so error reports show what the audio
+  /// route did.
+  private func reportAudio(_ message: String) {
+    let session = AVAudioSession.sharedInstance()
+    let line =
+      "\(message) | out=\(portNames(session.currentRoute.outputs)) "
+      + "in=\(portNames(session.currentRoute.inputs)) "
+      + "category=\(session.category.rawValue) mode=\(session.mode.rawValue) "
+      + "options=\(session.categoryOptions.rawValue) want=\(desiredAudioMode.rawValue)"
+    DispatchQueue.main.async { [weak self] in
+      self?.audioSessionChannel?.invokeMethod("log", arguments: line)
+    }
+  }
+
+  @objc private func audioRouteChanged(_ note: Notification) {
+    let reasonRaw = note.userInfo?[AVAudioSessionRouteChangeReasonKey] as? UInt
+    let previous =
+      note.userInfo?[AVAudioSessionRouteChangePreviousRouteKey] as? AVAudioSessionRouteDescription
+    let reason = routeReasonName(reasonRaw)
+    reportAudio("route \(reason), was \(portNames(previous?.outputs ?? []))")
+    DispatchQueue.main.async { [weak self] in
+      self?.returnToHeadsetIfDropped(reason: reason)
+    }
+  }
+
+  /// In voice mode, a category change can leave the reply on the built-in
+  /// speaker while a Bluetooth or wired headset is still connected. Pick
+  /// the headset again. Not done when the user chose the speaker themselves
+  /// (that arrives as `override`).
+  private func returnToHeadsetIfDropped(reason: String) {
+    guard reason == "categoryChange" || reason == "configChange" else { return }
+    let session = AVAudioSession.sharedInstance()
+    guard session.category == .playAndRecord else { return }
+    let builtIn: Set<AVAudioSession.Port> = [.builtInSpeaker, .builtInReceiver]
+    let outputs = session.currentRoute.outputs
+    guard !outputs.isEmpty, outputs.allSatisfy({ builtIn.contains($0.portType) }) else { return }
+    let headsetInputs: Set<AVAudioSession.Port> = [.bluetoothHFP, .bluetoothLE, .headsetMic, .usbAudio]
+    guard
+      let headset = session.availableInputs?.first(where: { headsetInputs.contains($0.portType) })
+    else { return }
+    // Never loop: at most one attempt every 3 seconds, 5 per app run.
+    let now = Date()
+    guard now.timeIntervalSince(lastRouteRecovery) > 3, routeRecoveries < 5 else { return }
+    lastRouteRecovery = now
+    routeRecoveries += 1
+    do {
+      try session.setPreferredInput(headset)
+      reportAudio("returned to \(headset.portType.rawValue)")
+    } catch {
+      reportAudio("could not return to headset: \(error.localizedDescription)")
     }
   }
 

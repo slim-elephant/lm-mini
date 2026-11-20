@@ -3494,6 +3494,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get offloadKvCacheSubtitle => '用 GPU 更高效地保存对话上下文。有 GPU 就保持开启。';
 
   @override
+  String get keepThinkingInContext => '在上下文中保留思考';
+
+  @override
+  String get keepThinkingInContextSubtitle =>
+      '关闭后，只把之前的回答发送给 LM Studio，避免冗长的思考占满上下文。回复开始可能会稍慢。';
+
+  @override
   String get resizeImageForPhysicalBatch => '按物理批次缩小图片';
 
   @override
@@ -7413,15 +7420,21 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String nudgeProPitch(int count) {
-    return 'Pro 新增 $count 项功能，包括网页搜索、记忆，以及在手机上使用 Mac 的模型。其余功能仍然免费。';
+    return 'Pro 新增 $count 项功能，包括网页搜索、记忆，以及随时随地远程使用你的模型，不只在家里的 Wi-Fi 下。其余功能仍然免费。';
   }
 
   @override
-  String get nudgeProPitchShort => 'Pro 新增网页搜索、记忆，以及在手机上使用 Mac 的模型。其余功能仍然免费。';
+  String get nudgeProPitchShort =>
+      'Pro 新增网页搜索、记忆，以及随时随地远程使用你的模型，不只在家里的 Wi-Fi 下。其余功能仍然免费。';
 
   @override
-  String nudgeFromPrice(String price) {
-    return '按年付费，每月 $price 起';
+  String nudgeGetProPerMonth(String price) {
+    return '每月 $price 开通 Pro';
+  }
+
+  @override
+  String nudgeBilledYearly(String price) {
+    return '按年付费：$price';
   }
 
   @override
@@ -7452,4 +7465,180 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get aboutYouAboutHint => '例如：你做什么、喜欢什么、想要怎样的回答。';
+
+  @override
+  String get storage => '存储空间';
+
+  @override
+  String get storageSettingsSubtitle => '查看占用空间的内容并清理';
+
+  @override
+  String get storageUsedByApp => 'LM Mini 在这台设备上的占用';
+
+  @override
+  String get storageMeasuring => '正在计算…';
+
+  @override
+  String storageFreeUpTitle(String size) {
+    return '释放 $size';
+  }
+
+  @override
+  String get storageFreeUpBody => '已删除聊天的残留、未使用的文件和临时文件。你的聊天、模型和角色不受影响。';
+
+  @override
+  String get storageCleanUp => '清理';
+
+  @override
+  String storageFreed(String size) {
+    return '已释放 $size';
+  }
+
+  @override
+  String get storageAllClean => '没有可清理的内容';
+
+  @override
+  String get storageWhatTakesSpace => '占用空间的内容';
+
+  @override
+  String get storageSectionChats => '聊天';
+
+  @override
+  String get storageSectionModels => '设备端模型';
+
+  @override
+  String get storageSectionImageModels => '图像模型';
+
+  @override
+  String get storageSectionVoices => '语音';
+
+  @override
+  String get storageSectionSpeech => '语音识别';
+
+  @override
+  String get storageSectionGeneratedImages => '生成的图片';
+
+  @override
+  String get storageSectionAttachments => '附件';
+
+  @override
+  String get storageSectionTranscriptions => '转写录音';
+
+  @override
+  String get storageSectionLeftovers => '残留文件';
+
+  @override
+  String get storageSectionTemporary => '临时文件';
+
+  @override
+  String get storageAboutChats => '消息及其中发送的照片。删除聊天后将从这台设备永久移除。';
+
+  @override
+  String get storageAboutModels => '下载到这台设备上运行的 AI 模型，之后可以重新下载。';
+
+  @override
+  String get storageAboutImageModels => '用于在这台设备上生成图片的模型，之后可以重新下载。';
+
+  @override
+  String get storageAboutVoices => '用于朗读回复的语音包，可在语音设置中重新下载。';
+
+  @override
+  String get storageAboutSpeech => '把语音转成文字的模型，可在语音设置中重新下载。';
+
+  @override
+  String get storageAboutGeneratedImages => '在聊天中生成的图片和视频。删除后图片消失，聊天文字保留。';
+
+  @override
+  String get storageAboutAttachments => '你附加到消息中的文档。聊天会保留从中读取的文字。';
+
+  @override
+  String get storageAboutTranscriptions => '随转写保存的音频。删除后其转写也会一并移除。';
+
+  @override
+  String get storageAboutLeftovers => '应用中已不再使用的数据，可以放心删除。';
+
+  @override
+  String get storageAboutTemporary => '导出、朗读回复或报告错误时生成的文件，可以放心删除。';
+
+  @override
+  String get storageItemDeletedChatMessages => '已删除聊天的消息';
+
+  @override
+  String get storageItemUnusedAttachments => '已删除消息的文件';
+
+  @override
+  String get storageItemUnusedImages => '不再使用的图片';
+
+  @override
+  String get storageItemModelLeftovers => '已移除模型的文件';
+
+  @override
+  String get storageItemExports => '导出的聊天';
+
+  @override
+  String get storageItemErrorLogs => '错误日志';
+
+  @override
+  String get storageItemSpeechAudio => '朗读回复的音频';
+
+  @override
+  String get storageItemOtherTemp => '其他临时文件';
+
+  @override
+  String get storageUnfinishedDownload => '未完成的下载';
+
+  @override
+  String storageMessageCount(int count) {
+    return '消息：$count';
+  }
+
+  @override
+  String storageFileCount(int count) {
+    return '文件：$count';
+  }
+
+  @override
+  String storageItemCount(int count) {
+    return '项目：$count';
+  }
+
+  @override
+  String storageDeleteSelected(String size) {
+    return '删除 $size';
+  }
+
+  @override
+  String storageDeleteConfirmTitle(int count) {
+    return '要删除 $count 项吗？';
+  }
+
+  @override
+  String storageDeleteConfirmBody(String size) {
+    return '这将释放 $size，且无法撤销。';
+  }
+
+  @override
+  String get storageEmptySection => '这里没有内容';
+
+  @override
+  String get premiumStorage => '存储空间';
+
+  @override
+  String get premiumStorageTagline => '查看并释放空间';
+
+  @override
+  String get premiumStorageDescription =>
+      '查看聊天、模型、图片和文件占用了多少空间，并全部删除或只删除选中的内容。';
+
+  @override
+  String get teaserStorageTitle => '了解什么占满了设备';
+
+  @override
+  String get teaserStoragePoint1 => '查看聊天、模型、图片和文件占用的空间';
+
+  @override
+  String get teaserStoragePoint2 => '一键清理残留和临时文件';
+
+  @override
+  String get teaserStoragePoint3 => '精确选择要删除的内容，最大的排在最前';
 }

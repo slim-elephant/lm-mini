@@ -89,6 +89,7 @@ class DesktopHostService extends ChangeNotifier {
   String _comfyUiHost = '';
   int _comfyUiPort = 8188;
   bool _kokoroEnabled = true;
+  bool _allowComfyUiInstall = false;
   String _kokoroHost = '127.0.0.1';
   int _kokoroPort = 9998;
 
@@ -129,6 +130,7 @@ class DesktopHostService extends ChangeNotifier {
   String get comfyUiHost => _comfyUiHost;
   int get comfyUiPort => _comfyUiPort;
   bool get kokoroEnabled => _kokoroEnabled;
+  bool get allowComfyUiInstall => _allowComfyUiInstall;
   bool get isKokoroServerRunning => DesktopKokoroServer.instance.isRunning;
   String? get kokoroServerError => DesktopKokoroServer.instance.lastError;
   String get kokoroHost => _kokoroHost;
@@ -234,6 +236,8 @@ class DesktopHostService extends ChangeNotifier {
       _comfyUiHost = prefs.getString('${_prefsPrefix}comfy_host') ?? '';
       _comfyUiPort = prefs.getInt('${_prefsPrefix}comfy_port') ?? 8188;
       _kokoroEnabled = prefs.getBool('${_prefsPrefix}kokoro_enabled') ?? true;
+      _allowComfyUiInstall =
+          prefs.getBool('${_prefsPrefix}comfy_install') ?? false;
       _kokoroHost =
           prefs.getString('${_prefsPrefix}kokoro_host') ?? '127.0.0.1';
       _kokoroPort = prefs.getInt('${_prefsPrefix}kokoro_port') ?? 9998;
@@ -591,6 +595,15 @@ class DesktopHostService extends ChangeNotifier {
     unawaited(probeServices());
   }
 
+  /// Lets a paired phone install nodes / models and restart ComfyUI
+  /// (ComfyUI-Manager). Applies to the next request; no host restart.
+  Future<void> setAllowComfyUiInstall(bool v) async {
+    _allowComfyUiInstall = v;
+    await _saveBool('comfy_install', v);
+    _syncBackendFlags();
+    notifyListeners();
+  }
+
   Future<void> setKokoroEnabled(bool v) async {
     _kokoroEnabled = v;
     await _saveBool('kokoro_enabled', v);
@@ -703,6 +716,7 @@ class DesktopHostService extends ChangeNotifier {
         comfyUiHost: _comfyUiHost,
         comfyUiPort: _comfyUiPort,
         kokoroEnabled: _kokoroEnabled,
+        allowComfyUiInstall: _allowComfyUiInstall,
         kokoroHost: _kokoroHost,
         kokoroPort: _kokoroPort,
         reachable: _reachableMap(),

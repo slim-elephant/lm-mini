@@ -23,6 +23,9 @@ import '../utils/server_unreachable_error.dart';
 import '../utils/network_preflight_error.dart';
 import '../utils/host_inference_error.dart';
 import '../utils/lms_http_error.dart';
+import '../utils/server_busy_error.dart';
+import '../utils/unknown_tool_error.dart';
+import '../utils/wrong_server_type_error.dart';
 
 /// Captures uncaught errors and builds a plain-text log for support tickets.
 class ErrorReportService {
@@ -53,7 +56,10 @@ class ErrorReportService {
         FilePickerPathError.matches(error) ||
         LmsMcpError.matches(error) ||
         HostInferenceError.matches(error) ||
-        DroppedRequestBodyError.matches(error);
+        DroppedRequestBodyError.matches(error) ||
+        WrongServerTypeError.matches(error) ||
+        UnknownToolError.matches(error) ||
+        ServerBusyError.matches(error);
   }
 
   void capture(

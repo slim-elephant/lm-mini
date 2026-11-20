@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
 
@@ -15,9 +16,11 @@ import '../providers/settings_provider.dart';
 import '../services/device_capability_service.dart';
 import '../services/local_model_catalog.dart';
 import '../services/local_model_download_service.dart';
+import '../services/mlx_folder_import.dart';
 import '../services/on_device_llm_service.dart';
 import '../services/on_device_mlx_endpoint.dart';
 import '../services/apple_intelligence_endpoint.dart';
+import '../utils/mlx_model_types.dart';
 import '../widgets/apple_intelligence_card.dart';
 import '../widgets/home_glass_header.dart';
 import '../widgets/huggingface_download_flow.dart';
@@ -25,6 +28,7 @@ import '../widgets/model_browser/model_browser_screen.dart';
 import '../widgets/model_browser/model_family_card.dart';
 import '../widgets/model_browser/on_device_adapter.dart';
 import '../widgets/pro_feature_teaser.dart';
+import '../widgets/pro_price_button.dart';
 import 'subscription_screen.dart';
 
 enum _ImportKind { gguf, mlx }
@@ -693,7 +697,7 @@ class _LocalModelsScreenState extends State<LocalModelsScreen> {
 
     if (!mounted) return;
     _ImportKind kind;
-    if (mlxSupported && ProFeatures.isPro) {
+    if (mlxSupported) {
       final picked = await showModalBottomSheet<_ImportKind>(
         context: context,
         showDragHandle: true,
@@ -735,6 +739,8 @@ class _LocalModelsScreenState extends State<LocalModelsScreen> {
   Future<bool> _ensureImportAllowed() async {
     if (!ProFeatures.isPro && _downloads.importedModelCount >= 1) {
       final showUpsell = ProFeatures.showUpsell;
+      final l10n = AppLocalizations.of(context);
+      final billed = ProPriceButton.billedYearly(l10n);
       final upgrade = await showDialog<bool>(
         context: context,
         builder: (ctx) => AlertDialog(
@@ -743,7 +749,7 @@ class _LocalModelsScreenState extends State<LocalModelsScreen> {
             showUpsell
                 ? 'Free plan includes one imported model. Upgrade to '
                     'LM Mini Pro to import unlimited GGUF and MLX models '
-                    'from Files.'
+                    'from Files.${billed == null ? '' : '\n\n$billed'}'
                 : 'This build includes one imported model. Delete it to '
                     'import a different one.',
           ),
@@ -755,7 +761,7 @@ class _LocalModelsScreenState extends State<LocalModelsScreen> {
                   ),
                   FilledButton(
                     onPressed: () => Navigator.pop(ctx, true),
-                    child: const Text('Upgrade'),
+                    child: Text(ProPriceButton.label(l10n)),
                   ),
                 ]
               : [
@@ -827,12 +833,14 @@ class _LocalModelsScreenState extends State<LocalModelsScreen> {
     }
   }
 
+  /// One imported model (GGUF or MLX) is free; Pro removes the limit.
   Future<void> _importMlxFromDirectory() async {
-    if (!ProFeatures.isPro) {
-      _openPaywall();
+    if (!await _ensureImportAllowed()) return;
+
+    if (Platform.isIOS) {
+      await _importMlxFromPickedFolderIos();
       return;
     }
-    if (!await _ensureImportAllowed()) return;
 
     setState(() => _importing = true);
     try {
@@ -854,6 +862,53 @@ class _LocalModelsScreenState extends State<LocalModelsScreen> {
         );
       }
     } finally {
+      if (mounted) setState(() => _importing = false);
+    }
+  }
+
+  /// iOS can only read a picked folder while the native picker holds its
+  /// security scope, so the model files are copied into the app first and
+  /// then moved into place.
+  Future<void> _importMlxFromPickedFolderIos() async {
+    void show(String text) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(text), duration: const Duration(seconds: 6)),
+      );
+    }
+
+    PickedMlxFolder? folder;
+    try {
+      folder = await MlxFolderImport.pick();
+    } on PlatformException catch (e) {
+      show('MLX import failed: ${e.message ?? e.code}');
+      return;
+    }
+    if (folder == null) return;
+
+    final problem = mlxConfigProblem(folder.configJson);
+    if (problem != null) {
+      await MlxFolderImport.release(folder);
+      show(problem);
+      return;
+    }
+
+    setState(() => _importing = true);
+    String? stage;
+    try {
+      stage = await MlxFolderImport.copyInto(folder);
+      final spec = await _downloads.importMlxFromDirectory(
+        stage,
+        displayName: folder.name.replaceAll('_', ' '),
+        moveFiles: true,
+      );
+      show('Imported MLX model ${spec.displayName}');
+    } on PlatformException catch (e) {
+      show('MLX import failed: ${e.message ?? e.code}');
+    } catch (e) {
+      show('MLX import failed: $e');
+    } finally {
+      if (stage != null) await MlxFolderImport.deleteStage(stage);
       if (mounted) setState(() => _importing = false);
     }
   }

@@ -312,12 +312,146 @@ class DatabaseService {
         }
       } catch (_) {}
     }
-    await db.delete(
-      _conversationsTable,
-      where: 'id = ?',
-      whereArgs: [conversationId],
+    // Foreign keys are off by default in SQLite, so the schema's
+    // ON DELETE CASCADE never runs: delete the messages here.
+    await db.transaction((txn) async {
+      await txn.delete(
+        _messagesTable,
+        where: 'conversation_id = ?',
+        whereArgs: [conversationId],
+      );
+      await txn.delete(
+        _conversationsTable,
+        where: 'id = ?',
+        whereArgs: [conversationId],
+      );
+    });
+  }
+
+  // ── Storage (sizes and clean-up) ──────────────────────────────────
+
+  static const _messageBytesSql =
+      'LENGTH(CAST(content AS BLOB))'
+      ' + COALESCE(LENGTH(CAST(image_urls AS BLOB)), 0)'
+      ' + COALESCE(LENGTH(CAST(file_attachments AS BLOB)), 0)'
+      ' + COALESCE(LENGTH(CAST(alternatives AS BLOB)), 0)'
+      ' + COALESCE(LENGTH(CAST(stats AS BLOB)), 0)';
+
+  /// Bytes on disk of the chat database (with its journal files).
+  Future<int> databaseFileBytes() async {
+    final path = join(await getDatabasesPath(), _dbName);
+    var total = 0;
+    for (final suffix in const ['', '-wal', '-shm', '-journal']) {
+      try {
+        final f = File('$path$suffix');
+        if (await f.exists()) total += await f.length();
+      } catch (_) {}
+    }
+    return total;
+  }
+
+  /// Message count and stored bytes per conversation id.
+  Future<Map<String, ({int messages, int bytes})>> conversationSizes() async {
+    final db = await database;
+    final rows = await db.rawQuery(
+      'SELECT conversation_id AS id, COUNT(*) AS n, '
+      'SUM($_messageBytesSql) AS bytes '
+      'FROM $_messagesTable GROUP BY conversation_id',
     );
-    // Messages will be deleted automatically due to CASCADE
+    return {
+      for (final r in rows)
+        r['id'] as String: (
+          messages: (r['n'] as num?)?.toInt() ?? 0,
+          bytes: (r['bytes'] as num?)?.toInt() ?? 0,
+        ),
+    };
+  }
+
+  /// Messages whose conversation no longer exists (left behind by chats
+  /// deleted before deletes removed their messages).
+  Future<({int messages, int bytes})> orphanMessageStats() async {
+    final db = await database;
+    final rows = await db.rawQuery(
+      'SELECT COUNT(*) AS n, SUM($_messageBytesSql) AS bytes '
+      'FROM $_messagesTable WHERE conversation_id NOT IN '
+      '(SELECT id FROM $_conversationsTable)',
+    );
+    final r = rows.first;
+    return (
+      messages: (r['n'] as num?)?.toInt() ?? 0,
+      bytes: (r['bytes'] as num?)?.toInt() ?? 0,
+    );
+  }
+
+  /// Deletes [orphanMessageStats] messages and their generated image files.
+  Future<int> deleteOrphanMessages() async {
+    final db = await database;
+    const where = 'conversation_id NOT IN (SELECT id FROM conversations)';
+    final maps = await db.query(
+      _messagesTable,
+      columns: ['generated_image_paths'],
+      where: '$where AND generated_image_paths IS NOT NULL',
+    );
+    for (final map in maps) {
+      try {
+        for (final path in List<String>.from(
+          jsonDecode(map['generated_image_paths'] as String),
+        )) {
+          try {
+            final file = File(path);
+            if (await file.exists()) await file.delete();
+          } catch (_) {}
+        }
+      } catch (_) {}
+    }
+    return db.delete(_messagesTable, where: where);
+  }
+
+  /// File paths of every chat attachment a message still points to.
+  Future<Set<String>> referencedAttachmentPaths() async {
+    final db = await database;
+    final rows = await db.query(
+      _messagesTable,
+      columns: ['file_attachments'],
+      where: "file_attachments IS NOT NULL AND file_attachments != ''",
+    );
+    final out = <String>{};
+    for (final r in rows) {
+      try {
+        final decoded = jsonDecode(r['file_attachments'] as String);
+        if (decoded is! List) continue;
+        for (final a in decoded) {
+          final path = a is Map ? a['filePath'] : null;
+          if (path is String && path.isNotEmpty) out.add(path);
+        }
+      } catch (_) {}
+    }
+    return out;
+  }
+
+  /// Conversation settings and folder colours: the places outside app
+  /// settings that can name a picture in `images/` (group participant
+  /// avatars, folder covers).
+  Future<List<String>> imageReferenceTexts() async {
+    final db = await database;
+    final out = <String>[];
+    for (final r in await db.query(_conversationsTable, columns: ['settings'])) {
+      final v = r['settings'];
+      if (v is String && v.isNotEmpty) out.add(v);
+    }
+    for (final r in await db.query(_foldersTable, columns: ['color'])) {
+      final v = r['color'];
+      if (v is String && v.isNotEmpty) out.add(v);
+    }
+    return out;
+  }
+
+  /// Gives freed pages back to the system after large deletes.
+  Future<void> vacuum() async {
+    final db = await database;
+    try {
+      await db.execute('VACUUM');
+    } catch (_) {}
   }
 
   // Message methods
@@ -441,6 +575,25 @@ class DatabaseService {
     );
 
     return maps.map(_messageFromDbMap).toList();
+  }
+
+  /// The newest [limit] user and assistant messages of a chat, oldest
+  /// first. For views that show only the end of a thread (Apple Watch):
+  /// loading a whole long chat pulls every photo ever sent in it into
+  /// memory, which can get the app killed in the background.
+  Future<List<ChatMessage>> getRecentChatMessages(
+    String conversationId, {
+    required int limit,
+  }) async {
+    final db = await database;
+    final maps = await db.query(
+      _messagesTable,
+      where: "conversation_id = ? AND role IN ('user', 'assistant')",
+      whereArgs: [conversationId],
+      orderBy: 'timestamp DESC',
+      limit: limit,
+    );
+    return maps.reversed.map(_messageFromDbMap).toList();
   }
 
   ChatMessage _messageFromDbMap(Map<String, Object?> map) {

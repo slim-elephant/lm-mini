@@ -1,11 +1,15 @@
 import 'package:flutter/foundation.dart';
 import 'package:just_audio/just_audio.dart';
 
+import '../services/app_audio_session.dart';
 import 'audio_session_busy_error.dart';
 
 /// Play a TTS clip. If the mic still holds the iOS session, skip instead of
 /// throwing an uncaught [PlatformException] from an unawaited `play()`.
 Future<void> playTtsClip(AudioPlayer player) async {
+  // Listening mode for read aloud, voice mode inside a voice chat: the
+  // clip must not inherit whatever the last recording left behind.
+  await AppAudioSession.instance.prepareForPlayback();
   try {
     await player.play();
   } catch (e) {

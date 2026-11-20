@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../services/app_audio_session.dart';
 import '../providers/chat_provider.dart';
 import '../providers/settings_provider.dart';
 import '../services/tts_service.dart';
@@ -106,8 +107,12 @@ class _VoiceModeScreenState extends State<VoiceModeScreen>
 
     await _tts.initialize();
     final settings = settingsProvider.settings;
-    if (Platform.isIOS && settings.voiceSttProvider == 'system') {
-      await _callService.configureAudioSessionForVoiceChat();
+    if (Platform.isIOS) {
+      if (settings.voiceSttProvider == 'system') {
+        await _callService.configureAudioSessionForVoiceChat();
+      } else {
+        await _callService.configureAudioSessionForDictation();
+      }
     }
     final available = await _stt.initialize(
       sttProvider: settings.voiceSttProvider,
@@ -259,6 +264,7 @@ class _VoiceModeScreenState extends State<VoiceModeScreen>
     _transcriptScrollController.dispose();
     _tts.stop();
     _stt.stopListening();
+    unawaited(AppAudioSession.instance.leaveVoiceMode());
     super.dispose();
   }
 

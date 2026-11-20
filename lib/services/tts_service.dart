@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
 import '../utils/tts_voice_display.dart';
+import 'app_audio_session.dart';
 
 /// Text-to-Speech service wrapping native engines
 /// (Apple AVSpeechSynthesizer on iOS, Google TTS on Android)
@@ -228,6 +229,7 @@ class TtsService {
     final cleanText = _stripMarkdown(text);
     if (cleanText.trim().isEmpty) return;
 
+    await AppAudioSession.instance.prepareForPlayback();
     await _tts!.speak(cleanText);
   }
 
